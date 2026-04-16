@@ -18,17 +18,51 @@
     }
     header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
     header p  { opacity: .8; font-size: .9rem; }
-    main { max-width: 800px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-    h2 { font-size: 1rem; font-weight: 600; color: var(--sky); margin: 2rem 0 .75rem; padding-bottom: .4rem; border-bottom: 2px solid var(--border); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .75rem; }
-    a.card {
-      display: block; background: var(--s1); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1rem 1.2rem; text-decoration: none;
-      color: var(--text); transition: all .18s; box-shadow: 0 1px 3px rgba(37,99,235,.06);
+    main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+    /* semester block */
+    .semester {
+      margin-bottom: 2.5rem;
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(37,99,235,.07);
     }
-    a.card:hover { border-color: var(--blue); box-shadow: 0 3px 12px rgba(37,99,235,.12); transform: translateY(-1px); }
-    a.card .title { font-weight: 600; font-size: .95rem; margin-bottom: .25rem; }
-    a.card .sub   { font-size: .8rem; color: var(--muted); }
+    .semester-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.4rem;
+      background: linear-gradient(90deg, #eff6ff 0%, #f0f9ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .semester-tag {
+      background: var(--blue); color: white;
+      font-size: .78rem; font-weight: 700; letter-spacing: .05em;
+      padding: .2rem .65rem; border-radius: 20px;
+    }
+    .semester-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .semester-body { padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    /* subject group inside semester */
+    .subject-label {
+      font-size: .78rem; font-weight: 600; color: var(--sky);
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .subject-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .7rem; }
+    a.card {
+      display: block; background: #f8fbff; border: 1px solid var(--border);
+      border-radius: 10px; padding: .85rem 1.1rem; text-decoration: none;
+      color: var(--text); transition: all .18s; box-shadow: 0 1px 3px rgba(37,99,235,.04);
+    }
+    a.card:hover { border-color: var(--blue); background: #fff; box-shadow: 0 3px 12px rgba(37,99,235,.11); transform: translateY(-1px); }
+    a.card .title { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
+    a.card .sub   { font-size: .78rem; color: var(--muted); }
     footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); background: var(--s1); }
   </style>
 </head>
@@ -38,61 +72,79 @@
   <p>hsingshiue 的課程重點整理</p>
 </header>
 <main>
-  <h2>儀器分析</h2>
-  <div class="grid">
-    <a class="card" href="儀分重點整理.html">
-      <div class="title">儀分重點整理</div>
-      <div class="sub">Ch 1/5 · Ch 6 · Ch 7 · Ch 8 · 含圖解</div>
-    </a>
+
+  <div class="semester">
+    <div class="semester-header">
+      <span class="semester-tag">大二下</span>
+      <span class="semester-name">二年級第二學期</span>
+    </div>
+    <div class="semester-body">
+
+      <div>
+        <div class="subject-label">有機化學</div>
+        <div class="grid">
+          <a class="card" href="ch10-alkynes-review.html">
+            <div class="title">Ch 10 Alkynes</div>
+            <div class="sub">炔類反應整理</div>
+          </a>
+          <a class="card" href="ch13-alcohols-part1.html">
+            <div class="title">Ch 13 Alcohols Part 1</div>
+            <div class="sub">醇類反應（上）</div>
+          </a>
+          <a class="card" href="ch13-alcohols-part2.html">
+            <div class="title">Ch 13 Alcohols Part 2</div>
+            <div class="sub">醇類反應（下）</div>
+          </a>
+          <a class="card" href="ch15-IR-MS-part1.html">
+            <div class="title">Ch 15 IR/MS Part 1</div>
+            <div class="sub">紅外光譜與質譜（上）</div>
+          </a>
+          <a class="card" href="ch15-IR-MS-part2.html">
+            <div class="title">Ch 15 IR/MS Part 2</div>
+            <div class="sub">紅外光譜與質譜（下）</div>
+          </a>
+          <a class="card" href="ch16-NMR-part1.html">
+            <div class="title">Ch 16 NMR Part 1</div>
+            <div class="sub">核磁共振（上）</div>
+          </a>
+          <a class="card" href="ch16-NMR-part2.html">
+            <div class="title">Ch 16 NMR Part 2</div>
+            <div class="sub">核磁共振（下）</div>
+          </a>
+          <a class="card" href="oxymercuration-mechanism.html">
+            <div class="title">Oxymercuration 機構</div>
+            <div class="sub">汞化反應詳解</div>
+          </a>
+          <a class="card" href="考古題整理-Ch10-13-15-16.html">
+            <div class="title">考古題整理</div>
+            <div class="sub">Ch 10 · 13 · 15 · 16</div>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="subject-label">儀器分析</div>
+        <div class="grid">
+          <a class="card" href="儀分重點整理.html">
+            <div class="title">儀分重點整理</div>
+            <div class="sub">Ch 1/5 · Ch 6 · Ch 7 · Ch 8 · 含圖解</div>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="subject-label">通識 / 其他</div>
+        <div class="grid">
+          <a class="card" href="個人理財期中重點整理.html">
+            <div class="title">個人理財期中重點</div>
+            <div class="sub">期中考重點整理</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <h2>有機化學</h2>
-  <div class="grid">
-    <a class="card" href="ch10-alkynes-review.html">
-      <div class="title">Ch 10 Alkynes</div>
-      <div class="sub">炔類反應整理</div>
-    </a>
-    <a class="card" href="ch13-alcohols-part1.html">
-      <div class="title">Ch 13 Alcohols Part 1</div>
-      <div class="sub">醇類反應（上）</div>
-    </a>
-    <a class="card" href="ch13-alcohols-part2.html">
-      <div class="title">Ch 13 Alcohols Part 2</div>
-      <div class="sub">醇類反應（下）</div>
-    </a>
-    <a class="card" href="ch15-IR-MS-part1.html">
-      <div class="title">Ch 15 IR/MS Part 1</div>
-      <div class="sub">紅外光譜與質譜（上）</div>
-    </a>
-    <a class="card" href="ch15-IR-MS-part2.html">
-      <div class="title">Ch 15 IR/MS Part 2</div>
-      <div class="sub">紅外光譜與質譜（下）</div>
-    </a>
-    <a class="card" href="ch16-NMR-part1.html">
-      <div class="title">Ch 16 NMR Part 1</div>
-      <div class="sub">核磁共振（上）</div>
-    </a>
-    <a class="card" href="ch16-NMR-part2.html">
-      <div class="title">Ch 16 NMR Part 2</div>
-      <div class="sub">核磁共振（下）</div>
-    </a>
-    <a class="card" href="oxymercuration-mechanism.html">
-      <div class="title">Oxymercuration 機構</div>
-      <div class="sub">汞化反應詳解</div>
-    </a>
-    <a class="card" href="考古題整理-Ch10-13-15-16.html">
-      <div class="title">考古題整理</div>
-      <div class="sub">Ch 10 · 13 · 15 · 16</div>
-    </a>
-  </div>
-
-  <h2>其他</h2>
-  <div class="grid">
-    <a class="card" href="個人理財期中重點整理.html">
-      <div class="title">個人理財期中重點</div>
-      <div class="sub">期中考重點整理</div>
-    </a>
-  </div>
 </main>
 <footer>Generated with Claude Code</footer>
 </body>
