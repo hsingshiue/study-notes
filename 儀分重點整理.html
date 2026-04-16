@@ -715,25 +715,223 @@
 
   <div class="card-grid">
     <div class="card">
-      <strong style="color:var(--sky);">光源</strong>
+      <strong style="color:var(--sky);">光源 / Light Sources</strong>
       <table style="margin-top:.7rem;">
-        <tr><th>光源</th><th>波長範圍</th></tr>
-        <tr><td>氘燈（D₂）</td><td>160–380 nm (UV)</td></tr>
-        <tr><td>鎢絲燈（W）</td><td>350–2500 nm</td></tr>
-        <tr><td>能斯特燈</td><td>中 IR</td></tr>
-        <tr><td>空心陰極燈（HCL）</td><td>線光源，原子吸收用</td></tr>
+        <tr><th>光源</th><th>英文</th><th>波長範圍</th></tr>
+        <tr><td>氘燈</td><td>Deuterium lamp (D₂)</td><td>160–380 nm (UV)</td></tr>
+        <tr><td>鎢絲燈</td><td>Tungsten lamp (W)</td><td>350–2500 nm</td></tr>
+        <tr><td>能斯特燈</td><td>Nernst glower</td><td>中 IR</td></tr>
+        <tr><td>空心陰極燈</td><td>Hollow cathode lamp (HCL)</td><td>線光源，原子吸收用</td></tr>
       </table>
     </div>
     <div class="card">
-      <strong style="color:var(--sky);">波長選擇器比較</strong>
+      <strong style="color:var(--sky);">波長選擇器比較 / Wavelength Selectors</strong>
       <table style="margin-top:.7rem;">
-        <tr><th></th><th>濾光片</th><th>單光儀</th></tr>
-        <tr><td>帶寬</td><td>5–15 nm 固定</td><td>可調（狹縫控制）</td></tr>
-        <tr><td>靈活性</td><td>低</td><td>高（可掃描）</td></tr>
-        <tr><td>成本</td><td>低</td><td>高</td></tr>
+        <tr><th></th><th>濾光片 Filter</th><th>單光儀 Monochromator</th></tr>
+        <tr><td>帶寬 Bandwidth</td><td>5–15 nm，固定</td><td>可調（狹縫控制）</td></tr>
+        <tr><td>靈活性 Flexibility</td><td>低，固定波長</td><td>高，可掃描全波段</td></tr>
+        <tr><td>成本 Cost</td><td>低</td><td>高</td></tr>
       </table>
     </div>
   </div>
+
+  <!-- Filter detail -->
+  <div class="card" style="border-left:3px solid var(--cyan);">
+    <strong style="color:var(--cyan);">濾光片 / Filter — 詳細</strong>
+    <div class="card-grid" style="margin-top:.75rem;">
+      <div>
+        <p style="font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:.4rem;">干涉濾光片 Interference Filter</p>
+        <ul style="font-size:.85rem;color:var(--muted);padding-left:1.1rem;">
+          <li>利用薄膜<strong>相長干涉</strong>選出特定波長</li>
+          <li>條件：<strong>2nt = mλ</strong></li>
+          <li>帶寬 5–15 nm，結構固定</li>
+          <li>多層：玻璃／介電膜／金屬膜／介電膜／玻璃</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:.4rem;">截止濾光片 Cut-off Filter</p>
+        <ul style="font-size:.85rem;color:var(--muted);padding-left:1.1rem;">
+          <li>只讓某波長以上或以下的光通過</li>
+          <li>搭配干涉濾光片使用，去除高階雜散波長</li>
+          <li>例：去掉 m=2, 3 的干擾</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monochromator detail -->
+  <div class="card" style="border-left:3px solid var(--cyan);">
+    <strong style="color:var(--cyan);">單光儀 / Monochromator — 詳細</strong>
+    <p style="font-size:.82rem;color:var(--muted);margin:.4rem 0 .75rem;">將複合光分離為單一波長輸出</p>
+    <div style="display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin-bottom:.75rem;font-size:.82rem;">
+      <span style="background:#eff6ff;border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;color:var(--sky);">入射狹縫<br><span style="font-size:.75rem;color:var(--muted);">Entrance slit</span></span>
+      <span style="color:var(--muted);">→</span>
+      <span style="background:#eff6ff;border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;color:var(--sky);">準直鏡<br><span style="font-size:.75rem;color:var(--muted);">Collimating mirror</span></span>
+      <span style="color:var(--muted);">→</span>
+      <span style="background:#eff6ff;border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;color:var(--sky);">色散元件<br><span style="font-size:.75rem;color:var(--muted);">Grating / Prism</span></span>
+      <span style="color:var(--muted);">→</span>
+      <span style="background:#eff6ff;border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;color:var(--sky);">聚焦鏡<br><span style="font-size:.75rem;color:var(--muted);">Focusing mirror</span></span>
+      <span style="color:var(--muted);">→</span>
+      <span style="background:#eff6ff;border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;color:var(--sky);">出射狹縫<br><span style="font-size:.75rem;color:var(--muted);">Exit slit</span></span>
+    </div>
+    <table>
+      <tr><th>參數</th><th>英文</th><th>意義</th></tr>
+      <tr><td>倒線色散 D⁻¹</td><td>Reciprocal linear dispersion</td><td>nm/mm，越小分辨率越高</td></tr>
+      <tr><td>狹縫寬 W</td><td>Slit width</td><td>窄 → 分辨率高但訊號弱</td></tr>
+      <tr><td>有效帶寬</td><td>Effective bandwidth</td><td>= W × D⁻¹</td></tr>
+      <tr><td>分辨率 R</td><td>Resolving power</td><td>R = nN（n = 階數，N = 總刻線數）</td></tr>
+    </table>
+  </div>
+
+  <!-- Detector detail -->
+  <div class="card" style="border-left:3px solid var(--violet);">
+    <strong style="color:var(--violet);">偵測器 / Detectors — 詳細</strong>
+    <table style="margin-top:.75rem;">
+      <tr><th>偵測器</th><th>英文</th><th>原理</th><th>特點</th></tr>
+      <tr>
+        <td>光電管</td>
+        <td>Phototube / Vacuum phototube</td>
+        <td>光電效應，光打陰極釋放電子，電壓拉向陽極</td>
+        <td>線性佳，靈敏度普通</td>
+      </tr>
+      <tr>
+        <td>光電倍增管</td>
+        <td>Photomultiplier tube (PMT)</td>
+        <td>多級打拿極（dynode）逐級放大電子數</td>
+        <td>增益 10⁶~10⁷，可測單光子</td>
+      </tr>
+      <tr>
+        <td>矽光二極體</td>
+        <td>Silicon photodiode</td>
+        <td>光照 p-n 接面產生電流（半導體）</td>
+        <td>堅固，體積小</td>
+      </tr>
+      <tr>
+        <td>光二極體陣列</td>
+        <td>Photodiode array (PDA)</td>
+        <td>多個矽光二極體排成陣列</td>
+        <td>同時偵測多波長，快速全光譜</td>
+      </tr>
+      <tr>
+        <td>電荷耦合元件</td>
+        <td>CCD</td>
+        <td>半導體電荷耦合，光子轉電荷儲存</td>
+        <td>低噪、高動態範圍、二維偵測</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:.75rem;">
+      <strong>PMT 補充：</strong>打拿極（dynode）9~16 級，每級放大約 4~8 倍。暗電流（dark current）= 無光時的背景雜訊，是 PMT 的主要限制。
+    </div>
+  </div>
+
+  <!-- Vacuum Phototube structure -->
+  <div class="card" style="border-left:3px solid var(--violet);">
+    <strong style="color:var(--violet);">Vacuum Phototube 結構（板書 Fig 7-2）</strong>
+    <p style="font-size:.82rem;color:var(--muted);margin:.4rem 0 .75rem;">密封於真空透明外殼（evacuated transparent envelope）內</p>
+    <table>
+      <tr><th>#</th><th>元件</th><th>英文</th><th>功能</th></tr>
+      <tr>
+        <td style="font-weight:700;color:var(--violet);">①</td>
+        <td>半圓柱形陰極</td>
+        <td>Semi-cylindrical cathode</td>
+        <td>受光後釋放電子（光電效應）</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;color:var(--violet);">②</td>
+        <td>光電材料層</td>
+        <td>Layer of photo-emissive material</td>
+        <td>陰極表面塗層，決定感應波長範圍</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;color:var(--violet);">③</td>
+        <td>線狀陽極</td>
+        <td>Wire anode</td>
+        <td>接正電壓，吸引電子形成電流</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:.75rem;">
+      流程：光照陰極 → 光電效應釋放電子 → 電壓將電子拉向 wire anode → 電流輸出<br>
+      真空原因：避免電子被空氣分子撞散，確保電子順利抵達陽極
+    </div>
+  </div>
+
+  <!-- Board 10: Transducer signal formula -->
+  <div class="card" style="border-left:3px solid var(--violet);">
+    <strong style="color:var(--violet);">偵測器訊號公式（板書 10）</strong>
+    <p style="font-size:.82rem;color:var(--muted);margin:.4rem 0 .75rem;">Radiation transducer：將光子（photons）轉換為電子訊號（current / voltage）</p>
+    <table style="margin-top:.5rem;">
+      <tr><th>公式</th><th>說明</th></tr>
+      <tr>
+        <td style="font-weight:700;font-size:1rem;letter-spacing:.03em;">S = kP</td>
+        <td>S = 訊號輸出（電流 A 或電壓 V）；k = 常數；P = 輻射功率（radiant power）</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;font-size:1rem;letter-spacing:.03em;">S = kP + k<sub>d</sub></td>
+        <td>加入暗電流（dark current）修正項 k<sub>d</sub>：即使無光照，偵測器仍有背景電流輸出</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:.75rem;">
+      <strong>Dark current</strong>（暗電流）：無照光時偵測器輸出的背景訊號，是限制靈敏度的主要雜訊來源之一。理想偵測器的 k<sub>d</sub> 應趨近 0。
+    </div>
+  </div>
+
+  <!-- Board 11: Ideal transducer -->
+  <div class="card" style="border-left:3px solid var(--violet);">
+    <strong style="color:var(--violet);">理想偵測器條件（板書 11）— Ideal Transducer</strong>
+    <ol style="margin-top:.75rem;padding-left:1.3rem;display:flex;flex-direction:column;gap:.45rem;">
+      <li><strong>High sensitivity</strong>（高靈敏度）：對微弱訊號仍有足夠大的輸出響應</li>
+      <li><strong>High signal-to-noise</strong>（高訊雜比）：有效訊號遠大於雜訊</li>
+      <li><strong>Constant response over a considerable range of wavelength</strong>（寬廣且穩定的波長響應）：在大範圍波長下靈敏度保持一致</li>
+      <li><strong>Fast response time</strong>（快速響應）：能即時跟上光訊號的變化</li>
+      <li><strong>No output signal in the absence of illumination</strong>（無光無輸出）：暗電流趨近於零，不干擾測量</li>
+    </ol>
+  </div>
+
+  <!-- Board 12: Types of radiation transducers -->
+  <div class="card" style="border-left:3px solid var(--violet);">
+    <strong style="color:var(--violet);">偵測器分類（板書 12）— Types of Radiation Transducers</strong>
+    <table style="margin-top:.75rem;">
+      <tr><th>代號</th><th>英文名稱</th><th>中文</th><th>偵測原理</th></tr>
+      <tr>
+        <td style="font-weight:700;">A</td>
+        <td>Photomultiplier tube (PMT)</td>
+        <td>光電倍增管</td>
+        <td>光電效應 + 多級打拿極放大；UV–Vis 最高靈敏</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;">B</td>
+        <td>CdS photoconductivity cell</td>
+        <td>硫化鎘光導電池</td>
+        <td>光照使半導體電阻降低（photoconductive effect）</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;">D</td>
+        <td>GaAs photovoltaic cell</td>
+        <td>砷化鎵光伏電池</td>
+        <td>光照在 p-n 接面產生電壓（photovoltaic effect）</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;color:var(--muted2);">…</td>
+        <td colspan="3" style="color:var(--muted2);font-style:italic;">其他光子偵測器（如 Si photodiode、PDA、CCD）</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;">H</td>
+        <td>Thermocouple</td>
+        <td>熱電偶</td>
+        <td rowspan="2">熱偵測器（heat detector）：吸收紅外輻射轉為熱訊號，無波長選擇性</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;">I</td>
+        <td>Golay cell</td>
+        <td>高萊管</td>
+      </tr>
+    </table>
+    <div class="note" style="margin-top:.75rem;">
+      A→D 為<strong>光子偵測器（photon/quantum detectors）</strong>：波長響應曲線有峰值（如板書圖中 A 曲線最高）。<br>
+      H、I 為<strong>熱偵測器（thermal detectors）</strong>：響應平坦但靈敏度低，常用於 IR 波段。
+    </div>
+  </div>
+
 </section>
 
 
@@ -893,6 +1091,13 @@
 <section id="boltzmann">
   <div class="section-title">Example 8-2 ｜ Boltzmann 方程計算 <span class="badge badge-board">板書出現</span></div>
   <div class="card" style="border-color:#bfdbfe;">
+    <!-- Problem statement EN/ZH -->
+    <div class="prob-q" style="margin-bottom:1rem;">
+      <div style="margin-bottom:.4rem;color:var(--sky);font-style:normal;font-weight:600;font-size:.8rem;letter-spacing:.04em;">EN</div>
+      For the sodium (Na) resonance line at 589.3 nm (3p → 3s transition), calculate the ratio of the number of atoms in the 3p excited state to those in the 3s ground state (N<sub>j</sub>/N<sub>0</sub>) at temperatures of (a) 2500 K and (b) 2600 K. Assume g<sub>j</sub>/g<sub>0</sub> = 3 and k = 1.38 × 10⁻²³ J K⁻¹.
+      <div style="margin-top:.65rem;margin-bottom:.3rem;color:var(--sky);font-style:normal;font-weight:600;font-size:.8rem;letter-spacing:.04em;">ZH</div>
+      鈉（Na）的共振線波長為 589.3 nm（3p → 3s 躍遷）。分別在 (a) 2500 K 與 (b) 2600 K 下，計算激發態（3p）與基態（3s）的原子數比值 N<sub>j</sub>/N<sub>0</sub>。已知統計權重比 g<sub>j</sub>/g<sub>0</sub> = 3，k = 1.38 × 10⁻²³ J K⁻¹。
+    </div>
     <div class="formula" style="font-size:1.05rem;padding:.9rem;">Nⱼ/N₀ = (gⱼ/g₀) × exp(−Eⱼ / kT)</div>
     <p style="font-size:.83rem;color:var(--muted2);margin:.5rem 0 1rem;">k = 1.38×10⁻²³ J K⁻¹　　gⱼ/g₀ = 統計權重比　　Eⱼ = 激發能</p>
     <div class="step"><div class="step-n">1</div><div>Na D 線 589.3 nm，3p → 3s：<div class="formula" style="text-align:left;font-size:.88rem;">Eⱼ = hc/λ = 3.37×10⁻¹⁹ J</div></div></div>
