@@ -6,8 +6,8 @@
 <title>個人理財 期中重點整理｜主題一～五</title>
 <style>
   :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
+    --primary: #7eacd3;
+    --primary-dark: #5a8fb5;
     --accent: #f59e0b;
     --accent-light: #fef3c7;
     --green: #10b981;
@@ -389,6 +389,7 @@
 </style>
 </head>
 <body>
+<a href="index.html" id="back-btn" style="position:fixed;top:14px;left:14px;z-index:9999;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border:1px solid #b8d4ea;border-radius:20px;padding:6px 14px 6px 10px;font-size:13px;font-weight:600;color:#3d6f90;text-decoration:none;box-shadow:0 2px 10px rgba(90,143,181,0.18);font-family:system-ui,sans-serif;line-height:1;">&#8592; 返回</a>
 
 <div class="hero">
   <h1>個人理財 期中重點整理</h1>
@@ -467,6 +468,135 @@
         </tbody>
       </table>
     </div>
+
+    <div class="divider"></div>
+
+    <h3>⭐ K線圖（蠟燭圖）繪製方法 <span class="tag tag-hot">必考</span></h3>
+    <p>每根K線由<strong>四個價格</strong>組成：開盤價、收盤價、最高價、最低價。</p>
+    <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;margin:16px 0;">
+      <!-- 紅K -->
+      <div style="text-align:center;">
+        <div style="font-weight:700;color:#dc2626;margin-bottom:8px;">紅K（收盤 > 開盤）</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+          <div style="font-size:0.75rem;color:#666;">最高價 110</div>
+          <div style="width:2px;height:18px;background:#dc2626;"></div>
+          <div style="width:32px;height:60px;background:#dc2626;border:2px solid #dc2626;display:flex;flex-direction:column;justify-content:space-between;padding:2px 4px;">
+            <div style="font-size:0.7rem;color:white;font-weight:700;">收盤 100</div>
+            <div style="font-size:0.7rem;color:white;font-weight:700;">開盤 85</div>
+          </div>
+          <div style="width:2px;height:18px;background:#dc2626;"></div>
+          <div style="font-size:0.75rem;color:#666;">最低價 75</div>
+        </div>
+        <div style="margin-top:10px;font-size:0.8rem;color:#666;max-width:120px;">實體：開盤到收盤<br>上影線：最高價<br>下影線：最低價</div>
+      </div>
+      <!-- 黑/綠K -->
+      <div style="text-align:center;">
+        <div style="font-weight:700;color:#1d4ed8;margin-bottom:8px;">黑K（收盤 &lt; 開盤）</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+          <div style="font-size:0.75rem;color:#666;">最高價 105</div>
+          <div style="width:2px;height:18px;background:#1d4ed8;"></div>
+          <div style="width:32px;height:60px;background:#1d4ed8;border:2px solid #1d4ed8;display:flex;flex-direction:column;justify-content:space-between;padding:2px 4px;">
+            <div style="font-size:0.7rem;color:white;font-weight:700;">開盤 95</div>
+            <div style="font-size:0.7rem;color:white;font-weight:700;">收盤 80</div>
+          </div>
+          <div style="width:2px;height:18px;background:#1d4ed8;"></div>
+          <div style="font-size:0.75rem;color:#666;">最低價 70</div>
+        </div>
+        <div style="margin-top:10px;font-size:0.8rem;color:#666;max-width:120px;">收&lt;開 → 下跌K<br>台灣用藍/黑<br>（中國用綠）</div>
+      </div>
+      <!-- 說明 -->
+      <div style="flex:1;min-width:200px;">
+        <div class="card card-red" style="margin-bottom:10px;">
+          <h4>紅K = 收盤價 &gt; 開盤價（上漲）</h4>
+          <p>實體向上：下方是開盤，上方是收盤</p>
+        </div>
+        <div class="card card-blue">
+          <h4>黑/藍K = 收盤價 &lt; 開盤價（下跌）</h4>
+          <p>實體向下：上方是開盤，下方是收盤</p>
+        </div>
+        <div class="tip" style="margin-top:10px;font-size:0.85rem;">
+          <strong>記憶法：</strong>紅色 = 上漲 = 收盤在上方；黑色 = 下跌 = 收盤在下方<br>
+          影線（細線）= 盤中最極端的高低點
+        </div>
+      </div>
+    </div>
+
+    <h3>移動平均線 (MA) <span class="tag tag-short">簡答常考</span></h3>
+    <div class="card-grid">
+      <div class="card card-blue">
+        <h4>5日線（短天期）</h4>
+        <p>計算最近5個交易日的平均收盤價。反應靈敏，波動大，線條較<strong>陡峭</strong>。</p>
+      </div>
+      <div class="card card-purple">
+        <h4>20日線（長天期）</h4>
+        <p>計算最近20個交易日的平均收盤價。反應遲緩，波動小，線條較<strong>平緩</strong>。</p>
+      </div>
+    </div>
+    <div class="tip">天期越短 → 線條越陡；天期越長 → 線條越平緩（因為平均的數據多，單一天的波動被稀釋）</div>
+
+    <div class="divider"></div>
+
+    <h3>⭐ 除息 / 除權 參考價計算 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="card-grid">
+      <div class="card card-green">
+        <h4>除息參考價（配發現金股利）</h4>
+        <div class="formula-box" style="margin:10px 0;padding:12px;">
+          <div class="formula-main" style="font-size:0.95rem;">除息參考價 = 前日收盤價 − 現金股利</div>
+        </div>
+        <p>例：收盤100元，配息10元<br>→ 除息參考價 = 100 − 10 = <strong>90元</strong></p>
+      </div>
+      <div class="card card-amber">
+        <h4>除權參考價（配發股票股利）</h4>
+        <div class="formula-box" style="margin:10px 0;padding:12px;background:#78350f;">
+          <div class="formula-main" style="font-size:0.95rem;">除權參考價 = 前日收盤價 ÷ (1 + 股票股利 ÷ 10)</div>
+        </div>
+        <p>例：收盤100元，每股配股票股利10元<br>→ 除權參考價 = 100 ÷ (1 + 10/10) = 100 ÷ 2 = <strong>50元</strong></p>
+      </div>
+    </div>
+    <div class="warn"><strong>重要：</strong>除息/除權後價格下調是正常現象，不等於虧損。公司把錢「還給」股東，股價自然調整，股東的總資產不變（理論上）。</div>
+
+    <h3>融資 vs 融券 <span class="tag tag-short">簡答</span></h3>
+    <div class="card-grid">
+      <div class="card card-red">
+        <h4>融資（看多做多）</h4>
+        <ul>
+          <li>向券商借錢買股票</li>
+          <li>認為股票會漲，先買進</li>
+          <li>融資餘額↑ → 市場偏向<strong>看多</strong></li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h4>融券（看空做空）</h4>
+        <ul>
+          <li>向券商借股票賣出，之後買回還券</li>
+          <li>認為股票會跌，先賣後買</li>
+          <li>融券餘額↑ → 市場偏向<strong>看空</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula-box" style="margin-top:12px;">
+      <div class="formula-label">融資槓桿倍數</div>
+      <div class="formula-main">槓桿倍數 = 1 ÷ 自備款比例（融資成數）</div>
+      <div class="formula-note">例：融資成數6成（借6成，自備4成）→ 槓桿 = 1 ÷ 0.4 = 2.5倍<br>融資成數5成 → 槓桿 = 1 ÷ 0.5 = 2倍</div>
+    </div>
+
+    <h3>資產負債觀念</h3>
+    <div class="card-grid">
+      <div class="card card-amber">
+        <h4>同一件事，角度不同</h4>
+        <p>你把錢存入銀行：</p>
+        <ul>
+          <li>對你（存款人）→ <strong>資產</strong>（你有債權）</li>
+          <li>對銀行 → <strong>負債</strong>（銀行欠你錢）</li>
+        </ul>
+        <p style="margin-top:8px;">你向銀行貸款：</p>
+        <ul>
+          <li>對你 → <strong>負債</strong></li>
+          <li>對銀行 → <strong>資產</strong>（銀行有債權）</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -624,6 +754,41 @@ n = 期數（年、月等）</div>
       </div>
     </div>
     <p class="warn"><strong>重要：</strong>高風險 ≠ 保證高報酬，但追求高報酬就必須承擔高風險。風險承受度因人而異，取決於年齡、收入穩定性、時程長短、心理承受能力。</p>
+
+    <div class="divider"></div>
+
+    <h3>一碼 = 0.25% <span class="tag tag-hot">必考填空</span></h3>
+    <div class="card-grid">
+      <div class="card card-blue">
+        <h4>升降息單位</h4>
+        <p>央行調整利率的最小單位稱為「一碼」，等於 <strong>0.25%（25個基點）</strong>。</p>
+        <p style="margin-top:6px;">例：升息半碼 = +0.125%；升息兩碼 = +0.5%</p>
+      </div>
+      <div class="card card-green">
+        <h4>貨幣政策工具</h4>
+        <ul>
+          <li>景氣過熱 → <strong>升息</strong>（緊縮、抑制通膨）</li>
+          <li>景氣低迷 → <strong>降息</strong>（寬鬆、刺激消費）</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>⭐ 指數漲跌不對稱陷阱 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="formula-box">
+      <div class="formula-label">看似對稱，其實不對稱</div>
+      <div class="formula-main">跌 X% 後再漲 X%  ≠  回到原點</div>
+      <div class="formula-note">原因：跌了之後的基數變小了，漲回同樣%數恢復不了原本數字</div>
+    </div>
+    <div class="diagram">例：指數 100點
+      → 跌10%：100 × 0.9 = 90點
+      → 再漲10%：90 × 1.1 = 99點  ← 還差1點！
+
+直覺理解：
+  跌10% = 損失10點（從100點基礎算）
+  漲10% = 漲9點（從90點基礎算）
+  淨效果 = 損失1點</div>
+    <div class="warn"><strong>應用：</strong>槓桿型/反向ETF會有「每日結算」機制，長期下來因為這個不對稱效果，價值會偏離其追蹤的指數。例如2倍槓桿ETF，長期持有後的績效幾乎一定 ≠ 指數績效×2，通常更差。</div>
+
   </div>
 </section>
 
@@ -747,6 +912,108 @@ n = 期數（年、月等）</div>
 vs 算術平均股價 = (30+20+24)÷3 = 24.67元
 
 → 平均成本(24) < 算術平均股價(24.67)，定期定額有降低平均成本的效果</div>
+
+    <div class="divider"></div>
+
+    <h3>定期不定額 <span class="tag tag-short">簡答</span></h3>
+    <div class="card-grid">
+      <div class="card card-purple">
+        <h4>定期不定額的邏輯</h4>
+        <ul>
+          <li>固定時間投入，但金額依淨值高低調整</li>
+          <li>淨值<strong>低</strong>（便宜）→ <strong>增加</strong>投入金額</li>
+          <li>淨值<strong>高</strong>（貴）→ <strong>減少</strong>投入金額</li>
+          <li>目的：比定期定額更主動壓低平均成本</li>
+        </ul>
+      </div>
+      <div class="card card-blue">
+        <h4>vs 定期定額</h4>
+        <ul>
+          <li>定期定額：每次投入<strong>相同</strong>金額</li>
+          <li>定期不定額：每次投入<strong>不同</strong>金額（依淨值）</li>
+          <li>兩者都有「低買多、高買少」效果</li>
+          <li>定期不定額理論上效果更好，但需要設定規則</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>基金篩選：四四三三法則 <span class="tag tag-short">簡答</span></h3>
+    <div class="diagram">四四三三法則 = 篩選基金過去績效的標準
+
+第一個「四」：1年期報酬率，排同類基金前 1/4（前25%）
+第二個「四」：2年期報酬率，排同類基金前 1/4（前25%）
+第三個「三」：3年期報酬率，排同類基金前 1/3（前33%）
+第四個「三」：6個月期報酬率，排同類基金前 1/3（前33%）
+
+→ 四個條件都通過，才值得考慮購買
+→ 本質上是在篩選「過去績效」，強調要看多個時間段，
+  而非只看短期</div>
+    <div class="tip"><strong>記憶法：</strong>4、4、3、3 → 前25%、前25%、前33%、前33%</div>
+
+    <div class="divider"></div>
+
+    <h3>開放型 vs 封閉型基金</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>類型</th><th>說明</th><th>常見程度</th></tr></thead>
+        <tbody>
+          <tr><td><strong>開放型</strong></td><td>隨時可申購/贖回，規模可隨資金進出變動，以每日淨值計算</td><td>大多數基金屬此類 ✓</td></tr>
+          <tr><td><strong>封閉型</strong></td><td>固定發行量，在交易所上市交易，類似股票，買賣價格可能與淨值有折溢價</td><td>較少見</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>TDR / ADR — 第二上市 <span class="tag tag-short">簡答</span></h3>
+    <div class="card-grid">
+      <div class="card card-green">
+        <h4>ADR（美國存託憑證）</h4>
+        <p>外國公司在<strong>美國</strong>發行的存託憑證，讓美國投資人可以用美元買賣外國公司股票。屬於在美國的「第二上市」。</p>
+      </div>
+      <div class="card card-green">
+        <h4>TDR（台灣存託憑證）</h4>
+        <p>外國公司在<strong>台灣</strong>發行的存託憑證，讓台灣投資人可以用台幣買賣外國公司股票。屬於在台灣的「第二上市」。</p>
+      </div>
+    </div>
+    <div class="tip"><strong>共同特性：</strong>公司原本在A國上市（第一上市），再到B國以存託憑證形式掛牌（第二上市）。</div>
+
+    <div class="divider"></div>
+
+    <h3>信用評等與垃圾債券 <span class="tag tag-short">簡答</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>信用評等</th><th>等級</th><th>特性</th></tr></thead>
+        <tbody>
+          <tr><td>AAA、AA、A</td><td>投資等級（高）</td><td>低風險、低收益、違約率低</td></tr>
+          <tr><td>BBB</td><td>投資等級（最低門檻）</td><td>尚可接受的投資標的</td></tr>
+          <tr><td style="color:#dc2626;font-weight:700;">BB 及以下</td><td style="color:#dc2626;">垃圾債券（高收益債）</td><td>高風險、高收益、違約風險明顯</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn"><strong>垃圾債券：</strong>信用評等低於BBB（即BB以下）的債券。因為高違約風險，發行者必須提供更高的利率吸引投資人，所以又稱「高收益債券」。高報酬 = 承擔高違約風險的補償。</div>
+
+    <div class="divider"></div>
+
+    <h3>共同基金風險排序</h3>
+    <div class="visual-chart">
+      <div class="chart-row">
+        <div class="chart-label">股票型</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:90%;background:#ef4444;">風險最高</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">平衡型</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:55%;background:#f59e0b;">風險中等</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">債券型</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:28%;background:#10b981;">風險最低</div></div>
+      </div>
+    </div>
+    <p class="tip">平衡型基金 = 同時持有股票與債券，風險介於兩者之間。</p>
+
   </div>
 </section>
 
@@ -854,6 +1121,58 @@ vs 算術平均股價 = (30+20+24)÷3 = 24.67元
         <div><strong>藍燈</strong>：景氣低迷，需要刺激政策</div>
       </div>
     </div>
+
+    <div class="divider"></div>
+
+    <h3>⭐ 匯率升貶值幅度計算 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="formula-box">
+      <div class="formula-label">計算某貨幣的升貶值幅度</div>
+      <div class="formula-main">升貶值幅度 = (新匯率 − 舊匯率) ÷ 舊匯率 × 100%</div>
+      <div class="formula-note">→ 結果為正 = 升值；結果為負 = 貶值</div>
+    </div>
+    <div class="diagram">例題：台幣兌美元從 30 台幣/美元 → 33 台幣/美元
+
+美元的升貶值（以台幣計價）：
+= (33 − 30) ÷ 30 × 100%
+= 3 ÷ 30 × 100%
+= 10%
+
+→ 美元升值了 10%（同樣1美元現在要更多台幣）
+→ 換句話說：台幣對美元貶值了
+
+台幣的角度：原本1台幣 = 1/30美元，現在1台幣 = 1/33美元
+台幣貶值 = (1/30 − 1/33) ÷ (1/30) × 100% = 3/33 ÷ ... ≈ 9.09%
+
+重點：美元升10% ≠ 台幣貶10%，兩者基數不同！</div>
+
+    <div class="divider"></div>
+
+    <h3>貨幣政策 vs 財政政策 <span class="tag tag-short">簡答</span></h3>
+    <div class="card-grid">
+      <div class="card card-blue">
+        <h4>貨幣政策（央行執行）</h4>
+        <ul>
+          <li>工具：調整<strong>利率</strong>、存款準備率、公開市場操作</li>
+          <li>景氣低迷 → <strong>降息</strong>（寬鬆貨幣政策）</li>
+          <li>景氣過熱 → <strong>升息</strong>（緊縮貨幣政策）</li>
+          <li>台灣由「中央銀行（央行）」執行</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>財政政策（政府執行）</h4>
+        <ul>
+          <li>工具：調整<strong>政府支出</strong>與<strong>稅收</strong></li>
+          <li>景氣低迷 → 增加公共支出、減稅（擴張財政）</li>
+          <li>景氣過熱 → 縮減支出、增稅（緊縮財政）</li>
+          <li>台灣由「財政部、行政院」執行</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn">
+      <strong>常見考題：</strong>「景氣低迷，央行降息，屬於什麼政策？」<br>
+      → 答：<strong>貨幣政策</strong>（因為是央行執行、調整利率）
+    </div>
+
   </div>
 </section>
 
@@ -1151,6 +1470,49 @@ vs 算術平均股價 = (30+20+24)÷3 = 24.67元
         <div class="step"><div class="step-num">2</div><div class="step-content"><strong>主動基金（5.2%）：</strong><br><span class="math">100萬 × (1.052)^30 = 100萬 × 4.5173 ≈ 451.7萬</span></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-content"><strong>差距：</strong><br><span class="math">700.6 - 451.7 = 248.9萬</span></div></div>
         <div class="answer-box">答(a)：ETF 30年後約 700.6萬<br>答(b)：主動基金 30年後約 451.7萬<br>答(c)：費用差1.6%，長期損失近 249萬，超過初始本金的兩倍！</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題6：除息 / 除權參考價</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>某股票前日收盤價為120元。<br>
+        (a) 若每股配發現金股利8元，除息參考價為多少？<br>
+        (b) 若每股配發股票股利10元（面額10元），除權參考價為多少？<br>
+        (c) 若同時配發現金股利5元、股票股利5元，參考價為多少？</p>
+
+        <p><strong>(a) 純除息：</strong></p>
+        <div class="step"><div class="step-num">1</div><div class="step-content">公式：<span class="math">除息參考價 = 收盤價 − 現金股利</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">= 120 − 8 = 112元</span></div></div>
+        <div class="answer-box" style="margin-bottom:16px;">答(a)：除息參考價 = 112元</div>
+
+        <p><strong>(b) 純除權：</strong></p>
+        <div class="step"><div class="step-num">1</div><div class="step-content">公式：<span class="math">除權參考價 = 收盤價 ÷ (1 + 股票股利 ÷ 10)</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">= 120 ÷ (1 + 10/10) = 120 ÷ 2 = 60元</span></div></div>
+        <div class="answer-box" style="margin-bottom:16px;">答(b)：除權參考價 = 60元（股數變兩倍，單價減半）</div>
+
+        <p><strong>(c) 除息又除權：</strong></p>
+        <div class="step"><div class="step-num">1</div><div class="step-content">公式：<span class="math">參考價 = (收盤價 − 現金股利) ÷ (1 + 股票股利 ÷ 10)</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">= (120 − 5) ÷ (1 + 5/10)</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><span class="math">= 115 ÷ 1.5 ≈ 76.67元</span></div></div>
+        <div class="answer-box">答(c)：除息除權參考價 ≈ 76.67元</div>
+      </div>
+    </div>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題7：匯率升貶值幅度</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>台幣兌美元的匯率由 1美元=30台幣 變為 1美元=33台幣。<br>
+        (a) 以台幣計算，美元升值或貶值了幾%？<br>
+        (b) 若你有1萬美元，以台幣計算增加了多少？</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-content">判斷方向：匯率從30→33，1美元換更多台幣，美元<strong>升值</strong>（台幣貶值）</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content">計算升值幅度：<br><span class="math">(33 − 30) ÷ 30 × 100% = 3/30 × 100% = 10%</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content">1萬美元的台幣價值：<br>原本：<span class="math">10,000 × 30 = 300,000元</span><br>現在：<span class="math">10,000 × 33 = 330,000元</span><br>增加：<span class="math">330,000 − 300,000 = 30,000元</span></div></div>
+        <div class="answer-box">答(a)：美元升值10%（以台幣計算）<br>答(b)：持有1萬美元，台幣價值增加了 30,000元</div>
       </div>
     </div>
 

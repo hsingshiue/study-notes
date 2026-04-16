@@ -7,13 +7,13 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     :root {
-      --bg: #eef5fd; --s1: #ffffff; --border: #c8ddf4;
-      --blue: #2563eb; --sky: #0891b2; --text: #0f172a; --muted: #64748b;
+      --bg: #eef5fc; --s1: #ffffff; --border: #b8d4ea;
+      --blue: #7eacd3; --sky: #5a8fb5; --text: #1a2a3a; --muted: #64748b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
     header {
-      background: linear-gradient(160deg, #1d4ed8 0%, #0891b2 100%);
+      background: linear-gradient(160deg, #5a8fb5 0%, #7eacd3 100%);
       color: white; text-align: center; padding: 3rem 2rem 2.5rem;
     }
     header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
@@ -36,7 +36,7 @@
       border-bottom: 1px solid var(--border);
     }
     .semester-tag {
-      background: var(--blue); color: white;
+      background: var(--sky); color: white;
       font-size: .78rem; font-weight: 700; letter-spacing: .05em;
       padding: .2rem .65rem; border-radius: 20px;
     }
@@ -60,7 +60,7 @@
       border-radius: 10px; padding: .85rem 1.1rem; text-decoration: none;
       color: var(--text); transition: all .18s; box-shadow: 0 1px 3px rgba(37,99,235,.04);
     }
-    a.card:hover { border-color: var(--blue); background: #fff; box-shadow: 0 3px 12px rgba(37,99,235,.11); transform: translateY(-1px); }
+    a.card:hover { border-color: var(--blue); background: #fff; box-shadow: 0 3px 12px rgba(126,172,211,.2); transform: translateY(-1px); }
     a.card .title { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
     a.card .sub   { font-size: .78rem; color: var(--muted); }
     footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); background: var(--s1); }
@@ -69,7 +69,7 @@
 <body>
 <header>
   <h1>課程筆記總覽</h1>
-  <p>課程重點整理</p>
+  <p style="display:none;"></p>
 </header>
 <main>
 
