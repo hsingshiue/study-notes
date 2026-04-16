@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>儀器分析重點整理</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg:      #eef5fd;
+      --s1:      #ffffff;
+      --s2:      #f4f8fe;
+      --s3:      #e8f1fb;
+      --border:  #c8ddf4;
+      --border2: #b0ccee;
+      --blue:    #2563eb;
+      --cyan:    #0891b2;
+      --amber:   #b45309;
+      --rose:    #be123c;
+      --green:   #059669;
+      --violet:  #7c3aed;
+      --sky:     #0284c7;
+      --text:    #0f172a;
+      --muted:   #475569;
+      --muted2:  #64748b;
+      --form-bg: #eff6ff;
+      --form-bd: #bfdbfe;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+
+    /* ══ HEADER ══ */
+    header {
+      position: relative; overflow: hidden;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      background: linear-gradient(160deg, #1d4ed8 0%, #0891b2 100%);
+      color: white;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 90% at 20% 50%, rgba(255,255,255,.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(255,255,255,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    header h1 {
+      font-size: 2rem; font-weight: 700; letter-spacing: -.02em;
+      color: #ffffff; margin-bottom: .4rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    header p { color: rgba(255,255,255,.8); font-size: .9rem; }
+
+    /* ══ NAV ══ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 6px rgba(37,99,235,.08);
+      display: flex; flex-wrap: wrap; gap: .2rem;
+      padding: .55rem 1.5rem;
+    }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-size: .8rem; font-weight: 500;
+      padding: .28rem .7rem; border-radius: 20px;
+      border: 1px solid transparent; transition: all .18s;
+    }
+    nav a:hover { color: var(--blue); border-color: rgba(37,99,235,.35); background: rgba(37,99,235,.07); }
+
+    /* ══ LAYOUT ══ */
+    main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+    section { margin-bottom: 3.5rem; }
+
+    .section-title {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: 1.1rem; font-weight: 700; color: var(--blue);
+      margin-bottom: 1.25rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .badge { font-size: .68rem; padding: .15rem .55rem; border-radius: 20px; font-weight: 600; letter-spacing: .04em; }
+    .badge-exam  { background: #fef2f2; color: var(--rose);   border: 1px solid #fecaca; }
+    .badge-board { background: #fffbeb; color: var(--amber);  border: 1px solid #fde68a; }
+    .badge-key   { background: #f0fdf4; color: var(--green);  border: 1px solid #bbf7d0; }
+
+    /* ══ CARDS ══ */
+    .card {
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 4px rgba(37,99,235,.06);
+    }
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:620px){ .card-grid{ grid-template-columns:1fr; } }
+
+    /* ══ DEFINITION ITEMS ══ */
+    .def-list { display: flex; flex-direction: column; gap: .65rem; }
+    .def-item {
+      display: flex; gap: .9rem;
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: 10px; padding: .9rem 1.1rem;
+      align-items: flex-start; transition: border-color .18s, box-shadow .18s;
+      box-shadow: 0 1px 3px rgba(37,99,235,.04);
+    }
+    .def-item:hover { border-color: var(--blue); box-shadow: 0 2px 10px rgba(37,99,235,.1); }
+    .def-item.board { border-left: 3px solid var(--amber); }
+    .def-label {
+      flex-shrink: 0; width: 1.9rem; height: 1.9rem;
+      background: #dbeafe; color: var(--blue);
+      border-radius: 7px; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: .78rem;
+    }
+    .def-item.board .def-label { background: #fef3c7; color: var(--amber); }
+    .def-item.dim { opacity: .55; }
+    .def-item.dim .def-label { background: #f1f5f9; color: var(--muted); }
+    .def-term { font-weight: 600; color: var(--text); font-size: .93rem; }
+    .def-en   { color: var(--muted2); font-weight: 400; font-size: .82rem; }
+    .def-body { color: var(--muted); font-size: .88rem; margin-top: .15rem; }
+
+    /* ══ FORMULA ══ */
+    .formula {
+      background: var(--form-bg);
+      border: 1px solid var(--form-bd);
+      border-radius: 8px;
+      padding: .6rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: .92rem; color: var(--sky);
+      margin: .5rem 0; text-align: center;
+    }
+
+    /* ══ TABLE ══ */
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th {
+      background: #eff6ff; color: var(--blue);
+      font-weight: 600; padding: .55rem 1rem;
+      text-align: left; border-bottom: 2px solid var(--border);
+    }
+    td { padding: .5rem 1rem; border-bottom: 1px solid var(--border); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fbff; }
+
+    /* ══ PROBLEMS ══ */
+    .prob {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: 14px; margin-bottom: 1.5rem; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(37,99,235,.06);
+    }
+    .prob-head {
+      background: #eff6ff;
+      border-bottom: 1px solid var(--border);
+      padding: .7rem 1.25rem;
+      display: flex; align-items: center; gap: .65rem;
+    }
+    .prob-num {
+      background: var(--blue); color: white;
+      border-radius: 6px; padding: .18rem .55rem;
+      font-size: .78rem; font-weight: 700;
+    }
+    .prob-title { font-weight: 600; font-size: .95rem; color: var(--text); }
+    .prob-body { padding: 1.2rem 1.4rem; }
+    .prob-q { color: var(--muted); font-size: .88rem; margin-bottom: 1rem; font-style: italic; }
+    .step { display: flex; gap: .65rem; margin-bottom: .7rem; align-items: flex-start; }
+    .step-n {
+      flex-shrink: 0; width: 1.4rem; height: 1.4rem;
+      background: var(--green); color: white;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: .7rem; font-weight: 700; margin-top: .18rem;
+    }
+    .ans  { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: .65rem 1rem; margin-top: .65rem; color: var(--green); font-weight: 600; }
+    .note { background: #fffbeb; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0; padding: .55rem .9rem; margin-top: .65rem; font-size: .86rem; color: #92400e; }
+
+    /* ══ DIAGRAMS ══ */
+    .diagram-wrap {
+      background: var(--s1); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.4rem;
+      margin-bottom: 1rem; text-align: center;
+      box-shadow: 0 1px 4px rgba(37,99,235,.06);
+    }
+    .diagram-title {
+      font-size: .78rem; color: var(--muted2);
+      margin-bottom: 1rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    /* ══ PIPELINE ══ */
+    .pipeline { display: flex; align-items: center; gap: .3rem; flex-wrap: wrap; margin-top: .75rem; }
+    .pipe-box {
+      background: #eff6ff; border: 1px solid #bfdbfe;
+      border-radius: 7px; padding: .35rem .75rem;
+      font-size: .83rem; color: var(--blue); font-weight: 500;
+    }
+    .pipe-arrow { color: var(--muted2); font-size: 1rem; }
+
+    /* ══ COMPARE ══ */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width:620px){ .compare-grid{ grid-template-columns:1fr; } }
+    .compare-box { background: var(--s2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+    .compare-box h4 { font-size: .88rem; font-weight: 600; margin-bottom: .5rem; }
+    .compare-box ul { padding-left: 1.1rem; font-size: .86rem; color: var(--muted); }
+    .compare-box li { margin-bottom: .25rem; }
+
+    footer { text-align:center; padding:2rem; color:var(--muted2); font-size:.8rem; border-top:1px solid var(--border); background: var(--s1); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>儀器分析 重點整理</h1>
+  <p>Ch 1/5 · Ch 6 · Ch 7 · Ch 8 ｜ 含板書、例題、圖解</p>
+</header>
+
+<nav>
+  <a href="#def">6-1 定義</a>
+  <a href="#ch15">Ch 1/5 S/N</a>
+  <a href="#ch6">Ch 6 光譜</a>
+  <a href="#ch7">Ch 7 儀器</a>
+  <a href="#ch8">Ch 8 原子光譜</a>
+  <a href="#probs">習題</a>
+  <a href="#boltzmann">Boltzmann</a>
+  <a href="#board">板書必考</a>
+</nav>
+
+<main>
+
+<!-- ═══ 6-1 ═══ -->
+<section id="def">
+  <div class="section-title">
+    6-1 Define
+    <span class="badge badge-exam">篩選自板書與 PPT</span>
+  </div>
+  <p style="color:var(--muted2);font-size:.83rem;margin-bottom:1rem;">
+    🟡 板書直接出現　🔵 PPT 明確定義　灰色虛線 = 間接提及，考機率較低
+  </p>
+  <div class="def-list">
+
+    <div class="def-item board">
+      <div class="def-label">l</div>
+      <div>
+        <div class="def-term">透射率 <span class="def-en">Transmittance (T)</span></div>
+        <div class="def-body">穿透樣品後的光強度與入射光強度之比值。</div>
+        <div class="formula" style="text-align:left;font-size:.85rem;">T = P / P₀　　%T = T × 100%</div>
+      </div>
+    </div>
+
+    <div class="def-item board">
+      <div class="def-label">n</div>
+      <div>
+        <div class="def-term">吸光度 <span class="def-en">Absorbance (A)</span></div>
+        <div class="def-body">透射率的負對數，與濃度和光程成正比（Beer-Lambert Law）。</div>
+        <div class="formula" style="text-align:left;font-size:.85rem;">A = −log T = ε · b · c</div>
+      </div>
+    </div>
+
+    <div class="def-item board">
+      <div class="def-label">m</div>
+      <div>
+        <div class="def-term">吸光係數 <span class="def-en">Molar absorptivity (ε)</span></div>
+        <div class="def-body">Beer-Lambert Law 的比例常數，代表物質在特定波長吸收光的能力強弱。單位：L mol⁻¹ cm⁻¹。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">g</div>
+      <div>
+        <div class="def-term">光電效應 <span class="def-en">Photoelectric effect</span></div>
+        <div class="def-body">光子打到金屬表面，若 hν ≥ φ，電子被釋放。釋出電子動能 = hν − φ。為光電管與 PMT 的工作基礎。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">f</div>
+      <div>
+        <div class="def-term">功函數 <span class="def-en">Work function (φ)</span></div>
+        <div class="def-body">從金屬表面移除一個電子所需的最小能量。hν 必須 ≥ φ 才能觸發光電效應。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">c</div>
+      <div>
+        <div class="def-term">折射率 <span class="def-en">Refractive index (n)</span></div>
+        <div class="def-body">光在真空中速度與在介質中速度之比值。n 越大，光在該介質中傳播越慢。</div>
+        <div class="formula" style="text-align:left;font-size:.85rem;">n = c / v</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">j</div>
+      <div>
+        <div class="def-term">螢光 <span class="def-en">Fluorescence</span></div>
+        <div class="def-body">分子吸光後，從激發單重態 S₁ 快速（&lt; ns）發光返回基態 S₀。發射波長長於吸收波長（Stokes shift）。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">k</div>
+      <div>
+        <div class="def-term">磷光 <span class="def-en">Phosphorescence</span></div>
+        <div class="def-body">經系間跨越（ISC）至三重態 T₁，再緩慢（ms ~ 數秒）發光返回基態。激發停止後仍持續發光。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">o</div>
+      <div>
+        <div class="def-term">振動弛豫 <span class="def-en">Vibrational relaxation</span></div>
+        <div class="def-body">分子在激發態以非輻射方式（熱碰撞，~10⁻¹² s）從高振動能階降至最低振動能階，能量以熱散失。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">p</div>
+      <div>
+        <div class="def-term">Stokes 位移 <span class="def-en">Stokes shift</span></div>
+        <div class="def-body">發射光波長長於（能量低於）吸收光的現象。原因：激發後先經振動弛豫損失能量，再發光。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">h</div>
+      <div>
+        <div class="def-term">基態 <span class="def-en">Ground state</span></div>
+        <div class="def-body">分子或原子處於最低能量的狀態（電子、振動、轉動均在最低能階）。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">i</div>
+      <div>
+        <div class="def-term">電子激發 <span class="def-en">Electronic excitation</span></div>
+        <div class="def-body">分子吸收光子後，電子從基態 S₀ 躍遷至較高電子能態（S₁、S₂…）的過程。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">d</div>
+      <div>
+        <div class="def-term">正常色散 <span class="def-en">Normal dispersion</span></div>
+        <div class="def-body">折射率 n 隨波長增加而減小（dn/dλ &lt; 0）。藍光折射率 > 紅光，為稜鏡分光的物理基礎。</div>
+      </div>
+    </div>
+
+    <div class="def-item">
+      <div class="def-label">e</div>
+      <div>
+        <div class="def-term">異常色散 <span class="def-en">Anomalous dispersion</span></div>
+        <div class="def-body">在吸收帶附近，折射率反而隨波長增加而增大（dn/dλ > 0），行為與正常色散相反。</div>
+      </div>
+    </div>
+
+    <div class="def-item dim" style="border-style:dashed;">
+      <div class="def-label">a</div>
+      <div>
+        <div class="def-term">同調輻射 <span class="def-en">Coherent radiation</span> <span style="font-size:.75rem;color:var(--muted2);"> — Ch 7 雷射段，考機率低</span></div>
+        <div class="def-body">光波之間具有固定相位關係的電磁輻射。雷射（受激發射產物）為最典型範例。</div>
+      </div>
+    </div>
+
+    <div class="def-item dim" style="border-style:dashed;">
+      <div class="def-label">b</div>
+      <div>
+        <div class="def-term">疊加原理 <span class="def-en">Superposition principle</span> <span style="font-size:.75rem;color:var(--muted2);"> — 干涉背景知識，考機率低</span></div>
+        <div class="def-body">兩道波相遇時，合成波振幅等於各自振幅的代數和，是相長/相消干涉的基礎。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ CH 1/5 ═══ -->
+<section id="ch15">
+  <div class="section-title">Ch 1 / 5 ｜ EM 輻射與訊雜比</div>
+
+  <div class="card">
+    <strong style="color:var(--sky);">電磁波基本公式</strong>
+    <div class="formula" style="margin-top:.7rem;">c = λν　　E = hν = hc/λ　　σ (cm⁻¹) = 1/λ (cm)</div>
+    <table style="margin-top:.75rem;">
+      <tr><th>符號</th><th>名稱</th><th>單位</th></tr>
+      <tr><td>λ</td><td>波長</td><td>nm, μm</td></tr>
+      <tr><td>ν</td><td>頻率</td><td>Hz</td></tr>
+      <tr><td>σ</td><td>波數</td><td>cm⁻¹</td></tr>
+      <tr><td>E</td><td>光子能量</td><td>J</td></tr>
+    </table>
+  </div>
+
+  <!-- EM Spectrum -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">電磁波譜（由高能到低能）</div>
+    <svg viewBox="0 0 760 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;">
+      <defs>
+        <linearGradient id="spec" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#7c3aed"/>
+          <stop offset="18%"  stop-color="#4f46e5"/>
+          <stop offset="33%"  stop-color="#2563eb"/>
+          <stop offset="45%"  stop-color="#0891b2"/>
+          <stop offset="55%"  stop-color="#059669"/>
+          <stop offset="65%"  stop-color="#d97706"/>
+          <stop offset="75%"  stop-color="#dc2626"/>
+          <stop offset="100%" stop-color="#dc2626" stop-opacity=".3"/>
+        </linearGradient>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+      <rect x="20" y="28" width="720" height="26" rx="6" fill="url(#spec)" opacity=".75"/>
+      <text x="32"  y="22" fill="#7c3aed" font-size="10" font-weight="600">γ射線</text>
+      <text x="108" y="22" fill="#4f46e5" font-size="10" font-weight="600">X光</text>
+      <text x="200" y="22" fill="#2563eb" font-size="10" font-weight="600">UV</text>
+      <text x="305" y="22" fill="#0f172a" font-size="10" font-weight="600">可見光</text>
+      <text x="430" y="22" fill="#d97706" font-size="10" font-weight="600">IR</text>
+      <text x="555" y="22" fill="#dc2626" font-size="10" font-weight="600">微波</text>
+      <text x="660" y="22" fill="#dc2626" font-size="10" font-weight="600">無線電</text>
+      <line x1="100" y1="28" x2="100" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="190" y1="28" x2="190" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="280" y1="28" x2="280" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="400" y1="28" x2="400" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="530" y1="28" x2="530" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="645" y1="28" x2="645" y2="54" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+      <line x1="720" y1="72" x2="40" y2="72" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arr)"/>
+      <text x="340" y="85" fill="#94a3b8" font-size="9.5" text-anchor="middle">能量增加 / 波長減小</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <strong style="color:var(--sky);">訊雜比（S/N）提升方法</strong>
+    <table style="margin-top:.75rem;">
+      <tr><th>方法</th><th>原理</th><th>S/N 提升量</th></tr>
+      <tr><td>訊號平均（Averaging）</td><td>n 次平均，隨機雜訊相消</td><td>∝ √n</td></tr>
+      <tr><td>鎖相放大器（Lock-in amp.）</td><td>調制訊號，只放大特定頻率</td><td>大幅提升</td></tr>
+      <tr><td>硬體低通濾波</td><td>截止高頻雜訊</td><td>依頻寬</td></tr>
+      <tr><td>箱車積分器（Boxcar）</td><td>對脈衝訊號積分取樣</td><td>依門寬</td></tr>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══ CH 6 ═══ -->
+<section id="ch6">
+  <div class="section-title">Ch 6 ｜ 光譜方法</div>
+
+  <div class="card">
+    <strong style="color:var(--sky);">輻射與物質交互作用</strong>
+    <table style="margin-top:.75rem;">
+      <tr><th>現象</th><th>說明</th></tr>
+      <tr><td>折射</td><td>光進入不同介質，速度改變方向；n = c/v</td></tr>
+      <tr><td>反射</td><td>入射角 = 反射角</td></tr>
+      <tr><td>繞射</td><td>通過狹縫或光柵產生干涉；nλ = d(sinθᵢ + sinθᵣ)</td></tr>
+      <tr><td>Rayleigh 散射</td><td>彈性，波長不變，強度 ∝ 1/λ⁴</td></tr>
+      <tr><td>Raman 散射</td><td>非彈性，波長改變 ± 振動能量</td></tr>
+      <tr><td>吸收</td><td>基態 → 激發態，Beer-Lambert：A = εbc</td></tr>
+      <tr><td>螢光</td><td>S₁ → S₀，快速（&lt;ns），Stokes shift</td></tr>
+      <tr><td>磷光</td><td>T₁ → S₀，緩慢（ms~s）</td></tr>
+    </table>
+  </div>
+
+  <!-- Jablonski -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Jablonski 能階圖（螢光 · 磷光 · 振動弛豫）</div>
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;">
+      <!-- S0 -->
+      <line x1="80" y1="270" x2="220" y2="270" stroke="#059669" stroke-width="2.5"/>
+      <line x1="80" y1="250" x2="220" y2="250" stroke="#059669" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+      <line x1="80" y1="230" x2="220" y2="230" stroke="#059669" stroke-width="1" stroke-dasharray="4,3" opacity=".25"/>
+      <text x="48" y="274" fill="#059669" font-size="13" font-weight="700">S₀</text>
+      <!-- S1 -->
+      <line x1="80"  y1="100" x2="220" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+      <line x1="80"  y1="80"  x2="220" y2="80"  stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+      <line x1="80"  y1="60"  x2="220" y2="60"  stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3" opacity=".28"/>
+      <line x1="80"  y1="40"  x2="220" y2="40"  stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3" opacity=".18"/>
+      <text x="48" y="104" fill="#2563eb" font-size="13" font-weight="700">S₁</text>
+      <!-- S2 -->
+      <line x1="80"  y1="18"  x2="220" y2="18"  stroke="#7c3aed" stroke-width="2"/>
+      <text x="48" y="22"  fill="#7c3aed" font-size="13" font-weight="700">S₂</text>
+      <!-- T1 -->
+      <line x1="340" y1="140" x2="480" y2="140" stroke="#d97706" stroke-width="2.5"/>
+      <line x1="340" y1="120" x2="480" y2="120" stroke="#d97706" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+      <line x1="340" y1="100" x2="480" y2="100" stroke="#d97706" stroke-width="1" stroke-dasharray="4,3" opacity=".25"/>
+      <text x="490" y="144" fill="#d97706" font-size="13" font-weight="700">T₁</text>
+
+      <!-- Absorption -->
+      <line x1="120" y1="268" x2="120" y2="20" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#u1)"/>
+      <text x="52"  y="150" fill="#7c3aed" font-size="10" font-weight="600" transform="rotate(-90,52,150)">吸收</text>
+
+      <!-- VR S2→S1 -->
+      <path d="M155,18 C162,28 148,38 155,48 C162,58 148,68 155,78 C162,88 148,98 155,100"
+            fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="3,2"/>
+      <text x="167" y="62" fill="#2563eb" font-size="9">VR</text>
+
+      <!-- VR within S1 -->
+      <path d="M175,40 C182,50 168,60 175,70 C182,80 168,90 175,100"
+            fill="none" stroke="#2563eb" stroke-width="1.3" stroke-dasharray="3,2" opacity=".5"/>
+
+      <!-- Fluorescence -->
+      <line x1="160" y1="100" x2="160" y2="268" stroke="#0891b2" stroke-width="2.5" marker-end="url(#d1)"/>
+      <text x="172" y="190" fill="#0891b2" font-size="10" font-weight="600">螢光</text>
+      <text x="172" y="202" fill="#0891b2" font-size="8.5">(&lt;ns)</text>
+
+      <!-- ISC -->
+      <line x1="220" y1="100" x2="340" y2="140" stroke="#be123c" stroke-width="1.8" stroke-dasharray="5,3"/>
+      <text x="255" y="116" fill="#be123c" font-size="9" font-weight="600">ISC</text>
+
+      <!-- VR T1 -->
+      <path d="M400,100 C407,112 393,125 400,140" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+      <!-- Phosphorescence -->
+      <line x1="410" y1="140" x2="410" y2="268" stroke="#ea580c" stroke-width="2.5" marker-end="url(#d2)"/>
+      <text x="422" y="210" fill="#ea580c" font-size="10" font-weight="600">磷光</text>
+      <text x="422" y="222" fill="#ea580c" font-size="8.5">(ms~s)</text>
+
+      <!-- Stokes annotation -->
+      <line x1="510" y1="100" x2="510" y2="270" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="505" y1="100" x2="515" y2="100" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="505" y1="270" x2="515" y2="270" stroke="#94a3b8" stroke-width="1"/>
+      <text x="520" y="188" fill="#94a3b8" font-size="9">Stokes</text>
+      <text x="520" y="200" fill="#94a3b8" font-size="9">shift</text>
+
+      <!-- Legend -->
+      <rect x="560" y="55" width="115" height="118" rx="6" fill="#f8fbff" stroke="#c8ddf4" stroke-width="1"/>
+      <line x1="570" y1="75"  x2="595" y2="75"  stroke="#7c3aed" stroke-width="2"/>
+      <text x="600" y="79"  fill="#475569" font-size="9.5">吸收</text>
+      <line x1="570" y1="92"  x2="595" y2="92"  stroke="#0891b2" stroke-width="2"/>
+      <text x="600" y="96"  fill="#475569" font-size="9.5">螢光</text>
+      <line x1="570" y1="109" x2="595" y2="109" stroke="#ea580c" stroke-width="2"/>
+      <text x="600" y="113" fill="#475569" font-size="9.5">磷光</text>
+      <line x1="570" y1="126" x2="595" y2="126" stroke="#be123c" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="600" y="130" fill="#475569" font-size="9.5">ISC</text>
+      <line x1="570" y1="143" x2="595" y2="143" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="600" y="147" fill="#475569" font-size="9.5">振動弛豫</text>
+
+      <defs>
+        <marker id="u1" markerWidth="7" markerHeight="7" refX="3.5" refY="7" orient="auto"><path d="M0,7 L3.5,0 L7,7 Z" fill="#7c3aed"/></marker>
+        <marker id="d1" markerWidth="7" markerHeight="7" refX="3.5" refY="0" orient="auto"><path d="M0,0 L3.5,7 L7,0 Z" fill="#0891b2"/></marker>
+        <marker id="d2" markerWidth="7" markerHeight="7" refX="3.5" refY="0" orient="auto"><path d="M0,0 L3.5,7 L7,0 Z" fill="#ea580c"/></marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══ CH 7 ═══ -->
+<section id="ch7">
+  <div class="section-title">Ch 7 ｜ 光學儀器元件</div>
+
+  <div class="card">
+    <strong style="color:var(--sky);">儀器基本架構</strong>
+    <div class="pipeline">
+      <span class="pipe-box">光源</span><span class="pipe-arrow">→</span>
+      <span class="pipe-box">波長選擇器</span><span class="pipe-arrow">→</span>
+      <span class="pipe-box">樣品</span><span class="pipe-arrow">→</span>
+      <span class="pipe-box">偵測器</span><span class="pipe-arrow">→</span>
+      <span class="pipe-box">訊號處理</span>
+    </div>
+  </div>
+
+  <!-- LASER diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">雷射原理：四能階系統（4-Level Laser）</div>
+    <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px;">
+      <line x1="60" y1="200" x2="200" y2="200" stroke="#059669" stroke-width="2.5"/>
+      <text x="10" y="204" fill="#059669" font-size="11" font-weight="700">E₀</text>
+      <text x="205" y="204" fill="#64748b" font-size="10">基態</text>
+
+      <line x1="60" y1="145" x2="200" y2="145" stroke="#2563eb" stroke-width="2"/>
+      <text x="10" y="149" fill="#2563eb" font-size="11" font-weight="700">E₁</text>
+      <text x="205" y="149" fill="#64748b" font-size="10">低雷射能階</text>
+
+      <line x1="60" y1="90" x2="200" y2="90" stroke="#d97706" stroke-width="2.5"/>
+      <text x="10" y="94" fill="#d97706" font-size="11" font-weight="700">E₂</text>
+      <text x="205" y="94" fill="#64748b" font-size="10">上雷射能階（粒子反轉）</text>
+
+      <line x1="60" y1="35" x2="200" y2="35" stroke="#7c3aed" stroke-width="2"/>
+      <text x="10" y="39" fill="#7c3aed" font-size="11" font-weight="700">E₃</text>
+      <text x="205" y="39" fill="#64748b" font-size="10">泵浦激發態（快速弛豫）</text>
+
+      <!-- Pump -->
+      <line x1="100" y1="198" x2="100" y2="37" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#pu2)"/>
+      <text x="55" y="122" fill="#7c3aed" font-size="10" font-weight="600" transform="rotate(-90,55,122)">泵浦 (pump)</text>
+
+      <!-- Fast relax E3→E2 -->
+      <path d="M140,35 C148,48 132,58 140,68 C148,78 132,88 140,90" fill="none" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="3,2"/>
+      <text x="155" y="65" fill="#7c3aed" font-size="9">快速弛豫</text>
+
+      <!-- Stimulated emission -->
+      <line x1="130" y1="90" x2="130" y2="145" stroke="#d97706" stroke-width="3" marker-end="url(#lu2)"/>
+      <text x="68" y="122" fill="#d97706" font-size="10" font-weight="700">受激發射</text>
+      <text x="74" y="134" fill="#d97706" font-size="9">(LASER)</text>
+
+      <!-- Fast relax E1→E0 -->
+      <path d="M160,145 C168,158 152,168 160,178 C168,188 152,198 160,200" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="3,2"/>
+      <text x="172" y="175" fill="#2563eb" font-size="9">快速弛豫</text>
+
+      <!-- Output beam -->
+      <rect x="365" y="95" width="80" height="20" rx="4" fill="#fefce8" stroke="#d97706" stroke-width="1.5"/>
+      <text x="405" y="109" fill="#92400e" font-size="10" text-anchor="middle" font-weight="600">LASER 輸出</text>
+      <line x1="200" y1="105" x2="365" y2="105" stroke="#d97706" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#lo2)"/>
+      <text x="280" y="97" fill="#64748b" font-size="9">同調 · 單色 · 高強度</text>
+
+      <!-- Population inversion note -->
+      <rect x="440" y="75" width="165" height="58" rx="6" fill="#fef2f2" stroke="#fecaca" stroke-width="1"/>
+      <text x="522" y="97" fill="#be123c" font-size="9.5" text-anchor="middle" font-weight="600">粒子數反轉</text>
+      <text x="522" y="111" fill="#64748b" font-size="8.5" text-anchor="middle">N(E₂) &gt; N(E₁)</text>
+      <text x="522" y="123" fill="#64748b" font-size="8.5" text-anchor="middle">雷射發生的必要條件</text>
+
+      <defs>
+        <marker id="pu2" markerWidth="7" markerHeight="7" refX="3.5" refY="7" orient="auto"><path d="M0,7 L3.5,0 L7,7 Z" fill="#7c3aed"/></marker>
+        <marker id="lu2" markerWidth="7" markerHeight="7" refX="3.5" refY="0" orient="auto"><path d="M0,0 L3.5,7 L7,0 Z" fill="#d97706"/></marker>
+        <marker id="lo2" markerWidth="7" markerHeight="7" refX="0" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#d97706"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Beer-Lambert diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">Beer-Lambert Law ─ 光通過樣品示意圖</div>
+    <svg viewBox="0 0 560 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;">
+      <line x1="20" y1="65" x2="145" y2="65" stroke="#2563eb" stroke-width="4" marker-end="url(#bi2)"/>
+      <text x="15" y="52" fill="#2563eb" font-size="12" font-weight="700">P₀</text>
+      <text x="10" y="90" fill="#64748b" font-size="9.5">入射光</text>
+
+      <rect x="155" y="20" width="200" height="90" rx="4" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="2"/>
+      <text x="255" y="62" fill="#0369a1" font-size="11.5" text-anchor="middle" font-weight="600">樣品溶液</text>
+      <text x="255" y="77" fill="#64748b" font-size="9.5" text-anchor="middle">濃度 c (mol/L)</text>
+      <line x1="175" y1="118" x2="335" y2="118" stroke="#94a3b8" stroke-width="1.2" marker-start="url(#bl2)" marker-end="url(#br2)"/>
+      <text x="255" y="129" fill="#64748b" font-size="9" text-anchor="middle">光程 b (cm)</text>
+
+      <line x1="357" y1="65" x2="480" y2="65" stroke="#059669" stroke-width="3.5" marker-end="url(#bt2)"/>
+      <text x="485" y="52" fill="#059669" font-size="12" font-weight="700">P</text>
+      <text x="480" y="90" fill="#64748b" font-size="9.5">穿透光</text>
+
+      <text x="490" y="30" fill="#64748b" font-size="9">T = P/P₀</text>
+      <text x="490" y="45" fill="#0369a1" font-size="10" font-weight="600">A = εbc</text>
+      <text x="490" y="60" fill="#64748b" font-size="9">A = −log T</text>
+
+      <defs>
+        <marker id="bi2" markerWidth="7" markerHeight="7" refX="0" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2563eb"/></marker>
+        <marker id="bt2" markerWidth="7" markerHeight="7" refX="0" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#059669"/></marker>
+        <marker id="bl2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M6,0 L0,3 L6,6 Z" fill="#94a3b8"/></marker>
+        <marker id="br2" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- PMT diagram -->
+  <div class="diagram-wrap">
+    <div class="diagram-title">光電倍增管（PMT）結構</div>
+    <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;">
+      <rect x="30"  y="40" width="18" height="80" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="39"  y="138" fill="#7c3aed" font-size="8.5" text-anchor="middle">光電陰極</text>
+      <text x="39"  y="148" fill="#7c3aed" font-size="8"   text-anchor="middle">(Cathode)</text>
+      <line x1="5"  y1="80" x2="28" y2="80" stroke="#4f46e5" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#ph2)"/>
+      <text x="3"   y="73" fill="#4f46e5" font-size="9">hν</text>
+
+      <line x1="50" y1="75" x2="90" y2="55" stroke="#475569" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#el2)"/>
+
+      <rect x="95"  y="38" width="14" height="36" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+      <text x="102" y="85" fill="#2563eb" font-size="7.5" text-anchor="middle">D₁</text>
+      <line x1="110" y1="55" x2="148" y2="68" stroke="#475569" stroke-width="1"   stroke-dasharray="3,2" marker-end="url(#el2)"/>
+      <line x1="110" y1="60" x2="148" y2="76" stroke="#475569" stroke-width="1"   stroke-dasharray="3,2" marker-end="url(#el2)"/>
+
+      <rect x="152" y="54" width="14" height="36" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+      <text x="159" y="100" fill="#2563eb" font-size="7.5" text-anchor="middle">D₂</text>
+      <line x1="166" y1="65" x2="204" y2="50" stroke="#475569" stroke-width="1"   stroke-dasharray="3,2" marker-end="url(#el2)"/>
+      <line x1="166" y1="72" x2="204" y2="60" stroke="#475569" stroke-width="1"   stroke-dasharray="3,2" marker-end="url(#el2)"/>
+      <line x1="166" y1="79" x2="204" y2="70" stroke="#475569" stroke-width="1"   stroke-dasharray="3,2" marker-end="url(#el2)"/>
+
+      <rect x="208" y="38" width="14" height="44" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+      <text x="215" y="92" fill="#2563eb" font-size="7.5" text-anchor="middle">D₃</text>
+
+      <rect x="264" y="55" width="14" height="44" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+      <text x="271" y="109" fill="#2563eb" font-size="7.5" text-anchor="middle">D₄</text>
+      <text x="235" y="72" fill="#94a3b8" font-size="18">···</text>
+
+      <rect x="320" y="38" width="14" height="44" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+      <text x="327" y="92" fill="#2563eb" font-size="7.5" text-anchor="middle">Dₙ</text>
+
+      <line x1="335" y1="52" x2="390" y2="75" stroke="#059669" stroke-width="2" marker-end="url(#ea2)"/>
+      <line x1="335" y1="60" x2="390" y2="80" stroke="#059669" stroke-width="1.5" marker-end="url(#ea2)"/>
+      <line x1="335" y1="70" x2="390" y2="85" stroke="#059669" stroke-width="1.5" marker-end="url(#ea2)"/>
+      <line x1="335" y1="78" x2="390" y2="90" stroke="#059669" stroke-width="1.5" marker-end="url(#ea2)"/>
+
+      <rect x="395" y="55" width="16" height="60" rx="3" fill="#dcfce7" stroke="#059669" stroke-width="1.5"/>
+      <text x="403" y="127" fill="#059669" font-size="8.5" text-anchor="middle">陽極</text>
+      <text x="403" y="137" fill="#059669" font-size="8"   text-anchor="middle">(Anode)</text>
+
+      <line x1="412" y1="80" x2="470" y2="80" stroke="#059669" stroke-width="2" marker-end="url(#ea2)"/>
+      <text x="475" y="75" fill="#059669" font-size="9" font-weight="600">Iₒᵤₜ</text>
+
+      <rect x="490" y="45" width="100" height="45" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="1"/>
+      <text x="540" y="63" fill="#92400e" font-size="9.5" text-anchor="middle" font-weight="600">增益</text>
+      <text x="540" y="77" fill="#64748b" font-size="9"   text-anchor="middle">10⁶ ~ 10⁷</text>
+      <text x="540" y="88" fill="#64748b" font-size="8.5" text-anchor="middle">9~16 級</text>
+
+      <defs>
+        <marker id="ph2" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#4f46e5"/></marker>
+        <marker id="el2" markerWidth="5" markerHeight="5" refX="0" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#475569"/></marker>
+        <marker id="ea2" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#059669"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <strong style="color:var(--sky);">光源</strong>
+      <table style="margin-top:.7rem;">
+        <tr><th>光源</th><th>波長範圍</th></tr>
+        <tr><td>氘燈（D₂）</td><td>160–380 nm (UV)</td></tr>
+        <tr><td>鎢絲燈（W）</td><td>350–2500 nm</td></tr>
+        <tr><td>能斯特燈</td><td>中 IR</td></tr>
+        <tr><td>空心陰極燈（HCL）</td><td>線光源，原子吸收用</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <strong style="color:var(--sky);">波長選擇器比較</strong>
+      <table style="margin-top:.7rem;">
+        <tr><th></th><th>濾光片</th><th>單光儀</th></tr>
+        <tr><td>帶寬</td><td>5–15 nm 固定</td><td>可調（狹縫控制）</td></tr>
+        <tr><td>靈活性</td><td>低</td><td>高（可掃描）</td></tr>
+        <tr><td>成本</td><td>低</td><td>高</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CH 8 ═══ -->
+<section id="ch8">
+  <div class="section-title">Ch 8 ｜ 原子光譜法</div>
+  <div class="card-grid">
+    <div class="card">
+      <strong style="color:var(--sky);">原子譜線展寬原因</strong>
+      <table style="margin-top:.7rem;">
+        <tr><th>原因</th><th>說明</th></tr>
+        <tr><td>自然展寬</td><td>不確定性原理，不可避免</td></tr>
+        <tr><td>Doppler 展寬</td><td>熱運動速度分布</td></tr>
+        <tr><td>壓力展寬</td><td>碰撞 → Lorentzian profile</td></tr>
+        <tr><td>Stark/Zeeman</td><td>電場/磁場分裂能階</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <strong style="color:var(--sky);">原子化方式</strong>
+      <table style="margin-top:.7rem;">
+        <tr><th>方式</th><th>溫度</th><th>特點</th></tr>
+        <tr><td>火焰</td><td>1700–3400°C</td><td>簡單，效率 5%</td></tr>
+        <tr><td>石墨爐（GFAAS）</td><td>~3000°C</td><td>靈敏度高100×</td></tr>
+        <tr><td>ICP 電漿</td><td>6000–8000°C</td><td>多元素同時</td></tr>
+        <tr><td>氫化物法</td><td>室溫氣體</td><td>效率~100%</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PROBLEMS ═══ -->
+<section id="probs">
+  <div class="section-title">習題解析</div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="prob-num">6-14</span><span class="prob-title">吸光度 → 百分透射率</span></div>
+    <div class="prob-body">
+      <div class="prob-q">Convert absorbance into %T: (a) 0.173　(b) 0.799　(c) 1.145　(d) 0.056</div>
+      <div class="step"><div class="step-n">公</div><div><div class="formula" style="text-align:left;">A = −log T　→　%T = 10⁻ᴬ × 100%</div></div></div>
+      <table>
+        <tr><th>題目</th><th>A</th><th>計算</th><th>%T</th></tr>
+        <tr><td>(a)</td><td>0.173</td><td>10⁻⁰·¹⁷³</td><td><strong style="color:var(--green);">67.1%</strong></td></tr>
+        <tr><td>(b)</td><td>0.799</td><td>10⁻⁰·⁷⁹⁹</td><td><strong style="color:var(--green);">15.9%</strong></td></tr>
+        <tr><td>(c)</td><td>1.145</td><td>10⁻¹·¹⁴⁵</td><td><strong style="color:var(--green);">7.16%</strong></td></tr>
+        <tr><td>(d)</td><td>0.056</td><td>10⁻⁰·⁰⁵⁶</td><td><strong style="color:var(--green);">87.9%</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="prob-num">6-18</span><span class="prob-title">Beer-Lambert 反推濃度</span></div>
+    <div class="prob-body">
+      <div class="prob-q">C₁ = 3.59×10⁻³ M，b₁ = 2.00 cm，T₁ = 0.196 → 換 b₂ = 1.00 cm，T₂ = 3×0.196 = 0.588，求 C₂。</div>
+      <div class="step"><div class="step-n">1</div><div>A₁ = −log(0.196) = 0.708<div class="formula" style="text-align:left;font-size:.88rem;">ε = 0.708 / (2.00 × 3.59×10⁻³) = 98.6 L mol⁻¹ cm⁻¹</div></div></div>
+      <div class="step"><div class="step-n">2</div><div>A₂ = −log(0.588) = 0.231</div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="formula" style="text-align:left;font-size:.88rem;">C₂ = 0.231 / (98.6 × 1.00) = 2.34×10⁻³ M</div></div></div>
+      <div class="ans">答：C₂ = 2.34 × 10⁻³ M</div>
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="prob-num">7-6</span><span class="prob-title">自發發射 vs 受激發射</span></div>
+    <div class="prob-body">
+      <div class="compare-grid">
+        <div class="compare-box" style="border-left:3px solid #94a3b8;">
+          <h4 style="color:var(--muted);">自發發射（Spontaneous）</h4>
+          <ul>
+            <li>不需外部光子，自然隨機發生</li>
+            <li>方向：隨機各方向</li>
+            <li>相位：隨機（非同調）</li>
+            <li>結果：1 個光子</li>
+          </ul>
+        </div>
+        <div class="compare-box" style="border-left:3px solid var(--amber);">
+          <h4 style="color:var(--amber);">受激發射（Stimulated）</h4>
+          <ul>
+            <li>需能量 = ΔE 的光子觸發</li>
+            <li>方向：<strong>同方向</strong></li>
+            <li>相位：<strong>同相位（同調）</strong></li>
+            <li>結果：觸發光子 + 新光子 = <strong>2個（放大！）</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="note" style="margin-top:.75rem;">相同點：都是激發態→基態的躍遷，放出能量 hν = ΔE 的光子。受激發射是 LASER 放大的核心機制。</div>
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="prob-num">7-9</span><span class="prob-title">干涉濾光片設計（1537 cm⁻¹）</span></div>
+    <div class="prob-body">
+      <div class="prob-q">n = 1.34 的介電層，一階干涉隔離 1537 cm⁻¹，求 (a) 厚度 (b) 其他透過波長</div>
+      <div class="step"><div class="step-n">換</div><div><div class="formula" style="text-align:left;font-size:.88rem;">λ = 1/1537 cm⁻¹ = 6506 nm</div></div></div>
+      <div class="step"><div class="step-n">a</div><div>2nt = mλ，m=1：<div class="formula" style="text-align:left;font-size:.88rem;">t = 6506 / (2 × 1.34) = <strong>2427 nm ≈ 2.43 μm</strong></div></div></div>
+      <div class="step"><div class="step-n">b</div><div>
+        2nt = 6506 nm 固定，λₘ = 6506/m：
+        <table style="margin-top:.5rem;">
+          <tr><th>m</th><th>波長 (nm)</th><th>波數 (cm⁻¹)</th></tr>
+          <tr><td>1</td><td>6506</td><td>1537（目標）</td></tr>
+          <tr><td>2</td><td>3253</td><td>3074</td></tr>
+          <tr><td>3</td><td>2169</td><td>4611</td></tr>
+        </table>
+        <div class="note" style="margin-top:.5rem;">需搭配截止濾光片（cut-off filter）去掉短波長干擾。</div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="prob-head"><span class="prob-num">7-12</span><span class="prob-title">光柵刻線密度計算</span></div>
+    <div class="prob-body">
+      <div class="prob-q">λ = 400 nm，θᵢ = 45°，θᵣ = 7°，一階繞射，求 lines/mm</div>
+      <div class="step"><div class="step-n">代</div><div>
+        <div class="formula" style="text-align:left;font-size:.88rem;">nλ = d(sin θᵢ + sin θᵣ)</div>
+        4×10⁻⁴ mm = d × (0.7071 + 0.1219) = d × 0.8290 → d = 4.825×10⁻⁴ mm
+      </div></div>
+      <div class="ans">lines/mm = 1/d ≈ <strong>2070 lines/mm</strong></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BOLTZMANN ═══ -->
+<section id="boltzmann">
+  <div class="section-title">Example 8-2 ｜ Boltzmann 方程計算 <span class="badge badge-board">板書出現</span></div>
+  <div class="card" style="border-color:#bfdbfe;">
+    <div class="formula" style="font-size:1.05rem;padding:.9rem;">Nⱼ/N₀ = (gⱼ/g₀) × exp(−Eⱼ / kT)</div>
+    <p style="font-size:.83rem;color:var(--muted2);margin:.5rem 0 1rem;">k = 1.38×10⁻²³ J K⁻¹　　gⱼ/g₀ = 統計權重比　　Eⱼ = 激發能</p>
+    <div class="step"><div class="step-n">1</div><div>Na D 線 589.3 nm，3p → 3s：<div class="formula" style="text-align:left;font-size:.88rem;">Eⱼ = hc/λ = 3.37×10⁻¹⁹ J</div></div></div>
+    <div class="step"><div class="step-n">2</div><div>g(3s) = 2，g(3p) = 6　→　gⱼ/g₀ = <strong>3</strong></div></div>
+    <div class="step"><div class="step-n">3</div><div>
+      <table>
+        <tr><th>溫度</th><th>計算結果</th></tr>
+        <tr><td>T = 2500 K</td><td><strong style="color:var(--green);">Nⱼ/N₀ = 1.72 × 10⁻⁴</strong></td></tr>
+        <tr><td>T = 2600 K</td><td><strong style="color:var(--green);">Nⱼ/N₀ = 2.50 × 10⁻⁴</strong></td></tr>
+      </table>
+    </div></div>
+    <div class="note" style="margin-top:.75rem;">即使 2500 K 高溫，只有 0.017% 的 Na 在激發態。溫度升高 100 K，激發態比例增加 45%，說明火焰溫度控制對重現性極關鍵。</div>
+  </div>
+</section>
+
+
+<!-- ═══ BOARD ═══ -->
+<section id="board">
+  <div class="section-title">板書必考重點 <span class="badge badge-board">一定考</span></div>
+  <div class="card-grid">
+    <div class="card" style="border-left:3px solid var(--amber);">
+      <strong style="color:var(--amber);">Beer-Lambert Law</strong>
+      <div class="formula" style="margin-top:.7rem;">T = P/P₀　　A = −log T = ε·b·c</div>
+      <table style="margin-top:.7rem;">
+        <tr><th>符號</th><th>意義</th><th>單位</th></tr>
+        <tr><td>ε</td><td>莫耳吸光係數</td><td>L mol⁻¹ cm⁻¹</td></tr>
+        <tr><td>b</td><td>光程長</td><td>cm</td></tr>
+        <tr><td>c</td><td>濃度</td><td>mol/L</td></tr>
+      </table>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber);">
+      <strong style="color:var(--amber);">Boltzmann 方程</strong>
+      <div class="formula" style="margin-top:.7rem;">Nⱼ/N₀ = (gⱼ/g₀) exp(−Eⱼ/kT)</div>
+      <ul style="margin-top:.7rem;padding-left:1.1rem;font-size:.86rem;color:var(--muted);">
+        <li>Eⱼ = energy gap（激發能）</li>
+        <li>gⱼ/g₀ = statistical weight</li>
+        <li>k = 1.38×10⁻²³ J K⁻¹</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top:1rem;">
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <strong style="color:var(--blue);">真空光電管 + PMT</strong>
+      <ul style="margin-top:.7rem;padding-left:1.1rem;font-size:.86rem;color:var(--muted);">
+        <li>圓柱陰極 + 光電材料（photo-emissive）</li>
+        <li>hν ≥ φ → 釋放電子 → 電壓加速 → 電流</li>
+        <li>PMT：9~16 級打拿極，增益 10⁶~10⁷</li>
+        <li>暗電流（dark current）= 無光時的背景電流</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <strong style="color:var(--blue);">矽光二極體</strong>
+      <ul style="margin-top:.7rem;padding-left:1.1rem;font-size:.86rem;color:var(--muted);">
+        <li>摻 B（3e）→ p-type（電洞導電）</li>
+        <li>摻 N, P（5e）→ n-type（電子導電）</li>
+        <li>光照射 p-n 接面 → 產生電流</li>
+        <li>多個串接 → PDA（多通道同時偵測）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Interference filter -->
+  <div class="diagram-wrap" style="margin-top:1rem;">
+    <div class="diagram-title">干涉濾光片結構（Interference Filter）</div>
+    <svg viewBox="0 0 560 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;">
+      <rect x="60"  y="30" width="60" height="50" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="90"  y="59" fill="#1d4ed8" font-size="10" text-anchor="middle" font-weight="600">玻璃</text>
+      <rect x="125" y="30" width="40" height="50" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="145" y="52" fill="#6d28d9" font-size="9" text-anchor="middle">介電</text>
+      <text x="145" y="64" fill="#6d28d9" font-size="9" text-anchor="middle">膜</text>
+      <rect x="170" y="30" width="30" height="50" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <text x="185" y="52" fill="#92400e" font-size="8.5" text-anchor="middle">金</text>
+      <text x="185" y="63" fill="#92400e" font-size="8.5" text-anchor="middle">屬</text>
+      <text x="185" y="74" fill="#92400e" font-size="8.5" text-anchor="middle">膜</text>
+      <rect x="205" y="30" width="40" height="50" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="225" y="52" fill="#6d28d9" font-size="9" text-anchor="middle">介電</text>
+      <text x="225" y="64" fill="#6d28d9" font-size="9" text-anchor="middle">膜</text>
+      <rect x="250" y="30" width="60" height="50" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="280" y="59" fill="#1d4ed8" font-size="10" text-anchor="middle" font-weight="600">玻璃</text>
+
+      <line x1="15"  y1="55" x2="57"  y2="55" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#lf2)"/>
+      <text x="5"   y="50" fill="#7c3aed" font-size="9">hν</text>
+      <text x="5"   y="68" fill="#64748b" font-size="8.5">白光</text>
+
+      <line x1="312" y1="55" x2="380" y2="55" stroke="#0891b2" stroke-width="2.5" marker-end="url(#lt2)"/>
+      <text x="385" y="50" fill="#0891b2" font-size="9" font-weight="600">選定 λ</text>
+      <text x="385" y="65" fill="#64748b" font-size="8">2nt = mλ</text>
+
+      <rect x="420" y="28" width="125" height="54" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+      <text x="482" y="48" fill="#059669" font-size="9.5" text-anchor="middle" font-weight="600">相長干涉條件</text>
+      <text x="482" y="62" fill="#64748b" font-size="9"   text-anchor="middle">2nt = mλ</text>
+      <text x="482" y="74" fill="#64748b" font-size="8.5" text-anchor="middle">帶寬 5–15 nm</text>
+
+      <defs>
+        <marker id="lf2" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c3aed"/></marker>
+        <marker id="lt2" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0891b2"/></marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+</main>
+<footer>儀器分析 0546 ｜ 東海大學 ｜ Ch 1/5 · Ch 6 · Ch 7 · Ch 8</footer>
+</body>
+</html>

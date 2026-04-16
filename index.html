@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課程筆記總覽</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --bg: #eef5fd; --s1: #ffffff; --border: #c8ddf4;
+      --blue: #2563eb; --sky: #0891b2; --text: #0f172a; --muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
+    header {
+      background: linear-gradient(160deg, #1d4ed8 0%, #0891b2 100%);
+      color: white; text-align: center; padding: 3rem 2rem 2.5rem;
+    }
+    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    header p  { opacity: .8; font-size: .9rem; }
+    main { max-width: 800px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    h2 { font-size: 1rem; font-weight: 600; color: var(--sky); margin: 2rem 0 .75rem; padding-bottom: .4rem; border-bottom: 2px solid var(--border); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .75rem; }
+    a.card {
+      display: block; background: var(--s1); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.2rem; text-decoration: none;
+      color: var(--text); transition: all .18s; box-shadow: 0 1px 3px rgba(37,99,235,.06);
+    }
+    a.card:hover { border-color: var(--blue); box-shadow: 0 3px 12px rgba(37,99,235,.12); transform: translateY(-1px); }
+    a.card .title { font-weight: 600; font-size: .95rem; margin-bottom: .25rem; }
+    a.card .sub   { font-size: .8rem; color: var(--muted); }
+    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); background: var(--s1); }
+  </style>
+</head>
+<body>
+<header>
+  <h1>課程筆記總覽</h1>
+  <p>hsingshiue 的課程重點整理</p>
+</header>
+<main>
+  <h2>儀器分析</h2>
+  <div class="grid">
+    <a class="card" href="儀分重點整理.html">
+      <div class="title">儀分重點整理</div>
+      <div class="sub">Ch 1/5 · Ch 6 · Ch 7 · Ch 8 · 含圖解</div>
+    </a>
+  </div>
+
+  <h2>有機化學</h2>
+  <div class="grid">
+    <a class="card" href="ch10-alkynes-review.html">
+      <div class="title">Ch 10 Alkynes</div>
+      <div class="sub">炔類反應整理</div>
+    </a>
+    <a class="card" href="ch13-alcohols-part1.html">
+      <div class="title">Ch 13 Alcohols Part 1</div>
+      <div class="sub">醇類反應（上）</div>
+    </a>
+    <a class="card" href="ch13-alcohols-part2.html">
+      <div class="title">Ch 13 Alcohols Part 2</div>
+      <div class="sub">醇類反應（下）</div>
+    </a>
+    <a class="card" href="ch15-IR-MS-part1.html">
+      <div class="title">Ch 15 IR/MS Part 1</div>
+      <div class="sub">紅外光譜與質譜（上）</div>
+    </a>
+    <a class="card" href="ch15-IR-MS-part2.html">
+      <div class="title">Ch 15 IR/MS Part 2</div>
+      <div class="sub">紅外光譜與質譜（下）</div>
+    </a>
+    <a class="card" href="ch16-NMR-part1.html">
+      <div class="title">Ch 16 NMR Part 1</div>
+      <div class="sub">核磁共振（上）</div>
+    </a>
+    <a class="card" href="ch16-NMR-part2.html">
+      <div class="title">Ch 16 NMR Part 2</div>
+      <div class="sub">核磁共振（下）</div>
+    </a>
+    <a class="card" href="oxymercuration-mechanism.html">
+      <div class="title">Oxymercuration 機構</div>
+      <div class="sub">汞化反應詳解</div>
+    </a>
+    <a class="card" href="考古題整理-Ch10-13-15-16.html">
+      <div class="title">考古題整理</div>
+      <div class="sub">Ch 10 · 13 · 15 · 16</div>
+    </a>
+  </div>
+
+  <h2>其他</h2>
+  <div class="grid">
+    <a class="card" href="個人理財期中重點整理.html">
+      <div class="title">個人理財期中重點</div>
+      <div class="sub">期中考重點整理</div>
+    </a>
+  </div>
+</main>
+<footer>Generated with Claude Code</footer>
+</body>
+</html>

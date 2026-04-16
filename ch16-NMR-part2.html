@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch16 NMR Part 2 - 考前重點整理</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; line-height: 1.8; }
+  h1 { color: #e94560; text-align: center; font-size: 1.8em; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 32px; }
+  h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 16px; border-radius: 4px; margin: 24px 0 12px 0; font-size: 1.2em; }
+  h3 { color: #e94560; margin: 16px 0 8px 0; border-left: 4px solid #e94560; padding-left: 10px; }
+  .term { background: #16213e; border-left: 3px solid #0f3460; padding: 8px 14px; margin: 8px 0; border-radius: 4px; }
+  .term b { color: #48cfcb; }
+  .term .en { color: #f0a500; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #0f3460; color: #fff; padding: 8px 12px; text-align: left; }
+  td { border: 1px solid #333; padding: 8px 12px; background: #16213e; }
+  .highlight { background: #e94560; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+  .reaction-box { background: #16213e; border: 2px solid #0f3460; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .exam-box { background: #2d1b42; border: 2px solid #a855f7; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .exam-box h3 { color: #a855f7; border-left-color: #a855f7; }
+  ul, ol { margin-left: 20px; }
+  li { margin: 4px 0; }
+  .compare-table td:first-child { font-weight: bold; color: #48cfcb; }
+  .tip { background: #1e3a2f; border-left: 3px solid #4ade80; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #4ade80; }
+  .luofei { background: #1a1020; border-left: 3px solid #e94560; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #ccc; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 16 — Nuclear Magnetic Resonance (NMR)</h1>
+<p class="subtitle">Part 2：¹H NMR + Spin-Spin Splitting + 猜題</p>
+
+<div class="luofei">「¹H NMR 是整張考卷的大魔王。化學位移、積分、分裂，三個東西搞懂就贏了。」——洛緋</div>
+
+<!-- ===== 質子等價性 ===== -->
+<h2>¹H NMR 質子等價性 Proton Equivalence <span class="highlight">超重要</span></h2>
+
+<div class="term">
+  判斷方法：把每個 H 分別替換成 X，看產生的化合物之間的關係：
+</div>
+
+<table>
+  <tr><th>替換結果</th><th>名稱</th><th>NMR 訊號</th></tr>
+  <tr>
+    <td>得到<b>完全相同</b>的分子</td>
+    <td><b>Homotopic</b>（<span style="color:#f0a500">同位的</span>）</td>
+    <td><b>相同</b>訊號（永遠等價）</td>
+  </tr>
+  <tr>
+    <td>得到一對<b>鏡像異構物（enantiomers）</b></td>
+    <td><b>Enantiotopic</b>（<span style="color:#f0a500">對映位的</span>）</td>
+    <td><b>相同</b>訊號（在無手性環境中）</td>
+  </tr>
+  <tr>
+    <td>得到一對<b>非鏡像異構物（diastereomers）</b></td>
+    <td><b>Diastereotopic</b>（<span style="color:#f0a500">非對映位的</span>）</td>
+    <td><b>不同</b>訊號！（即使看起來很像）</td>
+  </tr>
+  <tr>
+    <td>得到<b>不同的構造異構物（constitutional isomers）</b></td>
+    <td><b>Constitutionally heterotopic</b>（<span style="color:#f0a500">構造異位的</span>）</td>
+    <td><b>不同</b>訊號</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <b>最常考的陷阱：</b>Diastereotopic protons！<br>
+  當分子有 chiral center（手性中心）時，即使是同一個 CH₂ 上的兩個 H 也可能不等價 → 會出不同的 NMR 訊號 → 考試最愛考「這個分子有幾組不等價質子？」
+</div>
+
+<!-- ===== 化學位移 ===== -->
+<h2>16.5 ¹H 化學位移 Chemical Shifts <span class="highlight">必背表</span></h2>
+
+<table>
+  <tr><th>質子類型</th><th>δ (ppm)</th><th>記憶提示</th></tr>
+  <tr><td><b>R-CH₃</b>（烷基甲基）</td><td>0.8 - 1.0</td><td>最 upfield</td></tr>
+  <tr><td><b>R-CH₂-R</b></td><td>1.2 - 1.4</td><td></td></tr>
+  <tr><td><b>R₃C-H</b></td><td>1.4 - 1.7</td><td></td></tr>
+  <tr><td><b>C=C-CH₃</b>（allyl 烯丙基）</td><td>~1.7</td><td></td></tr>
+  <tr><td><b>X-CH</b>（X = O, N, 鹵素）</td><td>2.0 - 4.5</td><td>拉電子基 → downfield</td></tr>
+  <tr><td><b>C=C-H</b>（vinyl 乙烯基）</td><td>4.5 - 6.5</td><td>sp² 碳上的 H</td></tr>
+  <tr><td><b>Ar-H</b>（芳香環）</td><td>6.5 - 8.5</td><td>ring current 效應</td></tr>
+  <tr><td><b>R-CHO</b>（醛基）</td><td>9.0 - 10.0</td><td>C=O 強烈去屏蔽</td></tr>
+  <tr><td><b>R-COOH</b>（羧酸）</td><td>10 - 12</td><td>最 downfield</td></tr>
+  <tr><td><b>R-OH</b>（醇）</td><td>1.0 - 5.0（變動大）</td><td>受氫鍵、濃度影響</td></tr>
+</table>
+
+<div class="luofei">「sp³ 的 H 在 0~2、sp² 在 4.5~8.5、C=O 旁邊的 H 在 9 以上。電負度越高的鄰居，把你推得越 downfield。」</div>
+
+<!-- ===== 積分 ===== -->
+<h2>16.6 積分 Integration <span class="highlight">必考</span></h2>
+
+<div class="term">
+  <b>Integration（積分）</b>（<span class="en">訊號面積</span>）：¹H NMR 中，訊號的<b>面積比 = 質子數比</b><br><br>
+  例：ethanol CH₃CH₂OH → 三組訊號，面積比 = <b>3 : 2 : 1</b>（對應 CH₃ : CH₂ : OH）<br><br>
+  <b>注意：</b>積分給的是<b>比例</b>，不是絕對數量！<br>
+  看到比例 1.5 : 1.0 → 乘以 2 → 3 : 2
+</div>
+
+<div class="tip">
+  <b>¹³C NMR 沒有可靠的積分！</b>只有 ¹H NMR 的積分可以用來數質子。
+</div>
+
+<!-- ===== Spin-Spin Splitting ===== -->
+<h2>16.7 自旋-自旋分裂 Spin-Spin Splitting <span class="highlight">大魔王</span></h2>
+
+<div class="term">
+  <b>Spin-spin splitting</b>（<span class="en">自旋-自旋分裂 / 耦合</span>）：鄰近碳上的不等價質子會讓訊號分裂成多個峰。<br><br>
+  <b>n+1 Rule</b>：如果鄰近碳上有 <b>n 個等價 H</b>，訊號會被分裂成 <b>n+1 個峰</b>。
+</div>
+
+<table>
+  <tr><th>鄰近等價 H 數 (n)</th><th>峰數 (n+1)</th><th>名稱</th><th>強度比（Pascal 三角形）</th></tr>
+  <tr><td>0</td><td>1</td><td><b>Singlet (s)</b> 單峰</td><td>1</td></tr>
+  <tr><td>1</td><td>2</td><td><b>Doublet (d)</b> 雙峰</td><td>1 : 1</td></tr>
+  <tr><td>2</td><td>3</td><td><b>Triplet (t)</b> 三重峰</td><td>1 : 2 : 1</td></tr>
+  <tr><td>3</td><td>4</td><td><b>Quartet (q)</b> 四重峰</td><td>1 : 3 : 3 : 1</td></tr>
+  <tr><td>4</td><td>5</td><td><b>Quintet</b> 五重峰</td><td>1 : 4 : 6 : 4 : 1</td></tr>
+  <tr><td>5</td><td>6</td><td><b>Sextet</b> 六重峰</td><td>1 : 5 : 10 : 10 : 5 : 1</td></tr>
+</table>
+
+<div class="term">
+  <b>Coupling constant (J)</b>（<span class="en">耦合常數</span>）：多重峰中，相鄰峰之間的距離（單位 Hz）。<br>
+  互相耦合的兩組質子具有<b>相同的 J 值</b>！
+</div>
+
+<h3>三條重要規則</h3>
+
+<div class="reaction-box">
+  <b>Rule 1：等價質子不會互相分裂</b><br>
+  例：ethane CH₃-CH₃ → 所有 H 等價 → singlet<br><br>
+  <b>Rule 2：n+1 rule 只適用於鄰近碳上的 H</b><br>
+  隔兩個碳以上的 H 通常不會造成分裂<br><br>
+  <b>Rule 3：分裂只發生在不等價質子之間</b>
+</div>
+
+<div class="luofei">「看到 quartet 旁邊一定有 triplet。看到 triplet 旁邊一定有 quartet 或 doublet。它們是成對的。找到配對關係，結構就出來了。」</div>
+
+<div class="tip">
+  <b>經典組合：</b><br>
+  <b>CH₃-CH₂-X</b> 的 NMR：<br>
+  • CH₃（3H）被旁邊 CH₂ 的 2 個 H 分裂 → <b>triplet</b> (t)<br>
+  • CH₂（2H）被旁邊 CH₃ 的 3 個 H 分裂 → <b>quartet</b> (q)<br>
+  → 看到 t + q 的組合，積分比 3:2 → 幾乎確定有 ethyl group（-CH₂CH₃）！
+</div>
+
+<!-- ===== 解題 SOP ===== -->
+<h2>¹H NMR 解題 SOP</h2>
+
+<div class="reaction-box">
+  <b>Step 1：算 HDI</b>（從分子式）→ 判斷有沒有環或不飽和鍵<br><br>
+  <b>Step 2：數峰數</b> → 幾組不等價質子<br><br>
+  <b>Step 3：看積分</b> → 每組多少個 H<br><br>
+  <b>Step 4：看化學位移</b> → 每組 H 的化學環境（sp³? 接 O? 芳香環?）<br><br>
+  <b>Step 5：看分裂模式</b> → n+1 rule 推斷鄰近 H 的數量<br><br>
+  <b>Step 6：拼結構</b> → 把碎片連起來，驗證是否符合所有數據
+</div>
+
+<!-- ===== 猜題 ===== -->
+<h2 style="background:#a855f7;">猜題 Ch16 Exam Predictions</h2>
+
+<div class="exam-box">
+  <h3>猜題 1：判斷不等價質子數</h3>
+  <p>畫出以下分子的 ¹H NMR 會有幾組訊號：</p>
+  <ul>
+    <li>(a) CH₃OCH₃ → <b>1 組</b>（所有 H 等價）→ singlet</li>
+    <li>(b) CH₃CH₂OCH₃ → <b>3 組</b>（CH₃ 的 t, CH₂ 的 q, OCH₃ 的 s）</li>
+    <li>(c) para-xylene (1,4-dimethylbenzene) → <b>2 組</b>（Ar-H 和 CH₃）</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 2：從 NMR 數據推結構（最常考的題型！）</h3>
+  <p>分子式 C₄H₉Br，¹H NMR 數據：</p>
+  <ul>
+    <li>δ 1.04 (d, 6H)</li>
+    <li>δ 1.95 (m, 1H)</li>
+    <li>δ 3.33 (d, 2H)</li>
+  </ul>
+  <p><b>解法：</b></p>
+  <ol>
+    <li>HDI = (8+2-9-1)/2 = 0 → 無環無雙鍵</li>
+    <li>δ 3.33 (d, 2H) → CH₂ 接 Br（downfield），被 1 個鄰近 H 分裂成 doublet</li>
+    <li>δ 1.95 (m, 1H) → CH，被兩側的 H 分裂成 multiplet</li>
+    <li>δ 1.04 (d, 6H) → 兩個等價 CH₃，被 1 個 H 分裂成 doublet</li>
+    <li>拼起來：<b>(CH₃)₂CH-CH₂Br = isobutyl bromide（1-bromo-2-methylpropane）</b></li>
+  </ol>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 3：Homotopic / Enantiotopic / Diastereotopic 判斷</h3>
+  <p>判斷以下分子中標記的兩個 H 的關係：</p>
+  <ul>
+    <li>(a) CH₂Cl₂ 中的兩個 H → 替換成 X 得到相同分子 → <b>Homotopic</b></li>
+    <li>(b) CH₂ClBr 中的兩個 H → 替換成 X 得到一對 enantiomers → <b>Enantiotopic</b></li>
+    <li>(c) 2-bromobutane 的 C3 上兩個 H → 替換成 X 得到一對 diastereomers → <b>Diastereotopic</b>（不同 NMR 訊號！）</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 4：¹³C NMR 峰數</h3>
+  <p>以下分子在 ¹³C NMR 中各有幾個峰？</p>
+  <ul>
+    <li>(a) cyclohexane → <b>1 個峰</b>（所有碳等價）</li>
+    <li>(b) 1-chloro-methylcyclohexane → 利用對稱性數碳</li>
+    <li>(c) 2-butanone CH₃COCH₂CH₃ → <b>4 個峰</b>（4 種不等價碳）</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 5：分裂模式配對</h3>
+  <p>CH₃CH₂OH 的 ¹H NMR 中：</p>
+  <ul>
+    <li>CH₃ → 被 CH₂ 的 2H 分裂 → <b>triplet</b>，δ ~1.2</li>
+    <li>CH₂ → 被 CH₃ 的 3H 分裂 → <b>quartet</b>，δ ~3.7（接 O 所以 downfield）</li>
+    <li>OH → 通常 <b>broad singlet</b>（因為快速交換，不被分裂）</li>
+    <li>積分比：<b>3 : 2 : 1</b></li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 6：IR + MS + NMR 綜合推斷</h3>
+  <p>分子式 C₈H₁₀O，IR: broad ~3400 cm⁻¹，¹H NMR：</p>
+  <ul>
+    <li>δ 7.2 (s, 5H)</li>
+    <li>δ 3.65 (t, 2H)</li>
+    <li>δ 2.85 (t, 2H)</li>
+    <li>δ 1.8 (s, 1H, broad)</li>
+  </ul>
+  <p><b>解法：</b></p>
+  <ol>
+    <li>HDI = (16+2-10)/2 = 4 → 苯環！</li>
+    <li>IR broad 3400 → O-H（alcohol）</li>
+    <li>δ 7.2 (s, 5H) → 單取代苯環（C₆H₅-）</li>
+    <li>δ 3.65 (t, 2H) → -CH₂-OH（接 O → downfield，被鄰近 CH₂ 分裂成 t）</li>
+    <li>δ 2.85 (t, 2H) → Ph-CH₂-（接苯環，被鄰近 CH₂ 分裂成 t）</li>
+    <li>δ 1.8 (s, 1H, broad) → O-H</li>
+    <li>答案：<b>C₆H₅CH₂CH₂OH = 2-phenylethanol</b></li>
+  </ol>
+</div>
+
+</body>
+</html>

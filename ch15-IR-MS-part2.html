@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch15 IR & Mass Spec Part 2 - 考前重點整理</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; line-height: 1.8; }
+  h1 { color: #e94560; text-align: center; font-size: 1.8em; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 32px; }
+  h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 16px; border-radius: 4px; margin: 24px 0 12px 0; font-size: 1.2em; }
+  h3 { color: #e94560; margin: 16px 0 8px 0; border-left: 4px solid #e94560; padding-left: 10px; }
+  .term { background: #16213e; border-left: 3px solid #0f3460; padding: 8px 14px; margin: 8px 0; border-radius: 4px; }
+  .term b { color: #48cfcb; }
+  .term .en { color: #f0a500; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #0f3460; color: #fff; padding: 8px 12px; text-align: left; }
+  td { border: 1px solid #333; padding: 8px 12px; background: #16213e; }
+  .highlight { background: #e94560; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+  .reaction-box { background: #16213e; border: 2px solid #0f3460; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .reaction-box .arrow { color: #e94560; font-weight: bold; }
+  .exam-box { background: #2d1b42; border: 2px solid #a855f7; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .exam-box h3 { color: #a855f7; border-left-color: #a855f7; }
+  ul { margin-left: 20px; }
+  li { margin: 4px 0; }
+  .compare-table td:first-child { font-weight: bold; color: #48cfcb; }
+  .tip { background: #1e3a2f; border-left: 3px solid #4ade80; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #4ade80; }
+  .luofei { background: #1a1020; border-left: 3px solid #e94560; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #ccc; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 15 — IR Spectroscopy & Mass Spectrometry</h1>
+<p class="subtitle">Part 2：Mass Spectrometry 質譜（15.8 ~ 15.16）+ 猜題</p>
+
+<div class="luofei">「質譜就是把分子炸碎，看碎片的重量拼回原貌。跟我拆報廢機體逆向工程差不多。」——洛緋</div>
+
+<!-- ===== 15.8 質譜導論 ===== -->
+<h2>15.8 質譜導論 Introduction to Mass Spectrometry</h2>
+
+<div class="term">
+  <b>Mass Spectrometry (MS)</b>（<span class="en">質譜法</span>）：測量分子量與結構的<b>破壞性（destructive）</b>分析法。<br><br>
+  <b>原理：</b>樣品氣化 → 用高能電子（70 eV）轟擊 → 移除一個電子 → 形成 <b>cation radical（陽離子自由基 M⁺•）</b> → 碎裂成碎片 → 依 <b>m/z（質荷比）</b> 分離偵測
+</div>
+
+<div class="term">
+  <b>Molecular ion (M⁺•)</b>（<span class="en">分子離子峰</span>）：未碎裂的分子失去一個電子後的峰，代表<b>分子量</b>。<br>
+  <b>Base peak</b>（<span class="en">基峰</span>）：最高的峰（定義為 100%），其他峰以此為基準計算相對強度。<br>
+  <b>Fragment ions</b>（<span class="en">碎片離子</span>）：m/z 小於 M⁺• 的峰 → 分子碎裂的產物。
+</div>
+
+<div class="tip">
+  M⁺• 不一定是 base peak！<br>
+  例：pentane 的 M⁺• 很弱（容易碎裂），但 benzene 的 M⁺• 就是 base peak（芳香環很穩定不易碎）
+</div>
+
+<!-- ===== 15.10 M+1 峰 ===== -->
+<h2>15.10 (M+1)⁺• 峰 — ¹³C 同位素</h2>
+
+<div class="term">
+  <b>¹³C</b> 的天然豐度（natural abundance）= <b>1.1%</b><br><br>
+  分子中碳越多 → (M+1) 峰相對於 M 峰的比例越大<br>
+  <b>估算碳數</b>：(M+1) 峰高度 / M 峰高度 ≈ <b>n × 1.1%</b>（n = 碳數）
+</div>
+
+<div class="luofei">「十個碳的分子，M+1 大概是 M 的 11%。數學而已。」</div>
+
+<!-- ===== 15.11 M+2 峰 ===== -->
+<h2>15.11 (M+2)⁺• 峰 — Cl 和 Br 同位素 <span class="highlight">必考</span></h2>
+
+<table>
+  <tr><th>元素</th><th>同位素分布</th><th>M 與 M+2 的比例</th></tr>
+  <tr>
+    <td><b>Cl</b></td>
+    <td>³⁵Cl = 76%、³⁷Cl = 24%</td>
+    <td>M : M+2 ≈ <b>3 : 1</b></td>
+  </tr>
+  <tr>
+    <td><b>Br</b></td>
+    <td>⁷⁹Br = 51%、⁸¹Br = 49%</td>
+    <td>M : M+2 ≈ <b>1 : 1</b>（幾乎等高！）</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <b>快速判斷：</b><br>
+  看到 M 和 M+2 兩個峰比例 ~3:1 → 含 <b>Cl</b><br>
+  看到 M 和 M+2 兩個峰幾乎等高 → 含 <b>Br</b><br>
+  沒有明顯 M+2 → 不含 Cl 或 Br
+</div>
+
+<!-- ===== 15.12 碎片分析 ===== -->
+<h2>15.12 碎片分析 Analyzing Fragments</h2>
+
+<div class="term">
+  MS 只偵測<b>帶電荷的碎片</b>（cation），中性碎片（radical）不會被偵測到。
+</div>
+
+<h3>常見碎裂模式</h3>
+
+<table>
+  <tr><th>碎裂類型</th><th>適用官能基</th><th>說明</th></tr>
+  <tr>
+    <td><b>Alpha cleavage (α-cleavage)</b><br>α-斷裂</td>
+    <td>Alcohols、Amines、Carbonyl compounds</td>
+    <td>在官能基隔壁的 C-C 鍵斷裂</td>
+  </tr>
+  <tr>
+    <td><b>Dehydration</b><br>脫水</td>
+    <td>Alcohols</td>
+    <td>M⁺• 失去 H₂O（-18）→ 看到 M-18 峰</td>
+  </tr>
+  <tr>
+    <td><b>McLafferty rearrangement</b><br>麥克拉弗蒂重排</td>
+    <td>Carbonyl compounds（有 γ-H 時）</td>
+    <td>γ-碳上的 H 轉移到 C=O → 分子斷裂成兩個含偶數電子的碎片</td>
+  </tr>
+</table>
+
+<div class="reaction-box">
+  <b>Alkane 的碎裂規律：</b><br>
+  碎片以 14 為單位遞減（CH₂ = 14）<br>
+  例：hexane (M = 86) → 碎片 71, 57, 43, 29（每次少一個 CH₂ 再少一個 H）
+</div>
+
+<div class="luofei">「Alcohol 看到 M-18，那是脫水。Carbonyl 有 γ-H 就想到 McLafferty。這兩個背起來。」</div>
+
+<!-- ===== 15.13-15.14 HRMS & GC-MS ===== -->
+<h2>15.13-15.14 高解析質譜 & GC-MS</h2>
+
+<div class="term">
+  <b>High-Resolution MS (HRMS)</b>（<span class="en">高解析質譜</span>）：精確到小數點後 4 位<br>
+  用途：區分分子量相同但分子式不同的化合物<br>
+  例：C₅H₁₂ = 72.0939 vs C₄H₈O = 72.0575 → 低解析看不出差別，高解析一目了然<br><br>
+  <b>重要精確質量：</b> ¹²C = 12.0000、¹H = 1.00783、¹⁶O = 15.9949
+</div>
+
+<div class="term">
+  <b>GC-MS</b>（<span class="en">氣相層析-質譜聯用</span>）：先用 GC 分離混合物（得到 retention time），再用 MS 鑑定每個成分。<br>
+  應用：藥物檢測、水質、食品汙染、法醫鑑識
+</div>
+
+<!-- ===== 15.15 大分子 ===== -->
+<h2>15.15 大分子質譜</h2>
+
+<div class="term">
+  <b>EI (Electron Ionization)</b>（<span class="en">電子游離法</span>）：需要氣化樣品 → 大分子（蛋白質等）在氣化前就分解了，不適用。<br><br>
+  <b>ESI (Electrospray Ionization)</b>（<span class="en">電噴灑游離法</span>）：直接從液態噴灑游離，「softer」的技術 → 適合大分子。<br>
+  <b>MALDI (Matrix-Assisted Laser Desorption Ionization)</b>（<span class="en">基質輔助雷射脫附游離法</span>）：用雷射搭配基質 → 也適合大分子。<br><br>
+  常搭配 <b>TOF (Time-of-Flight)</b>（<span class="en">飛行時間</span>）質量分析器。
+</div>
+
+<!-- ===== 15.16 不飽和度 ===== -->
+<h2>15.16 不飽和度 Degrees of Unsaturation (HDI) <span class="highlight">必考計算</span></h2>
+
+<div class="term">
+  <b>HDI = Hydrogen Deficiency Index</b>（<span class="en">氫缺乏指數 / 不飽和度</span>）<br><br>
+  飽和烷烴公式：CₙH₂ₙ₊₂<br>
+  每多一個<b>雙鍵</b>或<b>環</b> → 少 2 個 H → HDI + 1<br>
+  每多一個<b>三鍵</b> → 少 4 個 H → HDI + 2<br>
+  <b>苯環</b> = 3 雙鍵 + 1 環 = HDI = 4
+</div>
+
+<div class="reaction-box">
+  <b>HDI 計算公式（含雜原子版）：</b><br><br>
+  對於 CₐHᵦNᵧOᵨXₑ（X = 鹵素）：<br><br>
+  <b>HDI = (2a + 2 - b + c - e) / 2</b><br><br>
+  規則：<br>
+  • <b>O、S</b> → 不影響，忽略不計<br>
+  • <b>N</b> → 加 1（因為 N 取代 C 時多帶一個 H）<br>
+  • <b>鹵素 (F, Cl, Br, I)</b> → 當作 H 處理（減 1）
+</div>
+
+<div class="tip">
+  <b>快速記法：</b><br>
+  O 不管、N 加一、鹵素當 H<br><br>
+  例：C₄H₆ → HDI = (2×4 + 2 - 6) / 2 = 2 → 可能是兩個雙鍵、或一個三鍵、或一個雙鍵+一個環<br>
+  例：C₆H₅Br → 把 Br 當 H → C₆H₆ → HDI = (12+2-6)/2 = 4 → benzene！
+</div>
+
+<!-- ===== 猜題 ===== -->
+<h2 style="background:#a855f7;">猜題 Ch15 Exam Predictions</h2>
+
+<div class="exam-box">
+  <h3>猜題 1：IR 光譜辨識官能基</h3>
+  <p>給一張 IR 光譜，要你判斷是以下哪個化合物：</p>
+  <ul>
+    <li>alcohol vs carboxylic acid vs ketone vs ester</li>
+  </ul>
+  <p><b>答題關鍵：</b></p>
+  <ul>
+    <li>有 broad O-H ~3400 + 沒有 C=O → alcohol</li>
+    <li>有 very broad O-H ~2500-3300 + strong C=O ~1710 → carboxylic acid</li>
+    <li>沒有 O-H + strong C=O ~1715 → ketone</li>
+    <li>沒有 O-H + strong C=O ~1735 → ester</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 2：HDI 計算</h3>
+  <p>計算以下分子式的不飽和度並推測可能結構：</p>
+  <ul>
+    <li>(a) C₅H₁₀ → HDI = 1（一個雙鍵或一個環）</li>
+    <li>(b) C₈H₈O → HDI = (16+2-8)/2 = 5（苯環=4 + 一個 C=O）</li>
+    <li>(c) C₃H₅ClO → Cl 當 H → C₃H₆O → HDI = (6+2-6)/2 = 1</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 3：質譜同位素判讀</h3>
+  <p>質譜中看到 M⁺• = 112, M+2 = 114 且兩峰幾乎等高，該分子含什麼鹵素？</p>
+  <p><b>答案：</b> M : M+2 ≈ 1:1 → 含 <b>Br</b>。分子量 112 - 79(Br) = 33 → 可能是 CH₂=CHBr 的衍生物或類似結構。</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 4：碎片分析</h3>
+  <p>一個 alcohol (M⁺• = 74) 的質譜中出現 m/z = 56 的強峰，這代表什麼？</p>
+  <p><b>答案：</b> 74 - 56 = 18 = H₂O → 這是 <b>dehydration（脫水）</b>碎裂！</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 5：IR + MS + 分子式綜合推斷</h3>
+  <p>分子式 C₄H₈O（HDI=1），IR 顯示 strong absorption at ~1715 cm⁻¹，無 broad O-H。推斷結構。</p>
+  <p><b>答題思路：</b></p>
+  <ul>
+    <li>HDI = 1 → 一個雙鍵或環</li>
+    <li>~1715 cm⁻¹ → C=O（ketone）</li>
+    <li>無 O-H → 不是 alcohol 也不是 carboxylic acid</li>
+    <li>C₄H₈O + ketone → <b>2-butanone (MEK)</b> 或 cyclopropane-methanol 但排除 alcohol → 答案是 2-butanone</li>
+  </ul>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 6：波數比較題</h3>
+  <p>排列以下鍵的 IR stretching 波數由高到低：C-O、C=O、C≡N、O-H、C-H</p>
+  <p><b>答案：</b> O-H (~3400) > C-H (~3000) > C≡N (~2200) > C=O (~1715) > C-O (~1100)<br>
+  影響因素：原子質量（越輕越高）+ 鍵的強度（三鍵>雙鍵>單鍵）</p>
+</div>
+
+</body>
+</html>

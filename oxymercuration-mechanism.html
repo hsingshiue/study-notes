@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oxymercuration-Demercuration 反應機制</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+    line-height: 1.6;
+  }
+  h1 {
+    text-align: center;
+    color: #e6b0ff;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+  }
+  .mechanism-box {
+    background: #16213e;
+    border: 1px solid #334;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 30px;
+  }
+  .mechanism-box h2 {
+    color: #7ec8e3;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    border-left: 4px solid #e6b0ff;
+    padding-left: 12px;
+  }
+  .mechanism-box .desc {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+    padding-left: 16px;
+  }
+  .step-label {
+    display: inline-block;
+    background: #e6b0ff;
+    color: #1a1a2e;
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .step-note {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin: 6px 0 16px 0;
+    padding-left: 4px;
+  }
+  svg {
+    display: block;
+    margin: 10px auto;
+  }
+  /* arrow labels */
+  .arrow-label {
+    font-size: 11px;
+    fill: #e6b0ff;
+    font-style: italic;
+  }
+  .atom-label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .bond {
+    stroke: #e0e0e0;
+    stroke-width: 2;
+    fill: none;
+  }
+  .bond-double {
+    stroke: #e0e0e0;
+    stroke-width: 2;
+    fill: none;
+  }
+  .curved-arrow {
+    stroke: #ff6b9d;
+    stroke-width: 1.8;
+    fill: none;
+    marker-end: url(#arrowRed);
+  }
+  .highlight-hg { fill: #ffcc00; }
+  .highlight-o { fill: #ff6b6b; }
+  .highlight-c { fill: #e0e0e0; }
+  .highlight-green { fill: #6bff9e; }
+  .highlight-blue { fill: #7ec8e3; }
+  .reaction-arrow {
+    stroke: #888;
+    stroke-width: 2;
+    marker-end: url(#arrowGray);
+  }
+  .plus { font-size: 20px; fill: #888; }
+  .charge { font-size: 11px; font-weight: bold; }
+  .note-box {
+    background: #1a1a2e;
+    border: 1px dashed #555;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: #bbb;
+  }
+  .note-box strong {
+    color: #e6b0ff;
+  }
+  .final-product {
+    background: #0f3460;
+    border: 2px solid #7ec8e3;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .final-product h3 {
+    color: #7ec8e3;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Oxymercuration-Demercuration 反應機制</h1>
+<p class="subtitle">Alkene + 1) Hg(OAc)&#8322; / H&#8322;O &nbsp; 2) NaBH&#8324; &rarr; Markovnikov Alcohol</p>
+
+<!-- ===== 機制一：Methylenecyclohexane ===== -->
+<div class="mechanism-box">
+  <h2>機制一：Methylenecyclohexane</h2>
+  <p class="desc">外環烯烴 (exocyclic alkene)，=CH&#8322; 在環外</p>
+
+  <!-- Step 1 -->
+  <span class="step-label">Step 1 &mdash; 形成 Mercurinium Ion</span>
+  <p class="step-note">Hg(OAc)&#8322; 的 Hg&sup2;&#8314; 進攻 alkene 的 &pi; 電子，形成三員環 mercurinium ion</p>
+
+  <svg width="720" height="180" viewBox="0 0 720 180">
+    <defs>
+      <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6" fill="#ff6b9d"/>
+      </marker>
+      <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <path d="M0,0 L10,3.5 L0,7" fill="#888"/>
+      </marker>
+    </defs>
+
+    <!-- Cyclohexane with exo =CH2 -->
+    <polygon points="60,100 90,65 130,65 160,100 130,135 90,135" class="bond"/>
+    <!-- exo double bond -->
+    <line x1="160" y1="100" x2="200" y2="80" class="bond"/>
+    <line x1="160" y1="106" x2="196" y2="88" class="bond"/>
+    <text x="202" y="72" class="atom-label highlight-c">CH&#8322;</text>
+
+    <!-- + sign -->
+    <text x="240" y="105" class="plus">+</text>
+
+    <!-- Hg(OAc)2 -->
+    <text x="270" y="100" class="atom-label highlight-hg">Hg</text>
+    <text x="290" y="100" class="atom-label" fill="#aaa">(OAc)&#8322;</text>
+
+    <!-- Reaction arrow -->
+    <line x1="380" y1="100" x2="440" y2="100" class="reaction-arrow"/>
+
+    <!-- Mercurinium ion product -->
+    <polygon points="480,110 510,75 550,75 580,110 550,145 510,145" class="bond"/>
+    <!-- bridged Hg -->
+    <line x1="580" y1="110" x2="610" y2="85" class="bond"/>
+    <line x1="580" y1="110" x2="610" y2="135" class="bond"/>
+    <text x="605" y="80" class="atom-label highlight-c" font-size="12">CH&#8322;</text>
+
+    <!-- Hg bridge arc -->
+    <path d="M 580,110 Q 640,110 618,85" stroke="#ffcc00" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+    <path d="M 618,135 Q 640,110 618,85" stroke="#ffcc00" stroke-width="1.5" fill="none"/>
+    <text x="640" y="115" class="atom-label highlight-hg" font-size="13">Hg</text>
+    <text x="660" y="105" class="charge highlight-hg">+</text>
+    <text x="640" y="130" fill="#aaa" font-size="10">OAc</text>
+
+    <!-- curved arrow from pi to Hg -->
+    <path d="M 178,85 Q 200,50 260,85" class="curved-arrow"/>
+    <text x="200" y="45" class="arrow-label">&pi; &rarr; Hg&sup2;&#8314;</text>
+  </svg>
+
+  <!-- Step 2 -->
+  <span class="step-label">Step 2 &mdash; H&#8322;O 親核攻擊 (Anti-Markovnikov 位置 &rarr; Markovnikov 產物)</span>
+  <p class="step-note">H&#8322;O 攻擊<strong style="color:#ff6b9d"> 取代基較多的碳</strong>（環上的碳），因為該碳帶有較多正電荷 &rarr; anti addition</p>
+
+  <svg width="720" height="170" viewBox="0 0 720 170">
+    <!-- Mercurinium ion -->
+    <polygon points="60,100 90,65 130,65 160,100 130,135 90,135" class="bond"/>
+    <line x1="160" y1="100" x2="190" y2="75" class="bond"/>
+    <line x1="190" y1="125" x2="160" y2="100" class="bond"/>
+    <text x="185" y="68" class="atom-label highlight-c" font-size="12">CH&#8322;</text>
+
+    <path d="M 192,125 Q 215,100 192,75" stroke="#ffcc00" stroke-width="1.5" fill="none"/>
+    <text x="216" y="105" class="atom-label highlight-hg" font-size="12">Hg⁺</text>
+
+    <!-- H2O attacking -->
+    <text x="120" y="28" class="atom-label highlight-o" font-size="13">H&#8322;O</text>
+    <path d="M 140,35 Q 155,55 160,80" class="curved-arrow"/>
+    <text x="90" y="18" class="arrow-label">攻擊較多取代碳</text>
+
+    <!-- Arrow -->
+    <line x1="270" y1="100" x2="330" y2="100" class="reaction-arrow"/>
+    <text x="280" y="90" fill="#aaa" font-size="11">-H⁺</text>
+
+    <!-- Product with OH and HgOAc -->
+    <polygon points="380,100 410,65 450,65 480,100 450,135 410,135" class="bond"/>
+    <line x1="480" y1="100" x2="510" y2="75" class="bond"/>
+    <text x="512" y="72" class="atom-label highlight-c" font-size="12">CH&#8322;</text>
+    <text x="512" y="90" fill="#aaa" font-size="11">HgOAc</text>
+
+    <!-- OH on ring carbon (top face - anti to Hg) -->
+    <line x1="480" y1="100" x2="510" y2="120" class="bond"/>
+    <text x="512" y="128" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <text x="400" y="25" fill="#7ec8e3" font-size="12">anti addition: OH 和 HgOAc 在不同面</text>
+  </svg>
+
+  <!-- Step 3 & 4 -->
+  <span class="step-label">Step 3 & 4 &mdash; NaBH&#8324; 還原移除 Hg</span>
+  <p class="step-note">NaBH&#8324; 將 C-Hg 鍵還原為 C-H，移除汞，得到最終 Markovnikov alcohol</p>
+
+  <svg width="720" height="150" viewBox="0 0 720 150">
+    <!-- Intermediate -->
+    <polygon points="60,80 90,45 130,45 160,80 130,115 90,115" class="bond"/>
+    <line x1="160" y1="80" x2="190" y2="55" class="bond"/>
+    <text x="192" y="52" class="atom-label highlight-c" font-size="12">CH&#8322;</text>
+    <text x="192" y="70" fill="#aaa" font-size="11">HgOAc</text>
+    <line x1="160" y1="80" x2="190" y2="105" class="bond"/>
+    <text x="192" y="112" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <!-- NaBH4 arrow -->
+    <line x1="240" y1="80" x2="320" y2="80" class="reaction-arrow"/>
+    <text x="250" y="70" fill="#6bff9e" font-size="12">NaBH&#8324;</text>
+
+    <!-- Final product -->
+    <polygon points="370,80 400,45 440,45 470,80 440,115 400,115" class="bond"/>
+    <line x1="470" y1="80" x2="500" y2="55" class="bond"/>
+    <text x="502" y="52" class="atom-label highlight-c" font-size="12">CH&#8323;</text>
+
+    <line x1="470" y1="80" x2="500" y2="105" class="bond"/>
+    <text x="502" y="112" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <!-- Label -->
+    <rect x="540" y="60" width="160" height="40" rx="8" fill="#0f3460" stroke="#7ec8e3" stroke-width="1.5"/>
+    <text x="555" y="85" fill="#7ec8e3" font-size="13" font-weight="bold">1-Methylcyclohexanol</text>
+    <text x="560" y="45" fill="#e6b0ff" font-size="11">Markovnikov product</text>
+  </svg>
+</div>
+
+<!-- ===== 機制二：Cyclopentene ===== -->
+<div class="mechanism-box">
+  <h2>機制二：Cyclopentene</h2>
+  <p class="desc">內環烯烴 (endocyclic alkene)，雙鍵在環內</p>
+
+  <!-- Step 1 -->
+  <span class="step-label">Step 1 &mdash; 形成 Mercurinium Ion</span>
+  <p class="step-note">Hg&sup2;&#8314; 從一面進攻 cyclopentene 的 &pi; 鍵，形成三員環 mercurinium ion</p>
+
+  <svg width="720" height="180" viewBox="0 0 720 180">
+    <!-- Cyclopentene -->
+    <line x1="80" y1="70" x2="120" y2="50" class="bond"/>
+    <line x1="84" y1="76" x2="118" y2="58" class="bond"/>
+    <line x1="120" y1="50" x2="160" y2="70" class="bond"/>
+    <line x1="160" y1="70" x2="150" y2="115" class="bond"/>
+    <line x1="150" y1="115" x2="90" y2="115" class="bond"/>
+    <line x1="90" y1="115" x2="80" y2="70" class="bond"/>
+
+    <!-- C1, C2 labels -->
+    <text x="68" y="64" fill="#7ec8e3" font-size="10">C1</text>
+    <text x="162" y="64" fill="#7ec8e3" font-size="10">C2</text>
+
+    <!-- + -->
+    <text x="195" y="95" class="plus">+</text>
+
+    <!-- Hg(OAc)2 -->
+    <text x="225" y="95" class="atom-label highlight-hg">Hg</text>
+    <text x="245" y="95" fill="#aaa" font-size="14">(OAc)&#8322;</text>
+
+    <!-- Arrow -->
+    <line x1="340" y1="90" x2="400" y2="90" class="reaction-arrow"/>
+
+    <!-- Mercurinium ion -->
+    <line x1="460" y1="70" x2="500" y2="50" class="bond"/>
+    <line x1="500" y1="50" x2="540" y2="70" class="bond"/>
+    <line x1="540" y1="70" x2="530" y2="115" class="bond"/>
+    <line x1="530" y1="115" x2="470" y2="115" class="bond"/>
+    <line x1="470" y1="115" x2="460" y2="70" class="bond"/>
+
+    <!-- Hg bridge on top -->
+    <path d="M 480,55 Q 500,15 520,55" stroke="#ffcc00" stroke-width="2" fill="none"/>
+    <text x="490" y="18" class="atom-label highlight-hg" font-size="13">Hg⁺</text>
+    <text x="485" y="8" fill="#aaa" font-size="9">OAc</text>
+
+    <!-- Curved arrow -->
+    <path d="M 100,55 Q 130,20 220,75" class="curved-arrow"/>
+    <text x="120" y="18" class="arrow-label">&pi; &rarr; Hg&sup2;&#8314;</text>
+
+    <!-- delta+ labels -->
+    <text x="448" y="64" class="charge" fill="#ff6b9d">&delta;+</text>
+    <text x="542" y="64" class="charge" fill="#ff6b9d">&delta;+</text>
+    <text x="420" y="155" fill="#aaa" font-size="11">兩個碳取代度相同 &rarr; H&#8322;O 可攻擊任一側</text>
+  </svg>
+
+  <!-- Step 2 -->
+  <span class="step-label">Step 2 &mdash; H&#8322;O 親核攻擊</span>
+  <p class="step-note">H&#8322;O 從 Hg 的<strong style="color:#ff6b9d">對面 (anti)</strong> 進攻，打開三員環</p>
+
+  <svg width="720" height="170" viewBox="0 0 720 170">
+    <!-- Mercurinium ion -->
+    <line x1="80" y1="70" x2="120" y2="50" class="bond"/>
+    <line x1="120" y1="50" x2="160" y2="70" class="bond"/>
+    <line x1="160" y1="70" x2="150" y2="115" class="bond"/>
+    <line x1="150" y1="115" x2="90" y2="115" class="bond"/>
+    <line x1="90" y1="115" x2="80" y2="70" class="bond"/>
+
+    <path d="M 100,55 Q 120,20 140,55" stroke="#ffcc00" stroke-width="1.5" fill="none"/>
+    <text x="108" y="18" fill="#ffcc00" font-size="11">Hg⁺</text>
+
+    <!-- H2O from bottom -->
+    <text x="140" y="160" class="atom-label highlight-o" font-size="13">H&#8322;O:</text>
+    <path d="M 155,148 Q 160,130 158,115" class="curved-arrow"/>
+    <text x="170" y="145" class="arrow-label">anti attack</text>
+
+    <!-- Arrow -->
+    <line x1="230" y1="90" x2="300" y2="90" class="reaction-arrow"/>
+    <text x="245" y="80" fill="#aaa" font-size="11">-H⁺</text>
+
+    <!-- Trans product -->
+    <line x1="350" y1="70" x2="390" y2="50" class="bond"/>
+    <line x1="390" y1="50" x2="430" y2="70" class="bond"/>
+    <line x1="430" y1="70" x2="420" y2="115" class="bond"/>
+    <line x1="420" y1="115" x2="360" y2="115" class="bond"/>
+    <line x1="360" y1="115" x2="350" y2="70" class="bond"/>
+
+    <!-- HgOAc on top of C1 -->
+    <line x1="350" y1="70" x2="320" y2="50" class="bond"/>
+    <text x="295" y="46" fill="#ffcc00" font-size="11">HgOAc</text>
+
+    <!-- OH on bottom of C2 (anti) -->
+    <line x1="430" y1="70" x2="460" y2="90" class="bond"/>
+    <text x="462" y="98" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <!-- wedge/dash indicators -->
+    <text x="310" y="36" fill="#7ec8e3" font-size="10">(上面)</text>
+    <text x="462" y="110" fill="#7ec8e3" font-size="10">(下面)</text>
+
+    <text x="500" y="75" fill="#e6b0ff" font-size="12" font-weight="bold">trans 排列</text>
+    <text x="500" y="95" fill="#aaa" font-size="11">OH 和 HgOAc</text>
+    <text x="500" y="110" fill="#aaa" font-size="11">在不同面 (anti addition)</text>
+  </svg>
+
+  <!-- Step 3 & 4 -->
+  <span class="step-label">Step 3 & 4 &mdash; NaBH&#8324; 還原</span>
+  <p class="step-note">NaBH&#8324; 移除 Hg，C-Hg &rarr; C-H，得到 trans-2-cyclopentanol（但實際上 NaBH&#8324; 還原不保留立體）</p>
+
+  <svg width="720" height="140" viewBox="0 0 720 140">
+    <!-- Intermediate -->
+    <line x1="60" y1="60" x2="100" y2="40" class="bond"/>
+    <line x1="100" y1="40" x2="140" y2="60" class="bond"/>
+    <line x1="140" y1="60" x2="130" y2="105" class="bond"/>
+    <line x1="130" y1="105" x2="70" y2="105" class="bond"/>
+    <line x1="70" y1="105" x2="60" y2="60" class="bond"/>
+    <line x1="60" y1="60" x2="30" y2="40" class="bond"/>
+    <text x="5" y="36" fill="#ffcc00" font-size="11">HgOAc</text>
+    <line x1="140" y1="60" x2="170" y2="80" class="bond"/>
+    <text x="172" y="88" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <!-- NaBH4 arrow -->
+    <line x1="220" y1="70" x2="300" y2="70" class="reaction-arrow"/>
+    <text x="235" y="60" fill="#6bff9e" font-size="12">NaBH&#8324;</text>
+
+    <!-- Final product -->
+    <line x1="350" y1="60" x2="390" y2="40" class="bond"/>
+    <line x1="390" y1="40" x2="430" y2="60" class="bond"/>
+    <line x1="430" y1="60" x2="420" y2="105" class="bond"/>
+    <line x1="420" y1="105" x2="360" y2="105" class="bond"/>
+    <line x1="360" y1="105" x2="350" y2="60" class="bond"/>
+
+    <line x1="350" y1="60" x2="320" y2="40" class="bond"/>
+    <text x="310" y="36" class="atom-label highlight-c" font-size="13">H</text>
+
+    <line x1="430" y1="60" x2="460" y2="80" class="bond"/>
+    <text x="462" y="88" class="atom-label highlight-o" font-size="13">OH</text>
+
+    <!-- Label -->
+    <rect x="510" y="50" width="180" height="40" rx="8" fill="#0f3460" stroke="#7ec8e3" stroke-width="1.5"/>
+    <text x="530" y="75" fill="#7ec8e3" font-size="13" font-weight="bold">Cyclopentanol</text>
+    <text x="520" y="40" fill="#e6b0ff" font-size="11">Markovnikov product</text>
+  </svg>
+</div>
+
+<!-- 重點整理 -->
+<div class="mechanism-box">
+  <h2>考試重點整理</h2>
+  <div class="note-box">
+    <strong>1. Regioselectivity (區域選擇性)</strong><br>
+    H&#8322;O 攻擊<span style="color:#ff6b9d">取代基較多的碳</span> &rarr; 最終得到 <span style="color:#7ec8e3">Markovnikov alcohol</span><br><br>
+
+    <strong>2. Stereoselectivity (立體選擇性)</strong><br>
+    H&#8322;O 和 Hg 從<span style="color:#ff6b9d">不同面</span>加成 &rarr; <span style="color:#7ec8e3">anti addition</span><br><br>
+
+    <strong>3. Mercurinium Ion 的角色</strong><br>
+    三員環中間體，阻止 carbocation rearrangement（不會重排！）<br>
+    這是此反應優於直接酸催化加水的關鍵原因<br><br>
+
+    <strong>4. NaBH&#8324; 還原</strong><br>
+    C&ndash;Hg &rarr; C&ndash;H，移除汞，不影響 OH 的位置<br>
+    注意：還原步驟的立體化學是非立體專一的 (not stereospecific)<br><br>
+
+    <strong>5. 考題套路</strong><br>
+    給內環 alkene（如 cyclopentene）&rarr; 畫出兩個 regioisomer 產物 A 和 B<br>
+    但因為 cyclopentene 兩個碳等價，所以只有一個產物<br>
+    若給 methylenecyclohexane &rarr; OH 加在環上的碳（較多取代），CH&#8323; 在外
+  </div>
+</div>
+
+</body>
+</html>

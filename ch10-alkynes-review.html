@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch10 Alkynes 炔類 - 考前重點整理</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; line-height: 1.8; }
+  h1 { color: #e94560; text-align: center; font-size: 1.8em; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 32px; }
+  h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 16px; border-radius: 4px; margin: 24px 0 12px 0; font-size: 1.2em; }
+  h3 { color: #e94560; margin: 16px 0 8px 0; border-left: 4px solid #e94560; padding-left: 10px; }
+  .term { background: #16213e; border-left: 3px solid #0f3460; padding: 8px 14px; margin: 8px 0; border-radius: 4px; }
+  .term b { color: #48cfcb; }
+  .term .en { color: #f0a500; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #0f3460; color: #fff; padding: 8px 12px; text-align: left; }
+  td { border: 1px solid #333; padding: 8px 12px; background: #16213e; }
+  .highlight { background: #e94560; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+  .reaction-box { background: #16213e; border: 2px solid #0f3460; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .reaction-box .arrow { color: #e94560; font-weight: bold; }
+  .exam-box { background: #2d1b42; border: 2px solid #a855f7; border-radius: 8px; padding: 16px; margin: 16px 0; }
+  .exam-box h3 { color: #a855f7; border-left-color: #a855f7; }
+  ul { margin-left: 20px; }
+  li { margin: 4px 0; }
+  .compare-table td:first-child { font-weight: bold; color: #48cfcb; }
+  .tip { background: #1e3a2f; border-left: 3px solid #4ade80; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #4ade80; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 10 — Alkynes 炔類</h1>
+<p class="subtitle">考前重點整理 ⸜( ˶'ᵕ'˶)⸝</p>
+
+<!-- ===== 10.1 基本概念 ===== -->
+<h2>10.1 基本概念與用途</h2>
+
+<div class="term">
+  <b>Alkyne</b>（<span class="en">炔類</span>）：含有 C≡C 三鍵的有機化合物，具有兩個 π 鍵，可作為親核劑（nucleophile）。
+</div>
+<div class="term">
+  <b>Acetylene</b>（<span class="en">乙炔 C₂H₂</span>）：最簡單的炔類，用於吹管焊接（blow torch）及作為合成前驅物。
+</div>
+<div class="tip">
+  補充：電石（CaC₂）加水產生乙炔 → CaC₂ + 2H₂O → C₂H₂↑ + Ca(OH)₂<br>
+  傳統上用來催熟水果，但有雜質風險（砷、磷化物），不合法。真正的催熟激素是 Ethylene（乙烯）。
+</div>
+
+<!-- ===== 10.2 命名 ===== -->
+<h2>10.2 命名法 Nomenclature</h2>
+
+<ul>
+  <li>IUPAC：將字尾 -ane 改為 <b>-yne</b>，三鍵給最低編號</li>
+  <li>常用名：以 acetylene 為母體名（如 methylacetylene）</li>
+</ul>
+
+<div class="term">
+  <b>Terminal alkyne</b>（<span class="en">末端炔</span>）：三鍵在碳鏈末端，有 ≡C-H<br>
+  <b>Internal alkyne</b>（<span class="en">內部炔</span>）：三鍵在碳鏈中間<br>
+  <b>En-yne</b>（<span class="en">烯炔</span>）：同時含有雙鍵和三鍵的化合物
+</div>
+
+<!-- ===== 10.3 酸性 ===== -->
+<h2>10.3 酸性 Acidity</h2>
+
+<div class="term">
+  <b>Terminal alkyne 的 pKa ≈ 25</b><br>
+  比 alkene（~44）和 alkane（~50）酸性強很多，因為 sp 碳的 s 軌域比例最高（50%），電子更靠近原子核，更能穩定負電荷。
+</div>
+<div class="tip">
+  能去質子化 terminal alkyne 的鹼：其共軛酸的 pKa 必須 <b>&gt; 25</b><br>
+  常用：<b>NaNH₂</b>（NH₃ 的 pKa ≈ 38）、NaH、n-BuLi
+</div>
+
+<!-- ===== 10.4 製備 ===== -->
+<h2>10.4 炔的製備 Preparation</h2>
+
+<div class="reaction-box">
+  <b>雙重消除反應（E2 mechanism）：</b><br><br>
+  <b>Geminal dihalide</b>（同碳二鹵化物）<span class="arrow"> → </span> 用強鹼（NaNH₂）進行兩次 E2 <span class="arrow"> → </span> Alkyne<br><br>
+  <b>Vicinal dihalide</b>（鄰碳二鹵化物）<span class="arrow"> → </span> 兩次 E2（需 anti-coplanar geometry）<span class="arrow"> → </span> Alkyne<br><br>
+  常用過量 NaNH₂ → 若產物為 terminal alkyne 會被去質子化 → 最後加 H₂O 質子化回來
+</div>
+
+<!-- ===== 10.5 還原 ===== -->
+<h2>10.5 炔的還原 Reduction</h2>
+
+<p>這是 <span class="highlight">超級重要考點</span>，三種還原方式要分清楚！</p>
+
+<table class="compare-table">
+  <tr>
+    <th>條件</th>
+    <th>產物</th>
+    <th>立體化學</th>
+  </tr>
+  <tr>
+    <td>H₂ / Pt 或 Pd（完全加氫）</td>
+    <td>Alkane 烷</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>H₂ / Lindlar's catalyst 或 P-2 (Ni₂B)</td>
+    <td>Cis alkene（Z）</td>
+    <td><b>Syn addition</b>（順式加成）</td>
+  </tr>
+  <tr>
+    <td>Na or Li / NH₃(l)（Dissolving metal reduction 溶解金屬還原）</td>
+    <td>Trans alkene（E）</td>
+    <td><b>Anti addition</b>（反式加成）</td>
+  </tr>
+</table>
+
+<div class="term">
+  <b>Lindlar's catalyst</b>（<span class="en">林德拉催化劑</span>）：被「毒化」的 Pd 催化劑，活性降低，只能加一個 H₂ 停在 alkene。<br>
+  <b>Poisoned catalyst</b>（<span class="en">毒化催化劑</span>）：選擇性只還原炔 → 烯。<br>
+  <b>Dissolving metal reduction</b>（<span class="en">溶解金屬還原</span>）：機制經過 radical anion（自由基陰離子）中間體，因立體排斥採 trans 構型。
+</div>
+
+<!-- ===== 10.6 氫鹵化 ===== -->
+<h2>10.6 氫鹵化 Hydrohalogenation</h2>
+
+<div class="reaction-box">
+  <b>無過氧化物：</b> HX 加成 → <b>Markovnikov</b> 產物（X 接在取代基較多的碳上）<br>
+  加兩當量 HX → geminal dihalide<br><br>
+  <b>有過氧化物（peroxides, ROOR）：</b> → <b>Anti-Markovnikov</b> 產物（free radical mechanism 自由基機制）
+</div>
+
+<!-- ===== 10.7 水合 ===== -->
+<h2>10.7 水合反應 Hydration</h2>
+
+<p><span class="highlight">必考</span> Markovnikov vs Anti-Markovnikov 的水合</p>
+
+<table class="compare-table">
+  <tr>
+    <th>條件</th>
+    <th>區域選擇性</th>
+    <th>產物（經 tautomerism）</th>
+  </tr>
+  <tr>
+    <td>H₂O / H₂SO₄ / HgSO₄</td>
+    <td>Markovnikov</td>
+    <td><b>Ketone（酮）</b></td>
+  </tr>
+  <tr>
+    <td>1) R₂BH (bulky borane) 2) H₂O₂/NaOH</td>
+    <td>Anti-Markovnikov</td>
+    <td><b>Aldehyde（醛）</b></td>
+  </tr>
+</table>
+
+<div class="term">
+  <b>Keto-enol tautomerism</b>（<span class="en">酮-烯醇互變異構</span>）：enol 形式不穩定，會自動轉變為 ketone（酮式），平衡大幅偏向酮。<br>
+  <b>Enol</b>（<span class="en">烯醇</span>）：C=C 上接 -OH 的中間體。<br>
+  <b>HgSO₄</b>：汞催化劑，補償 vinylic carbocation（乙烯基碳正離子）形成速率慢的問題。<br>
+  <b>Bulky borane</b>（<span class="en">大體積硼烷</span>）：如 9-BBN、disiamylborane，防止第二個 BH₃ 繼續反應。
+</div>
+
+<!-- ===== 10.8 鹵化 ===== -->
+<h2>10.8 鹵化 Halogenation</h2>
+
+<div class="term">
+  Alkyne + 1 eq X₂ → dihaloalkene（觀察到 syn + anti 加成混合物，機制未完全釐清）<br>
+  Alkyne + 2 eq X₂ → tetrahalide（四鹵化物）<br>
+  <b>注意：</b>alkene 的鹵化只有 anti addition（經 halonium ion），但 alkyne 的鹵化兩種都有。
+</div>
+
+<!-- ===== 10.9 臭氧分解 ===== -->
+<h2>10.9 臭氧分解 Ozonolysis</h2>
+
+<div class="term">
+  <b>Ozonolysis</b>（<span class="en">臭氧分解</span>）：Alkyne + O₃ → 切斷三鍵 → 產生<b>兩個 carboxylic acids（羧酸）</b>
+</div>
+
+<!-- ===== 10.10 末端炔烷基化 ===== -->
+<h2>10.10 烷基化 Alkylation of Terminal Alkynes</h2>
+
+<div class="reaction-box">
+  <b>步驟：</b><br>
+  1) Terminal alkyne + NaNH₂ → <b>Alkynide ion</b>（炔化物離子，R-C≡C⁻）—— 強親核劑<br>
+  2) Alkynide + <b>methyl 或 1° alkyl halide</b> → SN2 反應 → 新的 alkyne（碳鏈增長）<br><br>
+  <span class="highlight">限制</span>：2° 或 3° alkyl halide 會發生 E2 消除而非取代！
+</div>
+
+<div class="tip">
+  <b>Double alkylation</b>：用乙炔（acetylene）可以兩端各接一個烷基，但必須分步驟做（先去質子化再加烷基鹵化物，重複兩次），不能一次全加。
+</div>
+
+<!-- ===== 10.11 合成策略 ===== -->
+<h2>10.11 合成策略 Synthetic Strategies</h2>
+
+<div class="term">
+  <b>增加飽和度：</b> alkyne → alkene → alkane（加氫）<br>
+  <b>降低飽和度：</b> alkane → alkene（Ch11）→ alkyne（鹵化 + 兩次脫鹵化氫）
+</div>
+
+<!-- ===== 考前猜題 ===== -->
+<h2 style="background:#a855f7;">猜題 Exam Predictions</h2>
+
+<div class="exam-box">
+  <h3>猜題 1：還原反應的產物與立體化學</h3>
+  <p>給一個 internal alkyne，分別用以下三種條件還原，畫出產物並標示立體化學（E/Z）：</p>
+  <ul>
+    <li>(a) H₂ / Pd</li>
+    <li>(b) H₂ / Lindlar's catalyst</li>
+    <li>(c) Na / NH₃(l)</li>
+  </ul>
+  <p><b>答題關鍵：</b> (a) alkane、(b) cis(Z) alkene (syn addition)、(c) trans(E) alkene (anti addition)</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 2：水合反應的區域選擇性</h3>
+  <p>給一個不對稱的 internal alkyne（如 2-butyne 或 1-propyne），分別用：</p>
+  <ul>
+    <li>(a) H₂O / H₂SO₄ / HgSO₄</li>
+    <li>(b) 1) R₂BH 2) H₂O₂ / NaOH</li>
+  </ul>
+  <p>畫出最終產物（含 tautomerism 後的產物）。</p>
+  <p><b>答題關鍵：</b> (a) Markovnikov → ketone、(b) Anti-Markovnikov → aldehyde（只有 terminal alkyne 才能產生 aldehyde）</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 3：多步合成（Synthesis）</h3>
+  <p>從指定的起始物合成目標分子，例如：</p>
+  <ul>
+    <li>從 1-butyne 合成 trans-2-butene</li>
+    <li>從 acetylene 合成 2-hexyne</li>
+    <li>從 vicinal dihalide 合成特定 alkyne 再轉化為 ketone</li>
+  </ul>
+  <p><b>答題關鍵：</b> 先建碳骨架（alkylation），再選適當試劑轉化官能基。注意 alkynide 只能跟 methyl/1° RX 反應。</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 4：預測產物綜合題</h3>
+  <p>給一個 terminal alkyne + 過量 HBr，產物是什麼？<br>
+  若加入 peroxide 條件呢？</p>
+  <p><b>答題關鍵：</b> 無 peroxide → Markovnikov（geminal dihalide），有 peroxide → Anti-Markovnikov</p>
+</div>
+
+<div class="exam-box">
+  <h3>猜題 5：酸性比較</h3>
+  <p>排列以下化合物的酸性強弱：ethane、ethylene、acetylene、water、ammonia</p>
+  <p><b>答題關鍵：</b> 用 ARIO，特別是 Atom（雜化軌域的 s character）：<br>
+  pKa 順序：H₂O(15.7) &lt; acetylene(25) &lt; NH₃(38) &lt; ethylene(44) &lt; ethane(50)<br>
+  酸性：H₂O &gt; acetylene &gt; NH₃ &gt; ethylene &gt; ethane</p>
+</div>
+
+</body>
+</html>

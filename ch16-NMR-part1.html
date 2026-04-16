@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch16 NMR Part 1 - 考前重點整理</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; line-height: 1.8; }
+  h1 { color: #e94560; text-align: center; font-size: 1.8em; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 32px; }
+  h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 16px; border-radius: 4px; margin: 24px 0 12px 0; font-size: 1.2em; }
+  h3 { color: #e94560; margin: 16px 0 8px 0; border-left: 4px solid #e94560; padding-left: 10px; }
+  .term { background: #16213e; border-left: 3px solid #0f3460; padding: 8px 14px; margin: 8px 0; border-radius: 4px; }
+  .term b { color: #48cfcb; }
+  .term .en { color: #f0a500; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #0f3460; color: #fff; padding: 8px 12px; text-align: left; }
+  td { border: 1px solid #333; padding: 8px 12px; background: #16213e; }
+  .highlight { background: #e94560; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+  .reaction-box { background: #16213e; border: 2px solid #0f3460; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  ul { margin-left: 20px; }
+  li { margin: 4px 0; }
+  .compare-table td:first-child { font-weight: bold; color: #48cfcb; }
+  .tip { background: #1e3a2f; border-left: 3px solid #4ade80; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #4ade80; }
+  .luofei { background: #1a1020; border-left: 3px solid #e94560; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #ccc; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 16 — Nuclear Magnetic Resonance (NMR)</h1>
+<p class="subtitle">Part 1：基本原理 + ¹³C NMR</p>
+
+<div class="luofei">「NMR 就是把分子丟進磁場裡，聽每顆原子核在不同頻率上唱歌。頻率不同，位置就不同。」——洛緋</div>
+
+<!-- ===== 基本原理 ===== -->
+<h2>16.1 NMR 基本原理</h2>
+
+<div class="term">
+  <b>Nuclear Magnetic Resonance (NMR)</b>（<span class="en">核磁共振</span>）：有機化學中<b>最有價值</b>的結構鑑定工具。<br>
+  原理：某些原子核有<b>自旋（spin）</b>→ 在外加磁場中，自旋可以與磁場<b>平行（低能量）</b>或<b>反平行（高能量）</b>→ 吸收特定頻率的無線電波（radio frequency）→ 翻轉到高能態 = <b>resonance（共振）</b>
+</div>
+
+<h3>哪些核有 NMR 活性？</h3>
+
+<table>
+  <tr><th>Spin number (I)</th><th>條件</th><th>範例</th><th>NMR 活性？</th></tr>
+  <tr><td>Half-integer (½)</td><td>質量數為奇數</td><td><b>¹H, ¹³C, ¹⁹F, ¹⁵N, ³¹P</b></td><td>有（最常用）</td></tr>
+  <tr><td>Integer (1)</td><td>質量數偶、原子序奇</td><td>²H, ¹⁴N</td><td>有（但較少用）</td></tr>
+  <tr><td>Zero (0)</td><td>質量數偶、原子序偶</td><td><b>¹²C, ¹⁶O</b></td><td><b>無！</b></td></tr>
+</table>
+
+<div class="tip">
+  <b>¹²C 和 ¹⁶O 沒有 NMR 訊號！</b><br>
+  所以 ¹³C NMR 靠的是天然豐度只有 <b>1.1%</b> 的 ¹³C → 需要大量累積訊號（FT-NMR）
+</div>
+
+<div class="term">
+  <b>ΔE = hν = γħB₀</b><br>
+  <b>γ (gyromagnetic ratio 磁旋比)</b>：每種核固有的常數<br>
+  <b>B₀</b>：外加磁場強度 → 磁場越強 → 能量差越大 → 解析度越好<br><br>
+  常見磁場：7.04 T（對應 ¹H 300 MHz）、9.4 T（對應 ¹H 400 MHz）
+</div>
+
+<div class="term">
+  <b>Shielding（屏蔽）</b>（<span class="en">遮蔽效應</span>）：鍵中的電子會產生一個小磁場，<b>抵消</b>外加磁場 → 核感受到的有效磁場較弱 → 需要更強的磁場才能共振 → 訊號出現在 <b>upfield（高場，右邊）</b><br><br>
+  <b>Deshielding（去屏蔽）</b>（<span class="en">去遮蔽效應</span>）：附近有拉電子基 → 電子密度降低 → 屏蔽減少 → 訊號出現在 <b>downfield（低場，左邊）</b>
+</div>
+
+<!-- ===== Chemical Shift ===== -->
+<h2>16.5 化學位移 Chemical Shift <span class="highlight">核心概念</span></h2>
+
+<div class="term">
+  <b>Chemical shift (δ)</b>（<span class="en">化學位移</span>）：以 <b>ppm (parts per million)</b> 為單位，衡量某核相對於參考標準的共振位置。<br><br>
+  <b>TMS (Tetramethylsilane, (CH₃)₄Si)</b>（<span class="en">四甲基矽烷</span>）：定義為 <b>δ = 0 ppm</b>。Si 的電正度低 → 碳上電子密度高 → 高度屏蔽 → 幾乎所有有機化合物訊號都在 TMS 的左邊（downfield）。<br><br>
+  <b>δ = (頻率差 / 儀器頻率) × 10⁶</b><br>
+  例：400 Hz 的差異在 400 MHz 儀器上 = 1 ppm → <b>ppm 值與儀器頻率無關</b>（不同儀器得到相同 δ）
+</div>
+
+<div class="reaction-box">
+  <b>NMR 光譜方向：</b><br><br>
+  ← <b>Downfield（低場）</b> ——————————— <b>Upfield（高場）</b> →<br>
+  ← <b>Deshielded（去屏蔽）</b> ———————— <b>Shielded（屏蔽）</b> →<br>
+  ← δ 大（10 ppm）—————————————— δ 小（0 ppm, TMS）→<br>
+</div>
+
+<!-- ===== 13C NMR ===== -->
+<h2>¹³C NMR</h2>
+
+<div class="term">
+  <b>¹³C NMR</b> 的化學位移範圍：<b>δ 0 ~ 220 ppm</b>（比 ¹H 寬很多）<br><br>
+  <b>FT-NMR (Fourier Transform NMR)</b>（<span class="en">傅立葉轉換核磁共振</span>）：用寬頻脈衝一次激發所有 ¹³C → 收集 FID（free induction decay）→ 傅立葉轉換成頻譜 → 重複累積以消除雜訊
+</div>
+
+<h3>¹³C 化學位移範圍 <span class="highlight">必背</span></h3>
+
+<table>
+  <tr><th>碳的類型</th><th>δ 範圍 (ppm)</th><th>說明</th></tr>
+  <tr><td><b>sp³ C</b>（烷基碳）</td><td>0 ~ 90</td><td>無雜原子時 0~50；接 O/N/鹵素時往 downfield 移</td></tr>
+  <tr><td><b>sp² C</b>（烯碳、芳香碳）</td><td>110 ~ 160</td><td></td></tr>
+  <tr><td><b>C=O</b>（羰基碳）</td><td>160 ~ 220</td><td>最 downfield！酮 ~200-210、醛 ~190-200、酯 ~170、羧酸 ~175</td></tr>
+</table>
+
+<div class="tip">
+  <b>¹³C NMR 看什麼？</b><br>
+  → <b>有幾個峰 = 有幾種不等價碳</b>（nonequivalent carbons）<br>
+  → 峰的位置判斷碳的類型（sp³ / sp² / C=O）<br>
+  → 注意：¹³C NMR 的峰高度<b>不代表碳的數量</b>（跟 ¹H 不同！）
+</div>
+
+<h3>DEPT NMR</h3>
+
+<div class="term">
+  <b>DEPT (Distortionless Enhancement by Polarization Transfer)</b>（<span class="en">無失真極化轉移增強</span>）：<br>
+  可以區分不同類型的碳：<br><br>
+  <b>DEPT-135：</b><br>
+  • CH₃ 和 CH → 朝上的峰（positive）<br>
+  • CH₂ → 朝下的峰（negative）<br>
+  • Quaternary C（四級碳）→ <b>不出峰</b><br><br>
+  搭配 broadband decoupled spectrum（顯示所有碳）對比 → 消失的峰就是四級碳
+</div>
+
+<div class="luofei">「DEPT-135：上面是 CH₃ 跟 CH，下面是 CH₂，消失的是四級碳。分三類，很直覺。」</div>
+
+</body>
+</html>

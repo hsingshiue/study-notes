@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch15 IR & Mass Spec Part 1 - 考前重點整理</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; line-height: 1.8; }
+  h1 { color: #e94560; text-align: center; font-size: 1.8em; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 32px; }
+  h2 { color: #0f3460; background: #e94560; display: inline-block; padding: 4px 16px; border-radius: 4px; margin: 24px 0 12px 0; font-size: 1.2em; }
+  h3 { color: #e94560; margin: 16px 0 8px 0; border-left: 4px solid #e94560; padding-left: 10px; }
+  .term { background: #16213e; border-left: 3px solid #0f3460; padding: 8px 14px; margin: 8px 0; border-radius: 4px; }
+  .term b { color: #48cfcb; }
+  .term .en { color: #f0a500; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #0f3460; color: #fff; padding: 8px 12px; text-align: left; }
+  td { border: 1px solid #333; padding: 8px 12px; background: #16213e; }
+  .highlight { background: #e94560; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+  .reaction-box { background: #16213e; border: 2px solid #0f3460; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .reaction-box .arrow { color: #e94560; font-weight: bold; }
+  ul { margin-left: 20px; }
+  li { margin: 4px 0; }
+  .compare-table td:first-child { font-weight: bold; color: #48cfcb; }
+  .tip { background: #1e3a2f; border-left: 3px solid #4ade80; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #4ade80; }
+  .luofei { background: #1a1020; border-left: 3px solid #e94560; padding: 8px 14px; margin: 8px 0; border-radius: 4px; color: #ccc; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Chapter 15 — IR Spectroscopy & Mass Spectrometry</h1>
+<p class="subtitle">Part 1：IR 紅外線光譜（15.1 ~ 15.7）</p>
+
+<div class="luofei">「頻譜分析而已。記住哪個頻率對應哪個鍵，考試就過了。」——洛緋</div>
+
+<!-- ===== 15.1 光譜學導論 ===== -->
+<h2>15.1 光譜學導論 Introduction to Spectroscopy</h2>
+
+<div class="term">
+  <b>Spectroscopy</b>（<span class="en">光譜學</span>）：利用光（電磁波）與分子的交互作用來分析結構。<br><br>
+  不同波長 → 不同效果：
+</div>
+
+<table>
+  <tr><th>類型</th><th>波長範圍</th><th>造成的效果</th><th>破壞性？</th></tr>
+  <tr><td><b>Mass Spec (MS)</b></td><td>—（電子轟擊）</td><td>分子碎裂 → 測分子量</td><td>Destructive 破壞性</td></tr>
+  <tr><td><b>IR</b></td><td>紅外線</td><td>鍵的振動（stretching / bending）</td><td>Non-destructive</td></tr>
+  <tr><td><b>UV-Vis</b></td><td>紫外-可見光</td><td>電子躍遷</td><td>Non-destructive</td></tr>
+  <tr><td><b>NMR</b></td><td>無線電波</td><td>核自旋翻轉</td><td>Non-destructive</td></tr>
+</table>
+
+<!-- ===== 15.2 IR 原理 ===== -->
+<h2>15.2 IR 光譜原理</h2>
+
+<div class="term">
+  <b>IR absorption</b>（<span class="en">紅外線吸收</span>）：分子中的鍵吸收 IR 能量 → 產生<b>振動</b><br><br>
+  <b>Stretching vibration</b>（<span class="en">伸縮振動</span>）：鍵長改變（像彈簧拉伸）<br>
+  — Symmetrical stretching（對稱伸縮）<br>
+  — Antisymmetrical stretching（反對稱伸縮）<br><br>
+  <b>Bending vibration</b>（<span class="en">彎曲振動</span>）：鍵角改變<br>
+  — Scissoring（剪式）、Rocking（搖擺）、Wagging（搖尾）、Twisting（扭轉）
+</div>
+
+<div class="tip">
+  <b>IR-active vs IR-inactive：</b><br>
+  極性鍵（polar bond）→ 通常 <b>IR-active</b>（會吸收）<br>
+  對稱分子中的非極性鍵 → <b>IR-inactive</b>（不吸收或吸收很弱）<br>
+  例：O₂、N₂ 的伸縮振動不會出現 IR 訊號
+</div>
+
+<!-- ===== 15.3 波數 ===== -->
+<h2>15.3 波數 Wavenumber <span class="highlight">核心考點</span></h2>
+
+<div class="term">
+  <b>Wavenumber（波數，cm⁻¹）</b>：IR 光譜 x 軸的單位，數值越大 = 能量越高 = 鍵越強或原子越輕
+</div>
+
+<div class="reaction-box">
+  <b>Harmonic oscillator 公式概念：</b><br>
+  ν（頻率）與兩個因素有關：<br>
+  1. <b>k（force constant 力常數）</b>：鍵越強 → k 越大 → 波數越高<br>
+  &nbsp;&nbsp;&nbsp;三鍵 &gt; 雙鍵 &gt; 單鍵<br>
+  2. <b>μ（reduced mass 約化質量）</b>：原子越輕 → μ 越小 → 波數越高<br>
+  &nbsp;&nbsp;&nbsp;C-H &gt; C-C（因為 H 很輕）
+</div>
+
+<h3>Diagnostic Region 診斷區域（必背！）</h3>
+
+<table>
+  <tr><th>波數範圍 (cm⁻¹)</th><th>對應的鍵</th><th>備註</th></tr>
+  <tr><td><b>3200-3600</b></td><td>O-H stretching</td><td>寬且強（因氫鍵）；若無氫鍵則窄</td></tr>
+  <tr><td><b>3300-3500</b></td><td>N-H stretching</td><td>1° amine 有兩個峰，2° amine 一個峰</td></tr>
+  <tr><td><b>~3300</b></td><td>≡C-H stretching（terminal alkyne）</td><td>窄且尖</td></tr>
+  <tr><td><b>&gt;3000</b></td><td>sp² C-H 或 sp C-H</td><td>在 3000 以上</td></tr>
+  <tr><td><b>&lt;3000</b></td><td>sp³ C-H</td><td>在 3000 以下</td></tr>
+  <tr><td><b>2100-2300</b></td><td>C≡C 或 C≡N stretching</td><td>三鍵區域</td></tr>
+  <tr><td><b>1680-1750</b></td><td>C=O stretching</td><td>非常強的吸收！</td></tr>
+  <tr><td><b>1640-1680</b></td><td>C=C stretching</td><td>比 C=O 弱</td></tr>
+  <tr><td><b>&lt;1500</b></td><td>Fingerprint region 指紋區</td><td>太複雜，通常不分析</td></tr>
+</table>
+
+<div class="luofei">「3000 是分界線。以上是不飽和的（sp², sp），以下是飽和的（sp³）。記住這條線就對了。」</div>
+
+<h3>Carbonyl (C=O) 的細分 <span class="highlight">重要</span></h3>
+
+<table>
+  <tr><th>化合物類型</th><th>C=O 波數 (cm⁻¹)</th><th>說明</th></tr>
+  <tr><td>Acid anhydride 酸酐</td><td>1810 & 1760（兩個峰）</td><td>最高</td></tr>
+  <tr><td>Acid chloride 醯氯</td><td>~1800</td><td></td></tr>
+  <tr><td>Ester 酯</td><td>1730-1750</td><td></td></tr>
+  <tr><td>Aldehyde 醛</td><td>1720-1740</td><td></td></tr>
+  <tr><td>Ketone 酮</td><td>1705-1725</td><td>六員環/非環: ~1715</td></tr>
+  <tr><td>Carboxylic acid 羧酸</td><td>1700-1725</td><td></td></tr>
+  <tr><td>Amide 醯胺</td><td>1640-1670</td><td>共振效應降低 C=O 特性</td></tr>
+  <tr><td>Carboxylate 羧酸鹽</td><td>1550-1650</td><td>最低</td></tr>
+</table>
+
+<div class="tip">
+  <b>趨勢記法：</b><br>
+  鄰近有 <b>拉電子基（inductive effect）</b> → C=O 波數上升（鍵更強）→ acid chloride、anhydride 最高<br>
+  鄰近有 <b>共振供電子（resonance effect）</b> → C=O 波數下降（鍵變弱）→ amide、carboxylate 最低<br>
+  五員環酮（~1750）比六員環酮（~1715）高 → 環張力
+</div>
+
+<!-- ===== 15.4 訊號強度 ===== -->
+<h2>15.4 訊號強度 Signal Strength</h2>
+
+<div class="term">
+  <b>鍵的極性越大 → IR 訊號越強</b><br><br>
+  強度排序：C=O（很強）&gt;&gt; C=C（中等偏弱）<br>
+  完全非極性的鍵（如對稱分子中的 C=C）→ 沒有 IR 訊號<br>
+  例：2,3-dimethyl-2-butene 的 C=C 在 1500-2000 cm⁻¹ 區完全不出峰<br><br>
+  <b>C-H</b> 極性不大但訊號常很強 → 因為分子裡 C-H 鍵很多，<b>數量多</b>的鍵疊加 = 強訊號
+</div>
+
+<!-- ===== 15.5 訊號形狀 ===== -->
+<h2>15.5 訊號形狀 Signal Shape</h2>
+
+<div class="term">
+  <b>Broad（寬峰）vs Narrow（窄峰）</b><br><br>
+  O-H stretching 通常很<b>寬</b> → 因為<b>氫鍵（hydrogen bonding）</b><br>
+  原理：氫鍵讓 O-H 鍵強度不均勻（有些 O-H 被氫鍵削弱，有些沒有）→ 吸收的波數範圍很大 → 寬峰
+</div>
+
+<table>
+  <tr><th>官能基</th><th>訊號特徵</th></tr>
+  <tr><td><b>Alcohol O-H</b></td><td>~3400 cm⁻¹，broad（寬），strong</td></tr>
+  <tr><td><b>Carboxylic acid O-H</b></td><td>~2500-3300 cm⁻¹，very broad（超級寬！蓋住 C-H 區），因為形成 H-bonding dimer（氫鍵二聚體）</td></tr>
+  <tr><td><b>1° Amine N-H</b></td><td>~3300-3500，<b>兩個峰</b>（symmetrical + antisymmetrical stretching）</td></tr>
+  <tr><td><b>2° Amine N-H</b></td><td>~3300-3500，<b>一個峰</b></td></tr>
+  <tr><td><b>3° Amine</b></td><td>無 N-H 峰（沒有 N-H 鍵！）</td></tr>
+</table>
+
+<div class="luofei">「Carboxylic acid 的 O-H 是整個光譜裡最肥的訊號。看到一坨超寬的東西橫跨 2500~3300，八成就是它。」</div>
+
+<!-- ===== 15.6-15.7 分析步驟 ===== -->
+<h2>15.6-15.7 IR 光譜分析三步驟</h2>
+
+<div class="reaction-box">
+  <b>看 IR 光譜的 SOP：</b><br><br>
+  <b>Step 1</b>：看 <b>1600-1850 cm⁻¹</b> → 有沒有雙鍵？（C=O? C=C?）<br>
+  <b>Step 2</b>：看 <b>2100-2300 cm⁻¹</b> → 有沒有三鍵？（C≡C? C≡N?）<br>
+  <b>Step 3</b>：看 <b>2700-4000 cm⁻¹</b> → 有沒有 X-H？（O-H? N-H? C-H? ≡C-H?）<br><br>
+  對每個訊號分析三個特徵：<b>wavenumber（位置）、intensity（強度）、shape（形狀）</b>
+</div>
+
+<div class="tip">
+  <b>快速判斷法：</b><br>
+  看到 broad ~3400 → alcohol<br>
+  看到 broad ~2500-3300 + strong ~1710 → carboxylic acid<br>
+  看到 strong sharp ~1715 → ketone<br>
+  看到 strong sharp ~1730 → ester<br>
+  看到 ~2100-2200（弱）→ internal alkyne（internal 的更弱，terminal 的較明顯）<br>
+  看到 sharp ~3300 + ~2100 → terminal alkyne<br>
+  看到 two peaks ~3400 → 1° amine
+</div>
+
+</body>
+</html>

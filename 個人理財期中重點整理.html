@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人理財 期中重點整理｜主題一～五</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --green: #10b981;
+    --green-light: #d1fae5;
+    --red: #ef4444;
+    --red-light: #fee2e2;
+    --purple: #8b5cf6;
+    --purple-light: #ede9fe;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: #f0f4ff;
+    color: var(--gray-800);
+    line-height: 1.7;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #7c3aed 100%);
+    color: white;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
+  .hero p { font-size: 1.05rem; opacity: 0.85; }
+  .hero .badges { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+  .badge {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Nav */
+  .nav-bar {
+    background: white;
+    border-bottom: 2px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0 16px;
+  }
+  .nav-inner a {
+    display: block;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-inner a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+  /* Layout */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Section */
+  .section {
+    background: white;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 20px 28px 18px;
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .icon-blue { background: #dbeafe; }
+  .icon-green { background: var(--green-light); }
+  .icon-amber { background: var(--accent-light); }
+  .icon-purple { background: var(--purple-light); }
+  .icon-red { background: var(--red-light); }
+  .section-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+  .section-header .subtitle {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    margin-top: 2px;
+  }
+  .section-body { padding: 24px 28px; }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .card {
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid;
+  }
+  .card-blue { background: #eff6ff; border-color: #bfdbfe; }
+  .card-green { background: #f0fdf4; border-color: #bbf7d0; }
+  .card-amber { background: #fffbeb; border-color: #fde68a; }
+  .card-purple { background: #faf5ff; border-color: #ddd6fe; }
+  .card-red { background: #fef2f2; border-color: #fecaca; }
+  .card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+  .card p, .card li { font-size: 0.88rem; line-height: 1.6; }
+  .card ul { padding-left: 18px; }
+
+  /* Formula Box */
+  .formula-box {
+    background: var(--gray-900);
+    color: #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    font-family: 'Consolas', 'Courier New', monospace;
+  }
+  .formula-box .formula-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .formula-box .formula-main {
+    font-size: 1.1rem;
+    color: #7dd3fc;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .formula-box .formula-note { font-size: 0.83rem; color: #94a3b8; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--gray-800);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gray-50); }
+
+  /* Diagram */
+  .diagram {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+    font-family: 'Consolas', monospace;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Q&A */
+  .qa-list { display: flex; flex-direction: column; gap: 18px; }
+  .qa-item {
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+  .qa-q {
+    background: #1e3a8a;
+    color: white;
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    user-select: none;
+  }
+  .qa-q:hover { background: #1d4ed8; }
+  .qa-q .toggle { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s; }
+  .qa-q.open .toggle { transform: rotate(45deg); }
+  .qa-a {
+    padding: 18px 20px;
+    background: white;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    display: none;
+    border-top: 2px solid #3b82f6;
+  }
+  .qa-a.show { display: block; }
+  .qa-a .key-point {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.87rem;
+  }
+  .qa-a .example {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.87rem;
+  }
+
+  /* Calc */
+  .calc-item {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .calc-q {
+    background: #064e3b;
+    color: white;
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .calc-body { padding: 18px 20px; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 26px; height: 26px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content { font-size: 0.9rem; line-height: 1.7; }
+  .answer-box {
+    background: #1e3a8a;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 14px;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .math {
+    background: var(--gray-900);
+    color: #7dd3fc;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.92rem;
+  }
+
+  /* Chart visual */
+  .visual-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .chart-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .chart-label { width: 100px; font-size: 0.85rem; font-weight: 600; text-align: right; flex-shrink: 0; }
+  .chart-bar-wrap { flex: 1; height: 28px; background: var(--gray-100); border-radius: 6px; overflow: hidden; }
+  .chart-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 0.82rem; font-weight: 600; color: white; transition: width 0.5s; }
+  .chart-val { width: 80px; font-size: 0.85rem; font-weight: 600; }
+
+  /* Tag */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+  .tag-hot { background: #fee2e2; color: #b91c1c; }
+  .tag-calc { background: #dbeafe; color: #1d4ed8; }
+  .tag-short { background: #d1fae5; color: #065f46; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--gray-200); margin: 20px 0; }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: var(--gray-900);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 18px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+
+  p { margin-bottom: 10px; font-size: 0.92rem; }
+  ul, ol { padding-left: 22px; font-size: 0.92rem; }
+  li { margin-bottom: 4px; }
+
+  .warn {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    margin: 12px 0;
+  }
+  .warn strong { color: #92400e; }
+
+  .tip {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    margin: 12px 0;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .section-body { padding: 16px; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>個人理財 期中重點整理</h1>
+  <p>主題一～五｜保險前範圍｜2026 Spring</p>
+  <div class="badges">
+    <span class="badge">主題一：何謂個人理財</span>
+    <span class="badge">主題二：理財價值觀</span>
+    <span class="badge">主題三：利率與折現</span>
+    <span class="badge">主題四：金融商品</span>
+    <span class="badge">主題五：匯率與指標</span>
+  </div>
+</div>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="#topic1">主題一</a>
+    <a href="#topic2">主題二</a>
+    <a href="#topic3">主題三 ⭐</a>
+    <a href="#topic4">主題四</a>
+    <a href="#topic5">主題五</a>
+    <a href="#shortanswer">簡答猜題</a>
+    <a href="#calc">計算猜題</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ===== 主題一 ===== -->
+<section class="section" id="topic1">
+  <div class="section-header">
+    <div class="section-icon icon-blue">🎯</div>
+    <div>
+      <h2>主題一：何謂個人理財？</h2>
+      <div class="subtitle">理財目標設定 · 13大理財盲點</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <h3>設定理財目標的四個核心問題</h3>
+    <div class="card-grid">
+      <div class="card card-blue">
+        <h4>① 明確的目標</h4>
+        <p>你要達成什麼？例如：退休、買房、子女教育基金</p>
+      </div>
+      <div class="card card-blue">
+        <h4>② 設定時程</h4>
+        <p>什麼時候要達成？5年內？20年後？時程影響風險策略</p>
+      </div>
+      <div class="card card-blue">
+        <h4>③ 具體金額</h4>
+        <p>需要多少錢才能完成目標？要考量通膨影響</p>
+      </div>
+      <div class="card card-blue">
+        <h4>④ 可控與不可控變數</h4>
+        <p>收入、儲蓄率可控；市場行情、通膨、壽命不可控</p>
+      </div>
+    </div>
+
+    <h3>13大理財盲點 <span class="tag tag-short">簡答常考</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>盲點</th><th>白話解釋 / 為什麼是盲點</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>買不懂的金融商品</td><td>聽人推薦就買，不知道風險結構，一旦出問題不知如何應對</td></tr>
+          <tr><td>2</td><td>聽取錯誤財務建議</td><td>業務員、親友建議未必符合自身需求；建議者可能有利益衝突</td></tr>
+          <tr><td>3</td><td>過度重視金錢</td><td>把賺錢變成唯一目標，忽視健康、關係等真正重要的事</td></tr>
+          <tr><td>4</td><td>背負過多學貸</td><td>借貸就讀高學費學校，畢業薪資無法對應，導致長期財務壓迫</td></tr>
+          <tr><td>5</td><td>該租房時卻買房</td><td>工作不穩、短期居住卻貸款買房，流動性差且承擔不必要風險</td></tr>
+          <tr><td>6</td><td>過度承擔風險</td><td>把退休金全壓高風險商品，一旦市場崩跌，無法恢復損失</td></tr>
+          <tr><td>7</td><td>個資保護意識不足</td><td>輕易提供個資，身份被盜用、詐騙風險高</td></tr>
+          <tr><td>8</td><td>退休初期過度消費</td><td>剛退休就花大錢，忽視長壽風險，後期財務可能告急</td></tr>
+          <tr><td>9</td><td>把金錢問題強加給子女</td><td>父母的理財失誤讓子女買單，影響代際關係與子女的財務自由</td></tr>
+          <tr><td>10</td><td>照顧父母缺乏事先規劃</td><td>父母老化需要安養費，沒有提前規劃會打亂自身財務</td></tr>
+          <tr><td>11</td><td>買錯保險甚至沒買</td><td>重複保低價值保險、缺少重大疾病/壽險等核心保障</td></tr>
+          <tr><td>12</td><td>沒有留下遺囑</td><td>過世後資產分配糾紛、稅務問題，拖累家人</td></tr>
+          <tr><td>13</td><td>企圖看準市場時機</td><td>研究顯示幾乎沒有人能持續成功預測市場高低點</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 主題二 ===== -->
+<section class="section" id="topic2">
+  <div class="section-header">
+    <div class="section-icon icon-amber">💡</div>
+    <div>
+      <h2>主題二：理財價值觀</h2>
+      <div class="subtitle">金錢觀 · 需要 vs 想要 · 習慣養成</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <h3>金錢觀的形成路徑</h3>
+    <div class="diagram">成長環境（家庭教育、社會文化）
+         ↓
+     金錢觀念形塑（節儉？消費？投資？）
+         ↓
+     日常財務習慣（是否記帳、是否衝動消費）
+         ↓
+     長期財務結果（資產積累或債務累積）</div>
+    <p class="tip"><strong>啟示：</strong>財務習慣深受成長環境影響，但習慣是可以透過刻意練習改變的（參考《原子習慣》）。</p>
+
+    <h3>需要 vs 想要</h3>
+    <div class="card-grid">
+      <div class="card card-green">
+        <h4>需要 (Need)</h4>
+        <ul>
+          <li>維持生活基本所需</li>
+          <li>不消費會影響生存或生活</li>
+          <li>例：三餐、房租、通勤交通、基礎醫療</li>
+        </ul>
+      </div>
+      <div class="card card-amber">
+        <h4>想要 (Want)</h4>
+        <ul>
+          <li>讓生活更舒適、更愉快的欲望</li>
+          <li>不消費只是少一點享受</li>
+          <li>例：手搖飲、新款手機、名牌包、旅遊升艙</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn"><strong>注意：</strong>能分辨「需要」和「想要」是理財的第一步，不是叫你完全不消費，而是「有意識地選擇」。</div>
+  </div>
+</section>
+
+<!-- ===== 主題三 ===== -->
+<section class="section" id="topic3">
+  <div class="section-header">
+    <div class="section-icon icon-red">📐</div>
+    <div>
+      <h2>主題三：利率、風險、投資報酬與折現</h2>
+      <div class="subtitle">費雪方程式 · 複利 · 現值終值 · 機會成本 · 風險</div>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <h3>利率三兄弟 <span class="tag tag-hot">必考</span></h3>
+    <div class="card-grid">
+      <div class="card card-red">
+        <h4>名目利率 (Nominal Rate)</h4>
+        <p>銀行公告的利率，包含通膨成分。是你「看到的」數字。</p>
+      </div>
+      <div class="card card-green">
+        <h4>實質利率 (Real Rate)</h4>
+        <p>扣掉通膨後，真正的購買力成長率。才是你「真正賺到的」。</p>
+      </div>
+      <div class="card card-amber">
+        <h4>通貨膨脹率</h4>
+        <p>物價上漲的速度。通膨侵蝕你的購買力，讓錢越來越不值錢。</p>
+      </div>
+    </div>
+
+    <h3>⭐ 費雪方程式 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="formula-box">
+      <div class="formula-label">精確版（考試用這個最安全）</div>
+      <div class="formula-main">(1 + 名目利率) = (1 + 實質利率) × (1 + 通膨率)</div>
+      <div class="formula-note">⟹ 實質利率 = (1+名目利率)/(1+通膨率) - 1</div>
+    </div>
+    <div class="formula-box">
+      <div class="formula-label">近似版（快速計算）</div>
+      <div class="formula-main">實質利率 ≈ 名目利率 - 通膨率</div>
+      <div class="formula-note">⟹ 當利率數字都很小時，誤差可忽略</div>
+    </div>
+    <div class="example card card-green" style="padding:14px 16px;border-radius:10px;margin-top:10px;">
+      <strong>範例：</strong>銀行定存2%，通膨3%<br>
+      實質利率 ≈ 2% − 3% = <strong>−1%</strong>（你的購買力實際上在縮水！存銀行等於虧錢）
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>⭐ 現值 (PV) 與終值 (FV) — 折現概念 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="diagram">時間軸：
+
+現在 ──────────────────────────→ 未來
+PV（現值）                      FV（終值/未來值）
+
+→ 向右算（終值）：FV = PV × (1 + r)^n
+← 向左算（現值）：PV = FV ÷ (1 + r)^n
+
+r = 利率（每期）
+n = 期數（年、月等）</div>
+
+    <div class="card-grid" style="margin-top:14px;">
+      <div class="formula-box" style="margin:0;">
+        <div class="formula-label">終值公式（現在的錢，n年後多少）</div>
+        <div class="formula-main">FV = PV × (1 + r)^n</div>
+        <div class="formula-note">例：100萬，5%，10年後 → 100×1.05^10 ≈ 162.9萬</div>
+      </div>
+      <div class="formula-box" style="margin:0;background:#064e3b;">
+        <div class="formula-label">現值公式（未來的錢，現在值多少）</div>
+        <div class="formula-main">PV = FV ÷ (1 + r)^n</div>
+        <div class="formula-note">例：要200萬，4%，10年後需要 → 200÷1.04^10 ≈ 135萬</div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;" class="tip"><strong>核心觀念：</strong>「現在的1元 > 未來的1元」——因為現在的錢可以投資、賺利息。折現就是把未來的錢換算成今天的價值。</p>
+
+    <div class="divider"></div>
+
+    <h3>機會成本 (Opportunity Cost)</h3>
+    <div class="diagram">你做了選擇A，就自動放棄了選擇B
+
+機會成本 = 你所放棄的最佳替代選項的價值
+
+例：1000元存銀行（利率1%）vs 投資股票（預期5%）
+→ 選擇存銀行的機會成本 = 損失的4%潛在報酬 = 40元
+
+時間也有機會成本：打工4小時（800元）vs 自修準備考試
+→ 要考量哪個選擇對長遠更有價值</div>
+
+    <div class="divider"></div>
+
+    <h3>風險與報酬 <span class="tag tag-short">簡答常考</span></h3>
+    <div class="visual-chart">
+      <div class="chart-row">
+        <div class="chart-label">定存</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:12%;background:#10b981;">低風險</div></div>
+        <div class="chart-val">報酬：低</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">債券</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:28%;background:#3b82f6;">中低風險</div></div>
+        <div class="chart-val">報酬：中低</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">ETF/基金</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:55%;background:#f59e0b;">中高風險</div></div>
+        <div class="chart-val">報酬：中高</div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">個股</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:78%;background:#ef4444;">高風險</div></div>
+        <div class="chart-val">報酬：高</div>
+      </div>
+    </div>
+    <p class="warn"><strong>重要：</strong>高風險 ≠ 保證高報酬，但追求高報酬就必須承擔高風險。風險承受度因人而異，取決於年齡、收入穩定性、時程長短、心理承受能力。</p>
+  </div>
+</section>
+
+<!-- ===== 主題四 ===== -->
+<section class="section" id="topic4">
+  <div class="section-header">
+    <div class="section-icon icon-purple">📈</div>
+    <div>
+      <h2>主題四：金融商品概述</h2>
+      <div class="subtitle">股票 · 債券 · ETF · 基金 · 定期定額 · 費用</div>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <h3>股票 vs 債券</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>比較項目</th><th>股票</th><th>債券</th></tr></thead>
+        <tbody>
+          <tr><td>持有人身份</td><td>股東（所有者）</td><td>債權人（借錢給公司/政府）</td></tr>
+          <tr><td>收益方式</td><td>股利（不固定）＋資本利得</td><td>利息（通常固定）</td></tr>
+          <tr><td>風險程度</td><td>較高</td><td>較低</td></tr>
+          <tr><td>破產清算順序</td><td>最後（可能拿不到）</td><td>優先於股東</td></tr>
+          <tr><td>與利率的關係</td><td>間接影響</td><td>反向關係⭐（見下方）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>⭐ 債券價格與利率的反向關係 <span class="tag tag-hot">必考</span></h3>
+    <div class="diagram">市場利率 ↑  →  債券價格 ↓
+市場利率 ↓  →  債券價格 ↑
+
+直覺理解：
+  市場利率漲了 → 新發行債券的利息更高
+  → 你手上的舊債券利息相對低
+  → 沒人想要舊債券 → 舊債券價格下跌，賣便宜一點才有人要</div>
+
+    <h3>存續期間 (Duration) 與凸性 (Convexity)</h3>
+    <div class="card-grid">
+      <div class="card card-purple">
+        <h4>存續期間</h4>
+        <p>衡量債券價格對利率變動的敏感程度。存續期間越長，利率一變動，價格波動越大。→ 長天期債券風險更高。</p>
+      </div>
+      <div class="card card-purple">
+        <h4>凸性原理</h4>
+        <p>債券價格與利率不是直線關係，而是凸形曲線。利率下降的漲幅 &gt; 利率上升的跌幅，對持有人有利。</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>ETF vs 共同基金</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>比較項目</th><th>ETF</th><th>共同基金</th></tr></thead>
+        <tbody>
+          <tr><td>交易方式</td><td>像股票，盤中隨時買賣</td><td>以當日收盤淨值申購/贖回</td></tr>
+          <tr><td>費用</td><td>通常較低（0.03%～0.5%）</td><td>通常較高（1%～2%以上）</td></tr>
+          <tr><td>透明度</td><td>高，每日公布持股</td><td>較低，定期揭露</td></tr>
+          <tr><td>管理方式</td><td>多數為被動追蹤指數</td><td>主動或被動管理皆有</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>定期定額 vs 定值定額</h3>
+    <div class="card-grid">
+      <div class="card card-green">
+        <h4>定期定額</h4>
+        <ul>
+          <li>每期固定投入相同金額</li>
+          <li>股價低時買較多單位，高時買較少</li>
+          <li>自動降低平均成本（成本平均法）</li>
+          <li>適合不想擇時、紀律投資者</li>
+        </ul>
+      </div>
+      <div class="card card-amber">
+        <h4>定值定額</h4>
+        <ul>
+          <li>維持投資組合價值在固定金額</li>
+          <li>市值跌了就補買，漲了就賣出</li>
+          <li>跌多買多、漲多賣多，理論上更好</li>
+          <li>需要主動調整，操作複雜度較高</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>⭐ 費用的長期影響 <span class="tag tag-calc">計算題</span></h3>
+    <div class="visual-chart" style="margin-top:14px;">
+      <p style="margin-bottom:8px;font-size:0.9rem;"><strong>100萬初始，年報酬8%，投資30年：</strong></p>
+      <div class="chart-row">
+        <div class="chart-label">費用 0%</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:100%;background:#10b981;">約 1,006 萬</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">費用 1%</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:76%;background:#3b82f6;">約 761 萬</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">費用 1.5%</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:65%;background:#f59e0b;">約 661 萬</div></div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label">費用 2%</div>
+        <div class="chart-bar-wrap"><div class="chart-bar" style="width:56%;background:#ef4444;">約 574 萬</div></div>
+      </div>
+    </div>
+    <p class="warn"><strong>結論：</strong>費用差距看似微小（0.1%），長期複利下來差距達數百萬，選擇低費用商品是長期投資最重要的決策之一。</p>
+
+    <h3>定期定額平均成本計算 <span class="tag tag-calc">計算題</span></h3>
+    <div class="diagram">每月投入固定金額，不同股價下買到不同單位數：
+
+月份    投入    股價    買入單位
+第1月   6,000   30元    200單位
+第2月   6,000   20元    300單位  ← 股價跌反而買更多
+第3月   6,000   24元    250單位
+
+合計   18,000           750單位
+
+平均成本 = 18,000 ÷ 750 = 24元/單位
+
+vs 算術平均股價 = (30+20+24)÷3 = 24.67元
+
+→ 平均成本(24) < 算術平均股價(24.67)，定期定額有降低平均成本的效果</div>
+  </div>
+</section>
+
+<!-- ===== 主題五 ===== -->
+<section class="section" id="topic5">
+  <div class="section-header">
+    <div class="section-icon icon-green">🌍</div>
+    <div>
+      <h2>主題五：匯率與經濟指標</h2>
+      <div class="subtitle">匯率報價 · 交叉匯率 · 美元指數 · 景氣燈號</div>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <h3>匯率報價解讀</h3>
+    <div class="card-grid">
+      <div class="card card-blue">
+        <h4>直接報價（台灣常用）</h4>
+        <p>USD/TWD = 32<br>意思：1美元 = 32台幣</p>
+        <p style="margin-top:8px;font-size:0.82rem;color:#4b5563;">「1單位外幣等於多少本國幣」</p>
+      </div>
+      <div class="card card-blue">
+        <h4>買入 vs 賣出匯率</h4>
+        <p><strong>買入匯率</strong>：銀行買入你的外幣（對你來說是賣出）<br>
+        <strong>賣出匯率</strong>：銀行賣外幣給你（對你來說是買入）</p>
+        <p style="margin-top:8px;font-size:0.82rem;color:#4b5563;">買入 &lt; 賣出，差距是銀行的手續費來源</p>
+      </div>
+    </div>
+
+    <h3>⭐ 交叉匯率計算 <span class="tag tag-hot">必考計算</span></h3>
+    <div class="formula-box">
+      <div class="formula-label">公式</div>
+      <div class="formula-main">A/C = (A/B) ÷ (C/B)</div>
+      <div class="formula-note">即：透過共同的第三種貨幣（通常是美元）計算兩種貨幣之間的匯率</div>
+    </div>
+    <div class="diagram">例題：
+  已知 USD/TWD = 32（1美元 = 32台幣）
+       USD/JPY = 150（1美元 = 150日圓）
+  求：1台幣 = 多少日圓？（TWD/JPY）
+
+計算：
+  TWD/JPY = (USD/JPY) ÷ (USD/TWD)
+           = 150 ÷ 32
+           = 4.6875
+
+答：1台幣 ≈ 4.69日圓
+
+反推：兌換10萬日圓需要多少台幣？
+      100,000 ÷ 4.6875 ≈ 21,333元台幣</div>
+
+    <h3>影響匯率的因素 <span class="tag tag-short">簡答常考</span></h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>因素</th><th>本國貨幣升值</th><th>本國貨幣貶值</th></tr></thead>
+        <tbody>
+          <tr><td>利率</td><td>本國利率↑，外資流入</td><td>本國利率↓，外資流出</td></tr>
+          <tr><td>通膨</td><td>通膨↓，購買力強</td><td>通膨↑，購買力弱</td></tr>
+          <tr><td>貿易</td><td>出口↑，外匯收入增加</td><td>進口↑，外匯需求增加</td></tr>
+          <tr><td>政治穩定</td><td>政治穩定，吸引外資</td><td>政治不穩，資金外逃</td></tr>
+          <tr><td>央行干預</td><td>央行買入本國貨幣</td><td>央行賣出本國貨幣</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>匯率與進出口的關係</h3>
+    <div class="card-grid">
+      <div class="card card-red">
+        <h4>台幣升值的影響</h4>
+        <ul>
+          <li>台灣出口商品對外國人變貴 → 出口競爭力↓</li>
+          <li>進口商品對台灣人變便宜 → 進口↑</li>
+          <li>台商海外獲利匯回台幣減少</li>
+        </ul>
+      </div>
+      <div class="card card-green">
+        <h4>台幣貶值的影響</h4>
+        <ul>
+          <li>台灣出口商品對外國人變便宜 → 出口競爭力↑</li>
+          <li>進口商品變貴 → 進口↓，通膨壓力增加</li>
+          <li>台商海外獲利匯回台幣增加</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>景氣燈號（國發會）</h3>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#dc2626;flex-shrink:0;"></div>
+        <div><strong>紅燈</strong>：景氣過熱，可能需要緊縮政策</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#f97316;flex-shrink:0;"></div>
+        <div><strong>黃紅燈</strong>：景氣稍熱，需要留意</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#22c55e;flex-shrink:0;"></div>
+        <div><strong>綠燈</strong>：景氣穩定正常</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div>
+        <div><strong>黃藍燈</strong>：景氣稍冷，需要關注</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#1e40af;flex-shrink:0;"></div>
+        <div><strong>藍燈</strong>：景氣低迷，需要刺激政策</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 簡答猜題 ===== -->
+<section class="section" id="shortanswer">
+  <div class="section-header">
+    <div class="section-icon icon-blue">📝</div>
+    <div>
+      <h2>簡答猜題 + 參考答案</h2>
+      <div class="subtitle">點擊題目展開參考答案</div>
+    </div>
+  </div>
+  <div class="section-body">
+    <p class="tip">點擊每一題的標題可以展開或收合參考答案。</p>
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q1. 解釋費雪方程式，並說明當通膨率高於名目利率時，對投資人意味著什麼？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>費雪方程式</strong>描述名目利率、實質利率與通貨膨脹率之間的關係：</p>
+          <p><strong>精確版：</strong><span class="math">(1+名目利率) = (1+實質利率) × (1+通膨率)</span></p>
+          <p><strong>近似版：</strong><span class="math">實質利率 ≈ 名目利率 - 通膨率</span></p>
+          <p>名目利率是銀行公告的利率，包含通膨成分；實質利率才是真正反映購買力成長的利率。</p>
+          <div class="key-point">
+            <strong>當通膨率 > 名目利率時：</strong>實質利率為負數。這意味著雖然名義上資金有利息，但扣除通膨後，購買力實際上在縮水。存在銀行等於每年損失購買力，投資報酬必須至少超越通膨率，才算真正「賺錢」。
+          </div>
+          <div class="example">
+            <strong>例：</strong>定存2%，通膨3%，實質利率 = -1%，代表你今天存100萬，一年後雖然變成102萬，但同樣的商品卻要103萬，你其實「變窮了」。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q2. 比較股票與債券的主要差異，並說明利率上升時對債券價格有何影響？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>股票vs債券主要差異：</strong></p>
+          <ul>
+            <li><strong>持有人身份：</strong>股東是公司所有者；債券持有人是債權人（借錢給公司）</li>
+            <li><strong>收益性質：</strong>股利不固定，視公司獲利而定；債券利息通常固定</li>
+            <li><strong>風險：</strong>股票風險較高；債券風險較低</li>
+            <li><strong>破產清算順序：</strong>債券優先於股票（股東最後才能拿回資產）</li>
+          </ul>
+          <div class="key-point">
+            <strong>利率上升對債券的影響：</strong>債券價格與市場利率呈反向關係。當市場利率上升，新發行的債券利息更高，舊債券相對吸引力下降，投資人不願意以原價買舊債券，因此舊債券價格下跌。反之，利率下降時，舊債券變得更值錢，價格上漲。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q3. 什麼是機會成本？請以日常生活的例子說明，並解釋其在個人理財中的重要性。</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>定義：</strong>機會成本是指為了做某個選擇，而必須放棄的最佳替代選項的價值。每個選擇都有機會成本，即使是「不作為」也有機會成本。</p>
+          <div class="example">
+            <strong>日常例子：</strong><br>
+            「用50萬買車」的機會成本 = 把50萬投資，年報酬6%，10年後可以有89.5萬的獲利<br>
+            「把錢存銀行（1%）」的機會成本 = 若改投入ETF（年報酬7%），放棄的6%差距
+          </div>
+          <div class="key-point">
+            <strong>理財重要性：</strong>理解機會成本能讓你做出更理性的財務決策，評估不只是「這筆錢花掉了多少」，而是「這筆錢如果用在其他地方，會有多少潛在收益被放棄」。這也解釋了為何早期投資比晚期投資更重要——放棄的複利時間是最大的機會成本。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q4. ETF與共同基金有何不同？各有什麼優缺點？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>ETF（指數股票型基金）：</strong></p>
+          <ul>
+            <li>在交易所上市，像股票一樣盤中可即時買賣</li>
+            <li>多數為被動管理，追蹤指數（如S&amp;P500、台灣50）</li>
+            <li>費用率通常極低（0.03%～0.5%）</li>
+            <li>透明度高，每日公布持股內容</li>
+          </ul>
+          <p><strong>共同基金：</strong></p>
+          <ul>
+            <li>以每日收盤後的淨值（NAV）申購/贖回，不能盤中交易</li>
+            <li>可以是主動管理（基金經理人選股）或被動管理</li>
+            <li>費用率通常較高（1%～2%以上），含申購手續費、管理費</li>
+            <li>定期揭露持股，透明度較低</li>
+          </ul>
+          <div class="key-point">
+            長期而言，費用差異會透過複利效果放大，ETF的低費用是其核心競爭優勢。研究顯示大多數主動管理基金長期無法持續打敗指數。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q5. 說明「需要」與「想要」的差異，為何這個概念對個人理財很重要？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>需要 (Need)：</strong>維持生存與基本生活品質不可缺少的項目，例如飲食、住所、基礎醫療、通勤交通。不滿足會影響生存或正常生活運作。</p>
+          <p><strong>想要 (Want)：</strong>讓生活更舒適、愉快或有面子的欲望，例如高檔餐廳、奢侈品、娛樂訂閱服務。不購買只是少了享受，不會影響基本生活。</p>
+          <div class="key-point">
+            <strong>理財重要性：</strong>無法分辨需要與想要是許多人入不敷出的核心原因。這個概念不是要人完全不消費，而是培養「有意識的消費決策」——清楚每一筆支出是必要的還是欲望驅動的，才能在有限收入中做最有效的資源分配。這也是記帳的目的：讓支出變得可視化、可分析。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q6. 說明台幣升值對進出口貿易的影響，並各舉一個例子。</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>台幣升值的影響：</strong>同樣一件台灣商品，外國人需要花更多本國貨幣才能買到，代表台灣商品在國際市場上變貴了。</p>
+          <div class="example">
+            <strong>出口影響：</strong>台灣某IC廠報價100美元的晶片，匯率從1USD=32TWD升至1USD=28TWD，台幣收入從3,200元降至2,800元。台廠若不降價就會失去競爭力，若降價則獲利縮水。→ <strong>出口競爭力下降</strong>
+          </div>
+          <div class="example">
+            <strong>進口影響：</strong>一瓶售價100美元的進口威士忌，匯率從32升到28，台幣售價從3,200降至2,800元，消費者購買更划算。→ <strong>進口增加，消費者受益</strong>
+          </div>
+          <div class="key-point">
+            反之，台幣貶值有利出口商（商品在國際市場上變便宜）但對進口商和消費者不利（進口物品變貴，可能引發通膨）。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q7. 什麼是存續期間？它與投資風險有何關係？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>存續期間 (Duration)：</strong>衡量債券的平均收回現金流時間，也是衡量債券價格對利率變動敏感程度的指標。存續期間以年為單位，數值越大，表示價格對利率變動越敏感。</p>
+          <div class="key-point">
+            <strong>與風險的關係：</strong>存續期間越長的債券，當市場利率小幅波動時，價格波動幅度越大，投資風險也越高。例如：存續期間為5的債券，利率每上升1%，債券價格約下跌5%。因此，在升息環境中，應盡量持有短天期（低存續期間）債券以降低風險。
+          </div>
+          <p>凸性原理則補充說明：實際的價格變動會比存續期間預測的更有利於投資人（利率下降的漲幅大於利率上升的跌幅），凸性越高，對投資人越有利。</p>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q8. 為什麼投資費用即使只有0.1%的差異，長期下來也非常重要？</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p>投資費用的影響來自<strong>複利的長期效果</strong>。每年的費用不只是減少了那一年的報酬，還減少了未來可以繼續複利的本金。</p>
+          <div class="example">
+            <strong>數字說話：</strong>初始100萬，投資30年<br>
+            年報酬8%，費用0%：約 1,006萬<br>
+            年報酬8%，費用1%（實際7%）：約 761萬<br>
+            費用1%就損失約 <strong>245萬</strong>，比初始本金還多！
+          </div>
+          <div class="key-point">
+            <strong>結論：</strong>費用是唯一「確定的損失」——市場報酬不確定，但費用是確定要付的。長期投資中，選擇低費用商品（如ETF vs 主動型基金）是提升最終報酬最簡單、最確定的方法。巴菲特本人也建議大多數投資人選擇低成本指數型基金。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q9. 列出並解釋至少5項理財盲點，說明為何它們是「盲點」。</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p>任選5項，以下為示範答案：</p>
+          <ol>
+            <li style="margin-bottom:10px;"><strong>購買不懂的金融商品：</strong>「聽說很賺」就買進，不了解商品結構與風險。一旦市場變化或出問題，不知道發生什麼、也不知道如何應對，容易造成重大損失。</li>
+            <li style="margin-bottom:10px;"><strong>企圖看準市場時機：</strong>認為自己能預測市場高低點進行低買高賣。但大量研究顯示，即使是專業基金經理人也無法持續準確擇時，一般投資人更難做到，往往低賣高買反而損失更大。</li>
+            <li style="margin-bottom:10px;"><strong>該租房時卻買房：</strong>買房並非永遠正確，若工作不穩定、可能搬遷或資金不足，貿然買房將使自己面臨高槓桿、流動性不足的風險。租房在特定生命階段反而更靈活。</li>
+            <li style="margin-bottom:10px;"><strong>退休初期過度消費：</strong>退休後感覺「終於自由」，大量消費旅遊等，忽視現代人壽命可能長達20-30年的退休期，若前幾年花太多，後期將陷入財務困難。</li>
+            <li style="margin-bottom:10px;"><strong>沒有遺囑：</strong>認為死後的事不需要操心，但沒有遺囑將導致法定繼承、資產分配爭議、稅務問題，給家人帶來不必要的困擾與損失。</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)">
+          <span>Q10. 說明投資風險與報酬的關係，以及影響個人風險承受度的因素。</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="qa-a">
+          <p><strong>風險與報酬的關係：</strong>在效率市場中，較高的預期報酬通常伴隨著較高的風險。投資人願意承擔額外風險，必須要有相應的額外報酬補償（風險溢酬），否則沒有人願意投資高風險資產。反之，沒有高風險，就不可能獲得高報酬（如果有，市場很快會讓其他人搶進，拉高價格直到報酬正常化）。</p>
+          <div class="key-point">
+            <strong>注意：</strong>高風險不保證高報酬，只是「預期」有較高報酬。實際上仍可能虧損。
+          </div>
+          <p><strong>影響風險承受度的因素：</strong></p>
+          <ul>
+            <li><strong>年齡：</strong>年輕人距離用錢的時間長，有時間等待市場回復，可承受較高風險</li>
+            <li><strong>投資時程：</strong>長期投資可承受更多短期波動</li>
+            <li><strong>收入穩定性：</strong>有穩定薪資收入者，緊急時不需賣出投資，可承受較高風險</li>
+            <li><strong>財富水準：</strong>資產較多者，即使損失一部分仍不影響生活</li>
+            <li><strong>心理承受能力：</strong>不同人對「帳面虧損」的情緒反應不同，心理承受力低者應選較穩健商品</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 計算猜題 ===== -->
+<section class="section" id="calc">
+  <div class="section-header">
+    <div class="section-icon icon-green">🔢</div>
+    <div>
+      <h2>計算猜題 + 完整解題過程</h2>
+      <div class="subtitle">費雪方程式 · 終值現值 · 交叉匯率 · 費用影響 · 定期定額</div>
+    </div>
+  </div>
+  <div class="section-body">
+
+    <div class="calc-item">
+      <div class="calc-q">計算題1：費雪方程式</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>某銀行定存名目利率為3.5%，目前通貨膨脹率為5%，請以精確公式與近似公式分別計算實質利率，並說明對存款人的意義。</p>
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>近似公式：</strong><br><span class="math">實質利率 ≈ 3.5% - 5% = -1.5%</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>精確公式：</strong><br><span class="math">(1+0.035) ÷ (1+0.05) - 1</span><br><span class="math">= 1.035 ÷ 1.05 - 1</span><br><span class="math">= 0.98571 - 1 = -0.01429 ≈ -1.43%</span></div></div>
+        <div class="answer-box">答：實質利率約 -1.43%（精確）或 -1.5%（近似）<br>意義：存款人雖然名義上獲得3.5%利息，但通膨侵蝕了購買力，實際上購買力每年縮水約1.43%，等同於「存銀行越存越窮」。</div>
+      </div>
+    </div>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題2：終值與現值（折現）</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong><br>
+        (a) 小明現在將80萬元以年報酬率6%複利投資，請問20年後這筆錢會成長為多少？<br>
+        (b) 小明希望25年後擁有500萬元退休金，若年報酬率為5%，他現在需要準備多少錢？</p>
+
+        <p><strong>(a) 終值計算：</strong></p>
+        <div class="step"><div class="step-num">1</div><div class="step-content">套入終值公式：<span class="math">FV = PV × (1+r)^n</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">FV = 80萬 × (1.06)^20</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><span class="math">= 80萬 × 3.2071 ≈ 256.6萬</span></div></div>
+        <div class="answer-box" style="margin-bottom:16px;">答(a)：20年後約 256.6萬元</div>
+
+        <p><strong>(b) 現值計算（折現）：</strong></p>
+        <div class="step"><div class="step-num">1</div><div class="step-content">套入現值公式：<span class="math">PV = FV ÷ (1+r)^n</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">PV = 500萬 ÷ (1.05)^25</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><span class="math">= 500萬 ÷ 3.3864 ≈ 147.7萬</span></div></div>
+        <div class="answer-box">答(b)：現在需要準備約 147.7萬元</div>
+      </div>
+    </div>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題3：交叉匯率</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>已知 USD/TWD = 31.2，USD/EUR = 0.92（1美元可兌換0.92歐元），請問：<br>
+        (a) 1台幣等於多少歐元？<br>
+        (b) 若要兌換5,000歐元，需要多少台幣？</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-content">計算 TWD/EUR（1台幣等於多少歐元）：<br>
+        <span class="math">TWD/EUR = (USD/EUR) ÷ (USD/TWD)</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><span class="math">= 0.92 ÷ 31.2 ≈ 0.02949</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content">兌換5,000歐元需要多少台幣：<br><span class="math">5,000 ÷ 0.02949 ≈ 169,549元</span><br>或：<span class="math">5,000歐元 ÷ 0.92 × 31.2 = 169,565元</span>（直接用美元橋接）</div></div>
+        <div class="answer-box">答(a)：1台幣 ≈ 0.0295歐元<br>答(b)：兌換5,000歐元約需 169,550元台幣</div>
+      </div>
+    </div>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題4：定期定額平均成本</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>小美連續4個月定期定額投資，每月投入6,000元，各月基金淨值如下：第1月30元、第2月20元、第3月15元、第4月25元。請計算：<br>
+        (a) 總共買入幾單位？<br>
+        (b) 平均購買成本為何？<br>
+        (c) 與算術平均淨值相比，定期定額有無降低成本？</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-content">計算各月買入單位：<br>
+          第1月：<span class="math">6,000 ÷ 30 = 200單位</span><br>
+          第2月：<span class="math">6,000 ÷ 20 = 300單位</span><br>
+          第3月：<span class="math">6,000 ÷ 15 = 400單位</span><br>
+          第4月：<span class="math">6,000 ÷ 25 = 240單位</span>
+        </div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content">總投入：<span class="math">6,000 × 4 = 24,000元</span><br>
+        總單位：<span class="math">200 + 300 + 400 + 240 = 1,140單位</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content">平均成本：<span class="math">24,000 ÷ 1,140 ≈ 21.05元/單位</span></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-content">算術平均淨值：<span class="math">(30+20+15+25) ÷ 4 = 22.5元</span></div></div>
+        <div class="answer-box">答(a)：共1,140單位<br>答(b)：平均成本約 21.05元/單位<br>答(c)：21.05 &lt; 22.5，定期定額確實降低了平均購買成本。原因是低價時買入更多單位，高價時買入較少單位。</div>
+      </div>
+    </div>
+
+    <div class="calc-item">
+      <div class="calc-q">計算題5：費用對長期報酬的影響</div>
+      <div class="calc-body">
+        <p style="margin-bottom:14px;"><strong>題目：</strong>小李有100萬元，打算投資30年，市場預期年報酬為7%。<br>
+        (a) 若選擇費用率0.2%的ETF（實際報酬6.8%），30年後為多少？<br>
+        (b) 若選擇費用率1.8%的主動基金（實際報酬5.2%），30年後為多少？<br>
+        (c) 費用差距造成多少元的損失？</p>
+
+        <div class="step"><div class="step-num">1</div><div class="step-content"><strong>ETF（6.8%）：</strong><br><span class="math">100萬 × (1.068)^30 = 100萬 × 7.0059 ≈ 700.6萬</span></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><strong>主動基金（5.2%）：</strong><br><span class="math">100萬 × (1.052)^30 = 100萬 × 4.5173 ≈ 451.7萬</span></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><strong>差距：</strong><br><span class="math">700.6 - 451.7 = 248.9萬</span></div></div>
+        <div class="answer-box">答(a)：ETF 30年後約 700.6萬<br>答(b)：主動基金 30年後約 451.7萬<br>答(c)：費用差1.6%，長期損失近 249萬，超過初始本金的兩倍！</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<div style="text-align:center;padding:20px;font-size:0.8rem;color:#9ca3af;">
+  個人理財 2026 Spring｜主題一～五期中重點整理｜保險前範圍
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggleQA(el) {
+  el.classList.toggle('open');
+  const ans = el.nextElementSibling;
+  ans.classList.toggle('show');
+}
+</script>
+</body>
+</html>
