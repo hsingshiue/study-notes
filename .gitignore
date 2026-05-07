@@ -1,0 +1,9 @@
+# 驗證/中間檔（不需要進 repo）
+_verify/*
+# 例外：考古題截圖（網頁會引用）
+!_verify/exam2022_*.png
+
+# 編輯器備份
+*.bak
+*~
+.DS_Store

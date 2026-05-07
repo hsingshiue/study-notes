@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch18 芳香化合物 — 考前重點整理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.75);
+  --text-dim:rgba(220,218,236,0.4);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.9}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:180px 1fr;grid-template-areas:"toc main";
+  max-width:1140px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--blue);
+  border-left-color:var(--blue);background:rgba(144,200,208,0.06)}
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-exam .num{color:rgba(176,158,224,0.65)}.sh-exam .label{color:var(--purple)}
+.sh-exam .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+.term{background:var(--glass);border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38);border-radius:8px;
+  padding:10px 16px;margin:0.55rem 0;color:var(--text-mid);font-size:0.92rem}
+.term:nth-child(even){border-left-color:rgba(217,160,184,0.4)}
+.term b{color:var(--text);font-weight:400}
+.term .en{color:var(--rose);font-style:italic}
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+.reaction-box{background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16);border-radius:10px;
+  padding:14px 18px;margin:0.8rem 0;color:var(--text-mid);font-size:0.91rem}
+.reaction-box b{color:var(--text);font-weight:400}
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .key{margin-top:0.8rem;padding-top:0.8rem;
+  border-top:1px solid rgba(176,158,224,0.15);
+  color:rgba(210,200,240,0.85);font-size:0.88rem}
+.exam-box .q{color:rgba(220,210,245,0.92);font-size:0.92rem;margin-bottom:0.4rem}
+.exam-box .q-en{color:var(--text-dim);font-size:0.82rem;font-style:italic;
+  font-family:"Cormorant Garamond",serif;margin-bottom:0.7rem}
+.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.15);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-gold{background:rgba(196,168,130,0.15);color:var(--gold);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-green{background:rgba(110,203,168,0.15);color:var(--green);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.88rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+ul{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem}
+p{color:var(--text-mid);margin:0.5rem 0;font-size:0.92rem}
+.svg-wrap{background:rgba(255,255,255,0.03);border:1px solid var(--border-lo);
+  border-radius:10px;padding:14px;margin:0.9rem 0;overflow-x:auto;text-align:center}
+.svg-wrap svg{max-width:100%;height:auto}
+.svg-caption{font-size:0.88rem;color:rgba(220,218,236,0.55);margin-top:10px;
+  font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:0.05em}
+.formula{font-family:"Cormorant Garamond",serif;font-style:italic;
+  color:var(--blue);letter-spacing:0.04em}
+@media(max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#s1801">18.1 介紹</a></li>
+    <li><a href="#s1802">18.2 命名</a></li>
+    <li><a href="#s1803">18.3 苯的結構</a></li>
+    <li><a href="#s1804">18.4 芳香性判定</a></li>
+    <li><a href="#s1805">18.5 其他芳香系統</a></li>
+    <li><a href="#s1806">18.6 苄位反應</a></li>
+    <li><a href="#s1807">18.7 還原反應</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#exercises" class="exam-link">習　題</a></li>
+    <li><a href="#p1824" class="exam-link">18.24</a></li>
+    <li><a href="#p1825" class="exam-link">18.25</a></li>
+    <li><a href="#p1834" class="exam-link">18.34</a></li>
+    <li><a href="#p1839" class="exam-link">18.39</a></li>
+    <li><a href="#p1848" class="exam-link">18.48</a></li>
+    <li><a href="#p1849" class="exam-link">18.49</a></li>
+    <li><a href="#p1854" class="exam-link">18.54</a></li>
+    <li><a href="#p1855" class="exam-link">18.55</a></li>
+    <li><a href="#p1862" class="exam-link">18.62</a></li>
+    <li><a href="#p1863" class="exam-link">18.63</a></li>
+    <li><a href="#p1865" class="exam-link">18.65</a></li>
+    <li><a href="#p1871" class="exam-link">18.71</a></li>
+  </ul>
+</nav>
+<main>
+<div class="page-header">
+  <h1>Chapter 18 — Aromatic Compounds</h1>
+  <div class="meta">芳香化合物 · 考前重點整理</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 18.1 Introduction -->
+<!-- ============================================================ -->
+<div id="s1801" class="section-heading sh-blue">
+  <span class="num">18.1</span>
+  <span class="label">Introduction 芳香化合物介紹</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Aromatic compounds / Arenes</b>（<span class="en">芳香化合物</span>）：包含<b>苯（benzene）</b>及其衍生物。最初因「香氣」而命名，但現代定義依<b>電子組態</b>區分（與一般<b>aliphatic 脂肪族</b>不同）。
+</div>
+
+<ul>
+  <li>10 大暢銷藥物中有 <b>8 個</b>含芳香環 → 在生物醫藥極為重要</li>
+  <li>煤碳 = 大量芳香環稠合而成</li>
+  <li>關鍵性質：芳香化合物極為<b>穩定</b>，傾向<b>取代反應</b>而非加成反應（與烯類相反）</li>
+</ul>
+
+<!-- ============================================================ -->
+<!-- 18.2 Nomenclature -->
+<!-- ============================================================ -->
+<div id="s1802" class="section-heading sh-blue">
+  <span class="num">18.2</span>
+  <span class="label">Nomenclature 命名規則</span>
+  <span class="rule"></span>
+</div>
+
+<h3>常見保留俗名</h3>
+
+<table>
+  <tr><th>結構</th><th>俗名</th><th>系統名</th></tr>
+  <tr><td>C₆H₅–CH₃</td><td><b>toluene</b> 甲苯</td><td>methylbenzene</td></tr>
+  <tr><td>C₆H₅–OH</td><td><b>phenol</b> 酚</td><td>hydroxybenzene</td></tr>
+  <tr><td>C₆H₅–NH₂</td><td><b>aniline</b> 苯胺</td><td>aminobenzene</td></tr>
+  <tr><td>C₆H₅–OCH₃</td><td><b>anisole</b> 苯甲醚</td><td>methoxybenzene</td></tr>
+  <tr><td>C₆H₅–CHO</td><td><b>benzaldehyde</b></td><td>benzenecarbaldehyde</td></tr>
+  <tr><td>C₆H₅–COOH</td><td><b>benzoic acid</b> 苯甲酸</td><td>benzenecarboxylic acid</td></tr>
+  <tr><td>C₆H₄(CH₃)₂</td><td><b>xylene</b>（鄰、間、對位）</td><td>dimethylbenzene</td></tr>
+</table>
+
+<h3>取代基簡寫</h3>
+<div class="term"><b>Phenyl 苯基</b>（<span class="en">C₆H₅–</span>）：苯環當取代基時用 Ph 或 φ 簡寫</div>
+<div class="term"><b>Benzyl 苄基</b>（<span class="en">C₆H₅CH₂–</span>）：苯基 + CH₂；如 benzyl bromide = PhCH₂Br</div>
+
+<h3>ortho / meta / para（鄰/間/對）</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 175" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <!-- ortho (1,2): X 在 top + Y 在 UR -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="80,50 110,65 110,100 80,115 50,100 50,65"/>
+    <circle cx="80" cy="82" r="16" stroke="rgba(144,200,208,0.4)" fill="none"/>
+    <line x1="80" y1="50" x2="80" y2="38"/>
+    <line x1="110" y1="65" x2="120" y2="59"/>
+  </g>
+  <text x="80" y="32" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">X</text>
+  <text x="124" y="58" fill="#D9A0B8" font-size="13" font-family="serif">Y</text>
+  <text x="80" y="138" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">ortho (1,2)</text>
+  <text x="80" y="156" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="11" font-family="Noto Serif TC,serif">鄰位（相鄰）</text>
+
+  <!-- meta (1,3): X 在 top + Y 在 LR -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="270,50 300,65 300,100 270,115 240,100 240,65"/>
+    <circle cx="270" cy="82" r="16" stroke="rgba(144,200,208,0.4)" fill="none"/>
+    <line x1="270" y1="50" x2="270" y2="38"/>
+    <line x1="300" y1="100" x2="310" y2="106"/>
+  </g>
+  <text x="270" y="32" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">X</text>
+  <text x="314" y="111" fill="#D9A0B8" font-size="13" font-family="serif">Y</text>
+  <text x="270" y="138" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">meta (1,3)</text>
+  <text x="270" y="156" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="11" font-family="Noto Serif TC,serif">間位（隔一個）</text>
+
+  <!-- para (1,4): X 在 top + Y 在 bottom -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="460,50 490,65 490,100 460,115 430,100 430,65"/>
+    <circle cx="460" cy="82" r="16" stroke="rgba(144,200,208,0.4)" fill="none"/>
+    <line x1="460" y1="50" x2="460" y2="38"/>
+    <line x1="460" y1="115" x2="460" y2="127"/>
+  </g>
+  <text x="460" y="32" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">X</text>
+  <text x="460" y="138" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">Y</text>
+  <text x="460" y="156" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">para (1,4)</text>
+  <text x="460" y="172" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="11" font-family="Noto Serif TC,serif">對位（相對）</text>
+</svg>
+<div class="svg-caption">二取代苯的三種相對位置：ortho / meta / para</div>
+</div>
+
+<div class="callout">
+  <div><b>命名要點：</b>編號取最低值；取代基依字母順序列；若取代基比環大，環則變成取代基；常見俗名（如 toluene、phenol）可作根名，編號從根名取代基的 C1 開始。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 18.3 Structure of Benzene -->
+<!-- ============================================================ -->
+<div id="s1803" class="section-heading sh-blue">
+  <span class="num">18.3</span>
+  <span class="label">Structure of Benzene 苯的結構</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  苯的所有 C–C 鍵長相同 = <b>139 pm</b>（介於單鍵 154 pm 與雙鍵 134 pm 之間）；6 個 C 全部 <b>sp²</b> 雜化、平面六邊形、C–C–C 角 120°；每個 C 有一個垂直於環平面的 p 軌域 → 6 個 p 軌域組合成 6 個 π 分子軌域（離域）。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+  <!-- Kekulé structure 1 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="60,40 90,55 90,90 60,105 30,90 30,55"/>
+    <!-- 3 alternating double bonds (inner parallels) -->
+    <line x1="62" y1="44" x2="86" y2="56"/>
+    <line x1="86" y1="89" x2="62" y2="101"/>
+    <line x1="34" y1="59" x2="34" y2="86"/>
+  </g>
+  <text x="60" y="135" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Kekulé 結構 1</text>
+
+  <!-- ↔ resonance -->
+  <text x="148" y="78" text-anchor="middle" fill="#D8D6E8" font-size="20" font-family="serif">↔</text>
+
+  <!-- Kekulé structure 2 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="240,40 270,55 270,90 240,105 210,90 210,55"/>
+    <line x1="238" y1="44" x2="214" y2="56"/>
+    <line x1="266" y1="59" x2="266" y2="86"/>
+    <line x1="238" y1="101" x2="214" y2="89"/>
+  </g>
+  <text x="240" y="135" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Kekulé 結構 2</text>
+
+  <!-- ≡ -->
+  <text x="328" y="78" text-anchor="middle" fill="#D8D6E8" font-size="18" font-family="serif">≡</text>
+
+  <!-- Circle representation -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="420,40 450,55 450,90 420,105 390,90 390,55"/>
+    <circle cx="420" cy="72" r="17" stroke="rgba(144,200,208,0.5)" stroke-width="1.6" fill="none"/>
+  </g>
+  <text x="420" y="135" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">離域圓圈</text>
+</svg>
+<div class="svg-caption">苯的兩個 Kekulé 共振式 + 圓圈代表離域（6 個 π 電子環狀分布）</div>
+</div>
+
+<h3>NMR 化學位移</h3>
+<ul>
+  <li><b>¹H NMR：</b>芳香 H 約 <b>7~8 ppm</b>（去屏蔽 deshielding，因環電流）</li>
+  <li><b>¹³C NMR：</b>芳香 C 約 <b>110~140 ppm</b></li>
+</ul>
+
+<!-- ============================================================ -->
+<!-- 18.4 Stability / Aromaticity -->
+<!-- ============================================================ -->
+<div id="s1804" class="section-heading sh-blue">
+  <span class="num">18.4</span>
+  <span class="label">Aromaticity 芳香性判定（核心）</span>
+  <span class="rule"></span>
+</div>
+
+<h3>共振穩定化能 Resonance Energy</h3>
+
+<table>
+  <tr><th>化合物</th><th>ΔH<sub>hyd</sub> (kJ/mol)</th><th>說明</th></tr>
+  <tr><td>cyclohexene（1 個 C=C）</td><td>−120</td><td>單一 C=C 參考</td></tr>
+  <tr><td>1,3-cyclohexadiene</td><td>−232</td><td>≈ 2×(−120) − 8（共軛微穩定）</td></tr>
+  <tr><td>苯 benzene（預期 3 個 C=C）</td><td><b>−208</b></td><td>實測，比預期 −360 少了 <b>~152 kJ/mol</b></td></tr>
+</table>
+
+<div class="tip"><b>苯的共振穩定化能 ≈ 152 kJ/mol</b>（跟一般共軛二烯的 ~15 kJ/mol 差非常多）→ 這就是 aromatic 跟 conjugated 的本質差別。</div>
+
+<h3>三大判定條件 Aromaticity Criteria</h3>
+
+<div class="callout">
+  <div>一個分子是否芳香，必須同時滿足：<br>
+  ① <b>環狀</b>（cyclic）<br>
+  ② <b>平面</b>（planar）<br>
+  ③ <b>每個環原子有 p 軌域、且彼此重疊形成連續離域系統</b><br>
+  ④ <b>Hückel 規則</b>：π 電子數 = <b>4n + 2</b>（n = 0, 1, 2, …）→ 即 <b>2, 6, 10, 14, 18 …</b></div>
+</div>
+
+<table>
+  <tr><th>類型</th><th>π 電子</th><th>例</th><th>結果</th></tr>
+  <tr><td><b>Aromatic</b> 芳香</td><td><span class="hl">4n+2</span> <b>(2, 6, 10…)</b></td><td>苯（6π）、cyclopentadienyl anion（6π）、tropylium cation（6π）</td><td><b>很穩定</b></td></tr>
+  <tr><td><b>Antiaromatic</b> 反芳香</td><td><span class="hl-rose">4n</span> <b>(4, 8, 12…)</b></td><td>cyclobutadiene（4π，平面）</td><td><b>極不穩定</b></td></tr>
+  <tr><td><b>Nonaromatic</b> 非芳香</td><td>不符 Hückel 或無連續 p 重疊</td><td>cyclooctatetraene（8π，但 tub 形非平面）</td><td>類似一般烯</td></tr>
+</table>
+
+<h3>Frost Circle 弗洛斯特圓圈</h3>
+
+<div class="term">
+  <b>Frost circle</b>：將正多邊形（n 個頂點）以一頂點朝下放入半徑為 2β 的圓內，<b>每個頂點高度 = 一個 MO 能級</b>。簡單地預測 cyclic π 系統的能級分布。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 560 270" xmlns="http://www.w3.org/2000/svg" style="max-width:560px">
+  <!-- Cyclobutadiene (4-ring): 4n -->
+  <g>
+    <text x="80" y="22" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">cyclobutadiene (4π)</text>
+    <!-- circle + square inscribed (point down) -->
+    <circle cx="80" cy="120" r="55" stroke="rgba(220,218,236,0.25)" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+    <!-- Square vertices: top, right, bottom, left -->
+    <line x1="80" y1="65" x2="135" y2="120" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="135" y1="120" x2="80" y2="175" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="80" y1="175" x2="25" y2="120" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="25" y1="120" x2="80" y2="65" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <!-- MO levels -->
+    <line x1="40" y1="65" x2="120" y2="65" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="40" y1="120" x2="120" y2="120" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="40" y1="175" x2="120" y2="175" stroke="#7BABB2" stroke-width="1.6"/>
+    <!-- Electrons: ψ1 (bottom) full, ψ2,ψ3 (middle, degenerate) one each (Hund) -->
+    <text x="80" y="180" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="55" y="124" fill="#EAE8F2" font-size="14" font-family="serif">↑</text>
+    <text x="100" y="124" fill="#EAE8F2" font-size="14" font-family="serif">↑</text>
+    <!-- non-bonding line -->
+    <line x1="20" y1="120" x2="140" y2="120" stroke="rgba(220,218,236,0.2)" stroke-width="0.8" stroke-dasharray="2,2"/>
+    <text x="80" y="220" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="Noto Serif TC,serif">2 個半填軌域</text>
+    <text x="80" y="234" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">→ antiaromatic</text>
+    <text x="80" y="252" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">4n（n=1）</text>
+  </g>
+
+  <!-- Benzene (6-ring): 4n+2 -->
+  <g>
+    <text x="280" y="22" text-anchor="middle" fill="#6ECBA8" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">benzene (6π)</text>
+    <circle cx="280" cy="120" r="60" stroke="rgba(220,218,236,0.25)" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+    <!-- Hexagon point-down -->
+    <line x1="280" y1="60" x2="332" y2="90" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <line x1="332" y1="90" x2="332" y2="150" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <line x1="332" y1="150" x2="280" y2="180" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <line x1="280" y1="180" x2="228" y2="150" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <line x1="228" y1="150" x2="228" y2="90" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <line x1="228" y1="90" x2="280" y2="60" stroke="rgba(110,203,168,0.6)" stroke-width="1"/>
+    <!-- MO levels at heights 60, 90, 150, 180 -->
+    <line x1="240" y1="60" x2="320" y2="60" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="240" y1="90" x2="320" y2="90" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="240" y1="150" x2="320" y2="150" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="240" y1="180" x2="320" y2="180" stroke="#7BABB2" stroke-width="1.6"/>
+    <!-- Electrons: bottom 3 levels filled -->
+    <text x="280" y="185" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="260" y="155" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="290" y="155" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="280" y="220" text-anchor="middle" fill="#6ECBA8" font-size="11" font-family="Noto Serif TC,serif">3 個全填鍵結軌域</text>
+    <text x="280" y="234" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">→ aromatic ✓</text>
+    <text x="280" y="252" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">4n+2（n=1）</text>
+  </g>
+
+  <!-- COT (8-ring): 4n -->
+  <g>
+    <text x="480" y="22" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">cyclooctatetraene (8π)</text>
+    <circle cx="480" cy="120" r="60" stroke="rgba(220,218,236,0.25)" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+    <!-- Octagon point-down: 8 vertices -->
+    <line x1="480" y1="60" x2="522" y2="78" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="522" y1="78" x2="540" y2="120" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="540" y1="120" x2="522" y2="162" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="522" y1="162" x2="480" y2="180" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="480" y1="180" x2="438" y2="162" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="438" y1="162" x2="420" y2="120" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="420" y1="120" x2="438" y2="78" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <line x1="438" y1="78" x2="480" y2="60" stroke="rgba(217,160,184,0.6)" stroke-width="1"/>
+    <!-- MO levels at y = 60, 78, 120 (deg pair), 162 (deg pair), 180 -->
+    <line x1="440" y1="60" x2="520" y2="60" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="440" y1="78" x2="520" y2="78" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="440" y1="120" x2="520" y2="120" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="440" y1="162" x2="520" y2="162" stroke="#7BABB2" stroke-width="1.6"/>
+    <line x1="440" y1="180" x2="520" y2="180" stroke="#7BABB2" stroke-width="1.6"/>
+    <!-- Electrons: bottom 3 levels filled, then degenerate pair half-filled (Hund) -->
+    <text x="480" y="184" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="465" y="166" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="495" y="166" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+    <text x="465" y="124" fill="#EAE8F2" font-size="14" font-family="serif">↑</text>
+    <text x="495" y="124" fill="#EAE8F2" font-size="14" font-family="serif">↑</text>
+    <text x="480" y="220" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="Noto Serif TC,serif">2 個半填軌域</text>
+    <text x="480" y="234" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">→ antiaromatic*</text>
+    <text x="480" y="252" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">*若強迫平面才反芳香</text>
+  </g>
+</svg>
+<div class="svg-caption">Frost circle 預測 MO 能級：頂點朝下，從圓周底部開始填電子</div>
+</div>
+
+<div class="callout">
+  <div><b>COT 的 escape route：</b>cyclooctatetraene 不採平面而採 <b>tub-shaped 浴缸形</b> → 雙鍵不再連續共軛 → 變成 <b>nonaromatic</b>（行為類似 4 個獨立烯，可被 Br₂、KMnO₄、HCl 加成）。</div>
+</div>
+
+<div class="tip"><b>COT 的陰離子（COT²⁻）卻是芳香的！</b>多 2 個電子變成 10 個 π 電子（4n+2，n=2）→ 強制平面化 → aromatic。常用於 K₂COT 鹽（K + COT → K₂COT）。</div>
+
+<h3>判定流程</h3>
+<div class="reaction-box">
+  <ol>
+    <li>分子是<b>環狀</b>嗎？否 → nonaromatic</li>
+    <li>每個原子都是 <b>sp²</b>（或 sp）有 p 軌域嗎？否 → nonaromatic</li>
+    <li>環是<b>平面</b>能保持連續 p 重疊嗎？否（如 COT tub）→ nonaromatic</li>
+    <li>數 π 電子數：<b>4n+2 → aromatic</b>；<b>4n → antiaromatic</b></li>
+  </ol>
+  <p style="margin-top:0.5rem"><b>數電子的訣竅：</b>每個 C=C 貢獻 2 個 π 電子；雜原子上的孤對若在 p 軌域（垂直環平面）就<b>算入</b>，若在 sp² 軌域（環平面內）就<b>不算</b>。</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- 18.5 Other Aromatic Compounds -->
+<!-- ============================================================ -->
+<div id="s1805" class="section-heading sh-blue">
+  <span class="num">18.5</span>
+  <span class="label">Other Aromatic Systems 其他芳香系統</span>
+  <span class="rule"></span>
+</div>
+
+<h3>Aromatic Ions 芳香離子</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <!-- cyclopentadienyl anion (Cp⁻, 6π) -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="80,40 110,62 99,98 61,98 50,62"/>
+    <circle cx="80" cy="73" r="15" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="105" y="36" fill="#6ECBA8" font-size="14" font-family="serif">⊖</text>
+  <text x="80" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">cyclopentadienyl anion</text>
+  <text x="80" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">6π · aromatic ✓</text>
+  <text x="80" y="158" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">Cp⁻ · pKₐ(CpH)=16</text>
+
+  <!-- benzene (reference) -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="270,40 300,55 300,90 270,105 240,90 240,55"/>
+    <circle cx="270" cy="72" r="17" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="270" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">benzene (reference)</text>
+  <text x="270" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">6π · aromatic ✓</text>
+
+  <!-- tropylium cation (C7H7+, 6π) — 規則七邊形, center (465,75), r=35 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="465,40 438,53 431,83 450,107 480,107 499,83 492,53"/>
+    <circle cx="465" cy="75" r="17" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="505" y="45" fill="#D9A0B8" font-size="14" font-family="serif">⊕</text>
+  <text x="465" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">tropylium cation</text>
+  <text x="465" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">6π · aromatic ✓</text>
+  <text x="465" y="158" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">C₇H₇⁺ · 異常穩定</text>
+</svg>
+<div class="svg-caption">三個 6π 芳香系統：5 員陰離子、6 員苯、7 員陽離子</div>
+</div>
+
+<div class="tip"><b>cyclopentadiene 為何超酸（pKa=16）？</b>因為去質子後得到的 cyclopentadienyl anion 是 <b>aromatic（6π）</b> → 共軛酸超穩定 → CpH 容易給出質子。</div>
+
+<h3>雜環芳香 Aromatic Heterocycles</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <!-- Pyridine: 6-ring，N 取代頂點 v1，內側用圓圈代表離域 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="80,40 110,55 110,90 80,105 50,90 50,55"/>
+    <circle cx="80" cy="72" r="14" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="80" y="46" text-anchor="middle" fill="#6ECBA8" font-size="15" font-family="Arial,sans-serif" font-weight="700" stroke="#1C1F30" stroke-width="4" paint-order="stroke fill">N</text>
+  <text x="80" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">pyridine</text>
+  <text x="80" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">N 孤對在 sp² (環內)</text>
+  <text x="80" y="158" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">不算入 6π · 弱鹼</text>
+
+  <!-- Pyrrole: 5-ring，N 取代頂點，H 在 N 上方（環外），內側圓圈代表離域 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="270,38 300,60 289,96 251,96 240,60"/>
+    <circle cx="270" cy="71" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <line x1="270" y1="38" x2="270" y2="22" stroke="#7BABB2" stroke-width="1.6"/>
+  <text x="270" y="44" text-anchor="middle" fill="#6ECBA8" font-size="15" font-family="Arial,sans-serif" font-weight="700" stroke="#1C1F30" stroke-width="4" paint-order="stroke fill">N</text>
+  <text x="270" y="18" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="Arial,sans-serif" font-weight="500">H</text>
+  <text x="270" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">pyrrole</text>
+  <text x="270" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">N 孤對在 p (垂直環)</text>
+  <text x="270" y="158" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">算入 6π · 極弱鹼</text>
+
+  <!-- Furan: 5-ring，O 取代頂點，內側圓圈代表離域 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="460,38 490,60 479,96 441,96 430,60"/>
+    <circle cx="460" cy="71" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <!-- 背景色填充圓：遮住 polygon 邊延伸進 O 字母 hollow 內部 -->
+  <circle cx="460" cy="38" r="5" fill="#1C1F30"/>
+  <text x="460" y="44" text-anchor="middle" fill="#D9A0B8" font-size="15" font-family="Arial,sans-serif" font-weight="700" stroke="#1C1F30" stroke-width="4" paint-order="stroke fill">O</text>
+  <text x="460" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">furan</text>
+  <text x="460" y="140" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">O 一對孤對在 p</text>
+  <text x="460" y="158" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">算入 6π · aromatic</text>
+</svg>
+<div class="svg-caption">三大雜環芳香：pyridine（N 孤對不算）、pyrrole（N 孤對算）、furan（O 一對孤對算）</div>
+</div>
+
+<table>
+  <tr><th>分子</th><th>π 系統</th><th>雜原子孤對</th><th>鹼性</th></tr>
+  <tr><td><b>pyridine</b></td><td>6π（3 × C=C 與 N 一起）</td><td>N 的孤對在 sp² 軌域<b>外</b>環平面 → 不算入</td><td>弱鹼（孤對可拿質子，<b>不破壞芳香性</b>）</td></tr>
+  <tr><td><b>pyrrole</b></td><td>6π（2 × C=C + N 孤對）</td><td>N 的孤對在 p 軌域 → <b>算入</b></td><td><b>極弱鹼</b>（拿質子會<b>破壞芳香性</b>）</td></tr>
+  <tr><td><b>furan</b></td><td>6π（2 × C=C + O 一對孤對）</td><td>O 兩對孤對：1 對在 p（算入），1 對在 sp²</td><td>非鹼</td></tr>
+</table>
+
+<h3>多環芳香 Polycyclic Aromatic Compounds</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 600 175" xmlns="http://www.w3.org/2000/svg" style="max-width:600px">
+  <!-- Naphthalene: 2 fused benzene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="60,60 90,75 90,110 60,125 30,110 30,75"/>
+    <polygon points="120,60 150,75 150,110 120,125 90,110 90,75"/>
+    <circle cx="60" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <circle cx="120" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="90" y="148" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">naphthalene (10π)</text>
+
+  <!-- Anthracene: 3 fused linear -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="220,60 250,75 250,110 220,125 190,110 190,75"/>
+    <polygon points="280,60 310,75 310,110 280,125 250,110 250,75"/>
+    <polygon points="340,60 370,75 370,110 340,125 310,110 310,75"/>
+    <circle cx="220" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <circle cx="280" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <circle cx="340" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="280" y="148" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">anthracene (linear)</text>
+
+  <!-- Phenanthrene: 3 fused angular -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="430,60 460,75 460,110 430,125 400,110 400,75"/>
+    <polygon points="490,60 520,75 520,110 490,125 460,110 460,75"/>
+    <polygon points="490,60 488,26 516,8 546,23 548,56 520,75"/>
+    <circle cx="430" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <circle cx="490" cy="92" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <circle cx="518" cy="42" r="11" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="488" y="160" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">phenanthrene (angular)</text>
+</svg>
+<div class="svg-caption">三個典型多環芳香：稠合的苯環各自仍具芳香性（phenanthrene 為彎折角型）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 18.6 Reactions at Benzylic -->
+<!-- ============================================================ -->
+<div id="s1806" class="section-heading sh-blue">
+  <span class="num">18.6</span>
+  <span class="label">Reactions at the Benzylic Position 苄位反應</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Benzylic position 苄位</b>：直接連到苯環的<b>非環</b>碳。芳香環本身極穩定不易反應，但<b>苄位 C-H</b> 因<b>共振穩定化苄基自由基/陽離子</b>而格外活潑。
+</div>
+
+<h3>① 氧化（KMnO₄ 等強氧化劑）</h3>
+
+<div class="reaction-box">
+  <p><b>條件：</b>KMnO₄、Na₂Cr₂O₇、CrO₃ + H₂SO₄ 等強氧化劑 + 加熱</p>
+  <p><b>結果：</b>苄位的<b>整段烷基</b>（不論幾個 C）→ 一律氧化成 <b>–COOH</b></p>
+  <p><b>關鍵限制：</b>苄位必須<b>至少有 1 個 H</b>。若是 <i>tert</i>-丁基（無苄位 H）則不被氧化。</p>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 130" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <defs><marker id="arr18b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/></marker></defs>
+  <!-- toluene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="60,30 90,45 90,80 60,95 30,80 30,45"/>
+    <circle cx="60" cy="62" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <line x1="90" y1="45" x2="115" y2="32"/>
+  </g>
+  <text x="120" y="32" fill="#D8D6E8" font-size="12" font-family="serif">CH₃</text>
+  <text x="60" y="115" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">toluene</text>
+
+  <!-- arrow + reagent -->
+  <line x1="170" y1="55" x2="240" y2="55" stroke="#90C8D0" stroke-width="1.5" marker-end="url(#arr18b)"/>
+  <text x="205" y="48" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">KMnO₄ / Δ</text>
+
+  <!-- benzoic acid: 含 C-Ph、C=O、C-OH 三鍵 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="290,30 320,45 320,80 290,95 260,80 260,45"/>
+    <circle cx="290" cy="62" r="13" stroke="rgba(110,203,168,0.55)" fill="none"/>
+    <line x1="320" y1="45" x2="345" y2="32"/>
+    <line x1="345" y1="32" x2="345" y2="14"/>
+    <line x1="349" y1="32" x2="349" y2="14"/>
+    <line x1="345" y1="32" x2="362" y2="42"/>
+  </g>
+  <text x="347" y="10" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">O</text>
+  <text x="365" y="46" fill="#D9A0B8" font-size="12" font-family="serif">OH</text>
+  <text x="305" y="115" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">benzoic acid</text>
+</svg>
+<div class="svg-caption">無論苄位連幾個 C 的烷基，都氧化成 –COOH</div>
+</div>
+
+<h3>② NBS 自由基溴化（α-溴化）</h3>
+
+<div class="reaction-box">
+  <p><b>NBS</b> = N-bromosuccinimide，苄位專屬的溫和溴源（提供低濃度的 Br•）</p>
+  <p><b>條件：</b>NBS + light（hν）或 peroxide 引發 → 自由基連鎖反應</p>
+  <p><b>選擇性：</b>苄基自由基<b>共振穩定化</b>（離域到苯環），活化能極低 → 高度<b>選擇苄位</b>溴化</p>
+  <p><b>後續：</b>苄位 –Br 可進行 SN2、SN1、E2 等取代/消去</p>
+</div>
+
+<div class="callout">
+  <div><b>選擇性比較：</b>3° 苄位 H ≈ 烯丙位 H > 苄位 1°/2° H > 3° H > 2° H > 1° H > 甲基 H。<br>NBS 不會碰一般烷基的 1°/2°/3° H。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 18.7 Reduction -->
+<!-- ============================================================ -->
+<div id="s1807" class="section-heading sh-blue">
+  <span class="num">18.7</span>
+  <span class="label">Reduction 苯環的還原</span>
+  <span class="rule"></span>
+</div>
+
+<h3>① 完全氫化 H₂ + cat（Pt, Pd, Rh）</h3>
+<div class="term">高壓 H₂ + 催化劑 → 苯 → cyclohexane（完全還原）。<b>條件嚴苛</b>，因為苯環極穩定，比一般烯難還原。</div>
+<div class="tip">若苯環旁邊有<b>普通 C=C</b>（vinyl 或 alkenyl 取代），普通 C=C 可<b>選擇性</b>被還原而苯環不動。</div>
+
+<h3>② Birch 還原 Birch Reduction</h3>
+
+<div class="reaction-box">
+  <p><b>條件：</b>Na（或 Li）+ 液態 NH₃ + ROH（如 EtOH）</p>
+  <p><b>產物：</b>非共軛的 1,4-cyclohexadiene（兩個 sp³ 在<b>對位</b>）</p>
+  <p><b>機制：</b>單電子加入苯環 → radical anion → 質子化 → 第二個電子 → carbanion → 第二次質子化</p>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 150" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <defs><marker id="arrBir" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/></marker></defs>
+  <!-- benzene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="80,40 110,55 110,90 80,105 50,90 50,55"/>
+    <circle cx="80" cy="72" r="16" stroke="rgba(110,203,168,0.55)" fill="none"/>
+  </g>
+  <text x="80" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">benzene</text>
+
+  <line x1="155" y1="72" x2="225" y2="72" stroke="#90C8D0" stroke-width="1.5" marker-end="url(#arrBir)"/>
+  <text x="190" y="62" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Na, NH₃(l), ROH</text>
+  <text x="190" y="86" text-anchor="middle" fill="rgba(220,218,236,0.65)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">Birch</text>
+
+  <!-- 1,4-cyclohexadiene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <polygon points="280,40 310,55 310,90 280,105 250,90 250,55"/>
+    <!-- two double bonds at top-right and bottom-left edges (1,4-diene) -->
+    <line x1="282" y1="44" x2="306" y2="56"/>
+    <line x1="278" y1="101" x2="254" y2="89"/>
+  </g>
+  <text x="280" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">1,4-cyclohexadiene</text>
+  <text x="280" y="140" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">兩個 sp³ 在對位</text>
+
+  <!-- with EDG vs EWG -->
+  <text x="430" y="55" fill="rgba(110,203,168,0.85)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">取代基的</text>
+  <text x="430" y="70" fill="rgba(110,203,168,0.85)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">區位選擇性：</text>
+  <text x="430" y="92" fill="rgba(220,218,236,0.7)" font-size="10" font-family="Noto Serif TC,serif">EDG（如 –OR、–CH₃）</text>
+  <text x="430" y="105" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">→ 取代基保留在 C=C 上</text>
+  <text x="430" y="125" fill="rgba(220,218,236,0.7)" font-size="10" font-family="Noto Serif TC,serif">EWG（如 –COOR）</text>
+  <text x="430" y="138" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">→ 取代基保留在 sp³ 上</text>
+</svg>
+<div class="svg-caption">Birch reduction：1,4-cyclohexadiene；EDG/EWG 決定取代基最終落在 sp² 還是 sp³ 上</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 習 題 -->
+<!-- ============================================================ -->
+<div id="exercises" class="section-heading sh-exam">
+  <span class="num">Ex.</span>
+  <span class="label">習題 Exercises (18.24 – 18.71)</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout">
+  <div>本章習題涵蓋：(1) <b>命名與結構</b>（18.24, 18.25），(2) <b>芳香性判定</b>（18.34, 18.39, 18.48, 18.49），(3) <b>NMR/IR 結構解析</b>（18.54, 18.55），(4) <b>合成與機制</b>（18.62, 18.63, 18.65, 18.71）。</div>
+</div>
+
+<!-- 18.24 -->
+<div id="p1824" class="exam-box">
+  <div class="exam-title">18.24 — Provide systematic name 系統命名</div>
+  <div class="q">為下列六個化合物寫出系統名稱。</div>
+  <div class="q-en">Provide a systematic name for each of the following compounds.</div>
+
+  <table>
+    <tr><th>題</th><th>結構</th><th>系統名</th></tr>
+    <tr><td>(a)</td><td>對位有 –C(CH₃)₃ 和 –COOH 的苯</td><td><b>4-tert-butylbenzoic acid</b>（p-tert-butylbenzoic acid）</td></tr>
+    <tr><td>(b)</td><td>苯酚 + 鄰位 Br</td><td><b>2-bromophenol</b>（ortho-bromophenol）</td></tr>
+    <tr><td>(c)</td><td>苯酚 C2 = Cl, C4 = NO₂</td><td><b>2-chloro-4-nitrophenol</b></td></tr>
+    <tr><td>(d)</td><td>acetophenone（Ph-COCH₃）+ Br 在 C2 + NO₂ 在 C5</td><td><b>2-bromo-5-nitroacetophenone</b></td></tr>
+    <tr><td>(e)</td><td>含 2 個 isopropyl 與 3 個 Me</td><td><b>1,4-diisopropyl-2,3,5-trimethylbenzene</b></td></tr>
+    <tr><td>(f)</td><td>多取代苯</td><td>依編號規則（取代基字母排序、最低位編號）</td></tr>
+  </table>
+
+  <div class="key">命名訣竅：選最低位編號 → 取代基字母順序 → 用常見根名（toluene, phenol, aniline 等）作起點時，根名的取代基自動是 C1。</div>
+</div>
+
+<!-- 18.25 -->
+<div id="p1825" class="exam-box">
+  <div class="exam-title">18.25 — Draw the structure 由名畫結構</div>
+  <div class="q">畫出下列化合物的結構。</div>
+  <div class="q-en">Draw a structure for each of the following compounds.</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="max-width:600px">
+    <!-- (a) ortho-Dichlorobenzene：Cl 在 top + UR -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="60,40 88,55 88,85 60,100 32,85 32,55"/>
+      <circle cx="60" cy="70" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="60" y1="40" x2="60" y2="28"/>
+      <line x1="88" y1="55" x2="98" y2="49"/>
+    </g>
+    <text x="60" y="22" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">Cl</text>
+    <text x="102" y="48" fill="#D9A0B8" font-size="12" font-family="serif">Cl</text>
+    <text x="60" y="118" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(a) o-dichlorobenzene</text>
+
+    <!-- (b) ortho-Nitroanisole：OCH3 在 top + NO2 在 UR -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="220,40 248,55 248,85 220,100 192,85 192,55"/>
+      <circle cx="220" cy="70" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="220" y1="40" x2="220" y2="28"/>
+      <line x1="248" y1="55" x2="258" y2="49"/>
+    </g>
+    <text x="220" y="22" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">OCH₃</text>
+    <text x="262" y="48" fill="#D9A0B8" font-size="12" font-family="serif">NO₂</text>
+    <text x="220" y="118" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(b) o-nitroanisole</text>
+
+    <!-- (c) para-Nitrotoluene：CH3 在 top + NO2 在 bottom -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="400,40 428,55 428,85 400,100 372,85 372,55"/>
+      <circle cx="400" cy="70" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="400" y1="40" x2="400" y2="28"/>
+      <line x1="400" y1="100" x2="400" y2="112"/>
+    </g>
+    <text x="400" y="22" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">CH₃</text>
+    <text x="400" y="125" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">NO₂</text>
+    <text x="400" y="142" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(c) p-nitrotoluene</text>
+
+    <!-- (d) Aniline：NH2 在 top -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="60,170 88,185 88,215 60,230 32,215 32,185"/>
+      <circle cx="60" cy="200" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="60" y1="170" x2="60" y2="158"/>
+    </g>
+    <text x="60" y="152" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">NH₂</text>
+    <text x="60" y="248" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(d) aniline</text>
+
+    <!-- (e) 2,4,6-Trichlorophenol：OH 在 top, Cl 在 UR/UL/bottom -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="220,170 248,185 248,215 220,230 192,215 192,185"/>
+      <circle cx="220" cy="200" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="220" y1="170" x2="220" y2="158"/>
+      <line x1="248" y1="215" x2="258" y2="221"/>
+      <line x1="192" y1="215" x2="182" y2="221"/>
+      <line x1="220" y1="230" x2="220" y2="242"/>
+    </g>
+    <text x="220" y="152" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">OH</text>
+    <text x="262" y="225" fill="#D9A0B8" font-size="12" font-family="serif">Cl</text>
+    <text x="178" y="225" text-anchor="end" fill="#D9A0B8" font-size="12" font-family="serif">Cl</text>
+    <text x="220" y="252" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">Cl</text>
+    <text x="220" y="270" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(e) 2,4,6-trichlorophenol</text>
+
+    <!-- (f) meta-Xylene：CH3 在 top + LR (1,3 位) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="400,170 428,185 428,215 400,230 372,215 372,185"/>
+      <circle cx="400" cy="200" r="14" stroke="rgba(110,203,168,0.5)" fill="none"/>
+      <line x1="400" y1="170" x2="400" y2="158"/>
+      <line x1="428" y1="215" x2="438" y2="221"/>
+    </g>
+    <text x="400" y="152" text-anchor="middle" fill="#D9A0B8" font-size="12" font-family="serif">CH₃</text>
+    <text x="442" y="225" fill="#D9A0B8" font-size="12" font-family="serif">CH₃</text>
+    <text x="400" y="248" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">(f) m-xylene</text>
+  </svg>
+  </div>
+</div>
+
+<!-- 18.34 -->
+<div id="p1834" class="exam-box">
+  <div class="exam-title">18.34 — Aromatic / Antiaromatic / Nonaromatic 判定</div>
+  <div class="q">判斷下列化合物為 aromatic、antiaromatic 或 nonaromatic，並解釋原因。</div>
+  <div class="q-en">Identify each of the following as aromatic, nonaromatic, or antiaromatic. Explain your choice.</div>
+
+  <div class="reaction-box">
+    <h4>判定 SOP</h4>
+    <ol>
+      <li>檢查是否<b>環狀且平面</b>（若有 sp³ 則不可能平面 → nonaromatic）</li>
+      <li>檢查每個原子是否有<b>連續 p 軌域</b>重疊</li>
+      <li>數 π 電子（雜原子孤對：在 p 軌域算入，在 sp² 軌域不算）</li>
+      <li>對照 4n+2 / 4n</li>
+    </ol>
+  </div>
+
+  <div class="key">常見誤判：<br>
+  • <b>O 是 sp³</b>（如環醚 ROR）→ 沒有 p 軌域 → 不連續 → nonaromatic<br>
+  • <b>有 sp³ C</b>（如 CH₂、CHR₂）→ 阻斷連續 p → nonaromatic<br>
+  • <b>N 在 sp²</b> 但孤對在 sp²（如 pyridine）→ 不算入 6π，但仍 aromatic（用 C=N 提供 2 π）<br>
+  • <b>N 在 sp²</b> 孤對在 p（如 pyrrole）→ 算入 6π</div>
+</div>
+
+<!-- 18.39 -->
+<div id="p1839" class="exam-box">
+  <div class="exam-title">18.39 — Cyclopentadiene 為何超酸？</div>
+  <div class="q">解釋為何 cyclopentadiene（pKₐ ≈ 16）比 cyclohexadiene（pKₐ &gt; 30）酸了 14 個數量級。</div>
+  <div class="q-en">Explain the vast difference in pKₐ values between cyclopentadiene and cyclohexadiene.</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 540 170" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+    <defs><marker id="arrAcid" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker></defs>
+
+    <!-- cyclopentadiene：兩個 C=C 在上半（top-right + top-left 邊），sp³ 在底邊位置 -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="60,40 90,62 79,98 41,98 30,62"/>
+      <line x1="62" y1="44" x2="86" y2="62"/>
+      <line x1="58" y1="44" x2="34" y2="62"/>
+    </g>
+    <text x="60" y="115" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">cyclopentadiene</text>
+    <text x="60" y="130" text-anchor="middle" fill="rgba(220,218,236,0.65)" font-size="10" font-family="Noto Serif TC,serif">pKa ≈ 16</text>
+
+    <!-- arrow -->
+    <line x1="120" y1="68" x2="170" y2="68" stroke="#B09EE0" stroke-width="1.4" marker-end="url(#arrAcid)"/>
+    <text x="145" y="60" text-anchor="middle" fill="rgba(176,158,224,0.85)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">−H⁺</text>
+
+    <!-- Cp anion (aromatic 6π) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="200,40 230,62 219,98 181,98 170,62"/>
+      <circle cx="200" cy="73" r="14" stroke="rgba(110,203,168,0.6)" fill="none"/>
+    </g>
+    <text x="225" y="35" fill="#6ECBA8" font-size="13" font-family="serif">⊖</text>
+    <text x="200" y="120" text-anchor="middle" fill="#6ECBA8" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">aromatic ✓ (6π)</text>
+    <text x="200" y="135" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10" font-family="Noto Serif TC,serif">超穩定 → 酸超強</text>
+
+    <!-- cyclohexadiene (1,3) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="350,40 380,55 380,90 350,105 320,90 320,55"/>
+      <line x1="352" y1="44" x2="376" y2="56"/>
+      <line x1="376" y1="89" x2="352" y2="101"/>
+    </g>
+    <text x="350" y="125" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">1,3-cyclohexadiene</text>
+    <text x="350" y="140" text-anchor="middle" fill="rgba(220,218,236,0.65)" font-size="10" font-family="Noto Serif TC,serif">pKa &gt; 30</text>
+
+    <line x1="410" y1="68" x2="450" y2="68" stroke="#B09EE0" stroke-width="1.4" marker-end="url(#arrAcid)"/>
+    <text x="430" y="60" text-anchor="middle" fill="rgba(176,158,224,0.85)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">−H⁺</text>
+
+    <!-- cyclohexadienyl anion：保留兩個 C=C，去質子的位置標 ⊖（不畫第三個 C=C） -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="500,40 530,55 530,90 500,105 470,90 470,55"/>
+      <line x1="502" y1="44" x2="526" y2="56"/>
+      <line x1="526" y1="89" x2="502" y2="101"/>
+    </g>
+    <text x="525" y="35" fill="#D9A0B8" font-size="13" font-family="serif">⊖</text>
+    <text x="500" y="125" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">antiaromatic (8π)</text>
+    <text x="500" y="140" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10" font-family="Noto Serif TC,serif">極不穩定 → 酸超弱</text>
+  </svg>
+  </div>
+
+  <div class="key">cyclopentadienyl anion 是 6π aromatic（4n+2，n=1）→ 共軛酸極穩定 → CpH 容易脫質子；cyclohexadienyl anion 為 8π，若強迫平面則 antiaromatic（4n，n=2）→ 共軛酸極不穩定 → 不易脫質子。</div>
+</div>
+
+<!-- 18.48 -->
+<div id="p1848" class="exam-box">
+  <div class="exam-title">18.48 — Cycloheptatrienone vs Cyclopentadienone</div>
+  <div class="q">為何 cycloheptatrienone 的 O 帶較大負電荷，而 cyclopentadienone 的 O 帶較小？</div>
+  <div class="q-en">Explain why oxygen of cycloheptatrienone bears more partial negative character than that of cyclopentadienone.</div>
+
+  <div class="reaction-box">
+    <p><b>cycloheptatrienone：</b>共振將 C=O 轉為 C–O⁻ 並把正電留在 7 員環上 → 環有 6π 變 <b>aromatic（tropylium 型）</b> → 共振貢獻大 → O 帶很多負電荷。</p>
+    <p><b>cyclopentadienone：</b>共振將 C=O 轉為 C–O⁻ 並把正電留在 5 員環上 → 環有 4π 變 <b>antiaromatic</b> → 共振貢獻極小 → O 帶較少負電荷。</p>
+  </div>
+
+  <div class="key">關鍵：判斷共振貢獻時，要看「轉換後」的環是 aromatic 還是 antiaromatic。aromatic 的共振貢獻會放大；antiaromatic 的會被打壓。</div>
+</div>
+
+<!-- 18.49 -->
+<div id="p1849" class="exam-box">
+  <div class="exam-title">18.49 — Azulene 偶極矩</div>
+  <div class="q">Azulene（5+7 雙環芳香）有顯著偶極矩，5 員環電子偏多。<br>
+  (a) 解釋；(b) 判斷另一給定化合物哪個有較大偶極矩。</div>
+  <div class="q-en">Azulene exhibits an appreciable dipole moment because resonance separates ⊕/⊖.</div>
+
+  <div class="reaction-box">
+    <p><b>(a)</b> azulene 中可畫出共振：5 員環得 ⊖、7 員環失去電子變 ⊕。<br>
+    這個共振貢獻「異常大」，因為兩個環同時變成 <b>aromatic</b>（5 員 6π 型 + 7 員 6π 型 tropylium）。雙 aromatic 補償了正負分離的能量代價 → 共振重要 → 大偶極。</p>
+    <p><b>(b)</b> 比較對象中，能畫出「<b>兩環同時 aromatic 的共振</b>」者偶極大；若共振後變 antiaromatic（如類似 cyclopentadienone），共振不顯著，沒大偶極。</p>
+  </div>
+</div>
+
+<!-- 18.54 -->
+<div id="p1854" class="exam-box">
+  <div class="exam-title">18.54 — 譜學辨識：C₁₁H₁₄O₂</div>
+  <div class="q">化合物 C₁₁H₁₄O₂，¹H/¹³C NMR 與 IR 數據如題，判斷結構。</div>
+  <div class="q-en">A compound with C₁₁H₁₄O₂ exhibits given NMR and IR. Identify it.</div>
+
+  <div class="reaction-box">
+    <h4>分析步驟</h4>
+    <ul>
+      <li><b>不飽和度</b> = (2×11+2−14)/2 = <b>5</b> → 1 個苯環(4) + 1 個 C=O(1)</li>
+      <li>¹H NMR 7 ppm 兩組 doublets → <b>1,4-disubstituted 苯環</b>（para）</li>
+      <li>1.4 ppm 9H singlet → <b>tert-butyl 基</b> –C(CH₃)₃</li>
+      <li>很 downfield 的 1H 寬訊號 → <b>–COOH</b></li>
+      <li>IR 寬譜帶 2200~3000 cm⁻¹（O–H of acid）+ 1680 cm⁻¹（C=O）→ 確認 –COOH</li>
+    </ul>
+    <p style="color:rgba(176,158,224,0.85);margin-top:0.5rem"><b>結構：4-tert-butylbenzoic acid（p-tBu-C₆H₄-COOH）</b></p>
+  </div>
+</div>
+
+<!-- 18.55 -->
+<div id="p1855" class="exam-box">
+  <div class="exam-title">18.55 — 譜學辨識：C₁₀H₁₂O</div>
+  <div class="q">化合物 C₁₀H₁₂O，譜學數據如題，判斷結構。</div>
+  <div class="q-en">A compound with C₁₀H₁₂O exhibits given spectra. Identify it.</div>
+
+  <div class="reaction-box">
+    <h4>分析步驟</h4>
+    <ul>
+      <li>不飽和度 = (2×10+2−12)/2 = <b>5</b> → 1 個苯環(4) + 1 個 C=O(1)</li>
+      <li>¹H 7 ppm 多重峰積分 5H → <b>monosubstituted 苯環（–C₆H₅）</b></li>
+      <li>3 ppm 兩組 triplets → <b>–CH₂–CH₂–</b> 互相耦合（其中一組更 downfield → 連 C=O）</li>
+      <li>10 ppm 1H singlet → <b>aldehyde –CHO</b></li>
+    </ul>
+    <p style="color:rgba(176,158,224,0.85);margin-top:0.5rem"><b>結構：3-phenylpropanal（PhCH₂CH₂CHO）</b></p>
+  </div>
+</div>
+
+<!-- 18.62 -->
+<div id="p1862" class="exam-box">
+  <div class="exam-title">18.62 — 合成設計：toluene + acetylene</div>
+  <div class="q">僅用甲苯和乙炔做為碳源，合成 trans-1,2-diphenylethene（trans-stilbene 類產物）。</div>
+  <div class="q-en">Using toluene and acetylene as your only carbon sources, design a synthesis.</div>
+
+  <div class="reaction-box">
+    <h4>正向流程</h4>
+    <ol>
+      <li><b>苄位溴化</b>：toluene + NBS / hν → benzyl bromide（PhCH₂Br）</li>
+      <li><b>產生乙炔負離子</b>：HC≡CH + NaNH₂ → HC≡C⁻ Na⁺</li>
+      <li><b>SN2</b>：HC≡C⁻ + PhCH₂Br → PhCH₂–C≡CH（末端炔）</li>
+      <li><b>第二次去質子</b>：NaNH₂ → PhCH₂–C≡C⁻</li>
+      <li><b>SN2 接第二個 PhCH₂Br</b>：→ PhCH₂–C≡C–CH₂Ph（內炔）</li>
+      <li><b>選擇性還原</b>：H₂ + Lindlar's cat → cis-stilbene 類，或 Na/NH₃(l) → trans</li>
+    </ol>
+  </div>
+
+  <div class="key">關鍵建材：苄基溴 PhCH₂Br 來自 NBS 的苄位溴化。所有 C-C 鍵都從炔負離子的 SN2 建立。最後 cis/trans 選擇用 Lindlar（cis）或 Na/NH₃（trans）。</div>
+</div>
+
+<!-- 18.63 -->
+<div id="p1863" class="exam-box">
+  <div class="exam-title">18.63 — Tetrazole / Azide 異構化</div>
+  <div class="q">化合物 1（含 5 員 4 氮 tetrazole 環）與化合物 2（含 azide –N₃）為構造異構物，快速互轉。化合物 2 中只有 1 個 N 在環內 → 此 N 在異構化前後是否改變雜化？</div>
+  <div class="q-en">Compound 1 has tetrazole, compound 2 has azido. Does the ring-N change hybridization during interconversion?</div>
+
+  <div class="reaction-box">
+    <p><b>答：</b>不變，<b>兩者皆 sp²</b>。</p>
+    <ul>
+      <li>化合物 2：環內的 N 帶有 C=N 雙鍵 → sp²</li>
+      <li>化合物 1（tetrazole）：5 員環 6π aromatic（每個 N 給出 1 個 p 電子或 2 個孤對電子貢獻）→ 該 N 仍 sp²</li>
+    </ul>
+    <p style="color:rgba(176,158,224,0.85);margin-top:0.4rem"><b>核心觀察：</b>tetrazole 是 aromatic（5 員，6π：3 個 C/N=雙鍵 + 1 對孤對）→ 平面、所有環原子 sp²。</p>
+  </div>
+</div>
+
+<!-- 18.65 -->
+<div id="p1865" class="exam-box">
+  <div class="exam-title">18.65 — Naphthalene 與 Phenanthrene 鍵長</div>
+  <div class="q">(a) Naphthalene 的 C1–C2 鍵長 1.36 Å，C2–C3 鍵長 1.42 Å，為何不同？<br>
+  (b) Phenanthrene 哪一個鍵最短？<br>
+  (c) Phenanthrene + Br₂ 給出 C₁₄H₉Br，畫產物。</div>
+  <div class="q-en">Bond length variations in naphthalene and phenanthrene; addition of Br₂ to phenanthrene.</div>
+
+  <div class="reaction-box">
+    <p><b>(a) Naphthalene 鍵長：</b>3 個共振式中，<b>C1=C2 是雙鍵的有 2 個</b>（出現頻率 2/3），<b>C2=C3 是雙鍵的只有 1 個</b>（1/3）→ C1–C2 雙鍵特徵多 → 較短。</p>
+    <p><b>(b) Phenanthrene：</b>5 個共振式中，<b>C9=C10 是雙鍵的有 4 個</b>（4/5）→ 雙鍵特徵極強 → <b>C9–C10 為最短鍵</b>，化學行為近似一般 alkene。</p>
+    <p><b>(c) Br₂ 加成：</b>因 C9=C10 雙鍵特徵強，Br₂ 直接 <b>1,2-加成在 C9 和 C10</b> → 產物是 9,10-dibromo-9,10-dihydrophenanthrene。但題目說 C₁₄H₉Br（只有 1 個 Br）→ 應為加成後脫去 HBr 重建芳香性，得 <b>9-bromophenanthrene</b>。</p>
+  </div>
+
+  <div class="key">「<b>bond fixation 鍵固定</b>」現象：稠合多環中，某些鍵因共振貢獻不均，雙鍵性質明顯（行為像普通 alkene）。Phenanthrene 的 C9=C10 是經典例子。</div>
+</div>
+
+<!-- 18.71 -->
+<div id="p1871" class="exam-box">
+  <div class="exam-title">18.71 — 除草劑合成的選擇性</div>
+  <div class="q">Pyridinone 除草劑 A 的合成中也產生副產物 B（也含炔基），A:B = 14:114。<br>
+  (a) 提出 A 的形成機制；(b) 畫 B 的結構並提出機制；(c) 解釋為何 B 多於 A。</div>
+  <div class="q-en">Pyridinone herbicide A synthesis also gives constitutional isomer B with ratio 14:114. Explain why B is favored.</div>
+
+  <div class="reaction-box">
+    <h4>機制與分析</h4>
+    <ul>
+      <li><b>(a) A 的形成：</b>NaOMe（強鹼）去除最酸的 N–H 質子 → 生成共振穩定的 anion（負電可離域到 N、C、O）→ 此 anion 對 propargyl bromide 進行 SN2 → 接在 N 上得 A（pyridinone N-烷基化）。</li>
+      <li><b>(b) B 的形成：</b>同一個 anion 也可從 <b>O 端</b>進攻 propargyl bromide → 接在 O 上得 B（O-烷基化，烯醇醚型）。</li>
+      <li><b>(c) 為何 B 多於 A：</b>① anion 共振中 <b>O 帶最多負電荷</b>（電負度大、且該共振式具苯環樣的 aromatic 穩定）→ O 是更好的親核位點；② 產物 B <b>本身具額外芳香穩定</b>（O-烷基化後 pyridine 環是芳香的；A 不是）→ 熱力學上 B 較穩定。雙重因素造成 B 為主。</li>
+    </ul>
+  </div>
+
+  <div class="key">這題核心：<b>軟硬親核劑分析（HSAB）+ 產物芳香穩定性</b>。共振中電子分布最大的位點 + 產物穩定性 → 雙重因素決定主產物。</div>
+</div>
+
+<div class="callout" style="margin-top:3rem">
+  <div><b>整章串聯記憶：</b><br>
+  ① 苯 = 平面、6 個 sp² C、6π 離域、共振穩定化 ~152 kJ/mol<br>
+  ② 芳香判定：<b>環 + 平面 + 連續 p + 4n+2</b>（Hückel）<br>
+  ③ 違反任一條 → nonaromatic / antiaromatic（強迫平面則更糟）<br>
+  ④ Frost 圓圈：頂點朝下，從底開始填 → 預測 MO 能級<br>
+  ⑤ 雜環：N/O 孤對在 p 軌域才算入；pyridine 不算、pyrrole/furan 算<br>
+  ⑥ 苄位 = 共振穩定 → KMnO₄ 氧化 → COOH；NBS → 溴化<br>
+  ⑦ Birch：Na/NH₃/ROH → 1,4-cyclohexadiene</div>
+</div>
+
+</main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.toc-list a');
+  const sections = Array.from(links).map(a => {
+    const id = a.getAttribute('href').slice(1);
+    return { link: a, target: document.getElementById(id) };
+  }).filter(s => s.target);
+
+  const onScroll = () => {
+    const scrollY = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) {
+      if (s.target.offsetTop <= scrollY) active = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (active) active.link.classList.add('active');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+});
+</script>
+</body>
+</html>

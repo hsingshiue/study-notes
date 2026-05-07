@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch17 共軛二烯與周環反應 — 考前重點整理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.75);
+  --text-dim:rgba(220,218,236,0.4);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.9}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:180px 1fr;grid-template-areas:"toc main";
+  max-width:1140px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--blue);
+  border-left-color:var(--blue);background:rgba(144,200,208,0.06)}
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-exam .num{color:rgba(176,158,224,0.65)}.sh-exam .label{color:var(--purple)}
+.sh-exam .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+.term{background:var(--glass);border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38);border-radius:8px;
+  padding:10px 16px;margin:0.55rem 0;color:var(--text-mid);font-size:0.92rem}
+.term:nth-child(even){border-left-color:rgba(217,160,184,0.4)}
+.term b{color:var(--text);font-weight:400}
+.term .en{color:var(--rose);font-style:italic}
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+.reaction-box{background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16);border-radius:10px;
+  padding:14px 18px;margin:0.8rem 0;color:var(--text-mid);font-size:0.91rem}
+.reaction-box b{color:var(--text);font-weight:400}
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .key{margin-top:0.8rem;padding-top:0.8rem;
+  border-top:1px solid rgba(176,158,224,0.15);
+  color:rgba(210,200,240,0.85);font-size:0.88rem}
+.exam-box .q{color:rgba(220,210,245,0.92);font-size:0.92rem;margin-bottom:0.4rem}
+.exam-box .q-en{color:var(--text-dim);font-size:0.82rem;font-style:italic;
+  font-family:"Cormorant Garamond",serif;margin-bottom:0.7rem}
+.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.15);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-gold{background:rgba(196,168,130,0.15);color:var(--gold);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.88rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+ul{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem}
+p{color:var(--text-mid);margin:0.5rem 0;font-size:0.92rem}
+.svg-wrap{background:rgba(255,255,255,0.03);border:1px solid var(--border-lo);
+  border-radius:10px;padding:14px;margin:0.9rem 0;overflow-x:auto;text-align:center}
+.svg-wrap svg{max-width:100%;height:auto}
+.svg-caption{font-size:0.88rem;color:rgba(220,218,236,0.55);margin-top:10px;
+  font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:0.05em}
+.formula{font-family:"Cormorant Garamond",serif;font-style:italic;
+  color:var(--blue);letter-spacing:0.04em}
+@media(max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#s1701">17.1 二烯分類</a></li>
+    <li><a href="#s1702">17.2 共軛穩定性</a></li>
+    <li><a href="#s1703">17.3 MO 理論</a></li>
+    <li><a href="#s1704">17.4 1,2 vs 1,4</a></li>
+    <li><a href="#s1705">17.5 動/熱力學</a></li>
+    <li><a href="#s1706">17.6 Diels-Alder</a></li>
+    <li><a href="#s1707">17.7 電環化</a></li>
+    <li><a href="#s1708">17.8 σ 遷移</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#exercises" class="exam-link">習　題</a></li>
+    <li><a href="#p1743" class="exam-link">17.43</a></li>
+    <li><a href="#p1744" class="exam-link">17.44</a></li>
+    <li><a href="#p1752" class="exam-link">17.52</a></li>
+    <li><a href="#p1757" class="exam-link">17.57</a></li>
+    <li><a href="#p1769" class="exam-link">17.69</a></li>
+    <li><a href="#p1770" class="exam-link">17.70</a></li>
+    <li><a href="#p1772" class="exam-link">17.72</a></li>
+    <li><a href="#p1773" class="exam-link">17.73</a></li>
+    <li><a href="#p1775" class="exam-link">17.75</a></li>
+    <li><a href="#p1779" class="exam-link">17.79</a></li>
+    <li><a href="#p1780" class="exam-link">17.80</a></li>
+  </ul>
+</nav>
+<main>
+<div class="page-header">
+  <h1>Chapter 17 — Conjugated Dienes &amp; Pericyclic Reactions</h1>
+  <div class="meta">共軛二烯與周環反應 · 考前重點整理</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.1 Classes of Dienes -->
+<!-- ============================================================ -->
+<div id="s1701" class="section-heading sh-blue">
+  <span class="num">17.1</span>
+  <span class="label">Classes of Dienes 二烯的分類</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Diene</b>（<span class="en">二烯</span>）：分子中含<b>兩個 C=C 雙鍵</b>的化合物，依雙鍵的相對位置分為三類。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 620 175" xmlns="http://www.w3.org/2000/svg" style="max-width:620px">
+  <!-- ============ 1,3-butadiene (Conjugated) ============ -->
+  <g stroke="#9CC4CB" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- C1=C2 (going up-right) -->
+    <line x1="25" y1="90" x2="62" y2="58"/>
+    <line x1="30" y1="94" x2="67" y2="62"/>
+    <!-- C2-C3 single bond -->
+    <line x1="62" y1="58" x2="100" y2="90"/>
+    <!-- C3=C4 (going up-right) -->
+    <line x1="100" y1="90" x2="138" y2="58"/>
+    <line x1="105" y1="94" x2="143" y2="62"/>
+  </g>
+  <text x="82" y="125" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">1,3-butadiene</text>
+  <text x="82" y="143" text-anchor="middle" fill="#A8A0C0" font-size="11" font-family="Noto Serif TC,serif">共軛 Conjugated</text>
+  <text x="82" y="160" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">single bond between C=C</text>
+
+  <!-- ============ Allene (Cumulated) ============ -->
+  <text x="225" y="78" text-anchor="end" fill="#EAE8F2" font-size="14" font-family="serif">H₂C</text>
+  <!-- 第一個 C=C (左) -->
+  <g stroke="#9CC4CB" stroke-width="2" fill="none" stroke-linecap="round">
+    <line x1="230" y1="70" x2="268" y2="70"/>
+    <line x1="230" y1="78" x2="268" y2="78"/>
+  </g>
+  <!-- 中央 sp 碳 -->
+  <text x="278" y="78" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">C</text>
+  <!-- 第二個 C=C (右) -->
+  <g stroke="#9CC4CB" stroke-width="2" fill="none" stroke-linecap="round">
+    <line x1="288" y1="70" x2="326" y2="70"/>
+    <line x1="288" y1="78" x2="326" y2="78"/>
+  </g>
+  <text x="332" y="78" fill="#EAE8F2" font-size="14" font-family="serif">CH₂</text>
+  <text x="300" y="125" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">propadiene (allene)</text>
+  <text x="300" y="143" text-anchor="middle" fill="#A8A0C0" font-size="11" font-family="Noto Serif TC,serif">累積 Cumulated</text>
+  <text x="300" y="160" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">two C=C share one carbon</text>
+
+  <!-- ============ 1,4-pentadiene (Isolated) ============ -->
+  <g stroke="#9CC4CB" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- C1=C2 (up-right) -->
+    <line x1="438" y1="90" x2="475" y2="58"/>
+    <line x1="443" y1="94" x2="480" y2="62"/>
+    <!-- C2-C3 (down-right) -->
+    <line x1="475" y1="58" x2="513" y2="90"/>
+    <!-- C3-C4 (up-right) -->
+    <line x1="513" y1="90" x2="551" y2="58"/>
+    <!-- C4=C5 (down-right) -->
+    <line x1="551" y1="58" x2="588" y2="90"/>
+    <line x1="546" y1="62" x2="583" y2="94"/>
+  </g>
+  <text x="513" y="125" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">1,4-pentadiene</text>
+  <text x="513" y="143" text-anchor="middle" fill="#A8A0C0" font-size="11" font-family="Noto Serif TC,serif">孤立 Isolated</text>
+  <text x="513" y="160" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">≥ 1 sp³ C between C=C</text>
+</svg>
+<div class="svg-caption">三種二烯的結構分類 / Three classes of dienes</div>
+</div>
+
+<table>
+  <tr><th>類型</th><th>定義</th><th>穩定性</th><th>本章焦點</th></tr>
+  <tr><td>共軛 conjugated</td><td>雙鍵間恰好<b>一個單鍵</b>（交替）</td><td><b>最穩定</b></td><td>★ 主角</td></tr>
+  <tr><td>累積 cumulated</td><td>兩雙鍵共用<b>同一個 C</b>（sp 碳）</td><td><b>最不穩定</b></td><td>少見</td></tr>
+  <tr><td>孤立 isolated</td><td>雙鍵間有 <b>≥ 1 個 sp³</b> 碳隔開</td><td>類似一般烯</td><td>行為=兩個獨立烯</td></tr>
+</table>
+
+<div class="callout">
+  <div>共軛之所以特別，是因為 4 個 p 軌域可以「<b>連通</b>」彼此重疊 → 電子可離域 → 穩定化能 ≈ <b>15 kJ/mol</b>。後面所有反應（Diels-Alder、電環化、σ 遷移）都依賴這個離域 π 系統。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.2 Stability of Conjugated Dienes -->
+<!-- ============================================================ -->
+<div id="s1702" class="section-heading sh-blue">
+  <span class="num">17.2</span>
+  <span class="label">Stability &amp; s-cis / s-trans 共軛穩定性</span>
+  <span class="rule"></span>
+</div>
+
+<h3>氫化熱證據 Heat of Hydrogenation</h3>
+
+<table>
+  <tr><th>化合物</th><th>ΔH<sub>hyd</sub> (kJ/mol)</th><th>解釋</th></tr>
+  <tr><td>1-pentene（單烯參考）</td><td>−126</td><td>單一 C=C</td></tr>
+  <tr><td>1,4-pentadiene（孤立）</td><td>−254 ≈ 2×(−126)</td><td>兩雙鍵獨立</td></tr>
+  <tr><td><b>1,3-butadiene（共軛）</b></td><td><b>−237</b></td><td>比預期少 ~15 kJ/mol → <b>共軛穩定化</b></td></tr>
+</table>
+
+<div class="tip"><b>結論：</b>共軛二烯比孤立二烯穩定約 <b>15 kJ/mol</b>（離域能 / resonance energy）。</div>
+
+<h3>鍵長證據 Bond Length</h3>
+<ul>
+  <li>典型 C=C 雙鍵：<b>1.34 Å</b>；典型 C–C 單鍵：1.54 Å</li>
+  <li>1,3-butadiene 中央 C2–C3 單鍵：<b>1.47 Å</b>（縮短）→ 帶有部分雙鍵性質（partial π character）</li>
+  <li>原因：C2–C3 是 <b>sp²–sp²</b> 鍵；且 p 軌域離域使其略具雙鍵特徵</li>
+</ul>
+
+<h3>s-cis vs s-trans 構形 Conformation</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg" style="max-width:460px">
+  <defs>
+    <marker id="arrEq" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6" fill="none" stroke="#90C8D0" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <!-- ====== s-cis (left, U shape facing down) ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- C1=(50,40) C2=(75,72) C3=(115,72) C4=(140,40) -->
+    <line x1="50" y1="40" x2="75" y2="72"/>
+    <line x1="46" y1="42" x2="71" y2="74"/>
+    <line x1="75" y1="72" x2="115" y2="72"/>
+    <line x1="115" y1="72" x2="140" y2="40"/>
+    <line x1="119" y1="74" x2="144" y2="42"/>
+  </g>
+  <!-- C1, C4 labels -->
+  <text x="40" y="34" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">1</text>
+  <text x="80" y="80" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">2</text>
+  <text x="105" y="80" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">3</text>
+  <text x="148" y="34" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">4</text>
+  <text x="95" y="115" text-anchor="middle" fill="#6ECBA8" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">s-cis</text>
+  <text x="95" y="130" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10" font-family="Noto Serif TC,serif">U 形 / Diels-Alder 必要構形</text>
+  <text x="95" y="146" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">dihedral ≈ 0°</text>
+
+  <!-- ====== Equilibrium arrow ====== -->
+  <g stroke="#90C8D0" stroke-width="1.2" fill="none">
+    <line x1="180" y1="55" x2="220" y2="55" marker-end="url(#arrEq)"/>
+    <line x1="220" y1="70" x2="180" y2="70" marker-end="url(#arrEq)"/>
+  </g>
+  <text x="200" y="48" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">rotate C2–C3</text>
+  <text x="200" y="86" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Noto Serif TC,serif">繞單鍵旋轉</text>
+
+  <!-- ====== s-trans (right, zigzag) ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- C1=(255,40) C2=(280,72) C3=(320,40) C4=(345,72) -->
+    <line x1="255" y1="40" x2="280" y2="72"/>
+    <line x1="251" y1="42" x2="276" y2="74"/>
+    <line x1="280" y1="72" x2="320" y2="40"/>
+    <line x1="320" y1="40" x2="345" y2="72"/>
+    <line x1="324" y1="42" x2="349" y2="74"/>
+  </g>
+  <text x="245" y="34" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">1</text>
+  <text x="285" y="80" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">2</text>
+  <text x="312" y="34" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">3</text>
+  <text x="350" y="80" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="serif">4</text>
+  <text x="300" y="115" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">s-trans</text>
+  <text x="300" y="130" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10" font-family="Noto Serif TC,serif">Z 形 / 較穩定 / 不能 D-A</text>
+  <text x="300" y="146" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">dihedral ≈ 180°</text>
+
+  <!-- ====== Energy note ====== -->
+  <text x="395" y="45" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">ΔE ≈ 12 kJ/mol</text>
+  <text x="395" y="58" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Noto Serif TC,serif">s-trans</text>
+  <text x="395" y="70" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Noto Serif TC,serif">較穩定</text>
+  <text x="395" y="86" fill="rgba(220,218,236,0.4)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">(less steric strain)</text>
+</svg>
+<div class="svg-caption">s-cis 與 s-trans 構形：可繞 C2–C3 單鍵旋轉互換</div>
+</div>
+
+<div class="callout">
+  <div><b>關鍵考點：</b>Diels-Alder 反應<b>必須</b>在 s-cis 構形下進行（C1、C4 才靠近、能與親二烯體共平面接觸）。所以無法達到 s-cis 的二烯（如某些被環架構鎖死成 s-trans 的化合物）<b>不能</b>進行 D-A。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.3 MO Theory of Butadiene -->
+<!-- ============================================================ -->
+<div id="s1703" class="section-heading sh-blue">
+  <span class="num">17.3</span>
+  <span class="label">Molecular Orbitals 1,3-丁二烯的分子軌域</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  4 個 sp² 碳的 p 軌域線性組合 → <b>4 個 π 分子軌域</b>（ψ₁–ψ₄）。基態下 4 個 π 電子填入 ψ₁ 與 ψ₂；ψ₂ 為 <b>HOMO</b>，ψ₃ 為 <b>LUMO</b>。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+  <defs>
+    <marker id="arrUp" markerWidth="8" markerHeight="8" refX="4" refY="0" orient="auto">
+      <path d="M0,8 L4,0 L8,8" fill="none" stroke="rgba(220,218,236,0.6)" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Energy axis -->
+  <line x1="35" y1="350" x2="35" y2="20" stroke="rgba(220,218,236,0.4)" stroke-width="1" marker-end="url(#arrUp)"/>
+  <text x="20" y="22" fill="rgba(220,218,236,0.55)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">E</text>
+  <text x="15" y="200" fill="rgba(220,218,236,0.4)" font-size="10.5" font-family="Noto Serif TC,serif" transform="rotate(-90 15 200)">能量</text>
+
+  <!-- Dashed reference line -->
+  <line x1="60" y1="190" x2="380" y2="190" stroke="rgba(220,218,236,0.15)" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="385" y="194" fill="rgba(220,218,236,0.4)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">non-bonding</text>
+
+  <!-- ψ4: top, antibonding, 3 nodes (+,-,+,-) -->
+  <line x1="80" y1="50" x2="340" y2="50" stroke="#7BABB2" stroke-width="1.2"/>
+  <circle cx="120" cy="50" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="180" cy="50" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <circle cx="240" cy="50" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="300" cy="50" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <text x="60" y="54" fill="#D8D6E8" font-size="12" font-family="serif">ψ₄</text>
+  <text x="350" y="48" fill="rgba(217,160,184,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">3 nodes</text>
+  <text x="350" y="60" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">antibonding</text>
+
+  <!-- ψ3: LUMO, 2 nodes (+,-,-,+) -->
+  <line x1="80" y1="140" x2="340" y2="140" stroke="#7BABB2" stroke-width="1.2"/>
+  <circle cx="120" cy="140" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="180" cy="140" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <circle cx="240" cy="140" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <circle cx="300" cy="140" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <text x="60" y="144" fill="#D8D6E8" font-size="12" font-family="serif">ψ₃</text>
+  <text x="350" y="138" fill="rgba(217,160,184,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">2 nodes</text>
+  <text x="350" y="150" fill="#B09EE0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">LUMO</text>
+
+  <!-- ψ2: HOMO, 1 node (+,+,-,-) -->
+  <line x1="80" y1="240" x2="340" y2="240" stroke="#7BABB2" stroke-width="1.2"/>
+  <circle cx="120" cy="240" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="180" cy="240" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="240" cy="240" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <circle cx="300" cy="240" r="11" fill="rgba(217,160,184,0.55)" stroke="rgba(217,160,184,0.85)" stroke-width="1"/>
+  <!-- electrons -->
+  <text x="206" y="245" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+  <text x="60" y="244" fill="#D8D6E8" font-size="12" font-family="serif">ψ₂</text>
+  <text x="350" y="238" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">1 node</text>
+  <text x="350" y="250" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">HOMO</text>
+
+  <!-- ψ1: lowest, no nodes (+,+,+,+) -->
+  <line x1="80" y1="330" x2="340" y2="330" stroke="#7BABB2" stroke-width="1.2"/>
+  <circle cx="120" cy="330" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="180" cy="330" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="240" cy="330" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <circle cx="300" cy="330" r="11" fill="rgba(144,200,208,0.55)" stroke="rgba(144,200,208,0.85)" stroke-width="1"/>
+  <text x="206" y="335" text-anchor="middle" fill="#EAE8F2" font-size="14" font-family="serif">↑↓</text>
+  <text x="60" y="334" fill="#D8D6E8" font-size="12" font-family="serif">ψ₁</text>
+  <text x="350" y="328" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">0 nodes</text>
+  <text x="350" y="340" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">bonding</text>
+
+  <!-- node markers (vertical dashed) -->
+  <line x1="210" y1="225" x2="210" y2="255" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="150" y1="125" x2="150" y2="155" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="270" y1="125" x2="270" y2="155" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="150" y1="35" x2="150" y2="65" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="210" y1="35" x2="210" y2="65" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+  <line x1="270" y1="35" x2="270" y2="65" stroke="rgba(217,160,184,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- carbon labels -->
+  <text x="120" y="365" text-anchor="middle" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="serif">C1</text>
+  <text x="180" y="365" text-anchor="middle" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="serif">C2</text>
+  <text x="240" y="365" text-anchor="middle" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="serif">C3</text>
+  <text x="300" y="365" text-anchor="middle" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="serif">C4</text>
+</svg>
+<div class="svg-caption">1,3-丁二烯的 4 個 π 分子軌域 / Four π MOs (基態填到 ψ₂)</div>
+</div>
+
+<div class="reaction-box">
+  <h4>節點規則 Node Rule</h4>
+  <ul style="margin:0.4rem 0">
+    <li>每往上一個 MO，就<b>多 1 個節點</b>（node = 相位反轉處）</li>
+    <li>節點愈多 → 反鍵性愈強 → 能量愈高</li>
+    <li>對稱性也跟著交替：<b>ψ₁ 對稱、ψ₂ 反對稱、ψ₃ 對稱、ψ₄ 反對稱</b>（以分子中心為對稱面）</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <div><b>HOMO/LUMO 的重要性：</b>所有周環反應（Diels-Alder、電環化、σ 遷移）的「<b>允許 / 禁阻</b>」都看 HOMO 的對稱性。記住 ψ₂（HOMO）<b>反對稱</b>、ψ₃（LUMO）<b>對稱</b>，後面 17.7 會用到。</div>
+</div>
+
+<h3>激發態 Excited State</h3>
+<div class="term">
+  吸收紫外光後，1 個電子從 <b>ψ₂ → ψ₃</b>（π → π*），稱為 <b>HOMO 升級</b>。
+  此時新 HOMO = ψ₃（對稱性與基態相反）→ 光化學反應的選律也相反！
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.4 1,2 vs 1,4 Addition -->
+<!-- ============================================================ -->
+<div id="s1704" class="section-heading sh-blue">
+  <span class="num">17.4</span>
+  <span class="label">1,2- vs 1,4-Addition 共軛二烯的親電加成</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  共軛二烯（如 1,3-丁二烯）+ HX、X₂、HOX 等 → 同時生成 <b>1,2-product</b>（加在相鄰兩 C）與 <b>1,4-product</b>（加在兩端 C）。原因：<b>烯丙基陽離子（allyl cation）</b>共振中間體有兩個正電中心（C2 與 C4）。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 580 280" xmlns="http://www.w3.org/2000/svg" style="max-width:580px">
+  <defs>
+    <marker id="arrR1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/>
+    </marker>
+    <marker id="curveArr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6" fill="none" stroke="#D9A0B8" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <!-- ====== Step 1: butadiene + HBr ====== -->
+  <!-- 1,3-butadiene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="20" y1="50" x2="46" y2="30"/>
+    <line x1="22" y1="54" x2="48" y2="34"/>
+    <line x1="46" y1="30" x2="72" y2="50"/>
+    <line x1="72" y1="50" x2="98" y2="30"/>
+    <line x1="74" y1="54" x2="100" y2="34"/>
+  </g>
+  <text x="13" y="48" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="serif">1</text>
+  <text x="105" y="28" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="serif">4</text>
+  <!-- + HBr -->
+  <text x="135" y="44" fill="#D8D6E8" font-size="13" font-family="serif">+ HBr</text>
+  <!-- arrow -->
+  <line x1="195" y1="40" x2="245" y2="40" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arrR1)"/>
+  <text x="220" y="32" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">H⁺ adds to C1</text>
+
+  <!-- ====== Allyl cation intermediate ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- CH3-CH(+)-CH=CH2 with delocalization -->
+    <line x1="270" y1="50" x2="296" y2="30"/>
+    <line x1="296" y1="30" x2="322" y2="50"/>
+    <line x1="322" y1="50" x2="348" y2="30"/>
+    <line x1="324" y1="54" x2="350" y2="34"/>
+  </g>
+  <text x="263" y="55" fill="#D8D6E8" font-size="11" font-family="serif">H₃C</text>
+  <text x="294" y="22" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">+</text>
+  <!-- delocalization arrow -->
+  <path d="M 290 36 Q 310 60 326 50" stroke="#D9A0B8" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#curveArr)"/>
+  <text x="356" y="34" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="serif">4</text>
+  <text x="310" y="80" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">allylic cation</text>
+  <text x="310" y="92" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Noto Serif TC,serif">烯丙基陽離子（共振）</text>
+
+  <!-- alternate resonance (right side) -->
+  <text x="395" y="44" fill="#90C8D0" font-size="14" font-family="serif">↔</text>
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="420" y1="50" x2="446" y2="30"/>
+    <line x1="446" y1="30" x2="472" y2="50"/>
+    <line x1="444" y1="34" x2="470" y2="54"/>
+    <line x1="472" y1="50" x2="498" y2="30"/>
+  </g>
+  <text x="413" y="55" fill="#D8D6E8" font-size="11" font-family="serif">H₃C</text>
+  <text x="500" y="22" fill="#D9A0B8" font-size="13" font-family="serif">+</text>
+
+  <!-- Br⁻ attack arrows -->
+  <text x="290" y="130" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">Br⁻ 攻擊</text>
+  <line x1="200" y1="115" x2="160" y2="170" stroke="#D9A0B8" stroke-width="1.4" marker-end="url(#arrR1)"/>
+  <text x="155" y="145" text-anchor="end" fill="#D9A0B8" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">attack C2</text>
+  <line x1="380" y1="115" x2="430" y2="170" stroke="#D9A0B8" stroke-width="1.4" marker-end="url(#arrR1)"/>
+  <text x="450" y="145" fill="#D9A0B8" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">attack C4</text>
+
+  <!-- ====== 1,2-product (left) ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="40" y1="210" x2="66" y2="190"/>
+    <line x1="66" y1="190" x2="92" y2="210"/>
+    <line x1="92" y1="210" x2="118" y2="190"/>
+    <line x1="94" y1="214" x2="120" y2="194"/>
+  </g>
+  <text x="33" y="215" fill="#D8D6E8" font-size="11" font-family="serif">H₃C</text>
+  <text x="73" y="186" fill="#D9A0B8" font-size="11" font-family="serif">Br</text>
+  <text x="80" y="248" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">3-bromobut-1-ene</text>
+  <text x="80" y="262" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10" font-family="Noto Serif TC,serif">1,2-加成（動力學）</text>
+  <text x="80" y="275" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">terminal alkene · less stable</text>
+
+  <!-- ====== 1,4-product (right) ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="380" y1="210" x2="406" y2="190"/>
+    <line x1="406" y1="190" x2="432" y2="210"/>
+    <line x1="408" y1="194" x2="434" y2="214"/>
+    <line x1="432" y1="210" x2="458" y2="190"/>
+  </g>
+  <text x="373" y="215" fill="#D8D6E8" font-size="11" font-family="serif">H₃C</text>
+  <text x="463" y="195" fill="#D9A0B8" font-size="11" font-family="serif">CH₂Br</text>
+  <text x="430" y="248" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">1-bromobut-2-ene</text>
+  <text x="430" y="262" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10" font-family="Noto Serif TC,serif">1,4-加成（熱力學）</text>
+  <text x="430" y="275" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">internal alkene · more stable</text>
+</svg>
+<div class="svg-caption">HBr 對 1,3-丁二烯的加成：經過烯丙基陽離子中間體</div>
+</div>
+
+<table>
+  <tr><th>產物</th><th>結構特徵</th><th>形成原因</th><th>主導條件</th></tr>
+  <tr><td><b>1,2-product</b></td><td>末端烯（terminal alkene）</td><td>Br⁻ 攻擊較<b>近</b>的 C2（離子對較緊）</td><td><span class="hl">低溫 −80°C</span></td></tr>
+  <tr><td><b>1,4-product</b></td><td>內側烯（internal alkene）</td><td>取代基較多的雙鍵<b>較穩定</b></td><td><span class="hl-rose">高溫 40°C</span></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- 17.5 Kinetic vs Thermodynamic Control -->
+<!-- ============================================================ -->
+<div id="s1705" class="section-heading sh-blue">
+  <span class="num">17.5</span>
+  <span class="label">Kinetic vs Thermodynamic Control 動/熱力學控制</span>
+  <span class="rule"></span>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 290" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <!-- axes -->
+  <line x1="50" y1="250" x2="500" y2="250" stroke="rgba(220,218,236,0.4)" stroke-width="1"/>
+  <line x1="50" y1="250" x2="50" y2="20" stroke="rgba(220,218,236,0.4)" stroke-width="1"/>
+  <text x="32" y="22" fill="rgba(220,218,236,0.7)" font-size="13" font-family="Cormorant Garamond,serif" font-style="italic">E</text>
+  <text x="370" y="270" fill="rgba(220,218,236,0.55)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">reaction coordinate →</text>
+
+  <!-- 1,4 path (rose, drawn first/behind) -->
+  <path d="M 60 210 C 100 25 180 25 220 160 C 250 35 330 35 395 225"
+        stroke="rgba(217,160,184,0.95)" stroke-width="2.5" fill="none"/>
+
+  <!-- 1,2 path (cyan, on top) -->
+  <path d="M 60 210 C 100 25 180 25 220 160 C 250 60 320 60 390 178"
+        stroke="rgba(110,203,168,0.95)" stroke-width="2.5" fill="none"/>
+
+  <!-- starting material -->
+  <text x="58" y="226" fill="rgba(220,218,236,0.85)" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">diene + HBr</text>
+
+  <!-- first peak (proton transfer) -->
+  <text x="140" y="38" text-anchor="middle" fill="rgba(220,218,236,0.95)" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">TS₁ · proton transfer</text>
+  <text x="140" y="54" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Noto Serif TC,serif">H⁺ 加到 C1</text>
+
+  <!-- intermediate (allyl cation + Br⁻) -->
+  <text x="220" y="183" text-anchor="middle" fill="rgba(196,168,130,1)" font-size="11.5" font-family="Cormorant Garamond,serif" font-style="italic">allyl cation⁺ + Br⁻</text>
+  <text x="220" y="198" text-anchor="middle" fill="rgba(196,168,130,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">中間體 intermediate</text>
+
+  <!-- second peak labels (Nuc attack) -->
+  <text x="298" y="48" text-anchor="middle" fill="rgba(217,160,184,1)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">TS₂ → 1,4 (higher)</text>
+  <text x="280" y="80" text-anchor="middle" fill="rgba(110,203,168,1)" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">TS₂ → 1,2 (lower)</text>
+  <text x="290" y="108" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Noto Serif TC,serif">Nuc attack（Br⁻ 攻擊）</text>
+
+  <!-- 1,2-product (less stable, higher) -->
+  <text x="405" y="170" fill="#6ECBA8" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">1,2-product</text>
+  <text x="405" y="186" fill="rgba(110,203,168,0.8)" font-size="10.5" font-family="Noto Serif TC,serif">−80°C 動力學</text>
+
+  <!-- 1,4-product (more stable, lower) -->
+  <text x="405" y="232" fill="#D9A0B8" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">1,4-product</text>
+  <text x="405" y="248" fill="rgba(217,160,184,0.8)" font-size="10.5" font-family="Noto Serif TC,serif">40°C 熱力學</text>
+</svg>
+<div class="svg-caption">兩步驟能量圖：共用第一峰（proton transfer）→ 中間體 → 雙路徑 Nuc attack 分開</div>
+</div>
+
+<div class="callout">
+  <div><b>記憶口訣：</b><br>
+  ❄️ <span class="hl">低溫 = 動力學</span> = 形成<b>速率</b>快的（1,2，因 Br⁻ 與較近的正電中心離子對）<br>
+  🔥 <span class="hl-rose">高溫 = 熱力學</span> = <b>穩定性</b>高的（1,4，內側烯取代基多）</div>
+</div>
+
+<div class="tip"><b>為什麼高溫變回平衡？</b>高溫下 1,2-product 會「反向解離」回 allyl cation，再走另一條路徑形成 1,4-product。低溫不可逆 → 第一個跨過障礙的就鎖死。</div>
+
+<!-- ============================================================ -->
+<!-- 17.6 Diels-Alder Reaction -->
+<!-- ============================================================ -->
+<div id="s1706" class="section-heading sh-blue">
+  <span class="num">17.6</span>
+  <span class="label">Diels-Alder Reaction 狄耳斯-阿德爾反應</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Diels-Alder reaction</b>（<span class="en">D-A 反應</span>）：<b>共軛二烯（4π）</b> + <b>親二烯體（2π）</b> → <b>環己烯</b>。是最重要的 [4+2] cycloaddition，<b>協同（concerted）</b>單步驟形成兩個新 σ 鍵。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <defs>
+    <marker id="arrDA" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/>
+    </marker>
+  </defs>
+
+  <!-- ====== Diene (s-cis) on left ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="20" y1="40" x2="45" y2="72"/>
+    <line x1="16" y1="42" x2="41" y2="74"/>
+    <line x1="45" y1="72" x2="85" y2="72"/>
+    <line x1="85" y1="72" x2="110" y2="40"/>
+    <line x1="89" y1="74" x2="114" y2="42"/>
+  </g>
+  <text x="65" y="115" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">diene (s-cis)</text>
+  <text x="65" y="128" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Noto Serif TC,serif">4π · 富電子</text>
+
+  <!-- + sign -->
+  <text x="140" y="80" fill="#D8D6E8" font-size="18" font-family="serif">+</text>
+
+  <!-- ====== Dienophile on right ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="170" y1="65" x2="210" y2="65"/>
+    <line x1="170" y1="69" x2="210" y2="69"/>
+  </g>
+  <text x="160" y="70" text-anchor="end" fill="#D8D6E8" font-size="11" font-family="serif">EWG</text>
+  <text x="220" y="70" fill="#D8D6E8" font-size="11" font-family="serif">H</text>
+  <text x="190" y="115" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">dienophile</text>
+  <text x="190" y="128" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Noto Serif TC,serif">2π · 缺電子（EWG 加速）</text>
+
+  <!-- ====== Arrow ====== -->
+  <line x1="255" y1="65" x2="305" y2="65" stroke="#90C8D0" stroke-width="1.5" marker-end="url(#arrDA)"/>
+  <text x="280" y="55" text-anchor="middle" fill="rgba(220,218,236,0.65)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">[4+2]</text>
+  <text x="280" y="80" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">concerted</text>
+
+  <!-- ====== Cyclohexene product on right ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- hexagon centered at (380,65), radius 28 -->
+    <line x1="380" y1="37" x2="404" y2="51"/>
+    <line x1="404" y1="51" x2="404" y2="79"/>
+    <line x1="404" y1="79" x2="380" y2="93"/>
+    <line x1="380" y1="93" x2="356" y2="79"/>
+    <line x1="356" y1="79" x2="356" y2="51"/>
+    <line x1="356" y1="51" x2="380" y2="37"/>
+    <!-- double bond between top vertex and top-left -->
+    <line x1="378" y1="41" x2="358" y2="53"/>
+  </g>
+  <!-- new bonds (dashed-style highlight) -->
+  <text x="430" y="55" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">2 new σ</text>
+  <text x="430" y="68" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">bonds form</text>
+  <text x="430" y="81" fill="rgba(220,218,236,0.5)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">syn addition</text>
+
+  <text x="380" y="115" text-anchor="middle" fill="#90C8D0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">cyclohexene</text>
+  <text x="380" y="128" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10" font-family="Noto Serif TC,serif">環己烯產物</text>
+
+  <!-- mechanism arrows (curved) inside diene -->
+  <path d="M 25 35 Q 50 10 110 35" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#arrDA)"/>
+  <path d="M 50 75 Q 95 90 90 70" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2"/>
+  <path d="M 175 67 Q 195 50 210 65" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2"/>
+
+  <text x="270" y="180" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">3 對曲箭頭同時推 → 6 個電子環狀流動</text>
+</svg>
+<div class="svg-caption">Diels-Alder：[4+2] 環加成形成環己烯</div>
+</div>
+
+<h3>反應特徵 Key Features</h3>
+
+<div class="term"><b>① 協同單步驟（concerted）</b>：6 個電子同時重排，<b>無中間體</b>。過渡態為芳香性 (Hückel 6 電子)。</div>
+<div class="term"><b>② 二烯必為 s-cis</b>：C1、C4 必須足夠靠近才能與親二烯體共平面接觸。<b>環二烯（如環戊二烯）</b>本身就鎖死在 s-cis → <b>反應極快</b>。</div>
+<div class="term"><b>③ 立體保留 syn addition</b>：親二烯體上的取代基<b>順反關係保留</b>（cis dienophile → cis product；trans → trans）。</div>
+<div class="term"><b>④ 親二烯體電子需求</b>：<b>缺電子</b>有利（帶 EWG 如 –CHO、–COOR、–CN、–NO₂、–C(=O)R）；正常電子需求（normal electron demand）：HOMO(diene) ↔ LUMO(dienophile)。</div>
+<div class="term"><b>⑤ Lewis 酸催化</b>：BF₃、AlCl₃ 等可<b>降低 LUMO</b>能量 → 反應加速 100–1000 倍。</div>
+
+<h3>Endo Rule 內向規則</h3>
+
+<div class="reaction-box">
+  <p>當親二烯體有 π 取代基（如 C=O、C≡N）時，過渡態有兩種：<b>endo（內向）</b>和 <b>exo（外向）</b>。</p>
+  <ul>
+    <li><b>endo TS：</b>EWG 指向二烯下方 → <b>有額外二級軌域作用力（secondary orbital interaction）</b> → 動力學偏好</li>
+    <li><b>exo TS：</b>EWG 指向遠離二烯 → 立體位阻較小但無二級作用 → 熱力學偏好</li>
+  </ul>
+  <p style="color:rgba(176,158,224,0.85)"><b>大多數 D-A 在低溫下走 endo（kinetic product）</b>。考試題目除非另外說明，通常都判 endo 主產物。</p>
+</div>
+
+<h3>立體化學 Stereochemistry</h3>
+
+<table>
+  <tr><th>輸入</th><th>輸出</th></tr>
+  <tr><td>cis-dienophile（兩 EWG 同側）</td><td>cis 取代產物（兩 EWG 同側）</td></tr>
+  <tr><td>trans-dienophile（兩 EWG 反側）</td><td>trans 取代產物（兩 EWG 反側）</td></tr>
+  <tr><td>(E,E)-diene（兩末端取代基都向外）</td><td>cis 取代產物</td></tr>
+  <tr><td>(E,Z)-diene</td><td>trans 取代產物</td></tr>
+</table>
+
+<div class="callout">
+  <div><b>retro-Diels-Alder：</b>高溫（>200°C）下逆向反應，環己烯裂解回二烯 + 親二烯體。常見於 17.69、17.70 題型。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.7 Electrocyclic Reactions -->
+<!-- ============================================================ -->
+<div id="s1707" class="section-heading sh-blue">
+  <span class="num">17.7</span>
+  <span class="label">Electrocyclic Reactions 電環化反應</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Electrocyclic reaction</b>（<span class="en">電環化</span>）：含 n 個 π 電子的<b>共軛多烯</b>，兩端 sp² 碳<b>旋轉</b>形成 σ 鍵 → 環化（ring-closing），或反向開環（ring-opening）。
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" style="max-width:560px">
+  <defs>
+    <marker id="arrEC" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/>
+    </marker>
+  </defs>
+
+  <!-- ====== 4π example: butadiene → cyclobutene ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="20" y1="50" x2="46" y2="30"/>
+    <line x1="22" y1="54" x2="48" y2="34"/>
+    <line x1="46" y1="30" x2="72" y2="50"/>
+    <line x1="72" y1="50" x2="98" y2="30"/>
+    <line x1="74" y1="54" x2="100" y2="34"/>
+  </g>
+  <line x1="120" y1="40" x2="170" y2="40" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arrEC)"/>
+  <text x="145" y="32" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ heat</text>
+  <text x="145" y="55" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">conrotatory</text>
+
+  <!-- cyclobutene -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <rect x="190" y="20" width="44" height="44"/>
+    <line x1="190" y1="24" x2="234" y2="24"/>
+  </g>
+  <text x="212" y="85" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">cyclobutene</text>
+  <text x="60" y="85" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">1,3-butadiene (4π)</text>
+
+  <!-- rotation arrows for conrotatory -->
+  <path d="M 6 32 Q 0 20 18 16" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" marker-end="url(#arrEC)"/>
+  <path d="M 110 32 Q 120 20 102 16" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" marker-end="url(#arrEC)"/>
+  <text x="60" y="105" text-anchor="middle" fill="rgba(217,160,184,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">both rotate same direction</text>
+
+  <!-- ====== 6π example: hexatriene → cyclohexadiene ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="280" y1="50" x2="306" y2="30"/>
+    <line x1="282" y1="54" x2="308" y2="34"/>
+    <line x1="306" y1="30" x2="332" y2="50"/>
+    <line x1="332" y1="50" x2="358" y2="30"/>
+    <line x1="334" y1="54" x2="360" y2="34"/>
+    <line x1="358" y1="30" x2="384" y2="50"/>
+    <line x1="384" y1="50" x2="410" y2="30"/>
+    <line x1="386" y1="54" x2="412" y2="34"/>
+  </g>
+  <text x="345" y="85" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">1,3,5-hexatriene (6π)</text>
+
+  <line x1="425" y1="40" x2="465" y2="40" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arrEC)"/>
+  <text x="445" y="32" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ heat</text>
+  <text x="445" y="55" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">disrotatory</text>
+
+  <!-- 1,3-cyclohexadiene：兩個 C=C 隔一個單鍵（C2=C3 與 C4=C5，間隔 C3-C4 單） -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- 六員環骨架 -->
+    <polygon points="490,22 514,36 514,64 490,78 466,64 466,36" fill="none"/>
+    <!-- 上左雙鍵 (v6-v1)：parallel offset 4 units inside -->
+    <line x1="468" y1="39" x2="492" y2="25"/>
+    <!-- 右側雙鍵 (v2-v3)：parallel offset 4 units inside -->
+    <line x1="510" y1="36" x2="510" y2="64"/>
+  </g>
+  <text x="490" y="100" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">1,3-cyclohexadiene</text>
+
+  <!-- rotation arrows for disrotatory -->
+  <path d="M 264 32 Q 254 18 274 16" stroke="rgba(110,203,168,0.7)" stroke-width="1.2" fill="none" marker-end="url(#arrEC)"/>
+  <path d="M 426 32 Q 436 18 416 16" stroke="rgba(110,203,168,0.7)" stroke-width="1.2" fill="none" marker-end="url(#arrEC)"/>
+  <text x="345" y="105" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">two ends rotate opposite directions</text>
+
+  <!-- divider -->
+  <line x1="260" y1="135" x2="260" y2="220" stroke="rgba(220,218,236,0.1)" stroke-width="1"/>
+
+  <!-- ====== Woodward-Hoffmann table ====== -->
+  <text x="280" y="155" fill="#B09EE0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Woodward-Hoffmann Rules</text>
+  <text x="280" y="172" fill="rgba(220,218,236,0.7)" font-size="10" font-family="Noto Serif TC,serif">4n π：thermal = conrotatory；hν = disrotatory</text>
+  <text x="280" y="188" fill="rgba(220,218,236,0.7)" font-size="10" font-family="Noto Serif TC,serif">4n+2 π：thermal = disrotatory；hν = conrotatory</text>
+  <text x="280" y="208" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">記憶：4n con-thermal / 4n+2 dis-thermal</text>
+
+  <text x="20" y="155" fill="#B09EE0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Conrotatory 同向旋轉</text>
+  <text x="20" y="172" fill="rgba(220,218,236,0.65)" font-size="10" font-family="Noto Serif TC,serif">兩端朝同方向轉（皆順時針或皆逆）</text>
+  <text x="20" y="188" fill="#B09EE0" font-size="11" font-family="Cormorant Garamond,serif" font-style="italic">Disrotatory 反向旋轉</text>
+  <text x="20" y="205" fill="rgba(220,218,236,0.65)" font-size="10" font-family="Noto Serif TC,serif">兩端朝相反方向轉（一順一逆）</text>
+</svg>
+<div class="svg-caption">兩個經典電環化：4π 走 conrotatory、6π 走 disrotatory（皆熱反應）</div>
+</div>
+
+<table>
+  <tr><th>π 電子數</th><th>類型</th><th>熱（Δ）</th><th>光（hν）</th></tr>
+  <tr><td><b>4n</b>（如 4π）</td><td>4π → cyclobutene</td><td><span class="hl-rose">conrotatory 同旋</span></td><td><span class="hl">disrotatory 反旋</span></td></tr>
+  <tr><td><b>4n+2</b>（如 6π）</td><td>6π → cyclohexadiene</td><td><span class="hl">disrotatory 反旋</span></td><td><span class="hl-rose">conrotatory 同旋</span></td></tr>
+  <tr><td><b>4n</b>（如 8π）</td><td>8π → cyclooctatriene</td><td>conrotatory</td><td>disrotatory</td></tr>
+</table>
+
+<div class="callout">
+  <div><b>選律來源：</b>看 HOMO 的對稱性。基態 HOMO ψ_n（n = π 電子數的一半）：<br>
+  • 4n 電子系統 → HOMO 反對稱 → 兩端同相需<b>同旋</b><br>
+  • 4n+2 電子系統 → HOMO 對稱 → 兩端同相需<b>反旋</b><br>
+  • 光化學下 HOMO 升一級，對稱性翻轉 → 結論相反</div>
+</div>
+
+<div class="tip"><b>立體化學的重要結果：</b>同/反旋的選擇直接決定產物中取代基是 cis 還是 trans！<br>
+例如 (2E,4E)-2,4-hexadiene（兩 Me 都向外）熱關環 → conrotatory → <b>trans-3,4-dimethylcyclobutene</b>。</div>
+
+<!-- ============================================================ -->
+<!-- 17.8 Sigmatropic Rearrangements -->
+<!-- ============================================================ -->
+<div id="s1708" class="section-heading sh-blue">
+  <span class="num">17.8</span>
+  <span class="label">Sigmatropic Rearrangements σ 鍵遷移重排</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>Sigmatropic rearrangement</b>（<span class="en">σ 遷移重排</span>）：一個 σ 鍵連同其電子<b>整體遷移</b>到 π 系統的另一端，新舊位置以 [i,j] 標記（i、j 為兩端各自跨越的原子數）。
+</div>
+
+<h3>[1,5]-H Shift</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+  <defs>
+    <marker id="arr15" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/>
+    </marker>
+    <marker id="arr15c" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6" fill="none" stroke="#D9A0B8" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <!-- pentadiene with H -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="20" y1="80" x2="46" y2="60"/>
+    <line x1="22" y1="84" x2="48" y2="64"/>
+    <line x1="46" y1="60" x2="72" y2="80"/>
+    <line x1="72" y1="80" x2="98" y2="60"/>
+    <line x1="74" y1="84" x2="100" y2="64"/>
+    <line x1="98" y1="60" x2="124" y2="80"/>
+    <line x1="124" y1="80" x2="124" y2="105"/>
+  </g>
+  <text x="124" y="118" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="serif">H</text>
+  <text x="13" y="84" fill="rgba(220,218,236,0.55)" font-size="10.5">1</text>
+  <text x="48" y="56" fill="rgba(220,218,236,0.55)" font-size="10.5">2</text>
+  <text x="74" y="92" fill="rgba(220,218,236,0.55)" font-size="10.5">3</text>
+  <text x="100" y="56" fill="rgba(220,218,236,0.55)" font-size="10.5">4</text>
+  <text x="130" y="84" fill="rgba(220,218,236,0.55)" font-size="10.5">5</text>
+
+  <!-- curved arrow showing H migration over 5 atoms (suprafacial) -->
+  <path d="M 124 105 Q 70 130 20 90" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#arr15c)"/>
+
+  <!-- arrow -->
+  <line x1="195" y1="80" x2="245" y2="80" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arr15)"/>
+  <text x="220" y="72" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ</text>
+  <text x="220" y="95" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">[1,5]-H</text>
+
+  <!-- product -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="290" y1="60" x2="290" y2="35"/>
+    <line x1="290" y1="60" x2="316" y2="80"/>
+    <line x1="316" y1="80" x2="342" y2="60"/>
+    <line x1="318" y1="84" x2="344" y2="64"/>
+    <line x1="342" y1="60" x2="368" y2="80"/>
+    <line x1="368" y1="80" x2="394" y2="60"/>
+    <line x1="370" y1="84" x2="396" y2="64"/>
+  </g>
+  <text x="290" y="28" text-anchor="middle" fill="#D9A0B8" font-size="11" font-family="serif">H</text>
+
+  <text x="65" y="135" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">起始：H 在 C5</text>
+  <text x="340" y="135" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Noto Serif TC,serif">產物：H 移到 C1（雙鍵全部移動）</text>
+</svg>
+<div class="svg-caption">[1,5]-H sigmatropic shift（熱、suprafacial、允許）</div>
+</div>
+
+<div class="reaction-box">
+  <ul style="margin:0.4rem 0">
+    <li><b>[1,5]-H</b>：6 電子過渡態（5 個 C 加 1 個 H）→ Hückel 芳香性 → <b>熱 / 同面（suprafacial）允許</b></li>
+    <li><b>[1,3]-H</b>：4 電子過渡態 → 熱 / 同面禁阻、需 antarafacial（幾何上幾乎不可能）→ 罕見</li>
+    <li>1,5-H 遷移在環戊二烯衍生物中很常見</li>
+  </ul>
+</div>
+
+<h3>Cope &amp; Claisen Rearrangements [3,3]</h3>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+  <defs>
+    <marker id="arrCope" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#90C8D0"/>
+    </marker>
+  </defs>
+
+  <!-- ====== Cope: 1,5-hexadiene → 1,5-hexadiene ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- 1,5-hexadiene zigzag -->
+    <line x1="15" y1="60" x2="35" y2="40"/>
+    <line x1="17" y1="64" x2="37" y2="44"/>
+    <line x1="35" y1="40" x2="55" y2="60"/>
+    <line x1="55" y1="60" x2="75" y2="40"/>
+    <line x1="75" y1="40" x2="95" y2="60"/>
+    <line x1="95" y1="60" x2="115" y2="40"/>
+    <line x1="97" y1="64" x2="117" y2="44"/>
+  </g>
+  <text x="65" y="95" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">1,5-hexadiene</text>
+
+  <line x1="135" y1="50" x2="180" y2="50" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arrCope)"/>
+  <text x="158" y="42" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ</text>
+  <text x="158" y="65" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">[3,3] Cope</text>
+
+  <!-- product (same skeleton, but bonds shifted) -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="200" y1="40" x2="220" y2="60"/>
+    <line x1="202" y1="36" x2="222" y2="56"/>
+    <line x1="220" y1="60" x2="240" y2="40"/>
+    <line x1="240" y1="40" x2="260" y2="60"/>
+    <line x1="260" y1="60" x2="280" y2="40"/>
+    <line x1="280" y1="40" x2="300" y2="60"/>
+    <line x1="282" y1="36" x2="302" y2="56"/>
+  </g>
+  <text x="250" y="95" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">1,5-hexadiene (產物)</text>
+
+  <!-- chair TS hint -->
+  <text x="158" y="125" text-anchor="middle" fill="rgba(110,203,168,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">chair-like TS</text>
+
+  <!-- ====== Claisen: allyl vinyl ether → 4-pentenal ====== -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <!-- vinyl-O-allyl -->
+    <line x1="340" y1="60" x2="360" y2="40"/>
+    <line x1="342" y1="64" x2="362" y2="44"/>
+    <line x1="360" y1="40" x2="380" y2="60"/>
+  </g>
+  <text x="385" y="65" fill="#D9A0B8" font-size="11" font-family="serif">O</text>
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="402" y1="60" x2="419" y2="43"/>
+    <line x1="419" y1="43" x2="436" y2="60"/>
+    <line x1="436" y1="60" x2="453" y2="43"/>
+    <line x1="438" y1="64" x2="455" y2="47"/>
+  </g>
+  <text x="395" y="100" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">allyl vinyl ether</text>
+
+  <line x1="460" y1="50" x2="500" y2="50" stroke="#90C8D0" stroke-width="1.4" marker-end="url(#arrCope)"/>
+  <text x="480" y="42" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ</text>
+
+  <!-- product (4-pentenal: O=CH-CH₂-CH₂-CH=CH₂) -->
+  <text x="478" y="74" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+  <g stroke="#D9A0B8" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="486" y1="70" x2="498" y2="58"/>
+    <line x1="489" y1="73" x2="501" y2="61"/>
+  </g>
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+    <line x1="498" y1="58" x2="510" y2="74"/>
+    <line x1="510" y1="74" x2="522" y2="58"/>
+    <line x1="522" y1="58" x2="534" y2="74"/>
+  </g>
+  <text x="538" y="62" fill="rgba(220,218,236,0.85)" font-size="11" font-family="serif">CH=CH₂</text>
+
+  <text x="500" y="155" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">4-pentenal (γ,δ-unsat. aldehyde)</text>
+
+  <!-- divider line -->
+  <line x1="320" y1="20" x2="320" y2="160" stroke="rgba(220,218,236,0.1)" stroke-width="1"/>
+
+  <text x="158" y="170" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Noto Serif TC,serif">Cope: 全碳骨架</text>
+  <text x="430" y="170" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Noto Serif TC,serif">Claisen: 含 O 雜原子（驅動力 = 形成 C=O）</text>
+</svg>
+<div class="svg-caption">兩個經典 [3,3]-σ 遷移：Cope（全碳）與 Claisen（含氧）</div>
+</div>
+
+<div class="reaction-box">
+  <h4>[3,3] 重排重點</h4>
+  <ul>
+    <li><b>6 個電子環狀過渡態</b>（椅式為主）→ Hückel 芳香性 → 熱允許</li>
+    <li><b>Cope</b>：1,5-diene 換骨架；可逆，平衡偏向更穩定的一側</li>
+    <li><b>Claisen</b>：allyl vinyl ether → γ,δ-unsaturated carbonyl；<b>不可逆</b>（C=O 比 C=C 穩定得多）</li>
+    <li><b>oxy-Cope</b>：3-OH 取代的 1,5-hexadiene → enol → keto；<b>OH 加速 10¹⁰ 倍</b>（去質子變 KOR 後甚至更快）</li>
+    <li><b>aromatic Claisen</b>：allyl aryl ether → ortho-allyl phenol（加熱即發生）</li>
+  </ul>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- ============================================================ -->
+<!-- ===== 習 題 ===== -->
+<!-- ============================================================ -->
+<!-- ============================================================ -->
+<div id="exercises" class="section-heading sh-exam">
+  <span class="num">Ex.</span>
+  <span class="label">習題 Exercises (17.43 – 17.80)</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout">
+  <div>本章習題以三類為主：(1) <b>Diels-Alder 逆推合成</b>（17.43、17.44、17.57、17.69、17.70），(2) <b>電環化立體化學</b>（17.52、17.75、17.80），(3) <b>串聯周環反應</b>（17.72、17.73、17.79、17.80）。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.43 -->
+<!-- ============================================================ -->
+<div id="p1743" class="exam-box">
+  <div class="exam-title">17.43 — Diels-Alder Retrosynthesis 逆推合成</div>
+  <div class="q">辨識下列六個化合物各自由哪一對「二烯 + 親二烯體」經 Diels-Alder 反應合成。</div>
+  <div class="q-en">Identify the reactants you would use to prepare each of the following compounds via a Diels-Alder reaction.</div>
+
+  <h4>(a) 順-3,4-二氰基環己烯 / cis-3,4-dicyanocyclohexene</h4>
+  <div class="svg-wrap">
+  <svg viewBox="0 0 380 110" xmlns="http://www.w3.org/2000/svg" style="max-width:380px">
+    <defs><marker id="arrA1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker></defs>
+    <!-- product cyclohexene with 2 cis CN -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="40" y1="30" x2="62" y2="42"/>
+      <line x1="62" y1="42" x2="62" y2="68"/>
+      <line x1="62" y1="68" x2="40" y2="80"/>
+      <line x1="40" y1="80" x2="18" y2="68"/>
+      <line x1="18" y1="68" x2="18" y2="42"/>
+      <line x1="18" y1="42" x2="40" y2="30"/>
+      <!-- double bond at top -->
+      <line x1="38" y1="34" x2="20" y2="44"/>
+    </g>
+    <text x="62" y="76" fill="#D9A0B8" font-size="10.5">CN</text>
+    <text x="14" y="76" text-anchor="end" fill="#D9A0B8" font-size="10.5">CN</text>
+    <!-- retro arrow -->
+    <line x1="100" y1="55" x2="155" y2="55" stroke="#B09EE0" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrA1)"/>
+    <text x="127" y="48" text-anchor="middle" fill="rgba(176,158,224,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">retro</text>
+    <!-- 1,3-butadiene (s-cis) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="180" y1="35" x2="200" y2="60"/>
+      <line x1="176" y1="38" x2="196" y2="63"/>
+      <line x1="200" y1="60" x2="230" y2="60"/>
+      <line x1="230" y1="60" x2="250" y2="35"/>
+      <line x1="234" y1="38" x2="254" y2="63"/>
+    </g>
+    <text x="270" y="58" fill="#D8D6E8" font-size="13">+</text>
+    <!-- maleonitrile (cis-NC-CH=CH-CN) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="295" y1="55" x2="335" y2="55"/>
+      <line x1="295" y1="59" x2="335" y2="59"/>
+    </g>
+    <text x="288" y="58" text-anchor="end" fill="#D9A0B8" font-size="10.5">NC</text>
+    <text x="343" y="58" fill="#D9A0B8" font-size="10.5">CN</text>
+    <text x="315" y="78" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">(cis = maleonitrile)</text>
+  </svg>
+  </div>
+  <div class="key">產物兩 CN <b>cis</b> → 親二烯體必須是 <b>cis-1,2-dicyanoethylene（maleonitrile）</b>。二烯為 1,3-butadiene。</div>
+
+  <h4>(b) 雙環橋產物含 4 CN / norbornene-type with 4 CN</h4>
+  <div class="key">產物含「橋頭環」→ 二烯必為 <b>環戊二烯（cyclopentadiene）</b>；4 個 CN → 親二烯體為 <b>四氰基乙烯（NC)₂C=C(CN)₂、TCNE</b>。TCNE 是已知最強的親二烯體之一（4 個 EWG 大幅降低 LUMO）。</div>
+
+  <h4>(c) 雙環含 2 cis-CHO / norbornene-2,3-dicarbaldehyde (cis)</h4>
+  <div class="key">兩 CHO <b>cis</b> + 雙環架構 → <b>環戊二烯 + cis-丁烯二醛（malealdehyde, OHC-CH=CH-CHO, cis）</b>。Endo 規則使 CHO 朝下 → 形成 endo 產物。</div>
+
+  <h4>(d) 雙環順型 cis-anhydride（標出 H）</h4>
+  <div class="key">六員 anhydride 環 + 6 員碳環橋 → 二烯為 <b>1,3-環己二烯（cyclohexa-1,3-diene）</b>，親二烯體為 <b>順丁烯二酸酐（maleic anhydride）</b>。產物為 cis-fused（兩 H 同側）。</div>
+
+  <h4>(e) 雙環含 2 trans-COOH / norbornene-2,3-dicarboxylic acid (trans)</h4>
+  <div class="key">兩 COOH <b>trans</b> + 雙環 → <b>環戊二烯 + trans-丁烯二酸（fumaric acid, trans-HOOC-CH=CH-COOH）</b>。trans-dienophile → trans-product（保持立體化學）。注意：六員環下不可能有 trans-fused 雙橋，所以這裡是兩 COOH 在橋上呈 trans。</div>
+
+  <h4>(f) 環己烯-1-甲醛 / 4-methyl-3-(...)cyclohex-3-ene-1-carbaldehyde</h4>
+  <div class="key">無雙環架構 → <b>1,3-丁二烯（或取代二烯）+ 丙烯醛（acrolein, CH₂=CH-CHO）</b>。CHO 為強 EWG，反應快速。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.44 -->
+<!-- ============================================================ -->
+<div id="p1744" class="exam-box">
+  <div class="exam-title">17.44 — Double Diels-Alder 雙重 D-A</div>
+  <div class="q">下列三烯與過量馬來酸酐反應，產物分子式為 C₁₄H₁₂O₆。畫出產物（不考慮立體化學）。</div>
+  <div class="q-en">The following triene reacts with excess maleic anhydride to produce a compound with molecular formula C₁₄H₁₂O₆. Draw the product.</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+    <defs><marker id="arr44" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker></defs>
+
+    <!-- triene (1,3,5-hexatriene with vinyl pendant) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="20" y1="60" x2="46" y2="40"/>
+      <line x1="22" y1="64" x2="48" y2="44"/>
+      <line x1="46" y1="40" x2="72" y2="60"/>
+      <line x1="72" y1="60" x2="98" y2="40"/>
+      <line x1="74" y1="64" x2="100" y2="44"/>
+      <line x1="98" y1="40" x2="124" y2="60"/>
+      <line x1="124" y1="60" x2="150" y2="40"/>
+      <line x1="126" y1="64" x2="152" y2="44"/>
+    </g>
+    <text x="80" y="90" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Noto Serif TC,serif">三烯（含 3 個共軛 C=C）</text>
+
+    <text x="170" y="55" fill="#D8D6E8" font-size="14">+</text>
+    <text x="200" y="42" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">2 ×</text>
+    <!-- maleic anhydride (small) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(220,38)">
+      <line x1="0" y1="20" x2="20" y2="20"/>
+      <line x1="0" y1="24" x2="20" y2="24"/>
+      <line x1="0" y1="20" x2="-8" y2="6"/>
+      <line x1="20" y1="20" x2="28" y2="6"/>
+      <line x1="-8" y1="6" x2="28" y2="6"/>
+    </g>
+    <text x="208" y="32" fill="#D9A0B8" font-size="10.5">O</text>
+    <text x="248" y="32" fill="#D9A0B8" font-size="10.5">O</text>
+    <text x="218" y="62" fill="#D9A0B8" font-size="10.5">O</text>
+    <text x="234" y="80" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Noto Serif TC,serif">maleic anhydride</text>
+
+    <line x1="285" y1="55" x2="325" y2="55" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arr44)"/>
+    <text x="305" y="48" text-anchor="middle" fill="rgba(176,158,224,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">2 × D-A</text>
+
+    <!-- product (簡化示意): decalin 核心 + 兩個 anhydride 標註 -->
+    <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <!-- Ring A: 左側六員環 -->
+      <polygon points="365,40 386,52 386,76 365,88 344,76 344,52" fill="none"/>
+      <!-- Ring B: 右側六員環（與 A 共用 386,52-386,76 邊） -->
+      <polygon points="407,40 428,52 428,76 407,88 386,76 386,52" fill="none"/>
+      <!-- 中央 C=C：在共用邊上加平行線 -->
+      <line x1="389" y1="55" x2="389" y2="73"/>
+    </g>
+    <!-- 左側 anhydride 標註（虛線指向 Ring A 底邊） -->
+    <line x1="354" y1="83" x2="332" y2="108" stroke="rgba(217,160,184,0.55)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="328" y="122" fill="#D9A0B8" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">anhydride 環</text>
+    <!-- 右側 anhydride 標註（虛線指向 Ring B 底邊） -->
+    <line x1="418" y1="83" x2="440" y2="108" stroke="rgba(217,160,184,0.55)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="445" y="122" fill="#D9A0B8" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">anhydride 環</text>
+    <!-- 分子式 + 註解 -->
+    <text x="386" y="155" text-anchor="middle" fill="#90C8D0" font-size="12" font-family="Cormorant Garamond,serif" font-style="italic">C₁₄H₁₂O₆</text>
+    <text x="386" y="172" text-anchor="middle" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Noto Serif TC,serif">decalin 核心 + 2 個 anhydride 融合於兩側</text>
+    <text x="386" y="187" text-anchor="middle" fill="rgba(220,218,236,0.5)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">(立體化學省略)</text>
+  </svg>
+  </div>
+  <div class="key">三烯有 3 個共軛 C=C → 第一次 D-A 用其中 2 個 C=C 與第一個馬來酸酐反應，產生新環中含一個 C=C；此新 C=C 與三烯剩下的另一個 C=C 構成新二烯 → 第二次 D-A 與第二個馬來酸酐反應 → 雙環產物（C₆H₈ + 2×C₄H₂O₃ = C₁₄H₁₂O₆ ✓）。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.52 -->
+<!-- ============================================================ -->
+<div id="p1752" class="exam-box">
+  <div class="exam-title">17.52 — Electrocyclic Stereochemistry 電環化立體化學</div>
+  <div class="q">預測下列四個電環化反應的主產物，含立體化學。</div>
+  <div class="q-en">Predict the major product(s) for each of the following electrocyclic reactions.</div>
+
+  <table>
+    <tr><th>題</th><th>π 電子數</th><th>條件</th><th>選律</th><th>立體結果</th></tr>
+    <tr><td><b>(a)</b></td><td>6π</td><td>Δ heat</td><td><b>disrotatory</b></td><td><span class="hl-rose">meso</span>（有對稱面 → 無對映異構物）</td></tr>
+    <tr><td><b>(b)</b></td><td>6π</td><td>hν light</td><td><b>conrotatory</b></td><td><span class="hl">chiral, ± enantiomers</span></td></tr>
+    <tr><td><b>(c)</b></td><td>8π</td><td>Δ heat</td><td><b>conrotatory</b></td><td><span class="hl">chiral, ± enantiomers</span></td></tr>
+    <tr><td><b>(d)</b></td><td>8π</td><td>hν light</td><td><b>disrotatory</b></td><td><span class="hl-rose">meso</span></td></tr>
+  </table>
+
+  <div class="key">記憶口訣：<br>
+  • 4n+2 π：thermal = <b>dis</b>rotatory；photo = <b>con</b>rotatory<br>
+  • 4n π：thermal = <b>con</b>rotatory；photo = <b>dis</b>rotatory<br><br>
+  立體判斷：<b>disrotatory（兩端反向轉）</b>常產生 <b>meso</b>（兩取代基同向 → 同 cis），有對稱面；<b>conrotatory（兩端同向轉）</b>常產生 <b>對映異構對</b>（兩取代基 trans → 失去對稱面 → 手性）。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.57 -->
+<!-- ============================================================ -->
+<div id="p1757" class="exam-box">
+  <div class="exam-title">17.57 — Benzoquinone + Excess Butadiene 苯醌雙重 D-A</div>
+  <div class="q">苯醌與過量丁二烯加熱，預測產物。</div>
+  <div class="q-en">Predict the products obtained when benzoquinone is treated with excess butadiene, and the mixture is heated.</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+    <defs><marker id="arr57" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker></defs>
+
+    <!-- 1,4-benzoquinone：C=O 在頂底（C1,C4），C=C 在左右垂直邊（C2=C3, C5=C6） -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <!-- 六員環 -->
+      <polygon points="40,54 61,66 61,90 40,102 19,90 19,66" fill="none"/>
+      <!-- C2=C3 (右垂直邊，內側平行線) -->
+      <line x1="57" y1="68" x2="57" y2="88"/>
+      <!-- C5=C6 (左垂直邊，內側平行線) -->
+      <line x1="23" y1="68" x2="23" y2="88"/>
+    </g>
+    <!-- C=O at top vertex (C1) -->
+    <g stroke="#D9A0B8" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <line x1="38" y1="54" x2="38" y2="40"/>
+      <line x1="42" y1="54" x2="42" y2="40"/>
+    </g>
+    <text x="40" y="34" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <!-- C=O at bottom vertex (C4) -->
+    <g stroke="#D9A0B8" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <line x1="38" y1="102" x2="38" y2="116"/>
+      <line x1="42" y1="102" x2="42" y2="116"/>
+    </g>
+    <text x="40" y="128" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <text x="40" y="135" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">benzoquinone</text>
+    <text x="40" y="150" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Noto Serif TC,serif">苯醌（2 個 dienophile C=C）</text>
+
+    <text x="110" y="80" fill="#D8D6E8" font-size="14">+</text>
+    <text x="135" y="68" fill="rgba(220,218,236,0.7)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">excess</text>
+    <!-- butadiene (s-cis) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(140,68)">
+      <line x1="0" y1="0" x2="20" y2="20"/>
+      <line x1="-4" y1="3" x2="16" y2="23"/>
+      <line x1="20" y1="20" x2="50" y2="20"/>
+      <line x1="50" y1="20" x2="70" y2="0"/>
+      <line x1="54" y1="3" x2="74" y2="23"/>
+    </g>
+    <text x="175" y="135" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">butadiene (excess)</text>
+
+    <line x1="245" y1="80" x2="285" y2="80" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arr57)"/>
+    <text x="265" y="72" text-anchor="middle" fill="rgba(176,158,224,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">2 × D-A</text>
+
+    <!-- 三環產物：中央六環(含 2 C=O) + 兩側六環(cyclohexene from butadiene) -->
+    <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <!-- 中央六員環 -->
+      <polygon points="380,56 401,68 401,92 380,104 359,92 359,68" fill="none"/>
+      <!-- 左側六員環（融合於 v5-v6 共用邊） -->
+      <polygon points="338,56 359,68 359,92 338,104 317,92 317,68" fill="none"/>
+      <!-- 右側六員環（融合於 v2-v3 共用邊） -->
+      <polygon points="422,56 443,68 443,92 422,104 401,92 401,68" fill="none"/>
+      <!-- 左側環 C=C（外側邊加平行） -->
+      <line x1="320" y1="70" x2="320" y2="90"/>
+      <!-- 右側環 C=C -->
+      <line x1="440" y1="70" x2="440" y2="90"/>
+    </g>
+    <!-- 中央環頂 C=O -->
+    <g stroke="#D9A0B8" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <line x1="378" y1="56" x2="378" y2="40"/>
+      <line x1="382" y1="56" x2="382" y2="40"/>
+    </g>
+    <text x="380" y="34" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <!-- 中央環底 C=O -->
+    <g stroke="#D9A0B8" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <line x1="378" y1="104" x2="378" y2="120"/>
+      <line x1="382" y1="104" x2="382" y2="120"/>
+    </g>
+    <text x="380" y="135" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <!-- 註解 -->
+    <text x="380" y="158" text-anchor="middle" fill="rgba(220,218,236,0.75)" font-size="10.5" font-family="Noto Serif TC,serif">tricyclic：中央環含 2 個 C=O ＋ 兩側 cyclohexene</text>
+    <text x="380" y="172" text-anchor="middle" fill="rgba(220,218,236,0.55)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">two meso diastereomers</text>
+  </svg>
+  </div>
+  <div class="key">苯醌有兩個 C=C 都可作 dienophile → 兩次 D-A 給出三環產物。第二次反應可發生在第一個產物的<b>同面</b>或<b>異面</b> → 兩個 <b>meso</b> 非對映異構物（皆有對稱面，不對映）。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.69 -->
+<!-- ============================================================ -->
+<div id="p1769" class="exam-box">
+  <div class="exam-title">17.69 — Retro Diels-Alder 逆狄耳斯-阿德爾</div>
+  <div class="q">提出下列反應的機構（逆 D-A）。</div>
+  <div class="q-en">Propose a mechanism for the following retro Diels-Alder reaction.</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 460 150" xmlns="http://www.w3.org/2000/svg" style="max-width:460px">
+    <defs><marker id="arr69" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker>
+    <marker id="arrMech" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6" fill="none" stroke="#D9A0B8" stroke-width="1.2"/></marker></defs>
+
+    <!-- bicycle [2.2.2] octa-2,5-diene with extra stuff -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(40,30)">
+      <!-- main 6-membered ring with two double bonds -->
+      <line x1="0" y1="40" x2="20" y2="20"/>
+      <line x1="20" y1="20" x2="46" y2="20"/>
+      <line x1="46" y1="20" x2="66" y2="40"/>
+      <line x1="66" y1="40" x2="46" y2="60"/>
+      <line x1="46" y1="60" x2="20" y2="60"/>
+      <line x1="20" y1="60" x2="0" y2="40"/>
+      <!-- two C=C (top and bottom) -->
+      <line x1="20" y1="24" x2="46" y2="24"/>
+      <line x1="20" y1="56" x2="46" y2="56"/>
+      <!-- bridging CH2-CH2 -->
+      <line x1="0" y1="40" x2="-15" y2="20"/>
+      <line x1="-15" y1="20" x2="-15" y2="60"/>
+      <line x1="-15" y1="60" x2="0" y2="40"/>
+      <!-- mechanism arrows -->
+    </g>
+    <!-- curved arrows showing retro D-A breakdown -->
+    <path d="M 50 60 Q 30 50 35 30" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#arrMech)"/>
+    <path d="M 75 50 Q 95 50 95 35" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#arrMech)"/>
+    <path d="M 65 75 Q 80 90 95 80" stroke="rgba(217,160,184,0.7)" stroke-width="1.2" fill="none" stroke-dasharray="3,2" marker-end="url(#arrMech)"/>
+
+    <text x="60" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">bicyclic precursor</text>
+
+    <line x1="155" y1="60" x2="200" y2="60" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arr69)"/>
+    <text x="178" y="52" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ heat</text>
+    <text x="178" y="76" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">retro [4+2]</text>
+
+    <!-- benzene -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(220,30)">
+      <line x1="0" y1="40" x2="20" y2="20"/>
+      <line x1="20" y1="20" x2="46" y2="20"/>
+      <line x1="46" y1="20" x2="66" y2="40"/>
+      <line x1="66" y1="40" x2="46" y2="60"/>
+      <line x1="46" y1="60" x2="20" y2="60"/>
+      <line x1="20" y1="60" x2="0" y2="40"/>
+      <circle cx="33" cy="40" r="14" stroke="rgba(144,200,208,0.5)" fill="none"/>
+    </g>
+    <text x="253" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">benzene</text>
+
+    <text x="305" y="65" fill="#D8D6E8" font-size="14">+</text>
+
+    <!-- ethylene -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="335" y1="55" x2="375" y2="55"/>
+      <line x1="335" y1="59" x2="375" y2="59"/>
+    </g>
+    <text x="325" y="58" text-anchor="end" fill="#D8D6E8" font-size="10">H₂C</text>
+    <text x="380" y="58" fill="#D8D6E8" font-size="10">CH₂</text>
+    <text x="355" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">ethylene</text>
+  </svg>
+  </div>
+  <div class="key">3 對曲箭頭環狀流動（與 D-A 完全相反）：原本的兩個 σ 鍵斷裂、原本的 C=C 變單鍵、原本的單鍵變 C=C。<b>驅動力：</b>形成芳香性苯環，能量大幅降低。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.70 -->
+<!-- ============================================================ -->
+<div id="p1770" class="exam-box">
+  <div class="exam-title">17.70 — D-A + Retro D-A Cascade</div>
+  <div class="q">基於 17.69 的答案，提出下列轉化的機構。</div>
+  <div class="q-en">Based on your answer to Problem 17.69, propose a mechanism for the following transformation (forms aromatic ring + CO₂).</div>
+
+  <div class="svg-wrap">
+  <svg viewBox="0 0 540 170" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+    <defs><marker id="arr70" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#B09EE0"/></marker></defs>
+
+    <!-- α-pyrone (2H-pyran-2-one): 環中含 O，相鄰 C 帶 =O 羰基 -->
+    <!-- 六員環頂點 v1=top(O), v2=upper-right(C2), v3=lower-right(C3), v4=bottom(C4), v5=lower-left(C5), v6=upper-left(C6) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <!-- O(v1)-C2(v2) single：避開 O 文字 -->
+      <line x1="47" y1="45" x2="61" y2="53"/>
+      <!-- C2(v2)-C3(v3) single：右側垂直 -->
+      <line x1="61" y1="53" x2="61" y2="77"/>
+      <!-- C3(v3)=C4(v4) double：右下斜邊 -->
+      <line x1="61" y1="77" x2="40" y2="89"/>
+      <line x1="59" y1="73" x2="38" y2="85"/>
+      <!-- C4(v4)-C5(v5) single：左下斜邊 -->
+      <line x1="40" y1="89" x2="19" y2="77"/>
+      <!-- C5(v5)=C6(v6) double：左側垂直 -->
+      <line x1="19" y1="77" x2="19" y2="53"/>
+      <line x1="22" y1="76" x2="22" y2="54"/>
+      <!-- C6(v6)-O(v1) single：避開 O 文字 -->
+      <line x1="19" y1="53" x2="33" y2="45"/>
+    </g>
+    <!-- C=O at v2 (going up-right) -->
+    <g stroke="#D9A0B8" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="63" y1="51" x2="76" y2="44"/>
+      <line x1="65" y1="55" x2="78" y2="48"/>
+    </g>
+    <!-- Ring O 標籤（取代 v1 位置） -->
+    <text x="40" y="46" text-anchor="middle" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <!-- 羰基 O 標籤 -->
+    <text x="82" y="44" fill="#D9A0B8" font-size="13" font-family="serif">O</text>
+    <text x="55" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">α-pyrone</text>
+    <text x="55" y="138" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10.5" font-family="Noto Serif TC,serif">α-吡喃酮（含內酯橋的 diene）</text>
+
+    <text x="115" y="78" fill="#D8D6E8" font-size="14">+</text>
+
+    <!-- alkyne (with EWG) -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <line x1="140" y1="70" x2="180" y2="70"/>
+      <line x1="140" y1="74" x2="180" y2="74"/>
+      <line x1="140" y1="78" x2="180" y2="78"/>
+    </g>
+    <text x="135" y="76" text-anchor="end" fill="#D8D6E8" font-size="10">EWG</text>
+    <text x="183" y="76" fill="#D8D6E8" font-size="10">EWG</text>
+    <text x="160" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">alkyne dienophile</text>
+
+    <line x1="220" y1="75" x2="265" y2="75" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arr70)"/>
+    <text x="242" y="68" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">Δ</text>
+
+    <!-- D-A adduct (簡化示意): 新六環 + -O-C(=O)- 橋 -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <polygon points="320,60 341,72 341,96 320,108 299,96 299,72" fill="none"/>
+      <!-- 兩個 C=C（內側並行，新環的 1,3-diene 部分） -->
+      <line x1="319" y1="63" x2="340" y2="75"/>
+      <line x1="301" y1="75" x2="322" y2="63"/>
+    </g>
+    <!-- 橋接弧線：從 v6 跨越頂部到 v2，代表 -O-C(=O)- 橋 -->
+    <path d="M 299 72 Q 320 32 341 72" stroke="rgba(217,160,184,0.85)" stroke-width="1.5" fill="none"/>
+    <text x="320" y="40" text-anchor="middle" fill="rgba(217,160,184,1)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">−O−C(=O)−</text>
+    <text x="320" y="125" text-anchor="middle" fill="#90C8D0" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">D-A adduct（橋接受熱裂解 → CO₂）</text>
+
+    <line x1="378" y1="75" x2="420" y2="75" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arr70)"/>
+    <text x="398" y="68" text-anchor="middle" fill="rgba(196,168,130,0.85)" font-size="10.5" font-family="Cormorant Garamond,serif" font-style="italic">retro</text>
+    <text x="398" y="92" text-anchor="middle" fill="rgba(220,218,236,0.6)" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">−CO₂</text>
+
+    <!-- aromatic product -->
+    <g stroke="#7BABB2" stroke-width="1.5" fill="none" stroke-linecap="round" transform="translate(440,45)">
+      <line x1="0" y1="30" x2="20" y2="10"/>
+      <line x1="20" y1="10" x2="46" y2="10"/>
+      <line x1="46" y1="10" x2="66" y2="30"/>
+      <line x1="66" y1="30" x2="46" y2="50"/>
+      <line x1="46" y1="50" x2="20" y2="50"/>
+      <line x1="20" y1="50" x2="0" y2="30"/>
+      <circle cx="33" cy="30" r="14" stroke="rgba(144,200,208,0.5)" fill="none"/>
+    </g>
+    <text x="475" y="125" text-anchor="middle" fill="#90C8D0" font-size="10" font-family="Cormorant Garamond,serif" font-style="italic">aromatic + CO₂↑</text>
+  </svg>
+  </div>
+  <div class="key"><b>兩步驟級聯：</b>① α-吡喃酮做為二烯，與炔做 D-A → 形成含 –O–C(=O)– 橋的雙環中間體；② 加熱下橋斷裂行 retro D-A，釋放 <b>CO₂</b> 並生成 <b>芳香環</b>（驅動力 = 芳香化）。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.72 -->
+<!-- ============================================================ -->
+<div id="p1772" class="exam-box">
+  <div class="exam-title">17.72 — Chelidonine 全合成（電環化開環 + D-A）</div>
+  <div class="q">化合物 1（含 4 員 N 環）120°C 加熱 → 經電環化開環 + 分子內 D-A → 化合物 3。畫出機構。</div>
+  <div class="q-en">Compound 1 contains a strained 4-membered ring. On heating to 120°C, a thermal electrocyclic ring-opening forms a diene (compound 2), then an intramolecular Diels-Alder closes the hexacyclic product 3.</div>
+
+  <div class="reaction-box">
+    <h4>機構分析</h4>
+    <ol style="margin-left:1.2rem;color:var(--text-mid)">
+      <li><b>電環化開環（4π，熱）：</b>4 員 N 環中的 σ 鍵斷裂，採 <b>conrotatory</b> 方式（π 電子數 = 4n = 4） → 解除環張力 → 生成新二烯（化合物 2）</li>
+      <li><b>分子內 Diels-Alder：</b>新生成的二烯與分子內側鏈上的炔（dienophile）做 [4+2] → 形成新六員環 + 重新建立芳香性 → 化合物 3</li>
+    </ol>
+    <p style="color:rgba(176,158,224,0.85);margin-top:0.5rem"><b>關鍵驅動力：</b>① 解除四員環張力（~26 kcal/mol）；② D-A 形成穩定六員環；③ 重建芳香性。</p>
+  </div>
+  <div class="key">這題是「<b>用熱張力釋放驅動級聯反應</b>」的經典案例：4 員環就像彈簧，加熱一鬆開，整條鏈就能重新摺疊成最終的多環架構。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.73 -->
+<!-- ============================================================ -->
+<div id="p1773" class="exam-box">
+  <div class="exam-title">17.73 — Atropurpuran 全合成（6π 電環化 + 分子內 D-A）</div>
+  <div class="q">非環狀四烯 → 135°C → 三環化合物。畫出機構（6π 電環化關環 + 分子內 D-A）。</div>
+  <div class="q-en">An acyclic tetraene undergoes thermal 6π electrocyclic ring closure followed by intramolecular [4+2] cycloaddition to give the tricyclic product.</div>
+
+  <div class="reaction-box">
+    <h4>機構分析</h4>
+    <ol style="margin-left:1.2rem;color:var(--text-mid)">
+      <li><b>6π 電環化關環（熱、disrotatory）：</b>四烯中三個共軛 C=C 中的 6 個 π 電子環狀流動 → 兩末端 sp² 碳以 disrotatory 方式形成新 σ 鍵 → 環己二烯中間體</li>
+      <li><b>分子內 D-A：</b>新生成的環己二烯（s-cis 鎖死的二烯）+ 分子另一端側鏈上的烯（intramolecular dienophile） → [4+2] → 形成第二個新環 → 三環產物</li>
+    </ol>
+  </div>
+  <div class="key">這是周環反應「<b>串聯/級聯</b>」應用於天然物全合成的經典範例。學會看出隱藏的二烯（電環化關環後才出現）是這類題目的關鍵。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.75 -->
+<!-- ============================================================ -->
+<div id="p1775" class="exam-box">
+  <div class="exam-title">17.75 — Photochromism 光致變色</div>
+  <div class="q">化合物 1（雙噻吩二烯酐）UV 光照 → 化合物 2（環關閉），可見光照可逆變回。判斷 2 是否手性。</div>
+  <div class="q-en">Compound 1 undergoes photochemical 6π electrocyclic ring closure under UV → compound 2. Visible light reverses it. Determine if 2 is chiral.</div>
+
+  <div class="reaction-box">
+    <h4>分析</h4>
+    <ul>
+      <li>系統：6π 電子（hexatriene 部分嵌在兩個噻吩之間）</li>
+      <li>條件：<b>光化學（hν）</b>→ 6π 電子下選律 = <b>conrotatory</b></li>
+      <li>立體結果：兩個 Me 基採 conrotatory 旋轉 → 互為 <b>trans</b>（一個朝上、一個朝下）</li>
+      <li><b>對稱性：</b>產物 2 有 C₂ 旋轉軸（通過環中心）但<b>沒有鏡面</b> → <b>chiral</b></li>
+      <li>實際合成兩個 Me 可同時順時針或同時逆時針旋轉 → <b>消旋（外消旋對）</b></li>
+    </ul>
+  </div>
+  <div class="key">「Photochromism / 光致變色」材料應用：訊息可寫入（UV 鎖定 trans-Me 構型）、可讀取（有色 vs 無色態吸光不同）、可擦除（可見光逆向開環） → 光記憶儲存材料的原型。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.79 -->
+<!-- ============================================================ -->
+<div id="p1779" class="exam-box">
+  <div class="exam-title">17.79 — Click Chemistry [3+2] Cycloaddition</div>
+  <div class="q">炔 A（環張力 8 員環內含 C≡C）+ 苯甲基疊氮（C₆H₅CH₂N₃）→ [3+2] 環加成形成 1,2,3-triazole（B）。寫出 (a) 機構，(b) 同分異構物 C 的結構，(c) 各種炔 D-F 為什麼反應變慢。</div>
+  <div class="q-en">Strained alkyne A + benzyl azide → [3+2] cycloaddition gives 1,2,3-triazoles B (and constitutional isomer C). Explain rate effects of D, E, F.</div>
+
+  <div class="reaction-box">
+    <h4>(a) 機構：協同 [3+2] 環加成</h4>
+    <ul>
+      <li>疊氮（azide）的 1,3-偶極（–N=N⁺=N⁻ ↔ ⁻N–N⁺≡N）跨越炔的 C≡C → 一步驟形成兩個新 σ 鍵</li>
+      <li>產物為 <b>1,4-disubstituted 1,2,3-triazole</b>（B）或 <b>1,5-disubstituted</b>（C）</li>
+    </ul>
+
+    <h4>(b) 同分異構物 C</h4>
+    <ul>
+      <li>azide 跨越 C≡C 的方向相反 → 兩個取代基連到 triazole 的不同位置（4 vs 5）</li>
+      <li>B 與 C 為 <b>位置異構物（regioisomers）</b>，比例約 1:1（無催化劑）</li>
+    </ul>
+
+    <h4>(c) 速率比較</h4>
+    <ul>
+      <li><b>D（無張力直鏈炔）：unreactive</b> — 沒有環張力推動</li>
+      <li><b>E（8 員環炔）：375× 慢</b> — 環內其他原子是 sp³，不像 A 中的 sp² 那樣強迫炔扭曲</li>
+      <li><b>F（鄰位甲基取代）：1000× 慢</b> — 苯環上 ortho-Me 的<b>立體位阻</b>阻止 azide 接近 C≡C</li>
+    </ul>
+  </div>
+  <div class="key">「<b>Strain-promoted azide-alkyne cycloaddition (SPAAC)</b>」= 不需銅催化的點擊化學版本。利用環張力（炔 ~180° 強迫變成 ~120°）降低活化能 → 在生物正交化學中廣泛使用。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 17.80 -->
+<!-- ============================================================ -->
+<div id="p1780" class="exam-box">
+  <div class="exam-title">17.80 — Endiandric Acids 串聯周環反應</div>
+  <div class="q">內二酸類天然物從非手性的化合物 1 經一系列周環反應形成（消旋）。畫出 (a) 化合物 2 結構並解釋為何消旋；(b) endiandric acid G 的形成機構；(c) endiandric acid C 的結構與形成。</div>
+  <div class="q-en">Endiandric acids form via a cascade of pericyclic reactions from achiral 1: 8π electrocyclic → 6π electrocyclic → intramolecular Diels-Alder.</div>
+
+  <div class="reaction-box">
+    <h4>(a) 1 → 2：8π 熱電環化關環</h4>
+    <ul>
+      <li>8 個 π 電子 = 4n（n=2） → 熱條件選律 = <b>conrotatory</b></li>
+      <li>兩端可同時順時針旋轉，<b>或</b>同時逆時針旋轉（兩種方式機率相同）</li>
+      <li>因起始物 1 為非手性，兩個方向給出 <b>對映異構對</b> → <b>消旋產物</b></li>
+      <li>產物 2 含 <b>8 員環</b>（cyclooctatriene 衍生物）</li>
+    </ul>
+
+    <h4>(b) 2 → endiandric acid G：6π 熱電環化關環</h4>
+    <ul>
+      <li>2 中的 8 員環內含 6π 系統（三個共軛 C=C） → 熱條件選律 = <b>disrotatory</b></li>
+      <li>進一步關環形成新六員環 → 雙環產物 G</li>
+    </ul>
+
+    <h4>(c) G → endiandric acid C：分子內 Diels-Alder</h4>
+    <ul>
+      <li>G 含<b>兩組</b>二烯，但只有一組與遠端的 dienophile（鏈上保留的 C=C）<b>距離夠近</b></li>
+      <li>分子內 [4+2] 環加成 → 三環產物 C（最終天然物骨架）</li>
+    </ul>
+  </div>
+  <div class="key"><b>Black 與 Nicolaou 提出的「生合成假說」：</b>endiandric acids 的整個多環骨架可從單一非手性線性多烯，<b>純粹靠加熱</b>（無酶催化）的串聯周環反應形成。實驗上加熱對應的線性多烯確實得到天然物，是 biomimetic synthesis 的代表作。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 結語 -->
+<!-- ============================================================ -->
+<div class="callout" style="margin-top:3rem">
+  <div><b>整章串聯記憶：</b><br>
+  ① 共軛 → 穩定化（17.1–17.3）<br>
+  ② 共軛 → 1,2 vs 1,4（17.4–17.5，由 allyl cation 推）<br>
+  ③ 共軛 + s-cis → Diels-Alder（17.6）<br>
+  ④ 共軛 → 電環化（17.7，Woodward-Hoffmann）<br>
+  ⑤ 共軛 + σ 鍵 → 遷移重排（17.8）</div>
+</div>
+
+</main>
+</div>
+
+<script>
+// TOC active link highlighting
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.toc-list a');
+  const sections = Array.from(links).map(a => {
+    const id = a.getAttribute('href').slice(1);
+    return { link: a, target: document.getElementById(id) };
+  }).filter(s => s.target);
+
+  const onScroll = () => {
+    const scrollY = window.scrollY + 120;
+    let active = sections[0];
+    for (const s of sections) {
+      if (s.target.offsetTop <= scrollY) active = s;
+    }
+    links.forEach(l => l.classList.remove('active'));
+    if (active) active.link.classList.add('active');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+});
+</script>
+</body>
+</html>

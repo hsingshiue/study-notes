@@ -1,82 +1,200 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>課程筆記總覽</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    :root {
-      --bg: #eef5fc; --s1: #ffffff; --border: #b8d4ea;
-      --blue: #7eacd3; --sky: #5a8fb5; --text: #1a2a3a; --muted: #64748b;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
-    header {
-      background: linear-gradient(160deg, #5a8fb5 0%, #7eacd3 100%);
-      color: white; text-align: center; padding: 3rem 2rem 2.5rem;
-    }
-    header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
-    header p  { opacity: .8; font-size: .9rem; }
-    main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>課程筆記總覽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Noto+Serif+TC:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* semester block */
-    .semester {
-      margin-bottom: 2.5rem;
-      background: var(--s1);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(37,99,235,.07);
-    }
-    .semester-header {
-      display: flex; align-items: center; gap: .75rem;
-      padding: 1rem 1.4rem;
-      background: linear-gradient(90deg, #eff6ff 0%, #f0f9ff 100%);
-      border-bottom: 1px solid var(--border);
-    }
-    .semester-tag {
-      background: var(--sky); color: white;
-      font-size: .78rem; font-weight: 700; letter-spacing: .05em;
-      padding: .2rem .65rem; border-radius: 20px;
-    }
-    .semester-name { font-size: 1rem; font-weight: 700; color: var(--text); }
-    .semester-body { padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 1.25rem; }
+:root {
+  --bg:        #1C1F30;
+  --blue:      #90C8D0;
+  --rose:      #D9A0B8;
+  --silver:    #A8C4D4;
+  --gold:      #C4A882;
+  --text:      #EAE8F2;
+  --text-mid:  rgba(220,218,236,0.72);
+  --text-dim:  rgba(220,218,236,0.42);
+  --glass:     rgba(255,255,255,0.065);
+  --glass-hi:  rgba(255,255,255,0.10);
+  --border:    rgba(255,255,255,0.085);
+  --border-lo: rgba(255,255,255,0.05);
+}
 
-    /* subject group inside semester */
-    .subject-label {
-      font-size: .78rem; font-weight: 600; color: var(--sky);
-      letter-spacing: .06em; text-transform: uppercase;
-      margin-bottom: .6rem;
-      display: flex; align-items: center; gap: .5rem;
-    }
-    .subject-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
+html, body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 17px;
+  line-height: 1.75;
+}
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .7rem; }
-    a.card {
-      display: block; background: #f8fbff; border: 1px solid var(--border);
-      border-radius: 10px; padding: .85rem 1.1rem; text-decoration: none;
-      color: var(--text); transition: all .18s; box-shadow: 0 1px 3px rgba(37,99,235,.04);
-    }
-    a.card:hover { border-color: var(--blue); background: #fff; box-shadow: 0 3px 12px rgba(126,172,211,.2); transform: translateY(-1px); }
-    a.card .title { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
-    a.card .sub   { font-size: .78rem; color: var(--muted); }
-    footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--border); background: var(--s1); }
-  </style>
+/* ── Background ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 50%, rgba(100,185,200,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 55% at 85% 45%, rgba(155,130,210,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(90,110,170,0.1) 0%, transparent 50%),
+    linear-gradient(155deg, #181B2A 0%, #1E2238 50%, #1B1F32 100%);
+}
+
+/* ── Header ── */
+header {
+  position: relative; z-index: 1;
+  padding: 3.5rem 2rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-lo);
+}
+
+.header-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 0.78rem;
+  letter-spacing: 0.28em; color: var(--gold); opacity: 0.7;
+  margin-bottom: 0.7rem;
+}
+
+header h1 {
+  font-size: 2.4rem; font-weight: 300; letter-spacing: 0.15em;
+  color: var(--text);
+}
+
+.header-sub {
+  margin-top: 0.4rem;
+  font-size: 0.72rem; font-weight: 200;
+  letter-spacing: 0.22em; color: var(--text-dim);
+}
+
+.header-line {
+  margin: 1.4rem auto 0;
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Main ── */
+main {
+  position: relative; z-index: 1;
+  max-width: 880px; margin: 0 auto;
+  padding: 3rem 1.8rem 8rem;
+}
+
+/* ── Semester block ── */
+.semester {
+  margin-bottom: 2.5rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.semester::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+.semester-header {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-lo);
+  background: rgba(255,255,255,0.03);
+}
+
+.semester-tag {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+  padding: 0.2rem 0.8rem; border-radius: 20px;
+  background: rgba(144,200,208,0.14);
+  border: 1px solid rgba(144,200,208,0.28);
+  color: var(--blue);
+}
+
+.semester-body { padding: 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* ── Subject group ── */
+.subject-label {
+  font-size: 0.72rem; font-weight: 300;
+  letter-spacing: 0.3em; color: var(--blue); opacity: 0.8;
+  margin-bottom: 0.7rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+
+.subject-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(144,200,208,0.25), transparent);
+}
+
+/* ── Card grid ── */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.65rem; }
+
+a.card {
+  display: block; text-decoration: none;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-lo);
+  border-radius: 12px; padding: 0.9rem 1.1rem;
+  color: var(--text);
+  transition: background 0.22s, border-color 0.22s, transform 0.22s;
+  position: relative; overflow: hidden;
+}
+
+a.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  opacity: 0; transition: opacity 0.22s;
+}
+
+a.card:hover {
+  background: rgba(144,200,208,0.08);
+  border-color: rgba(144,200,208,0.25);
+  transform: translateY(-2px);
+}
+
+a.card:hover::before { opacity: 1; }
+
+.card .title { font-weight: 400; font-size: 0.95rem; margin-bottom: 0.25rem; color: var(--text); }
+.card .sub   { font-size: 0.8rem; color: var(--text-dim); font-weight: 200; }
+
+/* ── Footer ── */
+footer {
+  position: relative; z-index: 1;
+  text-align: center; padding: 2rem;
+  font-size: 0.68rem; font-weight: 200;
+  letter-spacing: 0.16em; color: var(--text-dim);
+  border-top: 1px solid var(--border-lo);
+}
+
+/* ── Corner glow dots ── */
+.corner-deco {
+  position: fixed;
+  bottom: 0; right: 0;
+  width: 220px; height: 220px;
+  pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(circle 60px at 75% 75%, rgba(144,200,208,0.12) 0%, transparent 70%),
+    radial-gradient(circle 30px at 88% 60%, rgba(217,160,184,0.1) 0%, transparent 70%),
+    radial-gradient(circle 80px at 85% 90%, rgba(168,196,212,0.07) 0%, transparent 70%);
+}
+</style>
 </head>
 <body>
-<header>
-  <h1>課程筆記總覽</h1>
-  <p style="display:none;"></p>
-</header>
-<main>
 
+<header>
+  <div class="header-eyebrow">Study Notes</div>
+  <h1>課程筆記</h1>
+  <div class="header-sub">大學在學中・持續更新</div>
+  <div class="header-line"></div>
+</header>
+
+<main>
   <div class="semester">
     <div class="semester-header">
       <span class="semester-tag">大二下</span>
-      <span class="semester-name">二年級第二學期</span>
     </div>
     <div class="semester-body">
 
@@ -123,11 +241,37 @@
       </div>
 
       <div>
+        <div class="subject-label">有機化學 — 二段考</div>
+        <div class="grid">
+          <a class="card" href="ch17-conjugated-pericyclic.html">
+            <div class="title">Ch 17 共軛 / 周環</div>
+            <div class="sub">Conjugated dienes & pericyclic</div>
+          </a>
+          <a class="card" href="ch18-aromatic.html">
+            <div class="title">Ch 18 芳香性</div>
+            <div class="sub">Aromatic compounds</div>
+          </a>
+          <a class="card" href="ch19-EAS.html">
+            <div class="title">Ch 19 EAS</div>
+            <div class="sub">Electrophilic aromatic substitution</div>
+          </a>
+          <a class="card" href="考古題整理-Ch17-19.html">
+            <div class="title">考古題整理</div>
+            <div class="sub">Ch 17 · 18 · 19（4 份考古題）</div>
+          </a>
+          <a class="card" href="抱佛腳-Ch17-19.html" style="background:rgba(229,181,116,0.07);border-color:rgba(229,181,116,0.25);">
+            <div class="title">⚡ 抱佛腳速成</div>
+            <div class="sub">明天考試？30 分鐘讀完拚 60-70 分</div>
+          </a>
+        </div>
+      </div>
+
+      <div>
         <div class="subject-label">儀器分析</div>
         <div class="grid">
           <a class="card" href="儀分重點整理.html">
             <div class="title">儀分重點整理</div>
-            <div class="sub">Ch 1/5 · Ch 6 · Ch 7 · Ch 8 · 含圖解</div>
+            <div class="sub">考前重點統整</div>
           </a>
         </div>
       </div>
@@ -136,16 +280,19 @@
         <div class="subject-label">通識 / 其他</div>
         <div class="grid">
           <a class="card" href="個人理財期中重點整理.html">
-            <div class="title">個人理財期中重點</div>
-            <div class="sub">期中考重點整理</div>
+            <div class="title">個人理財</div>
+            <div class="sub">期中重點整理</div>
           </a>
         </div>
       </div>
 
     </div>
   </div>
-
 </main>
+
 <footer>Generated with Claude Code</footer>
+
+<div class="corner-deco"></div>
+
 </body>
 </html>

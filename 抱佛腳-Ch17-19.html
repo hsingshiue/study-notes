@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抱佛腳 — 有機化學二段速成</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#1C1F30; --blue:#90C8D0; --rose:#D9A0B8;
+  --gold:#C4A882; --green:#6ECBA8; --purple:#B09EE0;
+  --amber:#E5B574;
+  --text:#EAE8F2; --text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);
+  --border:rgba(255,255,255,0.085); --border-lo:rgba(255,255,255,0.05);
+}
+html { scroll-behavior: smooth; }
+body { min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Noto Serif TC",serif; font-size:16px; line-height:1.85; }
+body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%, rgba(229,181,116,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%, rgba(176,158,224,0.07) 0%, transparent 60%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%); }
+
+#back-btn { position:fixed; top:18px; left:18px; z-index:999;
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.07); backdrop-filter:blur(14px);
+  border:1px solid var(--border); border-radius:20px;
+  padding:7px 16px 7px 11px; font-size:14px; font-weight:300;
+  letter-spacing:0.05em; color:rgba(229,181,116,0.7); text-decoration:none; }
+#back-btn:hover { background:rgba(229,181,116,0.12); color:var(--amber); }
+
+main { position:relative; z-index:1; max-width:880px; margin:0 auto; padding:4rem 1.6rem 5rem; }
+
+.hero { text-align:center; padding:3rem 1rem 2rem;
+  border-bottom:1px solid var(--border-lo); margin-bottom:2.5rem; }
+.hero .eyebrow { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.85rem; letter-spacing:0.3em; color:var(--amber); opacity:0.85;
+  margin-bottom:0.7rem; }
+.hero h1 { font-size:2.4rem; font-weight:300; letter-spacing:0.08em;
+  margin-bottom:0.6rem; }
+.hero .sub { font-size:0.95rem; color:var(--text-mid); font-weight:300; line-height:1.7; }
+.hero .line { width:80px; height:1px; margin:1.5rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--amber),transparent); }
+
+.pep { background:linear-gradient(135deg, rgba(229,181,116,0.1), rgba(217,160,184,0.08));
+  border:1px solid rgba(229,181,116,0.25); border-radius:14px;
+  padding:1.4rem 1.6rem; margin:1.5rem 0;
+  font-size:0.95rem; line-height:1.85; color:var(--text-mid); }
+.pep b { color:var(--amber); font-weight:500; }
+
+.score-card { background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:14px; padding:1.4rem 1.6rem; margin:2rem 0; }
+.score-card h3 { font-size:1rem; color:var(--blue); font-weight:400;
+  letter-spacing:0.06em; margin-bottom:0.9rem; }
+.score-card .row { display:flex; align-items:center; gap:0.8rem;
+  margin:0.5rem 0; font-size:0.92rem; }
+.score-card .stage { font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--amber); flex-shrink:0; width:65px; font-size:0.95rem; }
+.score-card .name { color:var(--text); flex:1; }
+.score-card .pts { color:var(--green); font-weight:500; flex-shrink:0; width:60px; text-align:right; }
+.score-card .total { margin-top:1rem; padding-top:0.9rem;
+  border-top:1px solid var(--border-lo); display:flex; justify-content:space-between;
+  font-size:0.9rem; color:var(--gold); }
+
+/* 速成步驟 cram step */
+.step { margin:3rem 0; padding-bottom:0.5rem; }
+.step-header { display:flex; align-items:baseline; gap:0.7rem; margin-bottom:0.5rem;
+  padding-bottom:0.7rem; border-bottom:1.5px solid var(--border); }
+.step-num { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:1.6rem; color:rgba(229,181,116,0.65); letter-spacing:0.02em; flex-shrink:0; }
+.step-title { font-size:1.15rem; font-weight:400; color:var(--text);
+  letter-spacing:0.04em; flex:1; }
+.step-pts { background:rgba(110,203,168,0.15); border:1px solid rgba(110,203,168,0.3);
+  color:var(--green); font-size:0.78rem; padding:2px 10px; border-radius:12px;
+  font-weight:500; flex-shrink:0; }
+.step-pts.high { background:rgba(229,181,116,0.18); border-color:rgba(229,181,116,0.35);
+  color:var(--amber); }
+.cp-stars { color:var(--amber); font-size:0.9rem; letter-spacing:0.1em;
+  margin-left:0.5rem; }
+
+/* 30 秒速記 */
+.flash { background:rgba(229,181,116,0.1); border-left:3px solid var(--amber);
+  border-radius:6px; padding:12px 18px; margin:1rem 0;
+  color:var(--text-mid); font-size:0.93rem; line-height:1.8; }
+.flash::before { content:"⚡ 30 秒速記"; display:block; color:var(--amber);
+  font-size:0.75rem; font-weight:500; letter-spacing:0.12em; margin-bottom:0.5rem; }
+.flash b { color:var(--text); font-weight:500; }
+.flash .key { background:rgba(229,181,116,0.2); padding:1px 8px; border-radius:4px;
+  color:var(--amber); font-weight:500; }
+
+/* 考試怎麼答 */
+.howto { background:rgba(110,203,168,0.08); border-left:3px solid var(--green);
+  border-radius:6px; padding:12px 18px; margin:1rem 0;
+  color:var(--text-mid); font-size:0.92rem; }
+.howto::before { content:"✎ 考試怎麼答"; display:block; color:var(--green);
+  font-size:0.75rem; font-weight:500; letter-spacing:0.12em; margin-bottom:0.5rem; }
+.howto b { color:var(--text); font-weight:500; }
+
+/* 範例題 */
+.example { background:rgba(176,158,224,0.07); border:1px solid rgba(176,158,224,0.22);
+  border-radius:10px; padding:14px 18px; margin:1rem 0; font-size:0.91rem;
+  color:var(--text-mid); }
+.example .q-tag { color:var(--purple); font-size:0.75rem; font-weight:500;
+  letter-spacing:0.1em; margin-bottom:0.4rem; display:block; }
+.example b { color:var(--text); font-weight:500; }
+.example .ans { background:rgba(229,181,116,0.18); color:var(--amber);
+  padding:1px 6px; border-radius:4px; font-weight:500; }
+
+/* 警告：跳過 / 別讀 */
+.skip { background:rgba(217,160,184,0.07); border-left:3px solid var(--rose);
+  border-radius:6px; padding:10px 16px; margin:0.8rem 0;
+  color:rgba(235,205,218,0.85); font-size:0.88rem; }
+.skip::before { content:"✗ 不用讀"; display:inline-block; color:var(--rose);
+  font-size:0.72rem; font-weight:500; letter-spacing:0.12em; margin-right:0.5rem; }
+
+table { width:100%; border-collapse:collapse; margin:0.9rem 0; font-size:0.88rem; }
+th { background:rgba(144,200,208,0.1); color:var(--blue); font-weight:500;
+  padding:8px 12px; text-align:left;
+  border-bottom:1px solid rgba(144,200,208,0.25); letter-spacing:0.04em; }
+td { border:1px solid var(--border-lo); padding:8px 12px;
+  background:rgba(255,255,255,0.02); color:var(--text-mid); vertical-align:top; }
+td b { color:var(--text); font-weight:500; }
+
+ul, ol { margin-left:1.4rem; }
+li { margin:0.35rem 0; color:var(--text-mid); font-size:0.93rem; line-height:1.75; }
+p { color:var(--text-mid); margin:0.55rem 0; font-size:0.93rem; }
+
+.struct-row { display:flex; flex-wrap:wrap; gap:0.7rem; margin:0.8rem 0;
+  justify-content:center; }
+.struct-fig { display:flex; flex-direction:column; align-items:center;
+  background:rgba(255,255,255,0.025); border:1px solid var(--border-lo);
+  border-radius:8px; padding:8px 10px; }
+.struct-fig figcaption { font-size:0.78rem; color:var(--text-dim);
+  text-align:center; margin-top:4px; line-height:1.3; }
+
+.hl { background:rgba(144,200,208,0.18); color:var(--blue);
+  padding:1px 7px; border-radius:4px; font-size:0.9em; font-weight:500; }
+.hl-amber { background:rgba(229,181,116,0.2); color:var(--amber);
+  padding:1px 7px; border-radius:4px; font-weight:500; }
+.hl-rose { background:rgba(217,160,184,0.2); color:var(--rose);
+  padding:1px 7px; border-radius:4px; font-weight:500; }
+
+.stage-divider { margin:4rem 0 2rem; padding:1.4rem 1.6rem;
+  background:linear-gradient(135deg, rgba(176,158,224,0.1), rgba(144,200,208,0.05));
+  border-radius:14px; border:1px solid rgba(176,158,224,0.18); text-align:center; }
+.stage-divider .label { font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--purple); font-size:0.95rem; letter-spacing:0.2em; opacity:0.85; }
+.stage-divider h2 { font-size:1.4rem; font-weight:300; letter-spacing:0.1em;
+  color:var(--text); margin:0.4rem 0; }
+.stage-divider .stage-sub { font-size:0.85rem; color:var(--text-mid); }
+
+.cheat { background:linear-gradient(155deg, rgba(229,181,116,0.1), rgba(217,160,184,0.08));
+  border:1.5px solid rgba(229,181,116,0.3); border-radius:14px;
+  padding:2rem 2rem; margin:3rem 0 2rem; }
+.cheat h2 { color:var(--amber); font-size:1.3rem; font-weight:400;
+  letter-spacing:0.06em; margin-bottom:1.2rem; text-align:center; }
+.cheat h3 { color:var(--gold); font-size:0.92rem; font-weight:500;
+  margin:1.2rem 0 0.5rem; letter-spacing:0.05em;
+  border-bottom:1px solid rgba(229,181,116,0.2); padding-bottom:0.3rem; }
+.cheat ul li { margin:0.3rem 0; font-size:0.9rem; }
+
+.checkbox { display:inline-block; width:16px; height:16px;
+  border:1.5px solid var(--text-dim); border-radius:3px;
+  margin-right:6px; vertical-align:middle; }
+
+/* 看原題折疊框 */
+details.exam-img { background:rgba(176,158,224,0.06);
+  border:1px solid rgba(176,158,224,0.22); border-radius:10px;
+  padding:0.5rem 1rem; margin:1rem 0; }
+details.exam-img summary { color:var(--purple); font-size:0.88rem;
+  font-weight:500; cursor:pointer; outline:none; padding:0.3rem 0;
+  letter-spacing:0.04em; user-select:none; list-style:none; }
+details.exam-img summary::before { content:"▸ "; display:inline-block;
+  transition:transform 0.2s; color:var(--purple); }
+details.exam-img[open] summary::before { transform:rotate(90deg); }
+details.exam-img summary:hover { color:var(--blue); }
+details.exam-img img { max-width:100%; height:auto; border-radius:6px;
+  margin-top:0.7rem; background:#fff; }
+details.exam-img .img-cap { font-size:0.78rem; color:var(--text-dim);
+  margin-top:0.4rem; font-style:italic; }
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<main>
+
+<div class="hero">
+  <div class="eyebrow">CRAM SESSION · 30 MIN</div>
+  <h1>抱佛腳速成</h1>
+  <div class="sub">有機化學二段考 ｜ Ch 17 共軛/周環 · Ch 18 芳香性 · Ch 19 EAS<br>
+    給「明天考試但什麼都還沒讀」的你 ૮ ˶ˆ ﻌ ˆ˶ ა</div>
+  <div class="line"></div>
+</div>
+
+<div class="pep">
+  <b>不用慌，照這頁順序讀就好。</b><br>
+  我把考古題分析過了 — 二段考有<b>固定題型骨架</b>，110 / 111 兩年題目幾乎一樣，背對的題目就能拿不少分。<br>
+  策略：<b>先學 CP 值最高的（純背就拿分），最後才學要動腦的</b>。
+</div>
+
+<div class="score-card">
+  <h3>學習路徑與分數預估</h3>
+  <div class="row"><span class="stage">階段 1</span><span class="name">純背就拿（10 分鐘）</span><span class="pts">~30 分</span></div>
+  <div class="row"><span class="stage">階段 2</span><span class="name">觀念題（15 分鐘）</span><span class="pts">~15 分</span></div>
+  <div class="row"><span class="stage">階段 3</span><span class="name">衝刺題（15 分鐘）</span><span class="pts">~20 分</span></div>
+  <div class="total"><span>總計（40 分鐘）</span><span>≈ 60-70 分</span></div>
+</div>
+
+<div class="pep" style="background:rgba(110,203,168,0.07); border-color:rgba(110,203,168,0.2);">
+  <b style="color:var(--green)">★ 真．保底策略：</b>只讀階段 1，10 分鐘 → ~30 分。<br>
+  ★ 再加階段 2 的「芳香性判別」+「pKa」 → 拚 50 分及格邊緣。<br>
+  ★ 全部讀完 → 60-70 分輕鬆。
+</div>
+
+<div class="pep" style="background:rgba(176,158,224,0.08); border-color:rgba(176,158,224,0.25);">
+  <b style="color:var(--purple)">⚠ 重要發現：考古題很多直接出自 Klein 課本習題！</b><br>
+  <b>每個 step 後面標的 「📖 課本：XX.XX」</b> 就是對應的課本題編號。如果還有時間（或考試前一晚才看到這頁），<b>優先做這幾題</b>，命中率超高。<br>
+  完整課本題詳解 → <a href="ch17-conjugated-pericyclic.html#exercises" style="color:var(--blue);">Ch17 習題</a> ｜ <a href="ch18-aromatic.html#exercises" style="color:var(--blue);">Ch18 習題</a> ｜ <a href="ch19-EAS.html#exercises" style="color:var(--blue);">Ch19 習題</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 1</div>
+  <h2>階段 1 ｜ 純背就拿分</h2>
+  <div class="stage-sub">不用懂原理，照背就好 ⸜( ˶'ᵕ'˶)⸝</div>
+</div>
+
+<!-- Step 1.1: NMR 三題答案 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.1</span>
+    <span class="step-title">NMR 三題直接背答案</span>
+    <span class="step-pts high">15 分</span>
+    <span class="cp-stars">★★★</span>
+  </div>
+
+  <div class="flash">
+    <b>110、111 兩年第 8 題 NMR 推結構，三個分子式一字不差。</b><br>
+    答案直接背：<span class="key">2-pentanone</span> · <span class="key">propiophenone</span> · <span class="key">propylene oxide</span>
+  </div>
+
+  <p>題目永遠是「Propose structure for that alcohols have the following 1H NMR spectra」+ 給三個分子式。</p>
+
+  <details class="exam-img">
+    <summary>📷 點我看原題（110 學年度 Q8 完整 IR / MS / NMR 圖譜）</summary>
+    <img src="_verify/exam2022_p4.png" alt="110 學年度 Q8 NMR 推結構原題">
+    <div class="img-cap">110 學年度第二次期中考 Q8（5+5+5 = 15 分）｜111 學年度同樣三題、同樣數據</div>
+  </details>
+
+  <!-- (a) 2-pentanone -->
+  <div class="example" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.25);">
+    <span class="q-tag" style="color:var(--amber);">(a) C₅H₁₀O　·　HDI = 1</span>
+    <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin:0.5rem 0;">
+      <figure class="struct-fig" style="margin:0;">
+        <svg viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg" width="140" height="90">
+          <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+            <line x1="20" y1="65" x2="44" y2="51"/>
+            <line x1="44" y1="51" x2="68" y2="65"/>
+            <line x1="68" y1="65" x2="92" y2="51"/>
+            <line x1="92" y1="51" x2="116" y2="65"/>
+            <line x1="44" y1="51" x2="44" y2="35"/>
+            <line x1="49" y1="49" x2="49" y2="37"/>
+          </g>
+          <text x="46" y="29" text-anchor="middle" font-family="serif" font-size="14" fill="#D9A0B8">O</text>
+          <text x="20" y="80" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">a</text>
+          <text x="46" y="14" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">(C=O)</text>
+          <text x="68" y="80" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">c</text>
+          <text x="92" y="44" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">d</text>
+          <text x="116" y="80" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">e</text>
+          <text x="80" y="44" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">b(α)</text>
+        </svg>
+        <figcaption><span class="hl-amber">2-pentanone</span><br>CH₃-CO-CH₂-CH₂-CH₃</figcaption>
+      </figure>
+      <table style="flex:1; min-width:280px; font-size:0.85rem; margin:0;">
+        <tr><th>位置</th><th>δ (ppm)</th><th>H 數·裂分</th><th>對應</th></tr>
+        <tr><td><b>a</b></td><td>2.1</td><td>3H, s</td><td>CH₃-CO-（α-CH₃）</td></tr>
+        <tr><td><b>b</b></td><td>2.4</td><td>2H, t</td><td>-CO-CH₂-（α-CH₂）</td></tr>
+        <tr><td><b>c</b></td><td>1.6</td><td>2H, sextet</td><td>中間 -CH₂-</td></tr>
+        <tr><td><b>d</b></td><td>—</td><td>—</td><td>（與 c 同段）</td></tr>
+        <tr><td><b>e</b></td><td>0.9</td><td>3H, t</td><td>末端 -CH₃</td></tr>
+      </table>
+    </div>
+    <p><b>另外線索：</b>IR <span class="hl-amber">1720 cm⁻¹</span>（C=O 強峰）｜MS 基峰 <span class="hl-amber">m/z = 43</span>（CH₃C=O⁺）｜McLafferty m/z = 58 失 28</p>
+  </div>
+
+  <!-- (b) propiophenone -->
+  <div class="example" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.25);">
+    <span class="q-tag" style="color:var(--amber);">(b) C₉H₁₀O　·　HDI = 5（苯環 4 + C=O 1）</span>
+    <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin:0.5rem 0;">
+      <figure class="struct-fig" style="margin:0;">
+        <svg viewBox="0 0 150 110" xmlns="http://www.w3.org/2000/svg" width="150" height="110">
+          <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+            <polygon points="45,36 66,48 66,72 45,84 24,72 24,48"/>
+            <line x1="45" y1="45" x2="59" y2="53"/>
+            <line x1="59" y1="67" x2="45" y2="75"/>
+            <line x1="32" y1="68" x2="32" y2="52"/>
+            <line x1="66" y1="48" x2="87" y2="60"/>
+            <line x1="87" y1="60" x2="108" y2="48"/>
+            <line x1="108" y1="48" x2="129" y2="60"/>
+            <line x1="87" y1="60" x2="87" y2="38"/>
+            <line x1="82" y1="58" x2="82" y2="40"/>
+          </g>
+          <text x="85" y="33" text-anchor="middle" font-family="serif" font-size="14" fill="#D9A0B8">O</text>
+          <text x="66" y="44" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">a</text>
+          <text x="66" y="80" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">a</text>
+          <text x="20" y="80" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">b</text>
+          <text x="20" y="44" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">b</text>
+          <text x="45" y="92" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">c</text>
+          <text x="108" y="44" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">d</text>
+          <text x="129" y="68" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">e</text>
+        </svg>
+        <figcaption><span class="hl-amber">propiophenone</span><br>Ph-CO-CH₂-CH₃</figcaption>
+      </figure>
+      <table style="flex:1; min-width:280px; font-size:0.85rem; margin:0;">
+        <tr><th>位置</th><th>δ (ppm)</th><th>H 數·裂分</th><th>對應</th></tr>
+        <tr><td><b>a</b></td><td>7.97</td><td>2H, d</td><td>苯環 ortho H（被 C=O 去屏蔽）</td></tr>
+        <tr><td><b>b</b></td><td>7.39</td><td>2H, t</td><td>苯環 meta H</td></tr>
+        <tr><td><b>c</b></td><td>7.56</td><td>1H, t</td><td>苯環 para H</td></tr>
+        <tr><td><b>d</b></td><td>2.97</td><td>2H, q</td><td>-CO-CH₂-（α-CH₂）</td></tr>
+        <tr><td><b>e</b></td><td>1.20</td><td>3H, t</td><td>末端 -CH₃</td></tr>
+      </table>
+    </div>
+    <p><b>關鍵判斷：</b>三組芳香 H（2:1:2）= <span class="hl-amber">monosubstituted phenyl</span>（單取代苯）｜ortho H 在 ~8 ppm 表示苯接的是<span class="hl-amber">電子吸引基（C=O）</span>｜q (2H) + t (3H) = <span class="hl-amber">-CH₂CH₃</span> 組合</p>
+  </div>
+
+  <!-- (c) propylene oxide -->
+  <div class="example" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.25);">
+    <span class="q-tag" style="color:var(--amber);">(c) C₃H₆O　·　HDI = 1（一個環）</span>
+    <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin:0.5rem 0;">
+      <figure class="struct-fig" style="margin:0;">
+        <svg viewBox="0 0 110 100" xmlns="http://www.w3.org/2000/svg" width="110" height="100">
+          <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+            <line x1="54" y1="37" x2="62" y2="50"/>
+            <line x1="62" y1="50" x2="38" y2="50"/>
+            <line x1="38" y1="50" x2="46" y2="37"/>
+            <line x1="62" y1="50" x2="79" y2="60"/>
+          </g>
+          <circle cx="50" cy="30" r="6" fill="#1C1F30"/>
+          <text x="50" y="35" text-anchor="middle"
+                fill="#D9A0B8" font-size="14"
+                font-family="Arial,sans-serif" font-weight="700"
+                stroke="#1C1F30" stroke-width="4"
+                paint-order="stroke fill">O</text>
+          <text x="62" y="62" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">c</text>
+          <text x="38" y="62" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">a/b</text>
+          <text x="79" y="72" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(220,218,236,0.5)">d</text>
+        </svg>
+        <figcaption><span class="hl-amber">propylene oxide</span><br>(2-methyloxirane)</figcaption>
+      </figure>
+      <table style="flex:1; min-width:280px; font-size:0.85rem; margin:0;">
+        <tr><th>位置</th><th>δ (ppm)</th><th>H 數·裂分</th><th>對應</th></tr>
+        <tr><td><b>a</b></td><td>2.42</td><td>1H, dd</td><td>環 -CH₂- 之中一 H<br>（與 CH₃ 同側）</td></tr>
+        <tr><td><b>b</b></td><td>2.75</td><td>1H, dd</td><td>環 -CH₂- 另一 H<br>（與 CH₃ 反側，diastereotopic）</td></tr>
+        <tr><td><b>c</b></td><td>2.97</td><td>1H, m</td><td>環 -CH-（接 CH₃ 的那個）</td></tr>
+        <tr><td><b>d</b></td><td>1.32</td><td>3H, d</td><td>側鏈 -CH₃</td></tr>
+      </table>
+    </div>
+    <p><b>關鍵判斷：</b>三個 H 全部不等價（<span class="hl-amber">diastereotopic</span>，因 epoxide C2 是手性中心）｜全部訊號在 <b>1-3 ppm</b> 範圍，沒有 sp² 區域 → 不是烯/苯/醛｜CH₃ 是 doublet（被一個 CH 偶合）→ 接 sp³ CH</p>
+  </div>
+
+  <div class="howto">
+    <b>HDI 公式（不確定度指標）</b>：HDI = (2C + 2 + N − H − X) / 2<br>
+    HDI=1 → 1 個雙鍵或環；HDI=4 → 苯環；HDI=5 → 苯環 + C=O。<br>
+    <b>考試畫結構後一定要做：</b>把每個 NMR 訊號用 a/b/c... 標到結構上，對應「每個 peak = 哪個 H」的關係（拿全分關鍵）。
+  </div>
+
+  <div class="flash" style="background:rgba(110,203,168,0.08); border-color:var(--green);">
+    <b style="color:var(--green)">★ 三題訊號特徵速記</b><br>
+    （a）2-pentanone：<b>2.1 (3H, s)</b> 是 CH₃ 接 C=O 的 singlet — 看到這個就是 methyl ketone<br>
+    （b）propiophenone：<b>7.97 / 7.56 / 7.39（2:1:2）</b> = 單取代苯接 EWG 的標準格式<br>
+    （c）propylene oxide：<b>三個 H 都在 2-3 ppm</b>（diastereotopic CH₂ + CH）+ <b>1.32 d (3H)</b> = epoxide 唯一可能
+  </div>
+</div>
+
+<!-- Step 1.2: UV vs Heat -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.2</span>
+    <span class="step-title">UV vs Heat 立體規則表</span>
+    <span class="step-pts high">4 分</span>
+    <span class="cp-stars">★★★</span>
+  </div>
+
+  <div class="flash">
+    背一張表：<span class="key">heat 跟 πe⁻ 同奇偶</span>（4n→con、4n+2→dis），<span class="key">光則相反</span>。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q12：thiophene maleic anhydride UV/Vis）</summary>
+    <img src="_verify/exam2022_p6.png" alt="110 學年度 Q12 UV/Vis pericyclic 原題">
+    <div class="img-cap">110 Q12（4 分）— UV/Vis 條件下的電環反應、預測 C(major) 立體化學。原始 6πe⁻ + UV → conrotatory → trans 取代基。同頁含 Q11 I-Cl 親電加成機制。</div>
+  </details>
+
+  <table>
+    <tr><th>π 電子數</th><th>Heat（熱）</th><th>hν（光，UV）</th></tr>
+    <tr><td><b>4n</b>（4, 8, 12...）</td><td><span class="hl-rose">conrotatory</span></td><td><span class="hl">disrotatory</span></td></tr>
+    <tr><td><b>4n+2</b>（6, 10, 14...）</td><td><span class="hl">disrotatory</span></td><td><span class="hl-rose">conrotatory</span></td></tr>
+  </table>
+
+  <div class="howto">
+    <b>記憶口訣：</b>「<b>熱大光小</b>」— heat con/dis 與 πe⁻ 同奇偶；光則反過來。<br>
+    <b>conrotatory（同向旋轉）</b>= 兩端取代基<b>反式（trans）</b><br>
+    <b>disrotatory（反向旋轉）</b>= 兩端取代基<b>順式（cis）</b>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">110 Q12 / 111 Q12 — 兩年同題</span>
+    給 thiophene 衍生物 + UV/Vis 條件問主產物立體化學。
+    <ul>
+      <li>原始結構是 <b>6πe⁻</b> triene</li>
+      <li>UV + 6πe⁻（4n+2） → <span class="ans">conrotatory</span></li>
+      <li>結果取代基朝 <span class="ans">trans（反式）</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 1.3: 名詞解釋 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.3</span>
+    <span class="step-title">名詞解釋 5 個</span>
+    <span class="step-pts high">10-12 分</span>
+    <span class="cp-stars">★★★</span>
+  </div>
+
+  <div class="flash">
+    每年第 1 題必考 5 個名詞，<b>short answer + showing example</b>。背下面表 + 至少一個範例反應。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q1：5 個名詞）</summary>
+    <img src="_verify/exam2022_p1.png" alt="110 學年度 Q1 名詞解釋原題">
+    <div class="img-cap">110 學年度第二次期中考 Q1（10 分）— Claisen / NAS / Birch / Clemmensen / Diels-Alder。同頁也含 Q2 pKa 比較。</div>
+  </details>
+
+  <table>
+    <tr><th>名詞</th><th>怎麼答（簡答）</th><th>範例反應</th></tr>
+    <tr>
+      <td><b>Claisen rearrangement</b><br><span style="color:var(--text-dim);font-style:italic;">克萊森重排</span></td>
+      <td>Allyl vinyl ether 加熱 → γ,δ-unsaturated carbonyl。<b>[3,3]-sigmatropic</b>，六員環椅式 TS。</td>
+      <td>allyl phenyl ether → o-allyl phenol（芳香 Claisen）</td>
+    </tr>
+    <tr>
+      <td><b>Diels-Alder cycloaddition</b><br><span style="color:var(--text-dim);font-style:italic;">狄爾士-阿德爾</span></td>
+      <td><b>[4+2] cycloaddition</b>。Diene（donor）+ dienophile（含 EWG）→ 環己烯。Suprafacial-suprafacial、syn addition。</td>
+      <td>1,3-butadiene + acrylonitrile → 3-cyclohexenyl-CN</td>
+    </tr>
+    <tr>
+      <td><b>Nucleophilic Aromatic Substitution</b> (SNAr)<br><span style="color:var(--text-dim);font-style:italic;">親核芳香取代</span></td>
+      <td>芳環有 <b>強 EWG（NO₂）+ 好離去基（X）</b>時，親核劑取代。經 <b>Meisenheimer complex</b>。NO₂ 必在 ortho/para 位才共振穩定。</td>
+      <td>p-Br-nitrobenzene + NaCN → p-CN-nitrobenzene</td>
+    </tr>
+    <tr>
+      <td><b>Clemmensen reduction</b><br><span style="color:var(--text-dim);font-style:italic;">克萊門森還原</span></td>
+      <td><b>Zn(Hg) / HCl, Δ</b>。把 aryl ketone 的 C=O 還原成 CH₂。常接在 Friedel-Crafts acylation 後（避免烷基化的碳重排）。</td>
+      <td>PhCOR → PhCH₂R</td>
+    </tr>
+    <tr>
+      <td><b>Birch reduction</b><br><span style="color:var(--text-dim);font-style:italic;">伯奇還原</span></td>
+      <td><b>Na / NH₃(l) / ROH</b>。把苯環還原成 1,4-cyclohexadiene。EDG（OMe）→ 取代基連 sp³ 碳；EWG（COOH）→ 連 sp² 碳。</td>
+      <td>苯 → 1,4-cyclohexadiene</td>
+    </tr>
+  </table>
+
+  <div class="howto">
+    <b>備胎名詞</b>（111 還考過）：<b>Sigmatropic rearrangement</b> = σ 鍵在 π 系統間遷移，π 電子數不變。常見 [3,3]：Cope（全碳）、Claisen（含 O）。
+  </div>
+
+  <div class="struct-row">
+    <figure class="struct-fig">
+      <svg viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg" width="90" height="70">
+        <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+          <line x1="15" y1="50" x2="35" y2="38"/>
+          <line x1="35" y1="38" x2="55" y2="50"/>
+          <line x1="55" y1="50" x2="75" y2="38"/>
+          <line x1="21" y1="52" x2="34" y2="44"/>
+          <line x1="61" y1="52" x2="74" y2="44"/>
+        </g>
+      </svg>
+      <figcaption>1,3-butadiene<br>(Diels-Alder diene)</figcaption>
+    </figure>
+    <figure class="struct-fig">
+      <svg viewBox="0 0 105 80" xmlns="http://www.w3.org/2000/svg" width="105" height="80">
+        <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+          <line x1="15" y1="50" x2="35" y2="38"/>
+          <line x1="21" y1="52" x2="34" y2="44"/>
+          <line x1="35" y1="38" x2="55" y2="50"/>
+          <line x1="55" y1="50" x2="75" y2="62"/>
+          <line x1="62" y1="48" x2="74" y2="55"/>
+          <line x1="56" y1="57" x2="68" y2="64"/>
+        </g>
+        <text x="80" y="68" text-anchor="middle" font-family="serif" font-size="14" fill="#6ECBA8">N</text>
+      </svg>
+      <figcaption>acrylonitrile<br>(dienophile)</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 2</div>
+  <h2>階段 2 ｜ 觀念題（會了就拿）</h2>
+  <div class="stage-sub">套公式就能解 ‧⁺˚٩(๑•̀ω•́๑)۶⁺˚‧</div>
+</div>
+
+<!-- Step 2.1: 芳香性判別 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.1</span>
+    <span class="step-title">芳香性判別 SOP</span>
+    <span class="step-pts">6-8 分</span>
+    <span class="cp-stars">★★</span>
+  </div>
+
+  <div class="flash">
+    給你一個結構，問是 aromatic / anti-aromatic / non-aromatic / aliphatic？<br>
+    <b>4 步驟流程</b>：① 是不是環？② 是不是平面？③ 環中所有原子有 p 軌域？④ 數 πe⁻ 套 Hückel。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q5：4 個結構判別）</summary>
+    <img src="_verify/exam2022_p2.png" alt="110 學年度 Q5 芳香性判別原題">
+    <div class="img-cap">110 學年度 Q5（8 分）— 4 個結構分別判 aromatic / anti-aromatic / non-aromatic / aliphatic。同頁含 Q3 預測產物 + Q4 IUPAC 命名。</div>
+  </details>
+
+  <table>
+    <tr><th>類別</th><th>定義</th><th>穩定性</th><th>典型例子</th></tr>
+    <tr>
+      <td><span class="hl-amber">aromatic</span><br>芳香</td>
+      <td>① 環狀 ② 平面 ③ 環中每個原子皆 sp²（含 p 軌域，可形成連續 π 系統） ④ πe⁻ = <b>4n+2</b>（2, 6, 10, 14…）</td>
+      <td><b>超穩定</b><br>（共振能 ~150 kJ/mol）</td>
+      <td>苯（6π）、pyridine、pyrrole、cyclopentadienyl anion、tropylium cation、naphthalene、pyrene</td>
+    </tr>
+    <tr>
+      <td><span class="hl-rose">anti-aromatic</span><br>反芳香</td>
+      <td>① 環狀 ② 平面 ③ 環中每個原子皆 sp² ④ πe⁻ = <b>4n</b>（4, 8, 12…）</td>
+      <td><b>非常不穩定</b><br>（比一般共軛二烯還糟，能避就避）</td>
+      <td>cyclobutadiene（4π）、cyclopentadienyl <b>cation</b>（4π）、cyclopropenyl anion</td>
+    </tr>
+    <tr>
+      <td><span class="hl">non-aromatic</span><br>非芳香</td>
+      <td>是環，但<b>任一條件不滿足</b>：<br>• 環中有 sp³ 原子（破壞 p 軌域連續性）<br>• 環不平面（如 8 員環 tub-shape）<br>• 雖滿足 aromaticity 條件但結構扭曲變不平面以避免 anti-aromaticity</td>
+      <td>跟一般烯類<b>差不多</b>，沒有特別穩或不穩</td>
+      <td>cyclohexane（全 sp³）、1,3-cyclohexadiene（有 sp³ C）、cyclooctatetraene（8π 但 tub）、N-methylpyrrolium（環有 sp³ C）</td>
+    </tr>
+    <tr>
+      <td><span class="hl">aliphatic</span><br>脂肪族</td>
+      <td>不是環</td>
+      <td>—</td>
+      <td>正己烷、1,3-丁二烯、丙酮</td>
+    </tr>
+  </table>
+
+  <div class="howto">
+    <b>判別 SOP（4 步驟）</b>：
+    <ol>
+      <li><b>不是環？</b> → <span class="hl">aliphatic</span></li>
+      <li><b>是環，但環中有 sp³ C/N？</b>（如 N-methylpyrrolium 的 -CH₂-，cyclohexane 的所有 C）→ <span class="hl">non-aromatic</span></li>
+      <li><b>是環、平面、全 sp²（或含 p 軌域）？</b>數 πe⁻：
+        <ul>
+          <li>= 4n+2 → <span class="hl-amber">aromatic</span></li>
+          <li>= 4n → <span class="hl-rose">anti-aromatic</span></li>
+        </ul>
+      </li>
+      <li><b>大環（≥8 員）？</b>就算 πe⁻ 對，也要看是否真的能維持平面。8 員 cyclooctatetraene 雖 8π（4n）「應該」 anti-aromatic，但它扭成 tub 形避免了 anti-aromaticity → <span class="hl">non-aromatic</span></li>
+    </ol>
+  </div>
+
+  <div class="flash" style="background:rgba(176,158,224,0.1); border-color:var(--purple);">
+    <b style="color:var(--purple)">★ 數 πe⁻ 完整守則</b>
+    <ul style="margin-top:0.5rem;">
+      <li>每個 <b>C=C（或 C=N）</b>在環中 → +2 πe⁻</li>
+      <li><b>Carbocation</b>（C⁺）在環中 → 0 πe⁻（空 p 軌域，提供位置但無電子）</li>
+      <li><b>Carbanion</b>（C⁻）在環中 → +2 πe⁻</li>
+      <li><b>環上 N 的 lone pair：</b>看 lone pair 在哪個軌域
+        <ul>
+          <li>若 N 沒接 H（如 pyridine 的 N）→ lone pair 在 sp² 平面方向，<b>不參與環內 π</b>，貢獻 0</li>
+          <li>若 N 接 H（如 pyrrole 的 N-H）→ lone pair 在 p 軌域，<b>參與環內 π</b>，貢獻 +2</li>
+        </ul>
+      </li>
+      <li><b>環上 O / S 的 lone pair：</b>(furan、thiophene) 一個 lone pair 在 p 軌域貢獻 +2，另一在平面方向不算</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">經典坑：cyclopentadienyl 系列</span>
+    <ul>
+      <li><b>Cyclopentadiene（中性，有 sp³ CH₂）</b>：環有 sp³ C → <span class="hl">non-aromatic</span></li>
+      <li><b>Cyclopentadienyl cation（C⁺，4π）</b>：4π = 4n → <span class="hl-rose">anti-aromatic</span>（**非常不穩定**）</li>
+      <li><b>Cyclopentadienyl anion（C⁻，6π）</b>：6π = 4n+2 → <span class="hl-amber">aromatic</span>（**超穩定**，這就是 cyclopentadiene pKa~16 的原因）</li>
+    </ul>
+    <p>同一個 5 環，cation/中性/anion 三種狀態<b>三種類別都不一樣</b>！考試愛考。</p>
+  </div>
+
+  <div class="howto">
+    <b>數 πe⁻ 怎麼數：</b>
+    <ul>
+      <li>每個 C=C → 2 πe⁻</li>
+      <li>Carbocation（C⁺）在環中 → 0 πe⁻（空 p 軌域）</li>
+      <li>Carbanion（C⁻）/ N、O lone pair 在 p 軌域 → 2 πe⁻</li>
+      <li>例如 pyrrole（NH）：2 個 C=C + N 的 lone pair = 4 + 2 = 6 πe⁻ → aromatic</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">110 Q5 / 111 Q5 — 兩年都考</span>
+    給 6 個結構，分別判斷類別。常考結構與答案：
+    <table>
+      <tr><th>結構</th><th>πe⁻ 數</th><th>答案</th></tr>
+      <tr><td>pyrazole 衍生物（5 環 2 N 相鄰）</td><td>6</td><td><span class="ans">aromatic</span></td></tr>
+      <tr><td>N-methylpyrrolium（5 環，N 接 CH₃，環有 sp³ C）</td><td>—</td><td><span class="ans">non-aromatic</span></td></tr>
+      <tr><td>cyclopentadienyl cation</td><td>4</td><td><span class="ans">anti-aromatic</span></td></tr>
+      <tr><td>cyclooctatetraene（8 環）</td><td>8 但 tub 不平面</td><td><span class="ans">non-aromatic</span></td></tr>
+      <tr><td>pyrene（4 環稠合）</td><td>14</td><td><span class="ans">aromatic</span></td></tr>
+      <tr><td>benzimidazole（6+5 環稠合）</td><td>10</td><td><span class="ans">aromatic</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Step 2.2: pKa 比較 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.2</span>
+    <span class="step-title">pKa 比較（用芳香性解釋）</span>
+    <span class="step-pts">4-6 分</span>
+    <span class="cp-stars">★★</span>
+  </div>
+
+  <div class="flash">
+    題目：兩個分子哪個比較酸？解釋原因。<br>
+    答題公式：<b>失質子（或加質子）後 → 數 πe⁻ → 套 4n+2 規則 → aromatic 比較穩 → 偏向那邊</b>。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q2：cycloheptatriene vs cyclopentadiene）</summary>
+    <img src="_verify/exam2022_p1.png" alt="110 學年度 Q2 pKa 比較原題">
+    <div class="img-cap">110 Q2（4 分）— pKa=16 vs pKa=36 哪個比較酸？答案：cyclopentadiene 較酸（失 H⁺ 後 6πe⁻ aromatic 穩定）。</div>
+  </details>
+
+  <div class="howto">
+    <b>核心觀念：</b>
+    <ul>
+      <li>失質子後若得到 <b>aromatic</b> 物種 → 此酸 <b>強</b>（低 pKa）</li>
+      <li>失質子後若得到 <b>anti-aromatic</b> → 此酸 <b>弱</b>（高 pKa）</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">111 Q2 — Pyrrolium NH⁺（pKa=0.4） vs Pyridinium NH⁺（pKa=5.2）</span>
+    <p><b>哪個比較酸？</b><span class="ans">A（pyrrolium）較酸</span></p>
+    <ul>
+      <li><b>A（pyrrolium NH⁺）</b>：N 的 lone pair 原本參與芳香性。質子化後 lone pair 拿去和 H 結合 → 環只剩 4 πe⁻ → <span class="hl-rose">anti-aromatic</span> → 不穩定 → 容易失質子 → <b>較酸</b></li>
+      <li><b>B（pyridinium NH⁺）</b>：N 的 lone pair 在 sp² 軌域（不參與環內 π）。質子化不影響芳香性 → 6 πe⁻ <span class="hl">aromatic</span> 保留 → 穩定 → <b>較不酸</b></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 2.3: Vitamin D 機制 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.3</span>
+    <span class="step-title">Vitamin D → D₃ 機制</span>
+    <span class="step-pts">6 分</span>
+    <span class="cp-stars">★★</span>
+  </div>
+
+  <div class="flash">
+    Vitamin D 是 6πe⁻ cyclohexadiene。光照下 → <b>conrotatory 開環</b> → triene（Vitamin D₃）。<br>
+    背：<b>6π + UV = conrotatory</b>。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q6：Vitamin D → D₃ 機制）</summary>
+    <img src="_verify/exam2022_p3.png" alt="110 學年度 Q6 Vitamin D 原題">
+    <div class="img-cap">110 Q6（6 分）— 給 Vitamin D 結構 + Vitamin D₃ 結構，要寫機制（6π electrocyclic ring opening）。同頁含 Q7 sigmatropic 機制題（135°C）。</div>
+  </details>
+
+  <div class="howto">
+    <b>機制畫法步驟：</b>
+    <ol>
+      <li>畫原始 cyclohexadiene 結構（B 環 6πe⁻）</li>
+      <li>標明 <b>3 個雙鍵電子對</b>同向旋轉（conrotatory，因為光化）</li>
+      <li>畫成最終的 triene（secosteroid，B 環打開）</li>
+      <li>標明立體：兩端 H 朝<b>反式</b>（trans，因為 conrotatory）</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">110 Q6 / 111 Q6 — 兩年同題</span>
+    Vitamin D（cyclohexadiene 結構）→ Vitamin D₃（triene 結構）。
+    <ul>
+      <li>反應：<b>6π electrocyclic ring opening</b></li>
+      <li>條件：<b>hν（UV）</b></li>
+      <li>立體：<span class="ans">conrotatory</span> → 兩 H 反式</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 3</div>
+  <h2>階段 3 ｜ 衝刺題（時間夠就讀）</h2>
+  <div class="stage-sub">CP 值較低但分數可觀 ⸜(˃ ᵕ ˂｡)⸝</div>
+</div>
+
+<!-- Step 3.1: EAS Friedel-Crafts -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.1</span>
+    <span class="step-title">EAS Friedel-Crafts 預測產物</span>
+    <span class="step-pts">6-9 分</span>
+    <span class="cp-stars">★</span>
+  </div>
+
+  <div class="flash">
+    題目給苯環衍生物 + alkyl/acyl chloride 問主產物。<br>
+    必背：<b>① alkyl 會碳陽離子重排（1°→3°）② OH/NH₂ 是 ortho/para director ③ NO₂/COR 是 meta director</b>。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q3：3 個 EAS 預測產物）</summary>
+    <img src="_verify/exam2022_p2.png" alt="110 學年度 Q3 EAS 預測原題">
+    <div class="img-cap">110 Q3（6 分）— (a) p-cresol + iBu-Cl/AlCl₃ 重排 → 2-tBu-4-methylphenol（major）；(b) NH-pyrimidone + NaOMe + propargyl Br → O-alkylation 為主；(c) acetophenone + CH₃Cl → meta（強 deactivator）。</div>
+  </details>
+
+  <table>
+    <tr><th>取代基類別</th><th>例</th><th>導向</th></tr>
+    <tr><td><b>強活化 EDG</b></td><td>-OH, -NH₂, -NHR, -NR₂, -OR</td><td><span class="hl">ortho / para</span></td></tr>
+    <tr><td><b>弱活化 EDG</b></td><td>-CH₃, -R（烷基）</td><td><span class="hl">ortho / para</span></td></tr>
+    <tr><td><b>弱去活化</b>（halogen 例外）</td><td>-F, -Cl, -Br, -I</td><td><span class="hl">ortho / para</span>（但反應慢）</td></tr>
+    <tr><td><b>強去活化 EWG</b></td><td>-NO₂, -CN, -COR, -COOH, -SO₃H</td><td><span class="hl-rose">meta</span></td></tr>
+  </table>
+
+  <div class="example">
+    <span class="q-tag">110 Q3a / 111 Q3a — p-cresol + isobutyl-Cl / AlCl₃</span>
+    <ul>
+      <li>OH 是強活化 + ortho/para director（para 已被 CH₃ 占）→ 走 <b>ortho</b></li>
+      <li>Isobutyl⁺（1° cation）不穩定 → <b>1,2-hydride shift</b> → tert-butyl⁺（3° cation）</li>
+      <li>主產物：<span class="ans">2-tert-butyl-4-methylphenol</span>（不是 isobutyl！）</li>
+    </ul>
+    <div class="struct-row">
+      <figure class="struct-fig">
+        <svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg" width="180" height="120">
+          <g stroke="#7BABB2" stroke-width="1.6" fill="none" stroke-linecap="round">
+            <polygon points="75,30 101,45 101,75 75,90 49,75 49,45"/>
+            <line x1="75" y1="40" x2="92" y2="50"/>
+            <line x1="92" y1="70" x2="75" y2="80"/>
+            <line x1="58" y1="70" x2="58" y2="50"/>
+            <line x1="75" y1="30" x2="75" y2="20"/>
+            <line x1="75" y1="90" x2="75" y2="100"/>
+            <line x1="101" y1="45" x2="115" y2="37"/>
+            <line x1="115" y1="37" x2="115" y2="23"/>
+            <line x1="115" y1="37" x2="130" y2="37"/>
+            <line x1="115" y1="37" x2="130" y2="45"/>
+          </g>
+          <text x="75" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#D9A0B8">OH</text>
+          <text x="75" y="113" text-anchor="middle" font-family="serif" font-size="13" fill="#D8D6E8">CH₃</text>
+        </svg>
+        <figcaption>主產物 (major)</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="howto">
+    <b>HSAB 軟硬酸鹼（O- vs N-alkylation）：</b><br>
+    Ambident anion（如去質子化的 NH-pyrimidone）+ 軟親電劑（如 propargyl Br，sp 碳）→ 軟對軟 → <b>O-alkylation</b> 為主（保有 pyrimidine 芳香性更穩定）。
+  </div>
+</div>
+
+<!-- Step 3.2: IUPAC -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.2</span>
+    <span class="step-title">IUPAC 命名</span>
+    <span class="step-pts">9-15 分</span>
+    <span class="cp-stars">★</span>
+  </div>
+
+  <div class="flash">
+    給 3-5 個結構，寫名稱。背命名規則 + 範例答案。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q4：3 個 IUPAC 命名）</summary>
+    <img src="_verify/exam2022_p2.png" alt="110 學年度 Q4 IUPAC 命名原題">
+    <div class="img-cap">110 Q4（9 分）— 3 個結構命名：(a) styrene + tBu + Ph 三取代；(b) NH₂ + iPr + Br 三取代苯胺；(c) 2 OMe + NO₂ 三取代甲苯。</div>
+  </details>
+
+  <ol>
+    <li>找<b>最高優先官能基</b>當主鏈/後綴（COOH > C=O > OH > NH₂ > OR > X > R）</li>
+    <li>編號讓取代基 locant 總和最小</li>
+    <li>取代基<b>字母順序</b>排（不算 di/tri/tert 字首）</li>
+    <li>立體 (R)/(S)、(E)/(Z) 必寫</li>
+    <li><b>全部小寫</b>（除非句首），數字跟字母用「-」連接，連續取代基用「,」分隔</li>
+  </ol>
+
+  <div class="flash" style="background:rgba(217,160,184,0.1); border-color:var(--rose);">
+    <b style="color:var(--rose)">★ 大小寫常踩雷！</b><br>
+    IUPAC 命名<b>標準是全小寫</b>（Klein 課本 / 多數大學考試也是這樣）。<br>
+    ✅ 對：<code>5-bromo-2-isopropylaniline</code>、<code>4-tert-butylpyridine</code><br>
+    ❌ 錯：<code>5-Bromo-2-Isopropylaniline</code>、<code>4-Tert-Butylpyridine</code>（除非寫在句首）<br>
+    取代基字母前綴的「tert-」、「sec-」、「n-」永遠小寫且不算字母排序（依「butyl」的 b 排）。
+  </div>
+
+  <table>
+    <tr><th>結構描述</th><th>正解</th></tr>
+    <tr><td>苯環 + vinyl + tBu + Ph 三取代</td><td><span class="hl-amber">3-tert-butyl-4-phenylstyrene</span></td></tr>
+    <tr><td>苯環 + NH₂ + iPr + Br 三取代</td><td><span class="hl-amber">5-bromo-2-isopropylaniline</span></td></tr>
+    <tr><td>Pyridine + tBu 在 4 位</td><td><span class="hl-amber">4-tert-butylpyridine</span></td></tr>
+    <tr><td>苯環 + 2 OMe + NO₂ + CH₃</td><td><span class="hl-amber">2,5-dimethoxy-3-nitrotoluene</span></td></tr>
+  </table>
+</div>
+
+<!-- Step 3.3: 苯合成 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.3</span>
+    <span class="step-title">從苯出發合成 — SO₃H 阻擋法</span>
+    <span class="step-pts">6-10 分</span>
+    <span class="cp-stars">★</span>
+  </div>
+
+  <div class="flash">
+    苯 → ortho-tert-butyl-bromobenzene。<b>關鍵：用 SO₃H 當 para-blocking group</b> 強迫 Br 進 ortho，最後再去保護。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q9：苯 → o-tert-butylbromobenzene）</summary>
+    <img src="_verify/exam2022_p5.png" alt="110 學年度 Q9 苯合成原題">
+    <div class="img-cap">110 Q9（6 分）— 從 benzene 設計合成路線到 o-tBu-bromobenzene（標 major）。同頁含 Q10 雙苯酮 H₃O⁺ 重排機制（10 分大題）。</div>
+  </details>
+
+  <ol>
+    <li>苯 + tBuCl / AlCl₃ → tert-butylbenzene（Friedel-Crafts，3° 不重排）</li>
+    <li>+ <b>fuming H₂SO₄ / ice bath</b> → 4-tBu-benzenesulfonic acid（SO₃H 進 para 阻擋）</li>
+    <li>+ Br₂ / FeBr₃ → 2-Br-4-tBu-benzenesulfonic acid（Br 被擠到 ortho）</li>
+    <li>+ <b>dilute H₂SO₄, Δ</b> → 移除 SO₃H → <span class="hl-amber">o-tBu-bromobenzene</span></li>
+  </ol>
+
+  <div class="howto">
+    <b>什麼時候用 acylation 而不是 alkylation？</b><br>
+    Alkylation 容易碳重排（1°→3°）。Acylation（acyl chloride）的 acylium ion 是 sp² 共振穩定，<b>不會重排</b>。先 acylation 接 ketone，再 Clemmensen 還原成 CH₂R 即得相同 alkyl 基但無重排問題。
+  </div>
+</div>
+
+<!-- Step 3.4: SNAr -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.4</span>
+    <span class="step-title">SNAr Meisenheimer 機制</span>
+    <span class="step-pts">6 分</span>
+    <span class="cp-stars">★</span>
+  </div>
+
+  <div class="flash">
+    芳環有 NO₂（強 EWG）+ Cl（離去基）+ 親核劑 → 取代。經 <b>addition → elimination</b>（Meisenheimer complex）。<br>
+    <b>NO₂ 必須在離去基的 ortho 或 para</b>，才能共振穩定中間體。
+  </div>
+
+  <details class="exam-img">
+    <summary>📷 看原題（110 學年度 Q13：SNAr 主產物 + 機制）</summary>
+    <img src="_verify/exam2022_p7.png" alt="110 學年度 Q13 SNAr 原題">
+    <div class="img-cap">110 Q13（6 分）— 3,4-dichloro-1-nitrobenzene + Na-C≡C-(p-OMe-Ph) → (a) 主產物結構 (b) 機制。答案：alkyne 取代 NO₂ 的 ortho 那個 Cl（共振穩定中間體）。</div>
+  </details>
+
+  <div class="howto">
+    <b>三步機制：</b>
+    <ol>
+      <li><b>Addition</b>：親核劑攻擊 ipso C（Cl 接的那個 C）→ sp³ 中間體（Meisenheimer complex），負電荷在環上</li>
+      <li><b>共振穩定</b>：負電荷透過共振分散到 ortho/para 的 NO₂ 上</li>
+      <li><b>Elimination</b>：Cl⁻ 離開 → 重建芳香性 → 主產物</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">110 Q13 / 111 Q13</span>
+    3,4-dichloro-1-nitrobenzene + Na-C≡C-(p-OMe-Ph) → 主產物。
+    <ul>
+      <li>有兩個 Cl：一個在 NO₂ 的 ortho（位置 2 或 4）、一個在 NO₂ 的 meta</li>
+      <li><b>取代發生在 ortho 那個 Cl</b>（共振可達 NO₂）</li>
+      <li>主產物：alkyne 取代 NO₂ ortho 的 Cl</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider" style="background:linear-gradient(135deg, rgba(176,158,224,0.12), rgba(229,181,116,0.08)); border-color:rgba(176,158,224,0.28);">
+  <div class="label" style="color:var(--purple);">TEXTBOOK BONUS</div>
+  <h2>課本習題 = 考古題源頭</h2>
+  <div class="stage-sub">時間夠？做這幾題課本問題，命中率超高 ‧⁺˚٩(๑•̀ω•́๑)۶⁺˚‧</div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">📖</span>
+    <span class="step-title">課本習題 ↔ 考古題對照表</span>
+  </div>
+
+  <div class="flash">
+    教授出題大量參考 Klein 4th 課本習題。下面是<b>已被驗證會出</b>的習題清單，依「最有可能再考」排序。
+  </div>
+
+  <table>
+    <tr><th>命中率</th><th>課本題</th><th>考古題對應</th><th>什麼類型</th></tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>18.62</b></td>
+      <td>111 Q11</td>
+      <td>Toluene + acetylene 合成 trans-stilbene oxide（題目幾乎一字不差）</td>
+    </tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>18.55</b></td>
+      <td>110/111 Q8</td>
+      <td>譜學辨識 C₁₀H₁₂O / C₉H₁₀O 類型（NMR 推結構）</td>
+    </tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>18.34</b></td>
+      <td>110/111 Q5</td>
+      <td>Aromatic / Antiaromatic / Nonaromatic 判定</td>
+    </tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>18.39</b></td>
+      <td>110 Q2（cyclopentadiene 超酸題）</td>
+      <td>用芳香性解釋 pKa</td>
+    </tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>19.51</b></td>
+      <td>110/111 Q13</td>
+      <td>SNAr：Ar-Cl + 親核劑 → Ar-Nu 機制</td>
+    </tr>
+    <tr>
+      <td><span class="hl-amber">★★★</span></td>
+      <td><b>19.91</b></td>
+      <td>110 Q11</td>
+      <td>I-Cl 親電碘化區位選擇性</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>17.52、17.75、17.80</b></td>
+      <td>110/111 Q12 + Q6 Vitamin D</td>
+      <td>電環化立體（con/disrotatory）</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>17.72、17.73、17.79</b></td>
+      <td>110/111 Q7</td>
+      <td>串聯周環反應機制（Cope/Claisen → Diels-Alder）</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>17.43、17.44、17.57</b></td>
+      <td>Q1 名詞（Diels-Alder 範例）</td>
+      <td>Diels-Alder 逆推合成</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>19.36、19.67</b></td>
+      <td>110 Q9 / 多步合成</td>
+      <td>從 benzene 多步合成多取代苯</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>19.47、19.52、19.58</b></td>
+      <td>110/111 Q3</td>
+      <td>EAS 預測產物 / 二硝化 / 雙重 F-C</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★★</span></td>
+      <td><b>18.48</b></td>
+      <td>Q2 變體（Cycloheptatrienone vs Cyclopentadienone）</td>
+      <td>芳香離子穩定性比較</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★</span></td>
+      <td><b>18.24、18.25</b></td>
+      <td>110/111 Q4</td>
+      <td>IUPAC 命名與反向</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★</span></td>
+      <td><b>18.49</b></td>
+      <td>Q9（dipole moment 變體）</td>
+      <td>Azulene 偶極矩</td>
+    </tr>
+    <tr>
+      <td><span class="hl">★</span></td>
+      <td><b>18.65</b></td>
+      <td>結構穩定性題</td>
+      <td>Naphthalene / Phenanthrene 鍵長分析</td>
+    </tr>
+  </table>
+
+  <div class="howto">
+    <b>強烈建議優先做：</b>★★★ 等級的 6 題（<b>18.34、18.39、18.55、18.62、19.51、19.91</b>）。<br>
+    這 6 題涵蓋了考古題 ~50 分的內容，做完幾乎等於有看過考古題。<br>
+    每題詳解都在章節筆記的 <code>#exercises</code> 區，例如 <a href="ch18-aromatic.html#p1855" style="color:var(--blue);">ch18 18.55</a>、<a href="ch19-EAS.html#p1991" style="color:var(--blue);">ch19 19.91</a>。
+  </div>
+
+  <div class="example">
+    <span class="q-tag">真實案例：18.62 vs 111 Q11</span>
+    <p><b>課本 18.62：</b>由 toluene 與 acetylene 為唯一碳源合成下列化合物（給結構：(E)-stilbene oxide 或類似）。</p>
+    <p><b>111 Q11：</b>「Using Toluene and Acetylene as your only source of carbon atoms, show how you would prepare the following compound.」（給的是 stilbene 環氧化物）</p>
+    <p>→ <b>幾乎一字不差！</b>做過 18.62 = 111 Q11 直接送 8 分。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 最後 cheat sheet -->
+<div class="cheat">
+  <h2>★ 進考場前 5 分鐘 cheat sheet ★</h2>
+
+  <h3>1. NMR 三題（直接背）</h3>
+  <ul>
+    <li>C₅H₁₀O = <b>2-pentanone</b>（CH₃COCH₂CH₂CH₃）</li>
+    <li>C₉H₁₀O = <b>propiophenone</b>（PhCOCH₂CH₃）</li>
+    <li>C₃H₆O = <b>propylene oxide</b>（methyloxirane）</li>
+  </ul>
+
+  <h3>2. UV vs Heat 表（背口訣）</h3>
+  <ul>
+    <li>「熱大光小」：heat con/dis 與 πe⁻ 同奇偶</li>
+    <li>4n + heat = con；4n + UV = dis</li>
+    <li>4n+2 + heat = dis；<b>4n+2 + UV = con</b>（Vitamin D 答案）</li>
+  </ul>
+
+  <h3>3. 名詞解釋必背 5 個</h3>
+  <ul>
+    <li>Claisen / Diels-Alder / SNAr / Clemmensen / Birch</li>
+  </ul>
+
+  <h3>4. 芳香性 4 步驟</h3>
+  <ul>
+    <li>① 環？② 平面？③ 全 sp²？④ 4n+2 (aromatic) / 4n (anti)</li>
+    <li>失質子後 aromatic 那個 → 較酸（pKa 低）</li>
+  </ul>
+
+  <h3>5. EAS 重排陷阱</h3>
+  <ul>
+    <li>Isobutyl-Cl + AlCl₃ → 主產物是 <b>tert-butyl</b> 不是 isobutyl（1°→3° 重排）</li>
+    <li>OH/NH₂ → ortho/para；NO₂/COR/COOH → meta</li>
+  </ul>
+
+  <h3>6. 苯合成 SO₃H 套路</h3>
+  <ul>
+    <li>tBu → 加 fuming H₂SO₄（para 鎖定）→ Br₂（強迫 ortho）→ dilute H₂SO₄ Δ（去保護）</li>
+  </ul>
+
+  <h3>7. SNAr 必背</h3>
+  <ul>
+    <li>NO₂ 必須在離去基 ortho/para 才會走 SNAr</li>
+    <li>機制：addition → Meisenheimer → elimination</li>
+  </ul>
+
+  <h3>8. Vitamin D = 6π conrotatory（hν）</h3>
+  <ul>
+    <li>機制畫 6 個 π 電子箭頭，標 conrotatory，最終 trans triene</li>
+  </ul>
+</div>
+
+<div class="pep" style="background:rgba(110,203,168,0.07); border-color:rgba(110,203,168,0.2); margin-top:2rem;">
+  <b style="color:var(--green)">★ 想看完整講義？</b><br>
+  讀完速成版還有時間，看完整章節筆記補強：<br>
+  <a href="ch17-conjugated-pericyclic.html" style="color:var(--blue);">→ Ch 17 共軛二烯/周環反應</a> ｜
+  <a href="ch18-aromatic.html" style="color:var(--blue);">→ Ch 18 芳香化合物</a> ｜
+  <a href="ch19-EAS.html" style="color:var(--blue);">→ Ch 19 EAS 親電取代</a><br>
+  <a href="考古題整理-Ch17-19.html" style="color:var(--purple);">→ 完整考古題整理（含所有題型）</a>
+</div>
+
+<div class="pep" style="text-align:center; background:rgba(229,181,116,0.1);">
+  <b style="color:var(--amber); font-size:1.05rem;">明天加油！⸜( ˶'ᵕ'˶)⸝</b><br>
+  讀完這頁基本上就有保底了。考前深呼吸，相信自己。
+</div>
+
+</main>
+
+</body>
+</html>
