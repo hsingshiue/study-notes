@@ -223,7 +223,6 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 <div class="page-header">
   <h1>儀器分析 — 期末小考重點整理</h1>
   <div class="meta">Ch 9 AAS / AFS · Ch 10 ICP · CID Detector</div>
-  <div class="scope">📌 本頁範圍 = 期末小考全部考點</div>
 </div>
 
 
@@ -249,6 +248,8 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </table>
 
 <h3>原子化全流程 Atomization Pipeline</h3>
+<p>原子光譜要測的是「自由原子」吸收或發射光的訊號，但樣品通常是液體（甚至含金屬離子的水溶液），所以要先一步一步把樣品變成「氣態的自由原子」才能測。整個流程是：</p>
+
 <div class="pipeline">
   <span class="pipe-box">Sample 樣品</span><span class="pipe-arrow">→</span>
   <span class="pipe-box">Nebulization 霧化</span><span class="pipe-arrow">→</span>
@@ -260,7 +261,22 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <span class="pipe-box hot">Atoms</span><span class="pipe-arrow">→</span>
   <span class="pipe-box">Excitation / Ionization</span>
 </div>
-<p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem;">最終會有 <b>atoms / excited atoms / ions</b> 三種形式；ions 會干擾 AAS 訊號（離子化干擾）。</p>
+
+<h4>每一步在做什麼</h4>
+<div class="term"><b>1. Nebulization 霧化</b> — 把液態樣品用噴霧器打成小液滴，分散到氣體中</div>
+<div class="term"><b>2. Aerosol 氣溶膠</b> — 形成小液滴懸浮的混合物，準備送進火焰</div>
+<div class="term"><b>3. Desolvation 去溶</b> — 火焰熱量把液滴的溶劑（水）蒸發掉，剩下乾燥的鹽類顆粒</div>
+<div class="term"><b>4. Volatilization 揮發</b> — 固體顆粒被高溫變成氣態的分子（例如 NaCl 變成氣態的 NaCl 分子）</div>
+<div class="term"><b>5. Dissociation 解離</b> — 氣態分子被火焰高溫拆解成單一原子（NaCl → Na + Cl），這就是<b>原子化（atomization）</b>真正完成</div>
+<div class="term"><b>6. Excitation / Ionization 激發 / 離子化</b> — 若溫度太高，原子會繼續被激發到高能階（激發態），甚至失去電子變成離子</div>
+
+<div class="callout">
+  <div>
+    最終火焰裡會同時存在三種形式：<b>atoms（基態原子）/ excited atoms（激發態原子）/ ions（離子）</b>。<br>
+    <b>AAS（原子吸收）</b>測的是「基態原子」吸收線光源的量，所以希望樣品大部分停在 atom 這一步；<br>
+    若太多原子被離子化（變 ions），會減少能吸光的原子數 → 造成<b>離子化干擾</b>，訊號變弱。
+  </div>
+</div>
 
 
 <!-- ════════════ 9A 火焰 ════════════ -->
@@ -308,29 +324,40 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 
 <h3>Temperature Profile（Fig 9.3）— 不同元素在不同高度有最大吸光</h3>
 <div class="svg-wrap">
-<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 500 230" xmlns="http://www.w3.org/2000/svg">
   <!-- axes -->
-  <line x1="60" y1="180" x2="460" y2="180" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
-  <line x1="60" y1="25" x2="60" y2="180" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
-  <text x="32" y="105" font-size="11" fill="rgba(220,218,236,0.5)" font-family="Cormorant Garamond,serif" font-style="italic" transform="rotate(-90 32 105)">Absorbance</text>
-  <text x="250" y="205" font-size="11" fill="rgba(220,218,236,0.55)" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">distance above primary zone</text>
-  <!-- Mg curve (peak near 2.5 cm low) -->
-  <path d="M 80 175 Q 140 95 180 115 Q 230 160 280 175" fill="none" stroke="#D9A0B8" stroke-width="1.8"/>
-  <text x="135" y="86" font-size="12" fill="#D9A0B8" font-family="Cormorant Garamond,serif" font-style="italic">Mg</text>
-  <!-- Ag curve (broad, peaks mid) -->
-  <path d="M 80 165 Q 180 75 280 88 Q 380 110 440 132" fill="none" stroke="#6ECBA8" stroke-width="1.8"/>
-  <text x="240" y="72" font-size="12" fill="#6ECBA8" font-family="Cormorant Garamond,serif" font-style="italic">Ag</text>
-  <!-- Cr curve (rises right) -->
-  <path d="M 100 175 Q 220 170 320 148 Q 380 125 440 95" fill="none" stroke="#B09EE0" stroke-width="1.8"/>
-  <text x="395" y="88" font-size="12" fill="#B09EE0" font-family="Cormorant Garamond,serif" font-style="italic">Cr</text>
-  <!-- 2.5 cm marker -->
-  <line x1="180" y1="180" x2="180" y2="190" stroke="rgba(220,218,236,0.35)" stroke-dasharray="3,2"/>
-  <text x="180" y="215" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">~2.5 cm</text>
-</svg>
-<div class="svg-caption">Fig 9.3 — different metals peak at different heights above the primary zone</div>
-</div>
+  <line x1="60" y1="190" x2="470" y2="190" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
+  <line x1="60" y1="25" x2="60" y2="190" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
+  <text x="32" y="110" font-size="13" fill="rgba(220,218,236,0.6)" font-family="Cormorant Garamond,serif" font-style="italic" transform="rotate(-90 32 110)">A</text>
+  <text x="250" y="218" font-size="11" fill="rgba(220,218,236,0.55)" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">distance above primary zone</text>
 
-<h3>基本量測公式（板書 2 / 8）</h3>
+  <!-- Mg: bell curve peaking early (low distance), peak at x=160 -->
+  <path d="M 75 188 C 120 188, 145 60, 160 60 C 175 60, 215 188, 260 188" fill="none" stroke="#D9A0B8" stroke-width="1.8"/>
+  <text x="155" y="52" font-size="13" fill="#D9A0B8" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Mg</text>
+
+  <!-- Ag: bell curve peaking middle, peak at x=255 -->
+  <path d="M 155 188 C 205 188, 235 70, 255 70 C 275 70, 310 188, 360 188" fill="none" stroke="#6ECBA8" stroke-width="1.8"/>
+  <text x="255" y="62" font-size="13" fill="#6ECBA8" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Ag</text>
+
+  <!-- Cr: bell curve peaking late, peak at x=360 -->
+  <path d="M 260 188 C 305 188, 340 80, 360 80 C 380 80, 415 188, 460 188" fill="none" stroke="#B09EE0" stroke-width="1.8"/>
+  <text x="360" y="72" font-size="13" fill="#B09EE0" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Cr</text>
+
+  <!-- 2.5 cm marker at Ag peak -->
+  <line x1="255" y1="190" x2="255" y2="200" stroke="rgba(220,218,236,0.35)" stroke-dasharray="3,2"/>
+  <text x="255" y="216" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">~2.5 cm</text>
+</svg>
+<div class="svg-caption">Fig 9.3 — Mg、Ag、Cr 三種元素的最大吸光位置不同</div>
+</div>
+<p style="font-size:0.88rem;">三條曲線都是「<b>鐘形吸光曲線</b>」，只是<b>峰位置</b>（最大吸光點）出現在火焰的不同高度：</p>
+<ul>
+  <li><b>Mg</b>（玫瑰色）— 最快達到峰值，在<b>低處</b>就被分解成原子，但很快又被氧化成 MgO，吸光下降</li>
+  <li><b>Ag</b>（綠色）— 峰值大約在 <b>2.5 cm 處</b>（interzonal region），是「最常用、最穩定」的位置</li>
+  <li><b>Cr</b>（紫色）— 峰值出現在<b>高處</b>，因為 Cr 較難原子化，要更高溫的區域才會分解出原子</li>
+</ul>
+<p style="font-size:0.88rem;">所以分析不同元素時，要把火焰的「不同高度」對準狹縫（entrance slit），才能取到該元素的最大吸光。</p>
+
+<h3>基本量測公式</h3>
 <div class="reaction-box">
   <span class="formula">T = P / P₀　　A = −log T</span><br>
   <span style="font-size:0.86rem;">P₀ = 入射光強度（incident），P = 通過火焰後透射光強度（transmitted）</span><br>
@@ -568,7 +595,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <span class="rule"></span>
 </div>
 
-<h3>干擾分類（板書 15）</h3>
+<h3>干擾分類</h3>
 <table>
   <tr><th>類型</th><th>來源</th><th>說明</th></tr>
   <tr>
@@ -598,7 +625,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <div><b>原理：</b>reference line 強度的任何下降，都是來自 <b>matrix product</b>（基質產物）顆粒的散射。將兩線相減即可扣除散射背景。</div>
 </div>
 
-<h3>化學干擾的解決方法（板書 17）</h3>
+<h3>化學干擾的解決方法</h3>
 <div class="step-row"><div class="n">1</div><div class="body">
   <b>Releasing agent（釋放劑）</b>：加入替代物，與干擾物質結合，<b>釋放</b>出 analyte 形成穩定化合物
 </div></div>
@@ -620,7 +647,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <span class="rule"></span>
 </div>
 
-<h3>電漿發射光譜的三種類型（板書 19）</h3>
+<h3>電漿發射光譜的三種類型</h3>
 <div class="callout">
   <div><b>Plasma 定義：</b>electrically conductive gaseous mixture containing significant concentration of <b>cations and electrons</b>（含大量陽離子與電子的導電氣體混合物）</div>
 </div>
@@ -632,7 +659,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <tr><td>DCP</td><td>Direct Current Plasma</td><td>直流</td></tr>
 </table>
 
-<h3>Typical ICP Source — 稱為「Torch」（板書 18, 22, 24）</h3>
+<h3>Typical ICP Source — 稱為「Torch」</h3>
 
 <div class="step-row"><div class="n">1</div><div class="body">
   <b>Three concentric quartz tubes</b>（三個同心石英管）→ thermal isolation（熱絕緣）→ <span class="hl-rose">high cost of operation</span>（因 argon flow rate 大）
@@ -676,7 +703,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 <div class="svg-caption">ICP Torch — three concentric quartz tubes + RF induction coil</div>
 </div>
 
-<h3>Analyte 在電漿中的行為（板書 22）</h3>
+<h3>Analyte 在電漿中的行為</h3>
 <ul>
   <li>Sample atoms reside in plasma for <b>a few milliseconds</b>（停留數毫秒）</li>
   <li>Experience <b>5000~8000 K</b> 高溫</li>
@@ -686,7 +713,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </ul>
 <div class="reaction-box"><span class="formula">Cu → Cu⁺ + e⁻</span></div>
 
-<h3>Plasma Appearance（板書 23）— Fig 10-4</h3>
+<h3>Plasma Appearance — Fig 10-4</h3>
 <p>電漿外觀的 4 個特徵：</p>
 <ul>
   <li>① <b>Very intense</b>（很強烈）</li>
@@ -702,14 +729,14 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   </div>
 </div>
 
-<h3>樣品引入方式 Sample Introduction（板書 20）</h3>
+<h3>樣品引入方式 Sample Introduction</h3>
 <table>
   <tr><th style="width:200px">方法</th><th>說明</th></tr>
   <tr><td><b>1. Nebulizer</b></td><td>霧化器：液體 → 氣體（liquid → gas）</td></tr>
   <tr><td><b>2. Electrothermal Vaporization</b></td><td>樣品在 furnace 中蒸發（Fig 10-3 P234），furnace 僅用於樣品蒸發</td></tr>
 </table>
 
-<h3>Axial vs Radial 觀察（板書 21）</h3>
+<h3>Axial vs Radial 觀察</h3>
 <div class="compare-grid">
   <div class="compare-box pos">
     <h4>Axial（軸向）— 優點</h4>
@@ -728,7 +755,7 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   </div>
 </div>
 
-<h3>發射光譜儀類型（板書 24）</h3>
+<h3>發射光譜儀類型</h3>
 <ul>
   <li>1. <b>Sequential</b>（順序掃描）<span style="color:var(--text-dim);">— 過時不用</span></li>
   <li>2. <b>Simultaneous multichannel</b>（同時多通道）</li>
