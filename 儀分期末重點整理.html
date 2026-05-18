@@ -708,94 +708,93 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </div>
 
 <h3>CID 是什麼？</h3>
-<p>CID（Charge-Injection Device）是一種與 CCD 類似的半導體影像偵測器（Fig 7-35, 7-36），常用於 ICP 發射光譜儀。基本結構是 <b>n-type Si</b> 半導體，藉由兩個電極控制電荷流向，把「光照產生的電荷量」量化成「電位差 ΔV」。</p>
+<p>CID（Charge-Injection Device，電荷注入元件）是一種與 CCD 類似的半導體影像偵測器，常用於 ICP 發射光譜儀。基本概念：<b>光打到半導體會產生電荷，CID 用「兩次電壓量測的差」推算當初有多少光照進來</b>。</p>
+
+
+<h3>基本結構（Fig 7-35）— 兩電極 + 半導體</h3>
+<div class="svg-wrap">
+  <img src="img/Fig%207-35-dark.png" alt="Fig 7-35 Cross section of a CTD" style="max-width:75%;height:auto;">
+  <div class="svg-caption">Fig 7-35 — Cross section of a CTD in the charge integration mode</div>
+</div>
+
+<p><b>從上到下三層結構：</b></p>
+<ul>
+  <li><b>Electrodes（電極）</b>：兩個金屬片，分別接 <b>−5V</b> 與 <b>−10V</b>（電壓不同是關鍵）</li>
+  <li><b>SiO₂ insulator（絕緣層）</b>：薄薄一層二氧化矽，讓電極不直接碰到矽。電極只能「隔空」用電場影響下面的矽，<b>不會有電流通過</b></li>
+  <li><b>n-doped silicon（n 型摻雜的矽）</b>：本體半導體</li>
+</ul>
+
+<div class="callout"><div>
+  <b>圖在演什麼？</b> 光子 hν 從右上方打進矽裡，把一個原子的電子打出來 → 產生一個 <b>電子（−）</b> + 一個 <b>電洞（+）</b>（圖上「+ −」就是這對）。<br>
+  <b>電洞為什麼跑到 −10V 下方？</b> 正電荷被「更負」的電壓吸引（異性相吸）。−10V 比 −5V 更負，所以電洞往 −10V 下方聚集，圖上「+++」就是累積的電洞。<br>
+  <b>關鍵：</b>光越強 → 產生越多電子-電洞對 → 電洞累積越多 → 之後量測到的訊號越大。
+</div></div>
+
+
+<h3>四步驟 Duty Cycle（Fig 7-36）— 怎麼把電洞「量」出來</h3>
+<div class="svg-wrap">
+  <img src="img/Fig%207-36-dark.png" alt="Fig 7-36 Duty cycle of a CID" style="max-width:90%;height:auto;">
+  <div class="svg-caption">Fig 7-36 — Duty cycle of a CID: (a) 電荷形成 (b) 量 V₁ (c) 量 V₂ (d) 排出電荷</div>
+</div>
+
+<p><b>圖怎麼看？</b> 每個小圖上方都是兩組開關（左電極組、右電極組），每組可切到 5V 或 10V 兩端（藉開關位置決定接哪個電壓 / 接到伏特計）。下方是矽 + 累積的電洞「+++」。</p>
+
+<div class="step-row"><div class="n">a</div><div class="body">
+  <b>(a) Charge formation and integration ─ 電荷形成與累積</b>　左 <b>−5V</b>，右 <b>−10V</b><br>
+  <span style="font-size:0.88rem;">光 hν 進來 → 產生 e/h 對 → 電洞（+）累積在 −10V 那邊（電位較低處）。<br>
+  「Integration（累積）」的意思是：光照越久，累積的電洞越多 → 訊號越強，就像長曝光的相機。</span>
+</div></div>
+
+<div class="step-row"><div class="n">b</div><div class="body">
+  <b>(b) Measure V₁ ─ 第一次量電壓</b>　左電極接 <b>伏特計 V₁</b>，右電極保持 <b>−10V</b><br>
+  <span style="font-size:0.88rem;">把左電極從「接 −5V」切到「接伏特計」（圖上開關往上）。此時左電極不再強迫設成某個電壓，而是「自由浮動」 → 量到的 V₁ 反映左電極<b>沒有累積電洞時</b>的基線電壓。<br>
+  電洞仍然待在右邊（因為右邊還是 −10V），沒有動。</span>
+</div></div>
+
+<div class="step-row"><div class="n">c</div><div class="body">
+  <b>(c) Measure V₂ ─ 電荷轉移後量第二次</b>　左電極接 <b>伏特計 V₂</b>，右電極保持 <b>−10V</b><br>
+  <span style="font-size:0.88rem;">課本這步暗示了「<b>charge transfer 電荷轉移</b>」：藉由短暫切換電壓順序，把原本在右邊的電洞「擠到」左電極下方。<br>
+  此時左電極下方有電洞 → 量到的 V₂ <b>會跟 V₁ 不一樣</b>，差值就是電洞造成的電壓變化。</span>
+</div></div>
 
 <div class="reaction-box" style="text-align:center;">
-  <span class="formula" style="font-size:1.1rem;">ΔV = V₁ − V₂</span><br>
-  <span style="font-size:0.86rem;">ΔV 來自 <b>光照產生的電荷 ⊕ 從右電極移動到左電極</b>的位移量</span>
+  <span class="formula" style="font-size:1.15rem;">ΔV = V₁ − V₂</span><br>
+  <span style="font-size:0.86rem;">ΔV ∝ 累積的電洞數 ∝ 光的強度</span>
 </div>
 
-<h3>CID 四步驟工作流程</h3>
-
-<div class="step-row"><div class="n">I</div><div class="body">
-  <b>Step I — 曝光與電荷分離</b>（左 −5V，右 −10V）<br>
-  <span style="font-size:0.88rem;">光照射 n-Si → 產生 <b>electron-hole separation</b>（電子-電洞分離）。電洞（⊕）被吸引至 <b>low potential</b>（更低電位 = 右電極 −10V）。</span>
+<div class="step-row"><div class="n">d</div><div class="body">
+  <b>(d) Remove charge ─ 排出電荷（reinjection）</b>　左電極切到 <b>+5V</b>，右電極切到 <b>+10V</b><br>
+  <span style="font-size:0.88rem;">電壓翻成正值之後，電洞（+）被排斥（同性相斥） → 全部被「注入回」矽的本體裡 → 元件清空，準備下一次曝光。<br>
+  「Charge-<b>Injection</b> Device」這個名字就是來自這步：電荷被<b>注入回</b>半導體裡。</span>
 </div></div>
 
-<div class="step-row"><div class="n">II</div><div class="body">
-  <b>Step II — 量測 V₁</b>（左 open circuit，右 −10V）<br>
-  <span style="font-size:0.88rem;">① Make the left electrode <b>"open circuit"</b><br>② Measure <b>V₁</b> of the left electrode（vs. ground）</span>
-</div></div>
 
-<div class="step-row"><div class="n">III</div><div class="body">
-  <b>Step III — 切換電位、電荷搬家、量測 V₂</b>（右電極改為 +10V）<br>
-  <span style="font-size:0.88rem;">
-    ① Change the right electrode potential to be <b>+10V</b><br>
-    ② 電洞（⊕）<b>move to left electrode</b><br>
-    ③ Measure <b>V₂</b> of the left electrode<br>
-    ④ The difference between V₁ and V₂ <b>is caused by radiation</b>
-  </span>
-</div></div>
+<h3>★ 兩種讀取模式（圖中間箭頭的關鍵）</h3>
 
-<div class="step-row"><div class="n">IV</div><div class="body">
-  <b>Step IV — 電子-電洞復合</b>（左 +5V，右 +10V）<br>
-  <span style="font-size:0.88rem;"><b>Electron-hole recombination</b>（電子與電洞重新結合）→ 元件回到初始狀態，準備下次曝光。</span>
-</div></div>
-
-<div class="svg-wrap">
-<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
-  <!-- Step I -->
-  <text x="80" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step I</text>
-  <text x="80" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">曝光 + 分離</text>
-  <rect x="20" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
-  <text x="40" y="48" font-size="9" fill="#D9A0B8">−5V</text>
-  <text x="115" y="48" font-size="9" fill="#D9A0B8">−10V</text>
-  <line x1="40" y1="50" x2="40" y2="40" stroke="#90C8D0"/>
-  <line x1="120" y1="50" x2="120" y2="40" stroke="#90C8D0"/>
-  <text x="80" y="80" font-size="14" fill="#E5B574" text-anchor="middle">⊕→</text>
-  <text x="80" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞被吸去右側</text>
-
-  <!-- Step II -->
-  <text x="230" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step II</text>
-  <text x="230" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">量測 V₁</text>
-  <rect x="170" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
-  <text x="195" y="48" font-size="9" fill="#B09EE0">open</text>
-  <text x="265" y="48" font-size="9" fill="#D9A0B8">−10V</text>
-  <text x="190" y="80" font-size="11" fill="#B09EE0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">V₁</text>
-  <text x="240" y="80" font-size="14" fill="#E5B574" text-anchor="middle">⊕</text>
-  <text x="230" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞仍在右側</text>
-
-  <!-- Step III -->
-  <text x="395" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step III</text>
-  <text x="395" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">切換 + 量測 V₂</text>
-  <rect x="335" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
-  <text x="357" y="48" font-size="9" fill="#B09EE0">open</text>
-  <text x="430" y="48" font-size="9" fill="#6ECBA8">+10V</text>
-  <text x="355" y="80" font-size="11" fill="#B09EE0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">V₂</text>
-  <text x="400" y="80" font-size="14" fill="#E5B574" text-anchor="middle">←⊕</text>
-  <text x="395" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞被推到左側</text>
-
-  <!-- Step IV -->
-  <text x="555" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step IV</text>
-  <text x="555" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">復合</text>
-  <rect x="495" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
-  <text x="515" y="48" font-size="9" fill="#6ECBA8">+5V</text>
-  <text x="585" y="48" font-size="9" fill="#6ECBA8">+10V</text>
-  <text x="555" y="80" font-size="12" fill="rgba(220,218,236,0.7)" text-anchor="middle">⊕⊖</text>
-  <text x="555" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">recombination</text>
-
-  <!-- result -->
-  <rect x="120" y="160" width="380" height="80" fill="rgba(229,181,116,0.1)" stroke="rgba(229,181,116,0.4)" stroke-width="1.2" rx="8"/>
-  <text x="310" y="188" font-size="14" fill="#E5B574" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="400">ΔV = V₁ − V₂</text>
-  <text x="310" y="210" font-size="10" fill="rgba(229,181,116,0.85)" text-anchor="middle">caused by the movement of charge (⊕)</text>
-  <text x="310" y="226" font-size="10" fill="rgba(229,181,116,0.85)" text-anchor="middle">generated by radiation, from right to left electrodes</text>
-</svg>
-<div class="svg-caption">CID 四步驟 — Fig 7-35, 7-36</div>
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>Nondestructive readout 非破壞性讀取</h4>
+    <ul>
+      <li>路徑：(a) → (b) → (c) → <b>回到 (a)</b>（不走 d）</li>
+      <li>量完 V₁、V₂ 後，電洞還在矽裡，沒被消滅</li>
+      <li>可<b>重複量同一個 pixel 多次</b>，把雜訊平均掉 → 訊雜比超高</li>
+      <li>這是 CID 跟 CCD 的<b>最大差異</b></li>
+    </ul>
+  </div>
+  <div class="compare-box neg">
+    <h4>Destructive readout 破壞性讀取</h4>
+    <ul>
+      <li>路徑：(a) → (b) → (c) → <b>(d)</b></li>
+      <li>(d) 把電洞排出 → 訊號消失（破壞掉了）</li>
+      <li>但元件被清空，可以開始下一輪曝光</li>
+      <li>等同 CCD 的讀取方式</li>
+    </ul>
+  </div>
 </div>
 
-<div class="callout">
-  <div><b>重點觀念：</b>CID 利用「<b>同一個電洞被觀察兩次（before / after 搬移）</b>」的位移量推算光的強度，這種「<b>非破壞性讀取</b>」是 CID 與 CCD 的最大差異 — CCD 讀完訊號就消失，但 CID 可以重複量同一個位置而不失去訊號。</div>
-</div>
+<div class="callout"><div>
+  <b>記憶口訣：</b>CID = 「<b>Charge Injection</b>」=「電荷可以注入回去」→ 所以可以選擇<b>讀完不破壞</b>（非破壞）或<b>注回去清空</b>（破壞）兩種模式。CCD 只能後者。
+</div></div>
 
 
 <!-- ════════════ 板書速記 ════════════ -->
@@ -839,7 +838,9 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </div>
 
 <div class="flash">
-  <b>CID 四步驟：</b>① 曝光分離 e/h ② open circuit 量 V₁ ③ 切換右電極 +10V，⊕ 移到左側量 V₂ ④ 復合 →&nbsp; <span class="key">ΔV = V₁ − V₂</span> 即為輻射訊號
+  <b>CID 四步驟：</b>(a) 光照產生 e/h，電洞累積在 −10V 下 → (b) 量 V₁ → (c) 電荷轉移後量 V₂ → (d) +5V/+10V 排出電洞<br>
+  <span class="key">ΔV = V₁ − V₂</span> 即為輻射訊號<br>
+  <b>兩種讀取：</b><span class="key">Nondestructive</span>（跳過 d，可重複量同 pixel）／<span class="key">Destructive</span>（走完 d，等同 CCD）
 </div>
 
 
