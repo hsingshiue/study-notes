@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>儀器分析 — 期末小考重點整理</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root {
+  --bg:#1C1F30; --blue:#90C8D0; --blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55); --rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14); --gold:#C4A882;
+  --green:#6ECBA8; --green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0; --purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;
+  --text:#EAE8F2; --text-mid:rgba(220,218,236,0.75);
+  --text-dim:rgba(220,218,236,0.4); --glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08); --border-lo:rgba(255,255,255,0.05);
+}
+html { scroll-behavior:smooth; }
+body { min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Noto Serif TC",serif; font-size:16px; line-height:1.9; }
+body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%, rgba(100,185,200,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%, rgba(155,130,210,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%, rgba(80,100,160,0.09) 0%, transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%); }
+
+#back-btn { position:fixed; top:18px; left:18px; z-index:999;
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.07); backdrop-filter:blur(14px);
+  border:1px solid var(--border); border-radius:20px;
+  padding:7px 16px 7px 11px; font-size:14px; font-weight:300;
+  letter-spacing:0.05em; color:var(--blue-dim); text-decoration:none;
+  font-family:"Noto Serif TC",serif; transition:background .2s,color .2s; }
+#back-btn:hover { background:rgba(144,200,208,0.12); color:var(--blue); }
+
+.layout { position:relative; z-index:1; display:grid;
+  grid-template-columns:200px 1fr; grid-template-areas:"toc main";
+  max-width:1180px; margin:0 auto; padding:0 0 0 1rem; gap:1.5rem; }
+.toc { grid-area:toc; position:sticky; top:2rem; align-self:start;
+  padding-top:5.5rem; padding-bottom:3rem; max-height:100vh; overflow-y:auto; }
+.toc-label { font-size:0.58rem; letter-spacing:0.35em; font-weight:200;
+  color:var(--text-dim); margin-bottom:1rem; }
+.toc-list { list-style:none; display:flex; flex-direction:column; gap:0.15rem; }
+.toc-list a { display:block; font-size:0.78rem; font-weight:200; line-height:1.5;
+  color:var(--text-dim); text-decoration:none; padding:0.25rem 0.6rem;
+  border-left:2px solid transparent; border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s; }
+.toc-list a:hover,.toc-list a.active { color:var(--blue);
+  border-left-color:var(--blue); background:rgba(144,200,208,0.06); }
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active { color:var(--purple);
+  border-left-color:var(--purple); background:rgba(176,158,224,0.06); }
+.toc-divider { height:1px; margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent); }
+
+main { grid-area:main; padding:5rem 2rem 7rem; max-width:780px; }
+
+.page-header { margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border-lo); }
+.page-header h1 { font-size:2rem; font-weight:300; letter-spacing:0.1em; margin-bottom:0.3rem; }
+.page-header .meta { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.85rem; color:var(--text-dim); letter-spacing:0.1em; }
+.page-header .scope { display:inline-block; margin-top:1rem;
+  padding:0.3rem 0.95rem; border-radius:18px;
+  background:rgba(217,160,184,0.13); border:1px solid rgba(217,160,184,0.3);
+  color:var(--rose); font-size:0.78rem; font-weight:400; letter-spacing:0.08em; }
+
+.section-heading { display:flex; align-items:center; gap:0.6rem;
+  margin:3rem 0 1.4rem; scroll-margin-top:2rem; }
+.section-heading .num { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:1.25rem; flex-shrink:0; letter-spacing:0.04em; }
+.section-heading .label { font-size:0.98rem; font-weight:400; letter-spacing:0.06em; }
+.section-heading .rule { flex:1; height:1px; }
+.sh-blue .num { color:rgba(144,200,208,0.65); } .sh-blue .label { color:var(--blue); }
+.sh-blue .rule { background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent); }
+.sh-rose .num { color:rgba(217,160,184,0.65); } .sh-rose .label { color:var(--rose); }
+.sh-rose .rule { background:linear-gradient(90deg,rgba(217,160,184,0.3),transparent); }
+.sh-amber .num { color:rgba(229,181,116,0.65); } .sh-amber .label { color:var(--amber); }
+.sh-amber .rule { background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent); }
+
+h3 { font-size:0.95rem; font-weight:400; color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35); padding-left:10px;
+  margin:1.4rem 0 0.6rem; }
+h4 { font-size:0.88rem; font-weight:400; color:var(--rose);
+  margin:1rem 0 0.4rem; letter-spacing:0.04em; }
+
+.term { background:var(--glass); border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38); border-radius:8px;
+  padding:10px 16px; margin:0.55rem 0; color:var(--text-mid); font-size:0.92rem; }
+.term:nth-child(even) { border-left-color:rgba(217,160,184,0.4); }
+.term b { color:var(--text); font-weight:400; }
+.term .en { color:var(--rose); font-style:italic; font-family:"Cormorant Garamond",serif; }
+
+.tip { background:var(--green-lo); border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px; padding:10px 16px; margin:0.55rem 0;
+  color:rgba(185,235,215,0.85); font-size:0.9rem; }
+.tip b { color:var(--green); font-weight:400; }
+
+.callout { background:rgba(217,160,184,0.08); border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px; padding:12px 18px; margin:0.8rem 0;
+  color:rgba(235,205,218,0.9); font-size:0.92rem;
+  display:flex; gap:0.8rem; align-items:flex-start; }
+.callout::before { content:"★"; color:var(--rose); opacity:0.8; flex-shrink:0; margin-top:1px; }
+
+.reaction-box { background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16); border-radius:10px;
+  padding:14px 18px; margin:0.8rem 0; color:var(--text-mid); font-size:0.91rem; }
+.reaction-box b { color:var(--text); font-weight:400; }
+
+.exam-box { background:var(--purple-lo); border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px; padding:16px 18px; margin:1rem 0; font-size:0.91rem; }
+.exam-box .exam-title { font-size:0.92rem; font-weight:400; color:var(--purple);
+  margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+.exam-box .exam-title::before { content:"◆"; font-size:0.6rem; opacity:0.7; }
+.exam-box .key { margin-top:0.8rem; padding-top:0.8rem;
+  border-top:1px solid rgba(176,158,224,0.15);
+  color:rgba(210,200,240,0.85); font-size:0.88rem; }
+
+.flash { background:rgba(229,181,116,0.1); border-left:3px solid var(--amber);
+  border-radius:6px; padding:12px 18px; margin:1rem 0;
+  color:var(--text-mid); font-size:0.93rem; line-height:1.8; }
+.flash::before { content:"⚡ 30 秒速記"; display:block; color:var(--amber);
+  font-size:0.75rem; font-weight:400; letter-spacing:0.12em; margin-bottom:0.5rem; }
+.flash b { color:var(--text); font-weight:500; }
+.flash .key { background:rgba(229,181,116,0.2); padding:1px 8px; border-radius:4px;
+  color:var(--amber); font-weight:500; }
+
+.hl { background:rgba(144,200,208,0.15); color:var(--blue);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-rose { background:rgba(217,160,184,0.15); color:var(--rose);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-gold { background:rgba(196,168,130,0.15); color:var(--gold);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-green { background:rgba(110,203,168,0.15); color:var(--green);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+th { background:rgba(144,200,208,0.1); color:var(--blue); font-weight:400;
+  padding:9px 14px; text-align:left; border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em; }
+td { border:1px solid var(--border-lo); padding:9px 14px;
+  background:rgba(255,255,255,0.025); color:var(--text-mid); vertical-align:top; }
+
+ul { margin-left:1.3rem; }
+li { margin:0.3rem 0; color:var(--text-mid); font-size:0.92rem; }
+p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
+
+.svg-wrap { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; padding:14px; margin:0.9rem 0; overflow-x:auto; text-align:center; }
+.svg-wrap svg { max-width:100%; height:auto; }
+.svg-caption { font-size:0.85rem; color:rgba(220,218,236,0.55); margin-top:10px;
+  font-family:"Cormorant Garamond",serif; font-style:italic; letter-spacing:0.05em; }
+
+.formula { font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--blue); letter-spacing:0.04em; }
+
+.pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:0.35rem;
+  margin:0.8rem 0; }
+.pipe-box { background:rgba(144,200,208,0.08); border:1px solid rgba(144,200,208,0.22);
+  color:var(--blue-dim); border-radius:6px; padding:0.3rem 0.65rem;
+  font-size:0.8rem; font-weight:300; letter-spacing:0.03em; }
+.pipe-box.hot { background:rgba(229,181,116,0.1); border-color:rgba(229,181,116,0.3);
+  color:var(--amber); }
+.pipe-arrow { color:var(--text-dim); font-size:0.85rem; }
+
+.step-row { display:flex; gap:0.7rem; margin:0.6rem 0; align-items:flex-start; }
+.step-row .n { flex-shrink:0; width:1.7rem; height:1.7rem;
+  background:rgba(110,203,168,0.15); color:var(--green);
+  border:1px solid rgba(110,203,168,0.3); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.92rem; }
+.step-row .body { color:var(--text-mid); font-size:0.92rem; flex:1; }
+
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:0.8rem 0; }
+@media(max-width:620px){ .compare-grid{ grid-template-columns:1fr; } }
+.compare-box { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; padding:14px 18px; }
+.compare-box.pos { border-left:3px solid rgba(110,203,168,0.5); }
+.compare-box.neg { border-left:3px solid rgba(217,160,184,0.5); }
+.compare-box h4 { margin:0 0 0.6rem; font-size:0.9rem; }
+.compare-box.pos h4 { color:var(--green); }
+.compare-box.neg h4 { color:var(--rose); }
+.compare-box ul { margin-left:1rem; }
+
+@media(max-width:780px) {
+  .layout { grid-template-columns:1fr; grid-template-areas:"main"; padding:0 1.2rem; }
+  .toc { display:none; }
+  main { padding-top:4.5rem; padding-left:0.5rem; padding-right:0.5rem; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#overview">Ch 9 總覽</a></li>
+    <li><a href="#flame">9A 火焰原子化</a></li>
+    <li><a href="#electrothermal">電熱原子化</a></li>
+    <li><a href="#instrument">9B 儀器</a></li>
+    <li><a href="#hcl">中空陰極燈</a></li>
+    <li><a href="#modulation">Source Modulation</a></li>
+    <li><a href="#interference">9C 干擾</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#icp">Ch 10 ICP</a></li>
+    <li><a href="#cid">CID 偵測器</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#board" class="exam-link">板書速記</a></li>
+    <li><a href="#phrases" class="exam-link">必背英文</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<div class="page-header">
+  <h1>儀器分析 — 期末小考重點整理</h1>
+  <div class="meta">Ch 9 AAS / AFS · Ch 10 ICP · CID Detector</div>
+  <div class="scope">📌 本頁範圍 = 期末小考全部考點</div>
+</div>
+
+
+<!-- ════════════ Ch 9 總覽 ════════════ -->
+<div id="overview" class="section-heading sh-blue">
+  <span class="num">Ch 9</span>
+  <span class="label">總覽 · Analysis of Atoms</span>
+  <span class="rule"></span>
+</div>
+
+<p>Ch 9 探討原子層次的光譜分析，三大主題：</p>
+
+<div class="term"><b>Atomic Absorption (AA)</b> <span class="en">原子吸收</span> — 測樣品原子吸收線光源後減弱的程度</div>
+<div class="term"><b>Atomic Fluorescence (AF)</b> <span class="en">原子螢光</span> — 測原子被激發後放出的螢光</div>
+<div class="term"><b>ICP / Mass</b> <span class="en">電漿質譜</span> — 留至 Ch 10 詳述</div>
+
+<h3>章節分布</h3>
+<table>
+  <tr><th style="width:90px">節次</th><th>主題</th></tr>
+  <tr><td><span class="hl">9A</span></td><td>Atomization techniques — <b>flame 火焰</b>、<b>electrothermal 電熱</b></td></tr>
+  <tr><td><span class="hl">9B</span></td><td>Instrument — radiation source + spectrophotometer</td></tr>
+  <tr><td><span class="hl">9C</span></td><td>Interference — spectral / chemical 干擾</td></tr>
+</table>
+
+<h3>原子化全流程 Atomization Pipeline</h3>
+<div class="pipeline">
+  <span class="pipe-box">Sample 樣品</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Nebulization 霧化</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Aerosol 氣溶膠</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Desolvation 去溶</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Volatilization 揮發</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Gaseous molecules</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Dissociation 解離</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box hot">Atoms</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Excitation / Ionization</span>
+</div>
+<p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem;">最終會有 <b>atoms / excited atoms / ions</b> 三種形式；ions 會干擾 AAS 訊號（離子化干擾）。</p>
+
+
+<!-- ════════════ 9A 火焰 ════════════ -->
+<div id="flame" class="section-heading sh-blue">
+  <span class="num">9A</span>
+  <span class="label">火焰原子化 · Flame Atomization</span>
+  <span class="rule"></span>
+</div>
+
+<h3>火焰的三個區域（Fig 9.2 / 9.3）</h3>
+<p>輸入 = ① fuel ② oxidant ③ sample → Table 9.1</p>
+
+<table>
+  <tr><th style="width:45px">編號</th><th>區域</th><th>特性</th></tr>
+  <tr>
+    <td><b>①</b></td>
+    <td><b>Primary Combustion Zone</b><br><span style="color:var(--text-dim);font-size:0.82rem;">主燃燒區</span></td>
+    <td>
+      • 藍色發光 <span class="en" style="color:var(--rose);">blue luminescence</span>，來自 <b>C₂、CH 自由基</b>發射<br>
+      • <b>熱平衡尚未達成</b>（thermal equilibrium not achieved）<br>
+      • <span class="hl-rose">很少用於火焰光譜（rarely used for flame spectroscopy）</span>
+    </td>
+  </tr>
+  <tr>
+    <td><b>③</b></td>
+    <td><b>Interzonal Region</b><br><span style="color:var(--text-dim);font-size:0.82rem;">中間區（最重要）</span></td>
+    <td>
+      • <b>Free atoms 在此區最豐富</b>（free atoms are prevalent）<br>
+      • <span class="hl-green">最常用於光譜分析（most widely used part）</span><br>
+      • 最高溫位於 <b>primary zone 上方約 2.5 cm</b><br>
+      • 需聚焦此區到 entrance slit 上
+    </td>
+  </tr>
+  <tr>
+    <td><b>②</b></td>
+    <td><b>Secondary Combustion Zone</b><br><span style="color:var(--text-dim);font-size:0.82rem;">二次燃燒區</span></td>
+    <td>原子被氧化、回到周圍空氣，較少用於分析</td>
+  </tr>
+</table>
+
+<div class="callout">
+  外觀與相對大小會隨 <b>fuel-to-oxidant ratio</b>（燃料/氧化劑比）大幅改變（Fig 9.3）。<br>
+  → 結論：<b>不同元素應使用火焰的不同部位來測定</b>。
+</div>
+
+<h3>Temperature Profile（Fig 9.3）— 不同元素在不同高度有最大吸光</h3>
+<div class="svg-wrap">
+<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- axes -->
+  <line x1="60" y1="180" x2="460" y2="180" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
+  <line x1="60" y1="25" x2="60" y2="180" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
+  <text x="32" y="105" font-size="11" fill="rgba(220,218,236,0.5)" font-family="Cormorant Garamond,serif" font-style="italic" transform="rotate(-90 32 105)">Absorbance</text>
+  <text x="250" y="205" font-size="11" fill="rgba(220,218,236,0.55)" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">distance above primary zone</text>
+  <!-- Mg curve (peak near 2.5 cm low) -->
+  <path d="M 80 175 Q 140 95 180 115 Q 230 160 280 175" fill="none" stroke="#D9A0B8" stroke-width="1.8"/>
+  <text x="135" y="86" font-size="12" fill="#D9A0B8" font-family="Cormorant Garamond,serif" font-style="italic">Mg</text>
+  <!-- Ag curve (broad, peaks mid) -->
+  <path d="M 80 165 Q 180 75 280 88 Q 380 110 440 132" fill="none" stroke="#6ECBA8" stroke-width="1.8"/>
+  <text x="240" y="72" font-size="12" fill="#6ECBA8" font-family="Cormorant Garamond,serif" font-style="italic">Ag</text>
+  <!-- Cr curve (rises right) -->
+  <path d="M 100 175 Q 220 170 320 148 Q 380 125 440 95" fill="none" stroke="#B09EE0" stroke-width="1.8"/>
+  <text x="395" y="88" font-size="12" fill="#B09EE0" font-family="Cormorant Garamond,serif" font-style="italic">Cr</text>
+  <!-- 2.5 cm marker -->
+  <line x1="180" y1="180" x2="180" y2="190" stroke="rgba(220,218,236,0.35)" stroke-dasharray="3,2"/>
+  <text x="180" y="215" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">~2.5 cm</text>
+</svg>
+<div class="svg-caption">Fig 9.3 — different metals peak at different heights above the primary zone</div>
+</div>
+
+<h3>基本量測公式（板書 2 / 8）</h3>
+<div class="reaction-box">
+  <span class="formula">T = P / P₀　　A = −log T</span><br>
+  <span style="font-size:0.86rem;">P₀ = 入射光強度（incident），P = 通過火焰後透射光強度（transmitted）</span><br>
+  <span style="font-size:0.86rem;">例：P = 980, P₀ = 1000 → T = 0.98 → A = −log(0.98) ≈ 0.0088</span>
+</div>
+
+
+<!-- ════════════ 電熱原子化 ════════════ -->
+<div id="electrothermal" class="section-heading sh-blue">
+  <span class="num">9A·b</span>
+  <span class="label">電熱原子化 · Electrothermal Atomization (ETA)</span>
+  <span class="rule"></span>
+</div>
+
+<h3>石墨爐（Graphite Furnace）— Fig 9-6a</h3>
+<p>原子化發生在 <b>圓柱狀石墨管</b>（cylindrical graphite tube）內。</p>
+
+<div class="pipeline">
+  <span class="pipe-box">a few µL sample</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Drying 乾燥</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box">Ashing 灰化</span><span class="pipe-arrow">→</span>
+  <span class="pipe-box hot">Atomization 2000~3000℃</span>
+</div>
+
+<table>
+  <tr><th>步驟</th><th>時間</th><th>說明</th></tr>
+  <tr><td>Drying（乾燥）</td><td>20~60 s</td><td>較低溫蒸發溶劑</td></tr>
+  <tr><td>Ashing（灰化）</td><td>45~90 s</td><td>較高溫去除基質</td></tr>
+  <tr><td>Atomization（原子化）</td><td>3~10 s</td><td>2000~3000℃，產生原子</td></tr>
+  <tr><td>Cooling down（冷卻）</td><td>&gt; 30 s</td><td>回到室溫</td></tr>
+</table>
+
+<h3>優缺點比較</h3>
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>優點 Advantages</h4>
+    <ul>
+      <li>(a) <b>provides enhanced sensitivity</b>（靈敏度高）</li>
+      <li>(b) <b>entire sample is atomized</b>（樣品完全原子化）</li>
+      <li>(c) average residence time 達 <b>seconds to minutes</b>（停留時間長）</li>
+      <li>(d) <b>better temperature reproducibility</b>（溫度再現性佳）</li>
+    </ul>
+  </div>
+  <div class="compare-box neg">
+    <h4>缺點 Disadvantages</h4>
+    <ul>
+      <li>(a) <b>relative precision: 5~10%</b>，火焰法只有 1%</li>
+      <li>(b) requires <b>several minutes per element</b></li>
+      <li>(c) <b>analytical range relatively narrow</b>（分析範圍窄）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip"><b>Precision vs Accuracy：</b>precision = 重現性（峰寬窄）；accuracy = 與真值的接近程度（峰位置）。電熱法精密度低、靈敏度高，是與火焰法的取捨。</div>
+
+
+<!-- ════════════ 9B 儀器 ════════════ -->
+<div id="instrument" class="section-heading sh-blue">
+  <span class="num">9B</span>
+  <span class="label">AAS 儀器架構 · Instrument</span>
+  <span class="rule"></span>
+</div>
+
+<h3>為什麼需要線光源（Line Source）？</h3>
+<p>原子吸收線非常 <b>窄</b>（線寬約 0.001–0.005 nm）。若用連續光源，大部分光不會被吸收，導致 A 值極小、無法測量。</p>
+
+<div class="reaction-box">
+  例：<span class="formula">P₀ = 1000 → P = 980 ⟹ T = 0.98, A ≈ 0.009</span> — A 太小無法分辨
+</div>
+
+<p>解決方法：使用 <b>Hollow Cathode Lamp（中空陰極燈，HCL）</b>產生與待測原子相同的線光譜，光源線寬甚至比吸收線更窄，吸收效率最大化。</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left: continuous source -->
+  <text x="100" y="20" font-size="11" fill="#90C8D0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Continuous Source ✗</text>
+  <rect x="40" y="40" width="120" height="40" fill="rgba(144,200,208,0.18)" stroke="rgba(144,200,208,0.5)" stroke-width="1"/>
+  <line x1="100" y1="100" x2="100" y2="130" stroke="#D9A0B8" stroke-width="2"/>
+  <text x="100" y="148" font-size="10" fill="#D9A0B8" text-anchor="middle">吸收線太窄</text>
+  <text x="100" y="162" font-size="10" fill="#D9A0B8" text-anchor="middle">大部分光未被吸收</text>
+  <!-- Right: line source -->
+  <text x="380" y="20" font-size="11" fill="#90C8D0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Line Source (HCL) ✓</text>
+  <polygon points="370,80 380,40 390,80" fill="rgba(144,200,208,0.4)" stroke="#90C8D0" stroke-width="1.2"/>
+  <line x1="380" y1="100" x2="380" y2="130" stroke="#6ECBA8" stroke-width="2"/>
+  <text x="380" y="148" font-size="10" fill="#6ECBA8" text-anchor="middle">光源線寬 &lt; 吸收線</text>
+  <text x="380" y="162" font-size="10" fill="#6ECBA8" text-anchor="middle">幾乎全部被吸收</text>
+  <!-- arrow -->
+  <text x="240" y="85" font-size="22" fill="rgba(220,218,236,0.4)" text-anchor="middle">⇒</text>
+</svg>
+<div class="svg-caption">線光源 vs 連續光源 — 吸收效率對比</div>
+</div>
+
+
+<!-- ════════════ HCL ════════════ -->
+<div id="hcl" class="section-heading sh-blue">
+  <span class="num">9B</span>
+  <span class="label">Hollow-Cathode Lamp · 中空陰極燈</span>
+  <span class="rule"></span>
+</div>
+
+<h3>HCL 結構（Fig 9-11）</h3>
+<table>
+  <tr><th style="width:45px">編號</th><th>組件 (EN)</th><th>說明</th></tr>
+  <tr><td><b>1</b></td><td>Tungsten anode</td><td>鎢陽極</td></tr>
+  <tr><td><b>2</b></td><td>Cylindrical Cathode</td><td>圓柱形陰極，<b>內側壁塗有「想測元素的金屬膜」</b>（測 Cu → coated with Cu film）</td></tr>
+  <tr><td><b>3</b></td><td>Argon / Neon gas</td><td>充填惰性氣體</td></tr>
+  <tr><td><b>4</b></td><td>Side wall coating</td><td>cathode 內側 <i>coated with the metal whose spectrum is desired</i></td></tr>
+</table>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- glass envelope -->
+  <ellipse cx="250" cy="100" rx="200" ry="70" fill="none" stroke="rgba(144,200,208,0.5)" stroke-width="1.5"/>
+  <!-- cathode -->
+  <rect x="170" y="78" width="90" height="44" fill="rgba(229,181,116,0.18)" stroke="#E5B574" stroke-width="1.5" rx="5"/>
+  <text x="215" y="103" font-size="11" fill="#E5B574" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Cathode (Cu film)</text>
+  <text x="215" y="140" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">陰極（塗目標金屬）</text>
+  <!-- anode -->
+  <line x1="290" y1="100" x2="380" y2="100" stroke="#90C8D0" stroke-width="2.5"/>
+  <circle cx="380" cy="100" r="4" fill="#90C8D0"/>
+  <text x="335" y="92" font-size="10" fill="#90C8D0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Anode (W)</text>
+  <!-- Ar atoms -->
+  <circle cx="100" cy="80" r="3.5" fill="rgba(176,158,224,0.6)"/>
+  <circle cx="130" cy="120" r="3.5" fill="rgba(176,158,224,0.6)"/>
+  <circle cx="370" cy="140" r="3.5" fill="rgba(176,158,224,0.6)"/>
+  <text x="85" y="158" font-size="10" fill="#B09EE0" font-family="Cormorant Garamond,serif" font-style="italic">Ar / Ne</text>
+  <!-- emission arrow -->
+  <path d="M 200 100 L 80 100" stroke="#D9A0B8" stroke-width="2"/>
+  <polygon points="80,100 88,96 88,104" fill="#D9A0B8"/>
+  <text x="140" y="80" font-size="10" fill="#D9A0B8" font-family="Cormorant Garamond,serif" font-style="italic">hν (Cu line)</text>
+</svg>
+<div class="svg-caption">Fig 9-11 — Hollow Cathode Lamp 構造</div>
+</div>
+
+<h3>HCL 點燈過程（Lamping Process · Plasma 電漿形成）</h3>
+<p>跨兩極施加 <b>~300 V</b>，產生電漿。</p>
+
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>Ionization of inert gas</b>（惰性氣體離子化）：<br>
+  <span class="formula">Ar ⇌ Ar⁺ + e⁻</span> &nbsp;Plasma 形成
+</div></div>
+
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>Sputtering（濺鍍 / 飛金）</b>：Ar⁺ 陽離子獲得足夠動能撞擊陰極，<b>把陰極上的金屬原子打出來</b>（<i>dislodge metal atoms from the cathode</i>）
+</div></div>
+
+<div class="step-row"><div class="n">3</div><div class="body">
+  <b>Excitation &amp; Emission</b>：被打出的金屬原子部分處於激發態，回到基態時 <b>emit characteristic radiation</b>（發射特性輻射）— 這就是我們要的線光譜
+</div></div>
+
+<div class="step-row"><div class="n">4</div><div class="body">
+  <b>Redeposition</b>：金屬原子擴散回陰極表面重新沉積（<i>diffuse back to cathode surface and redeposited</i>）
+</div></div>
+
+<h3>HCL 的缺點與替代方案</h3>
+<div class="callout">
+  <div>
+    <b>缺點 Disadvantages：</b><br>
+    ① <b>High voltage, high currents</b>（需高壓、高電流）<br>
+    ② <b>Self-absorption</b>（自吸收）：放出的光被同種原子重新吸收 → <b>lowered intensity of radiation</b>
+  </div>
+</div>
+
+<div class="tip">
+  <b>替代方案：Electrodeless Discharge Lamp（無極放電燈）</b><br>
+  → 使用 <b>radio-frequency source</b>（射頻源）激發<br>
+  → <b>higher intensity of radiation</b>（光強度更高）
+</div>
+
+
+<!-- ════════════ Source Modulation ════════════ -->
+<div id="modulation" class="section-heading sh-blue">
+  <span class="num">9B</span>
+  <span class="label">Source Modulation · 光源調制</span>
+  <span class="rule"></span>
+</div>
+
+<h3>為什麼要做光源調制？</h3>
+<p><b>問題：</b>火焰本身（fuel/oxidant 燃燒，~2000℃）會發出 <b>continuous radiation</b>，混入 HCL 訊號中造成背景雜訊。</p>
+<p><b>解法：</b><b>讓光源強度以固定頻率閃爍</b>（<i>make the source intensity fluctuates at constant frequency</i>）。偵測器只收特定頻率訊號 → 火焰連續發射被濾掉。</p>
+
+<h3>兩種調制方法</h3>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>Circular metal disk（圓形金屬切光盤 / chopper）</b>：在光源與火焰間放一個轉動的金屬盤（<i>rotating disk at constant rate</i>），把連續光「斬」成一連串脈衝
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>Intermittent power supply（間歇供電）</b>：電源以固定頻率 switched on/off，讓 HCL 本身週期性發光
+</div></div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- continuous radiation -->
+  <text x="100" y="20" font-size="10" fill="rgba(220,218,236,0.55)" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Continuous</text>
+  <line x1="20" y1="50" x2="180" y2="50" stroke="rgba(220,218,236,0.5)" stroke-width="2"/>
+  <text x="195" y="56" font-size="14" fill="rgba(220,218,236,0.4)">⇒</text>
+  <!-- chopper -->
+  <text x="250" y="20" font-size="10" fill="rgba(220,218,236,0.55)" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Chopper</text>
+  <circle cx="250" cy="60" r="22" fill="none" stroke="#90C8D0" stroke-width="1.5"/>
+  <line x1="250" y1="38" x2="250" y2="82" stroke="#90C8D0" stroke-width="1.5"/>
+  <line x1="228" y1="60" x2="272" y2="60" stroke="#90C8D0" stroke-width="1.5"/>
+  <text x="295" y="105" font-size="14" fill="rgba(220,218,236,0.4)">⇒</text>
+  <!-- pulses -->
+  <text x="400" y="20" font-size="10" fill="#6ECBA8" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Pulsed Signal</text>
+  <polyline points="320,80 330,80 330,40 350,40 350,80 370,80 370,40 390,40 390,80 410,80 410,40 430,40 430,80 450,80 450,40 470,40 470,80 485,80" fill="none" stroke="#6ECBA8" stroke-width="1.8"/>
+  <text x="400" y="120" font-size="9" fill="rgba(220,218,236,0.45)" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">time →</text>
+</svg>
+<div class="svg-caption">連續光 → chopper 切割 → 方波脈衝（fixed frequency）</div>
+</div>
+
+<h3>Single-Beam vs Double-Beam（Fig 9.13 P219）</h3>
+<div class="compare-grid">
+  <div class="compare-box">
+    <h4 style="color:var(--blue);">Single-Beam（單光束）</h4>
+    <ul>
+      <li>光路只有一條</li>
+      <li>需先空白校正（aspirate blank）取得 100% T 基線</li>
+      <li>結構簡單、便宜</li>
+    </ul>
+  </div>
+  <div class="compare-box">
+    <h4 style="color:var(--blue);">Double-Beam（雙光束）</h4>
+    <ul>
+      <li>光被分為兩束：一束過火焰，一束 <b>passed around the flame</b>（繞過火焰）</li>
+      <li>同時比較 → 自動扣背景</li>
+      <li>穩定性高、價格貴</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ════════════ 9C 干擾 ════════════ -->
+<div id="interference" class="section-heading sh-blue">
+  <span class="num">9C</span>
+  <span class="label">Interference · 干擾</span>
+  <span class="rule"></span>
+</div>
+
+<h3>干擾分類（板書 15）</h3>
+<table>
+  <tr><th>類型</th><th>來源</th><th>說明</th></tr>
+  <tr>
+    <td rowspan="2"><b>Spectral Interference</b><br>光譜干擾</td>
+    <td>From fuel / oxidant</td>
+    <td><span class="hl-green">容易校正（easily corrected）</span></td>
+  </tr>
+  <tr>
+    <td>From analyte itself</td>
+    <td>Metal oxide / Metal hydroxide<br>Carbon particle（有機物或溶劑使用時）</td>
+  </tr>
+  <tr>
+    <td><b>Chemical Interference</b><br>化學干擾</td>
+    <td>Sample matrix（樣品基質）</td>
+    <td>例：Ca → CaO → CaOH，造成可分析原子數減少</td>
+  </tr>
+</table>
+
+<h3>光譜干擾的解決：Two-Line Correction Method</h3>
+<p>使用兩條波長線扣除背景：</p>
+<ul>
+  <li>① 從光源取 <b>第二條波長線作為 reference line</b>（參考線）</li>
+  <li>② Reference line 波長要 <b>盡可能靠近 analyte 波長</b>（as close as possible）</li>
+  <li>③ Reference line <b>不可被 analyte 吸收</b>（must not be absorbed by the analyte）</li>
+</ul>
+<div class="callout">
+  <div><b>原理：</b>reference line 強度的任何下降，都是來自 <b>matrix product</b>（基質產物）顆粒的散射。將兩線相減即可扣除散射背景。</div>
+</div>
+
+<h3>化學干擾的解決方法（板書 17）</h3>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>Releasing agent（釋放劑）</b>：加入替代物，與干擾物質結合，<b>釋放</b>出 analyte 形成穩定化合物
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>Protective agent（保護劑）</b>：與 analyte 反應形成穩定且 <b>容易揮發</b>（easily evaporated）的締合物
+</div></div>
+
+<div class="reaction-box">
+  <span class="formula">M + O ⇌ MO</span><br>
+  <span class="formula">M + OH ⇌ MOH</span><br>
+  <span style="font-size:0.85rem;">在 fuel-rich combustion mixture 中可降低 MO / MOH 濃度</span>
+</div>
+
+
+<!-- ════════════ Ch 10 ICP ════════════ -->
+<div id="icp" class="section-heading sh-rose">
+  <span class="num">Ch 10</span>
+  <span class="label">Inductively Coupled Plasma · 電漿發射光譜</span>
+  <span class="rule"></span>
+</div>
+
+<h3>電漿發射光譜的三種類型（板書 19）</h3>
+<div class="callout">
+  <div><b>Plasma 定義：</b>electrically conductive gaseous mixture containing significant concentration of <b>cations and electrons</b>（含大量陽離子與電子的導電氣體混合物）</div>
+</div>
+
+<table>
+  <tr><th style="width:90px">類型</th><th>英文</th><th>備註</th></tr>
+  <tr><td><span class="hl-green">ICP ✓</span></td><td>Inductively Coupled Plasma</td><td><b>本章重點</b></td></tr>
+  <tr><td>MIP</td><td>Microwave-Induced Plasma</td><td>微波感應</td></tr>
+  <tr><td>DCP</td><td>Direct Current Plasma</td><td>直流</td></tr>
+</table>
+
+<h3>Typical ICP Source — 稱為「Torch」（板書 18, 22, 24）</h3>
+
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>Three concentric quartz tubes</b>（三個同心石英管）→ thermal isolation（熱絕緣）→ <span class="hl-rose">high cost of operation</span>（因 argon flow rate 大）
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  Surrounding top of tube：<b>water-cooled induction coil</b> powered by <b>radio-frequency (RF)</b>（射頻供電的水冷感應線圈）
+</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">
+  <b>Ionization initiated by a spark from Tesla coil</b>：<span class="formula">Ar → Ar⁺ + e⁻</span>
+</div></div>
+<div class="step-row"><div class="n">4</div><div class="body">
+  The cations / electrons interact with the <b>fluctuating magnetic field</b>（與震盪磁場交互作用）
+</div></div>
+<div class="step-row"><div class="n">5</div><div class="body">
+  使 ions / electrons flow in a <b>closed annular path</b>（封閉環形路徑）
+</div></div>
+<div class="step-row"><div class="n">6</div><div class="body">
+  The resistance of the flow causes <b>ohmic heat</b>（電阻產生焦耳熱，加熱電漿）
+</div></div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- three concentric tubes -->
+  <rect x="200" y="40" width="100" height="160" fill="none" stroke="rgba(144,200,208,0.6)" stroke-width="1.2" rx="2"/>
+  <rect x="215" y="60" width="70" height="140" fill="none" stroke="rgba(144,200,208,0.45)" stroke-width="1.2" rx="2"/>
+  <rect x="230" y="80" width="40" height="120" fill="none" stroke="rgba(144,200,208,0.3)" stroke-width="1.2" rx="2"/>
+  <text x="345" y="52" font-size="10" fill="#90C8D0" font-family="Cormorant Garamond,serif" font-style="italic">3 concentric quartz tubes</text>
+  <!-- RF coil -->
+  <ellipse cx="250" cy="60" rx="55" ry="7" fill="none" stroke="#E5B574" stroke-width="1.8"/>
+  <ellipse cx="250" cy="76" rx="55" ry="7" fill="none" stroke="#E5B574" stroke-width="1.8"/>
+  <text x="345" y="75" font-size="10" fill="#E5B574" font-family="Cormorant Garamond,serif" font-style="italic">RF coil (water-cooled)</text>
+  <!-- plasma -->
+  <path d="M 240 60 Q 228 28 250 12 Q 272 28 260 60 Z" fill="rgba(229,181,116,0.35)" stroke="#E5B574" stroke-width="1.2"/>
+  <text x="250" y="8" font-size="10" fill="#E5B574" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Plasma 6000-10000 K</text>
+  <!-- argon -->
+  <text x="250" y="215" font-size="10" fill="#90C8D0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Ar + sample aerosol ↑</text>
+  <!-- cool tail label -->
+  <text x="135" y="100" font-size="10" fill="rgba(220,218,236,0.55)" text-anchor="end" font-family="Cormorant Garamond,serif" font-style="italic">cool plasma tail →</text>
+  <line x1="138" y1="98" x2="218" y2="60" stroke="rgba(220,218,236,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
+</svg>
+<div class="svg-caption">ICP Torch — three concentric quartz tubes + RF induction coil</div>
+</div>
+
+<h3>Analyte 在電漿中的行為（板書 22）</h3>
+<ul>
+  <li>Sample atoms reside in plasma for <b>a few milliseconds</b>（停留數毫秒）</li>
+  <li>Experience <b>5000~8000 K</b> 高溫</li>
+  <li><b>Atomization is more complete</b>（原子化更完全）</li>
+  <li><b>Few interference occurs</b>（干擾少）</li>
+  <li><b>Ionization interference effects are small</b>（離子化干擾小）</li>
+</ul>
+<div class="reaction-box"><span class="formula">Cu → Cu⁺ + e⁻</span></div>
+
+<h3>Plasma Appearance（板書 23）— Fig 10-4</h3>
+<p>電漿外觀的 4 個特徵：</p>
+<ul>
+  <li>① <b>Very intense</b>（很強烈）</li>
+  <li>② <b>Brilliant</b>（明亮）</li>
+  <li>③ <b>Non-transparent core</b>（核心不透明）</li>
+  <li>④ Topped as a <b>flamelike tail</b>（頂端如火焰狀的尾端）</li>
+</ul>
+<div class="callout">
+  <div>
+    <b>Core</b> 在 tube 上方延伸數毫米，產生 <b>continuous spectrum</b>。<br>
+    機制：連續光譜 fade 後，plasma 變得 <b>optically transparent</b>，此時才能觀察到 analyte 的線光譜。<br>
+    <b>觀察位置：</b>距離 core 約 <b>15-30 mm</b>，溫度約 <b>6000 K</b>。
+  </div>
+</div>
+
+<h3>樣品引入方式 Sample Introduction（板書 20）</h3>
+<table>
+  <tr><th style="width:200px">方法</th><th>說明</th></tr>
+  <tr><td><b>1. Nebulizer</b></td><td>霧化器：液體 → 氣體（liquid → gas）</td></tr>
+  <tr><td><b>2. Electrothermal Vaporization</b></td><td>樣品在 furnace 中蒸發（Fig 10-3 P234），furnace 僅用於樣品蒸發</td></tr>
+</table>
+
+<h3>Axial vs Radial 觀察（板書 21）</h3>
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>Axial（軸向）— 優點</h4>
+    <ul>
+      <li>Increased radiation intensity（<b>long path length</b>）</li>
+      <li>Lower detection limit（低偵測極限）</li>
+      <li>Higher precision（高精密度）</li>
+    </ul>
+  </div>
+  <div class="compare-box neg">
+    <h4>Axial — 缺點</h4>
+    <ul>
+      <li>Cool plasma tail 必須移除，否則造成 <b>interference from oxide</b></li>
+      <li>Thermal &amp; contaminent degradation of <b>spectrometer optics</b></li>
+    </ul>
+  </div>
+</div>
+
+<h3>發射光譜儀類型（板書 24）</h3>
+<ul>
+  <li>1. <b>Sequential</b>（順序掃描）<span style="color:var(--text-dim);">— 過時不用</span></li>
+  <li>2. <b>Simultaneous multichannel</b>（同時多通道）</li>
+  <li>3. <b>Fourier transform</b>（傅立葉轉換）</li>
+  <li>4. <b>Multichannel</b>（多通道）</li>
+</ul>
+<div class="tip">使用 <b>CCD 偵測器</b>，波長覆蓋約 245~800 nm，可同時偵測多元素。</div>
+
+
+<!-- ════════════ CID ════════════ -->
+<div id="cid" class="section-heading sh-rose">
+  <span class="num">CID</span>
+  <span class="label">Charge-Injection Device · 電荷注入元件</span>
+  <span class="rule"></span>
+</div>
+
+<h3>CID 是什麼？</h3>
+<p>CID（Charge-Injection Device）是一種與 CCD 類似的半導體影像偵測器（Fig 7-35, 7-36），常用於 ICP 發射光譜儀。基本結構是 <b>n-type Si</b> 半導體，藉由兩個電極控制電荷流向，把「光照產生的電荷量」量化成「電位差 ΔV」。</p>
+
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula" style="font-size:1.1rem;">ΔV = V₁ − V₂</span><br>
+  <span style="font-size:0.86rem;">ΔV 來自 <b>光照產生的電荷 ⊕ 從右電極移動到左電極</b>的位移量</span>
+</div>
+
+<h3>CID 四步驟工作流程</h3>
+
+<div class="step-row"><div class="n">I</div><div class="body">
+  <b>Step I — 曝光與電荷分離</b>（左 −5V，右 −10V）<br>
+  <span style="font-size:0.88rem;">光照射 n-Si → 產生 <b>electron-hole separation</b>（電子-電洞分離）。電洞（⊕）被吸引至 <b>low potential</b>（更低電位 = 右電極 −10V）。</span>
+</div></div>
+
+<div class="step-row"><div class="n">II</div><div class="body">
+  <b>Step II — 量測 V₁</b>（左 open circuit，右 −10V）<br>
+  <span style="font-size:0.88rem;">① Make the left electrode <b>"open circuit"</b><br>② Measure <b>V₁</b> of the left electrode（vs. ground）</span>
+</div></div>
+
+<div class="step-row"><div class="n">III</div><div class="body">
+  <b>Step III — 切換電位、電荷搬家、量測 V₂</b>（右電極改為 +10V）<br>
+  <span style="font-size:0.88rem;">
+    ① Change the right electrode potential to be <b>+10V</b><br>
+    ② 電洞（⊕）<b>move to left electrode</b><br>
+    ③ Measure <b>V₂</b> of the left electrode<br>
+    ④ The difference between V₁ and V₂ <b>is caused by radiation</b>
+  </span>
+</div></div>
+
+<div class="step-row"><div class="n">IV</div><div class="body">
+  <b>Step IV — 電子-電洞復合</b>（左 +5V，右 +10V）<br>
+  <span style="font-size:0.88rem;"><b>Electron-hole recombination</b>（電子與電洞重新結合）→ 元件回到初始狀態，準備下次曝光。</span>
+</div></div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Step I -->
+  <text x="80" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step I</text>
+  <text x="80" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">曝光 + 分離</text>
+  <rect x="20" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
+  <text x="40" y="48" font-size="9" fill="#D9A0B8">−5V</text>
+  <text x="115" y="48" font-size="9" fill="#D9A0B8">−10V</text>
+  <line x1="40" y1="50" x2="40" y2="40" stroke="#90C8D0"/>
+  <line x1="120" y1="50" x2="120" y2="40" stroke="#90C8D0"/>
+  <text x="80" y="80" font-size="14" fill="#E5B574" text-anchor="middle">⊕→</text>
+  <text x="80" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞被吸去右側</text>
+
+  <!-- Step II -->
+  <text x="230" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step II</text>
+  <text x="230" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">量測 V₁</text>
+  <rect x="170" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
+  <text x="195" y="48" font-size="9" fill="#B09EE0">open</text>
+  <text x="265" y="48" font-size="9" fill="#D9A0B8">−10V</text>
+  <text x="190" y="80" font-size="11" fill="#B09EE0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">V₁</text>
+  <text x="240" y="80" font-size="14" fill="#E5B574" text-anchor="middle">⊕</text>
+  <text x="230" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞仍在右側</text>
+
+  <!-- Step III -->
+  <text x="395" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step III</text>
+  <text x="395" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">切換 + 量測 V₂</text>
+  <rect x="335" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
+  <text x="357" y="48" font-size="9" fill="#B09EE0">open</text>
+  <text x="430" y="48" font-size="9" fill="#6ECBA8">+10V</text>
+  <text x="355" y="80" font-size="11" fill="#B09EE0" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">V₂</text>
+  <text x="400" y="80" font-size="14" fill="#E5B574" text-anchor="middle">←⊕</text>
+  <text x="395" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">電洞被推到左側</text>
+
+  <!-- Step IV -->
+  <text x="555" y="20" font-size="11" fill="#90C8D0" font-weight="400" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic">Step IV</text>
+  <text x="555" y="35" font-size="9" fill="rgba(220,218,236,0.55)" text-anchor="middle">復合</text>
+  <rect x="495" y="50" width="120" height="50" fill="rgba(144,200,208,0.1)" stroke="#90C8D0" stroke-width="1.2" rx="3"/>
+  <text x="515" y="48" font-size="9" fill="#6ECBA8">+5V</text>
+  <text x="585" y="48" font-size="9" fill="#6ECBA8">+10V</text>
+  <text x="555" y="80" font-size="12" fill="rgba(220,218,236,0.7)" text-anchor="middle">⊕⊖</text>
+  <text x="555" y="120" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">recombination</text>
+
+  <!-- result -->
+  <rect x="120" y="160" width="380" height="80" fill="rgba(229,181,116,0.1)" stroke="rgba(229,181,116,0.4)" stroke-width="1.2" rx="8"/>
+  <text x="310" y="188" font-size="14" fill="#E5B574" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="400">ΔV = V₁ − V₂</text>
+  <text x="310" y="210" font-size="10" fill="rgba(229,181,116,0.85)" text-anchor="middle">caused by the movement of charge (⊕)</text>
+  <text x="310" y="226" font-size="10" fill="rgba(229,181,116,0.85)" text-anchor="middle">generated by radiation, from right to left electrodes</text>
+</svg>
+<div class="svg-caption">CID 四步驟 — Fig 7-35, 7-36</div>
+</div>
+
+<div class="callout">
+  <div><b>重點觀念：</b>CID 利用「<b>同一個電洞被觀察兩次（before / after 搬移）</b>」的位移量推算光的強度，這種「<b>非破壞性讀取</b>」是 CID 與 CCD 的最大差異 — CCD 讀完訊號就消失，但 CID 可以重複量同一個位置而不失去訊號。</div>
+</div>
+
+
+<!-- ════════════ 板書速記 ════════════ -->
+<div id="board" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">板書必考重點速記</span>
+  <span class="rule"></span>
+</div>
+
+<div class="flash">
+  <b>火焰最重要區：</b><span class="key">Interzonal region</span>（中間區）— free atoms 最豐富，primary zone 上方 ~2.5 cm，最常用於分析。
+</div>
+
+<div class="flash">
+  <b>電熱原子化：</b>優 = 靈敏度高、完全原子化、停留時間長、溫度再現性佳。<br>
+  缺 = precision <span class="key">5~10%</span>（火焰只有 1%）、每元素數分鐘、分析範圍窄。
+</div>
+
+<div class="flash">
+  <b>HCL 三大組件：</b>① <span class="key">Tungsten anode</span> ② <span class="key">Cylindrical Cathode</span>（內側塗目標金屬）③ <span class="key">Ar/Ne gas</span>
+</div>
+
+<div class="flash">
+  <b>HCL 點燈四步驟：</b>Ionization → <span class="key">Sputtering 飛金</span> → Excitation/Emission → Redeposition
+</div>
+
+<div class="flash">
+  <b>Source Modulation：</b>chopper（金屬切光盤）或間歇供電 → 讓光源以固定頻率閃爍 → 扣火焰連續背景。
+</div>
+
+<div class="flash">
+  <b>化學干擾解法：</b>① Releasing agent（釋放劑）② Protective agent（保護劑）
+</div>
+
+<div class="flash">
+  <b>ICP 六大步驟：</b>三同心石英管 → RF 水冷線圈 → Tesla coil 點火（<span class="key">Ar→Ar⁺</span>）→ 與磁場互動 → <span class="key">closed annular path</span> → <span class="key">ohmic heat</span> 加熱
+</div>
+
+<div class="flash">
+  <b>ICP 為何優於火焰：</b><span class="key">5000~8000 K</span> 高溫、原子化完全、干擾少、離子化干擾小、可同時測多元素。
+</div>
+
+<div class="flash">
+  <b>CID 四步驟：</b>① 曝光分離 e/h ② open circuit 量 V₁ ③ 切換右電極 +10V，⊕ 移到左側量 V₂ ④ 復合 →&nbsp; <span class="key">ΔV = V₁ − V₂</span> 即為輻射訊號
+</div>
+
+
+<!-- ════════════ 必背英文 ════════════ -->
+<div id="phrases" class="section-heading sh-amber">
+  <span class="num">EN</span>
+  <span class="label">一定要會的英文片語</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">"<b>Free atoms are prevalent</b>" — 描述 interzonal region</div>
+<div class="term">"<b>Coated with the metal whose spectrum is desired</b>" — HCL 陰極內側塗層</div>
+<div class="term">"<b>Dislodge metal atoms from the cathode</b>" — Sputtering 過程</div>
+<div class="term">"<b>Lowered intensity of radiation</b>" — self-absorption 結果</div>
+<div class="term">"<b>Make the source intensity fluctuates at constant frequency</b>" — 光源調制目的</div>
+<div class="term">"<b>Electrically conductive gaseous mixture containing significant concentration of cations and electrons</b>" — Plasma 定義</div>
+<div class="term">"<b>Three concentric quartz tubes</b>" — ICP Torch 結構</div>
+<div class="term">"<b>Closed annular path</b>" — ICP 中離子流動路徑</div>
+<div class="term">"<b>Ohmic heat</b>" — ICP 加熱機制</div>
+<div class="term">"<b>The difference between V₁ and V₂ is caused by radiation</b>" — CID 量測原理</div>
+
+</main>
+</div>
+
+<script>
+// TOC active highlight on scroll
+const sections = document.querySelectorAll('.section-heading');
+const tocLinks = document.querySelectorAll('.toc-list a');
+function updateActive() {
+  let current = '';
+  const scrollY = window.scrollY + 100;
+  sections.forEach(s => { if (s.offsetTop <= scrollY) current = s.id; });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive);
+updateActive();
+</script>
+</body>
+</html>
