@@ -322,40 +322,16 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   → 結論：<b>不同元素應使用火焰的不同部位來測定</b>。
 </div>
 
-<h3>Temperature Profile（Fig 9.3）— 不同元素在不同高度有最大吸光</h3>
-<div class="svg-wrap">
-<svg viewBox="0 0 500 230" xmlns="http://www.w3.org/2000/svg">
-  <!-- axes -->
-  <line x1="60" y1="190" x2="470" y2="190" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
-  <line x1="60" y1="25" x2="60" y2="190" stroke="rgba(220,218,236,0.4)" stroke-width="1.2"/>
-  <text x="32" y="110" font-size="13" fill="rgba(220,218,236,0.6)" font-family="Cormorant Garamond,serif" font-style="italic" transform="rotate(-90 32 110)">A</text>
-  <text x="250" y="218" font-size="11" fill="rgba(220,218,236,0.55)" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">distance above primary zone</text>
-
-  <!-- Mg: bell curve peaking early (low distance), peak at x=160 -->
-  <path d="M 75 188 C 120 188, 145 60, 160 60 C 175 60, 215 188, 260 188" fill="none" stroke="#D9A0B8" stroke-width="1.8"/>
-  <text x="155" y="52" font-size="13" fill="#D9A0B8" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Mg</text>
-
-  <!-- Ag: bell curve peaking middle, peak at x=255 -->
-  <path d="M 155 188 C 205 188, 235 70, 255 70 C 275 70, 310 188, 360 188" fill="none" stroke="#6ECBA8" stroke-width="1.8"/>
-  <text x="255" y="62" font-size="13" fill="#6ECBA8" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Ag</text>
-
-  <!-- Cr: bell curve peaking late, peak at x=360 -->
-  <path d="M 260 188 C 305 188, 340 80, 360 80 C 380 80, 415 188, 460 188" fill="none" stroke="#B09EE0" stroke-width="1.8"/>
-  <text x="360" y="72" font-size="13" fill="#B09EE0" font-family="Cormorant Garamond,serif" font-style="italic" text-anchor="middle">Cr</text>
-
-  <!-- 2.5 cm marker at Ag peak -->
-  <line x1="255" y1="190" x2="255" y2="200" stroke="rgba(220,218,236,0.35)" stroke-dasharray="3,2"/>
-  <text x="255" y="216" font-size="9" fill="rgba(220,218,236,0.5)" text-anchor="middle">~2.5 cm</text>
-</svg>
-<div class="svg-caption">Fig 9.3 — Mg、Ag、Cr 三種元素的最大吸光位置不同</div>
-</div>
-<p style="font-size:0.88rem;">三條曲線都是「<b>鐘形吸光曲線</b>」，只是<b>峰位置</b>（最大吸光點）出現在火焰的不同高度：</p>
+<h3>Temperature Profile（Fig 9.3）— 不同元素的吸光趨勢不同</h3>
+<p>火焰不同高度的吸光趨勢，老師上課畫的版本：</p>
 <ul>
-  <li><b>Mg</b>（玫瑰色）— 最快達到峰值，在<b>低處</b>就被分解成原子，但很快又被氧化成 MgO，吸光下降</li>
-  <li><b>Ag</b>（綠色）— 峰值大約在 <b>2.5 cm 處</b>（interzonal region），是「最常用、最穩定」的位置</li>
-  <li><b>Cr</b>（紫色）— 峰值出現在<b>高處</b>，因為 Cr 較難原子化，要更高溫的區域才會分解出原子</li>
+  <li><b>Mg</b>：有明顯<b>峰值</b>（先升後降），因為到高處 Mg 容易被氧化成 MgO，吸光反而下降</li>
+  <li><b>Ag</b>：吸光<b>持續上升後維持高位</b>（對數曲線），不會掉下來</li>
+  <li><b>Cr</b>：跟 Ag 類似，<b>對數曲線</b>持續上升</li>
 </ul>
-<p style="font-size:0.88rem;">所以分析不同元素時，要把火焰的「不同高度」對準狹縫（entrance slit），才能取到該元素的最大吸光。</p>
+<div class="callout">
+  <div>結論：<b>不同元素應使用火焰不同部位來測定</b>。Mg 要在中間區（峰位附近）測；Ag、Cr 則是高度越高吸光越強，可在較高位置測。實作上要把火焰對應位置對準 entrance slit。</div>
+</div>
 
 <h3>基本量測公式</h3>
 <div class="reaction-box">
