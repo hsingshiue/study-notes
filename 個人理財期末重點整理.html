@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人理財 · 期末考前速記表</title>
+<style>
+  :root{
+    --pink:#f6dce4;        /* 櫻花粉 */
+    --pink-deep:#e7a9bd;
+    --mist:#f7f4f2;        /* 霧霾白 */
+    --blue:#dbe8ee;        /* 淡青藍 */
+    --blue-deep:#9fc1d0;
+    --ink:#33282e;         /* 深色錨點 */
+    --ink-soft:#5d4f56;
+    --accent:#b5485f;      /* 深紅 */
+    --paper:#fffdfc;
+    --shadow:0 2px 14px rgba(120,90,100,.10);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:linear-gradient(135deg,var(--pink) 0%,var(--mist) 45%,var(--blue) 100%);
+    color:var(--ink);
+    line-height:1.7;
+    padding:32px 18px;
+    font-size:15px;
+  }
+  .sheet{
+    max-width:920px;margin:0 auto;
+    background:var(--paper);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    border:1px solid rgba(231,169,189,.4);
+  }
+  header.top{
+    background:linear-gradient(120deg,var(--ink) 0%,#4a3a42 100%);
+    color:#fff;padding:26px 30px 22px;position:relative;
+  }
+  header.top::after{
+    content:"";position:absolute;left:0;bottom:0;height:4px;width:100%;
+    background:linear-gradient(90deg,var(--pink-deep),var(--blue-deep),var(--pink-deep));
+  }
+  header.top h1{margin:0;font-size:24px;letter-spacing:1px;}
+  header.top .sub{margin-top:6px;font-size:13px;color:#e8d4db;}
+  .exambar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;
+  }
+  .exambar .chip{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    padding:5px 12px;border-radius:20px;font-size:12.5px;
+  }
+  .exambar .chip b{color:#ffd9e2;}
+  .body{padding:24px 30px 34px;}
+
+  .group{margin-bottom:30px;}
+  .group > h2{
+    font-size:17px;margin:0 0 14px;padding:8px 14px;
+    background:linear-gradient(90deg,var(--pink) 0%,rgba(246,220,228,0) 100%);
+    border-left:5px solid var(--accent);border-radius:4px;
+    color:var(--ink);
+  }
+  .group > h2 small{font-weight:400;color:var(--ink-soft);font-size:12px;margin-left:6px;}
+
+  .term{
+    background:var(--paper);
+    border:1px solid rgba(159,193,208,.45);
+    border-radius:12px;padding:14px 16px;margin-bottom:12px;
+    position:relative;
+  }
+  .term .name{
+    font-weight:700;font-size:15.5px;color:var(--accent);
+    display:flex;align-items:center;gap:8px;margin-bottom:5px;
+  }
+  .term .name .no{
+    background:var(--ink);color:#fff;font-size:12px;font-weight:700;
+    width:22px;height:22px;border-radius:50%;display:inline-flex;
+    align-items:center;justify-content:center;flex:none;
+  }
+  .term p{margin:4px 0;}
+  .term ul{margin:5px 0;padding-left:20px;}
+  .term li{margin:2px 0;}
+  .formula{
+    display:inline-block;background:var(--blue);color:var(--ink);
+    font-weight:700;padding:3px 12px;border-radius:6px;margin:4px 0;
+    border:1px dashed var(--blue-deep);font-size:14.5px;
+  }
+  .tag{
+    display:inline-block;font-size:11.5px;padding:1px 9px;border-radius:12px;
+    margin-left:6px;font-weight:600;vertical-align:middle;
+  }
+  .tag.hot{background:var(--accent);color:#fff;}
+  .tag.note{background:#f0e3c8;color:#7a5a1e;}
+  .vs{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;
+  }
+  .vs > div{background:var(--mist);border-radius:8px;padding:8px 11px;font-size:13.5px;}
+  .vs .a{border-top:3px solid var(--pink-deep);}
+  .vs .b{border-top:3px solid var(--ink);}
+  .vs b{display:block;margin-bottom:2px;}
+  .keyline{color:var(--ink-soft);font-size:13px;border-top:1px dashed rgba(181,72,95,.3);margin-top:8px;padding-top:6px;}
+  .keyline b{color:var(--accent);}
+
+  /* KD 交叉示意圖 */
+  .kdcharts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;}
+  .kdcharts figure{margin:0;background:var(--mist);border-radius:10px;padding:10px 12px;text-align:center;}
+  .kdcharts figcaption{font-size:13px;margin-bottom:4px;color:var(--ink);}
+  .kdcharts figcaption b.buy{color:#c0392b;}
+  .kdcharts figcaption b.sell{color:#2e7d4f;}
+  .kdcharts .dot.buy{color:#c0392b;}
+  .kdcharts .dot.sell{color:#2e7d4f;}
+  .kdcharts svg{width:100%;height:auto;display:block;}
+  .kdcharts small{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:2px;}
+  .kdcharts .axis{stroke:#cbbfc4;stroke-width:1.4;}
+  .kdcharts .kline{fill:none;stroke:#c0392b;stroke-width:3;stroke-linecap:round;}
+  .kdcharts .dline{fill:none;stroke:#5b9e63;stroke-width:3;stroke-linecap:round;}
+  .kdcharts .cross{fill:#fff;stroke:var(--ink);stroke-width:2;}
+  .kdcharts .lbl{font-size:16px;font-weight:700;}
+  .kdcharts .lbl.k{fill:#c0392b;}
+  .kdcharts .lbl.d{fill:#5b9e63;}
+
+  /* 信託關係流程圖 */
+  .trustflow{margin:10px 0 6px;}
+  .trustflow svg{width:100%;height:auto;display:block;}
+  .trustflow .box{fill:var(--mist);stroke:var(--blue-deep);stroke-width:1.5;}
+  .trustflow .box.mon{fill:#fbeef1;stroke:var(--pink-deep);}
+  .trustflow .role{font-size:12px;font-weight:700;fill:var(--ink);}
+  .trustflow .subr{font-size:9.5px;fill:var(--ink-soft);}
+  .trustflow .flowlbl{font-size:10.5px;fill:var(--accent);font-weight:600;}
+  .trustflow .arrow{stroke:var(--ink);stroke-width:1.6;fill:none;}
+
+  /* 次要（可折疊）卡片 */
+  .term.minor{background:#fbfafa;border-color:rgba(159,193,208,.3);}
+  .term.minor details summary{list-style:none;cursor:pointer;font-weight:700;color:var(--ink-soft);font-size:14.5px;display:flex;align-items:center;gap:8px;}
+  .term.minor details summary::-webkit-details-marker{display:none;}
+  .term.minor summary .no{flex:none;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:transparent;border:1.6px solid var(--blue-deep);color:var(--blue-deep);}
+  .term.minor summary .mtag{font-size:11px;font-weight:600;color:#a99;background:#f0eaec;padding:1px 8px;border-radius:10px;}
+  .term.minor summary::after{content:"▸ 點開";margin-left:auto;color:var(--blue-deep);font-size:12px;font-weight:600;}
+  .term.minor details[open] summary::after{content:"▾ 收起";}
+  .term.minor .minor-body{color:var(--ink-soft);font-size:12.5px;margin-top:8px;line-height:1.65;}
+  .term.minor .minor-body b{color:#8a7a80;}
+  @media print{ .term.minor .minor-body{display:block!important;} .term.minor summary::after{content:"";} }
+
+  /* 內嵌表格（應繼分/特留分） */
+  .inhtab{width:100%;border-collapse:collapse;margin:9px 0 4px;font-size:12.5px;}
+  .inhtab th{background:var(--ink);color:#fff;padding:5px 8px;text-align:left;font-weight:600;}
+  .inhtab td{padding:5px 8px;border-bottom:1px solid rgba(159,193,208,.45);vertical-align:top;}
+  .inhtab tbody tr:nth-child(odd){background:var(--mist);}
+  .inhtab td:first-child{text-align:center;font-weight:700;color:var(--accent);}
+
+  .star{
+    background:linear-gradient(120deg,#fff5f8,#eef5f8);
+    border:1.5px solid var(--pink-deep);border-radius:14px;
+    padding:16px 20px;margin-top:4px;
+  }
+  .star h3{margin:0 0 8px;color:var(--accent);font-size:16px;}
+  .star ol{margin:0;padding-left:22px;}
+  .star li{margin:4px 0;}
+
+  footer{
+    text-align:center;font-size:12px;color:var(--ink-soft);
+    padding:14px;background:var(--mist);
+  }
+  @media print{
+    body{background:#fff;padding:0;font-size:12.5px;}
+    .sheet{box-shadow:none;border:none;border-radius:0;max-width:100%;}
+    .group{break-inside:avoid;}
+    .term{break-inside:avoid;}
+    .star{break-inside:avoid;}
+    header.top{background:var(--ink)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header class="top">
+    <h1>個人理財 · 期末考前速記表</h1>
+    <div class="sub">多元學習（共選修）3345 ／ 範圍：期中考後（主題七～十四）</div>
+    <div class="exambar">
+      <span class="chip">紙筆測驗 <b>6/8 (一) 10:00</b> 原教室 · 簡答題</span>
+      <span class="chip">線上測驗 <b>6/8 12:00 ~ 6/22 12:00</b> · 限時 50 分</span>
+      <span class="chip">線上題庫隨機抽 <b>25 題</b></span>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- 第一組 -->
+    <div class="group">
+      <h2>第一組 · 信託與財務指標 <small>（P4 課前回顧）</small></h2>
+
+      <div class="term">
+        <div class="name"><span class="no">1</span>信託 <span class="tag hot">必考</span></div>
+        <p>把財產交給專業的人代管的法律安排。一句話：<b>「我出錢、請人幫我管、好處給指定的人」</b>。</p>
+        <div class="trustflow">
+          <svg viewBox="0 0 380 150" role="img" aria-label="信託關係流程圖">
+            <defs>
+              <marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#33282e"/>
+              </marker>
+            </defs>
+            <rect class="box" x="8" y="44" width="86" height="42" rx="8"/>
+            <text class="role" x="51" y="63" text-anchor="middle">委託人</text>
+            <text class="subr" x="51" y="78" text-anchor="middle">出錢設立的你</text>
+            <rect class="box" x="147" y="44" width="86" height="42" rx="8"/>
+            <text class="role" x="190" y="63" text-anchor="middle">受託人</text>
+            <text class="subr" x="190" y="78" text-anchor="middle">管理財產的銀行</text>
+            <rect class="box" x="286" y="44" width="86" height="42" rx="8"/>
+            <text class="role" x="329" y="63" text-anchor="middle">受益人</text>
+            <text class="subr" x="329" y="78" text-anchor="middle">領到好處的人</text>
+            <line class="arrow" x1="96" y1="65" x2="143" y2="65" marker-end="url(#ah)"/>
+            <text class="flowlbl" x="119" y="57" text-anchor="middle">①交付財產</text>
+            <line class="arrow" x1="235" y1="65" x2="282" y2="65" marker-end="url(#ah)"/>
+            <text class="flowlbl" x="258" y="57" text-anchor="middle">②給付利益</text>
+            <rect class="box mon" x="147" y="108" width="86" height="30" rx="8"/>
+            <text class="role" x="190" y="127" text-anchor="middle" style="font-size:11px">信託監察人</text>
+            <line class="arrow" x1="190" y1="108" x2="190" y2="89" marker-end="url(#ah)"/>
+            <text class="flowlbl" x="197" y="101" text-anchor="start" style="font-size:10px">監督</text>
+          </svg>
+        </div>
+        <p><b>四個關係人</b>如上圖。<b>種類（依信託財產分）：</b>① 金錢信託 ② 有價證券信託 ③ 不動產信託。</p>
+        <p><b>依受益人分：</b><b>自益信託</b>（委託人＝受益人）／ <b>他益信託</b>（受益人為委託人指定的他人）。</p>
+        <div class="keyline"><b>核心特色：</b>① <b>財產獨立性／破產隔離</b>（信託財產獨立於委託人與受託人自有財產，債權人不能動）② 集中控管、達成資產傳承、避免受益人任意處分 ③ 專業管理。</div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">2</span>淨值 (Net Worth)</div>
+        <span class="formula">淨值 ＝ 總資產 − 總負債</span>
+        <p>真正屬於你的財富。房子 1000 萬但欠 700 萬房貸，淨值只有 300 萬。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">3</span>收支平衡點 (Break-even)</div>
+        <p>收入 ＝ 支出（不賺不賠）。理財上：<b>被動收入 ＝ 總支出</b> 時，就是財務自由的門檻。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">4</span>邊際消費率 <span class="tag note">用課堂定義</span></div>
+        <span class="formula">課堂版 ＝ 非基本支出 ÷ 收入</span>
+        <p>把收入中多少比例花在「非必要」（娛樂、奢侈、衝動購物）。比例越高越難存錢。</p>
+        <div class="keyline">經濟學標準版（補充）：每多賺 1 元會多花幾元 ＝ 增加消費 ÷ 增加收入。</div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">5</span>財富自由度 <span class="tag hot">必考</span></div>
+        <span class="formula">財富自由度 ＝ 被動收入 ÷ 總支出</span>
+        <p>&lt;1 要靠工作活；<b>=1 達成財務自由</b>；&gt;1 越來越有餘裕。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">6</span>KD 指標：黃金交叉／死亡交叉 <span class="tag hot">必考</span></div>
+        <p>股市技術分析工具，由 <b>K 線（快）</b>與 <b>D 線（慢）</b>組成，數值 0~100。&gt;80 超買、&lt;20 超賣。K 線波動比 D 線大，兩線交叉時就產生明確的買賣訊號。</p>
+        <div class="kdcharts">
+          <figure>
+            <figcaption><span class="dot buy">●</span> 黃金交叉 → <b class="buy">建議買進（做多）</b></figcaption>
+            <svg viewBox="0 0 285 150" role="img" aria-label="黃金交叉示意圖">
+              <line x1="18" y1="138" x2="258" y2="138" class="axis"/>
+              <line x1="18" y1="12" x2="18" y2="138" class="axis"/>
+              <path d="M22,96 Q72,90 122,80 Q182,69 232,60" class="dline"/>
+              <path d="M22,120 Q82,115 122,80 Q178,50 232,26" class="kline"/>
+              <circle cx="122" cy="80" r="5" class="cross"/>
+              <text x="240" y="30" class="lbl k">K</text>
+              <text x="240" y="64" class="lbl d">D</text>
+            </svg>
+            <small>K 由下往上突破 D → 看漲</small>
+          </figure>
+          <figure>
+            <figcaption><span class="dot sell">●</span> 死亡交叉 → <b class="sell">建議賣出（做空）</b></figcaption>
+            <svg viewBox="0 0 285 150" role="img" aria-label="死亡交叉示意圖">
+              <line x1="18" y1="138" x2="258" y2="138" class="axis"/>
+              <line x1="18" y1="12" x2="18" y2="138" class="axis"/>
+              <path d="M22,58 Q72,63 122,70 Q182,78 232,84" class="dline"/>
+              <path d="M22,30 Q82,38 122,70 Q178,102 232,120" class="kline"/>
+              <circle cx="122" cy="70" r="5" class="cross"/>
+              <text x="240" y="124" class="lbl k">K</text>
+              <text x="240" y="88" class="lbl d">D</text>
+            </svg>
+            <small>K 由上往下跌破 D → 看跌</small>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二組 -->
+    <div class="group">
+      <h2>第二組 · 房貸與購屋 <small>（P6 課前回顧）</small></h2>
+
+      <div class="term">
+        <div class="name"><span class="no">7</span>房貸餘額（本金＋利息）的攤還方式</div>
+        <div class="vs">
+          <div class="a"><b>本息平均攤還</b>每月繳一樣多；初期還的多是利息、本金少。月付固定好規劃。</div>
+          <div class="b"><b>本金平均攤還</b>每月還的本金固定 → 月付逐月遞減；<b>總利息較少</b>，但初期壓力大。</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">8</span>分期付款的類別</div>
+        <ul>
+          <li>本息平均攤還 / 本金平均攤還（如上）</li>
+          <li><b>寬限期</b>：前幾年只繳息不還本，月付低；期滿月付跳高、總利息變多</li>
+          <li><b>到期一次還本（氣球貸）</b>：期間只繳息，到期一次還清本金</li>
+        </ul>
+      </div>
+
+      <div class="term minor">
+        <details>
+          <summary><span class="no">9</span>購屋停看聽（看房重點）<span class="mtag">應用・非簡答重點</span></summary>
+          <div class="minor-body">
+            <p><b>屋外：</b>建築外觀（磁磚剝落／陽台外推／頭重腳輕）、招牌光害、周圍路況（消防救護進出・路寬≥8m）、嫌惡設施（加油站／變電所／高架橋）</p>
+            <p><b>屋內：</b>梯間動線通風、消防（警報器／滅火／電梯許可證）、公設（有無二次施工）、天花板滲水、牆壁裂縫壁癌、樑柱（避免壓樑）、門窗（氣密條）、水電排水、瓦斯熱水器（軟管老化）、空調（排水勿破壞防水）</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- 第三組 -->
+    <div class="group">
+      <h2>第三組 · 繼承、保險與房貸類型 <small>（P9 課前回顧）</small></h2>
+
+      <div class="term">
+        <div class="name"><span class="no">10</span>應繼分 vs 特留分 <span class="tag hot">必考</span></div>
+        <div class="vs">
+          <div class="a"><b>應繼分</b>沒寫遺囑時，每位繼承人「原本應分到」的比例。</div>
+          <div class="b"><b>特留分</b>有遺囑時，法律仍強制保障繼承人的「最低額」，不可被遺囑剝奪。</div>
+        </div>
+        <table class="inhtab">
+          <thead><tr><th>順位</th><th>身分組合</th><th>應繼分</th><th>特留分（＝應繼分打折）</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>配偶＋小孩</td><td>按人數均分</td><td>各為應繼分的 1/2</td></tr>
+            <tr><td>2</td><td>配偶＋父母</td><td>配偶先拿 1/2，剩下父母均分</td><td>各為應繼分的 1/2</td></tr>
+            <tr><td>3</td><td>配偶＋兄弟姊妹</td><td>配偶先拿 1/2，剩下兄弟姊妹均分</td><td>配偶為應繼分的 1/2、兄弟姊妹為應繼分的 1/3</td></tr>
+            <tr><td>4</td><td>配偶＋祖父母</td><td>配偶先拿 2/3，剩下祖父母均分 1/3</td><td>配偶為應繼分的 1/2、祖父母為應繼分的 1/3</td></tr>
+          </tbody>
+        </table>
+        <div class="keyline"><b>順位（民1138）：</b>① 直系血親卑親屬（子先逝→孫「代位繼承」）② 父母 ③ 兄弟姊妹 ④ 祖父母；<b>前順位在，後順位就沒繼承權</b>。<b>配偶</b>是「當然繼承人」不排順位；無配偶／配偶先逝 → 表中配偶部分歸零。</div>
+        <div class="keyline"><b>特留分重點：</b>只在「<b>有遺囑、且遺囑侵害到特留分</b>」時才發生；沒寫遺囑就直接照應繼分分。算法＝<b>應繼分打折</b>（卑親屬／父母／配偶 ×1/2；兄弟姊妹／祖父母 ×1/3）。</div>
+        <div class="keyline"><b>算出來要幹嘛？</b>特留分＝<b>遺囑自由的底線</b>：立遺囑能決定財產怎麼分，但不能完全剝奪繼承人。當遺囑分給某人的<b>少於其特留分</b>時，該繼承人可行使「<b>扣減權</b>」向拿太多的人討回差額。<br><b>例：</b>遺產 1200 萬、繼承人＝配偶＋2 子（共 3 人）→ 應繼分各 400 萬、特留分各 200 萬；若遺囑「全給大兒子」，配偶與小兒子可各討回 <b>200 萬</b>，大兒子最後剩 800 萬。</div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">11</span>保險受益人 <span class="tag hot">必考</span></div>
+        <p>保險事故發生（如身故）時<b>有權領理賠金的人</b>，可有多人並依順位／比例分配。</p>
+        <p><b>三者別搞混：</b>要保人（訂約＋繳費）、被保人（被保障的對象）、受益人（領理賠金）。醫療險的受益人通常是被保人本人；壽險、意外險才需「指定受益人」。</p>
+        <div class="keyline"><b>為何要指定？</b>受益人領的身故保險金，若受益人≠要保人、且金額未超過 <b>3,330 萬</b>，原則上<b>不課稅</b>；<b>沒指定 → 理賠金併入遺產、要課遺產稅</b>。受益人可變更（填契變書、經要保人與被保人同意）。</div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">12</span>房貸類型</div>
+        <p><b>分兩大類：</b>購屋房貸（借錢買房）／ 融資房貸（用房子借錢）。</p>
+        <p><b>購屋房貸：</b></p>
+        <ul>
+          <li><b>指數型</b>：利率隨市場浮動，降息省息、升息有風險（最普遍）</li>
+          <li><b>固定型</b>：利率固定不變、好做財務規劃，但利率較高、選項少</li>
+          <li><b>混合型</b>：固定＋機動利率，前期負擔輕（目前多為新青安方案）</li>
+          <li><b>抵利型</b>：用存款折抵房貸本息、降月付，存款有上限、利率較高</li>
+        </ul>
+        <p><b>融資房貸：</b></p>
+        <ul>
+          <li><b>原屋融資</b>：拿無貸款的房子抵押，利率低、年期長</li>
+          <li><b>房屋增貸</b>：向原銀行加額度，申辦快，但受房屋增值幅度限制</li>
+          <li><b>理財型</b>：已還的本金可「隨借隨還」，靈活但利率較高</li>
+          <li><b>二順位（二胎）</b>：已有房貸的房子再抵押，額度高、利率稍高</li>
+        </ul>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">13</span>實價登錄</div>
+        <p>不動產買賣／租賃成交後，須申報登錄<b>實際成交價</b>並公開查詢，讓房價透明、避免哄抬。</p>
+      </div>
+    </div>
+
+    <!-- 第四組 -->
+    <div class="group">
+      <h2>第四組 · 投資理財概念 <small>（P13 課前回顧）</small></h2>
+
+      <div class="term">
+        <div class="name"><span class="no">14</span>衍生性金融商品（為何出現？） <span class="tag hot">必考</span></div>
+        <p>價值「衍生自」其他標的（股票/利率/匯率/原物料）的契約：<b>期貨、選擇權、遠期、交換</b>。</p>
+        <div class="keyline">為何會有？→ 最初為了 <b>避險 (Hedging)</b>，先鎖定未來價格、把風險轉移出去（後也被用於投機與套利）。</div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">15</span>投資 vs 投機</div>
+        <div class="vs">
+          <div class="a"><b>投資</b>依資產基本價值，求長期穩定報酬，承擔合理風險。</div>
+          <div class="b"><b>投機</b>賭短期價差賺快錢，承擔高風險，不看基本面。</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">16</span>舉債與節稅（稅盾）</div>
+        <p>公司借款產生的<b>利息費用可列為費用、抵減稅前盈餘</b>，因此能少繳稅 → 這就是「稅盾 (Tax Shield)」，也是適度舉債划算的原因。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">17</span>代理問題 (Agency Problem) <span class="tag hot">必考</span></div>
+        <p>「所有者」與「經營者」不是同一人，因利益不一致＋資訊落差，代理人可能犧牲所有者利益。</p>
+        <ul>
+          <li><b>股東 vs 經理人</b>：經理人亂花公司錢、追求個人名聲而非股東獲利</li>
+          <li><b>債權人 vs 股東</b>：股東愛冒險，賺歸自己、虧讓債權人扛</li>
+        </ul>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">18</span>槓桿 (Leverage)</div>
+        <p>用借來的錢放大投資部位，<b>同時放大報酬與風險</b>。自有 100 萬＋借 100 萬投資 200 萬：賺 10%＝對自有資金賺 20%；跌 10% 也賠 20 萬。用過頭可能被斷頭。</p>
+      </div>
+    </div>
+
+    <!-- 主題補充名詞 -->
+    <div class="group">
+      <h2>各主題其他名詞 <small>（主題七～十四）</small></h2>
+
+      <div class="term">
+        <div class="name"><span class="no">19</span>逆選擇 vs 道德危險 <span class="tag hot">必考</span> <small style="font-weight:400;color:#5d4f56;">（主題九）</small></div>
+        <div class="vs">
+          <div class="a"><b>逆選擇（簽約前）</b>資訊不對稱：賣家最懂二手車況、買家不知 → 留下的常是爛車；「越會出事的人越想買保險」。</div>
+          <div class="b"><b>道德危險（簽約後）</b>行為改變：買了車險後開車更隨便，反正撞了有人賠 → 風險升高。</div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">20</span>被動收入／開源／節流 <small style="font-weight:400;color:#5d4f56;">（主題八）</small></div>
+        <p><b>被動收入</b>＝不用持續勞力也進帳（股息、租金、利息、版稅）。開源＝增加收入；<b>節流＝減少支出，更能即時抑制財務缺口擴大</b>（省下的馬上見效）。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">21</span>緊急預備金 <small style="font-weight:400;color:#5d4f56;">（主題七）</small></div>
+        <p>預留 <b>3~6 個月生活費</b> 的現金，應付失業、生病等突發狀況，不拿去投資，隨時可動用。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">22</span>預售屋／新成屋／中古屋 <small style="font-weight:400;color:#5d4f56;">（主題九）</small></div>
+        <ul>
+          <li><b>預售屋</b>：還沒蓋好就先賣，付款期長、可客變，有蓋不出來的風險</li>
+          <li><b>新成屋</b>：已蓋好但無人住過、屋齡新</li>
+          <li><b>中古屋</b>：有人住過的二手房，較便宜、可立即入住但屋況老</li>
+        </ul>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">23</span>三明治族群 <small style="font-weight:400;color:#5d4f56;">（主題十二）</small></div>
+        <p>上要養父母、下要養子女，被夾在中間、經濟壓力最大的中壯年世代。</p>
+      </div>
+
+      <div class="term">
+        <div class="name"><span class="no">24</span>勞退自提的免稅上限 <small style="font-weight:400;color:#5d4f56;">（主題十三）</small></div>
+        <p>勞工每月可在<b>薪資 6%</b> 範圍內自願提繳到勞退專戶，這筆金額可從當年度綜合所得<b>全額扣除（當年免稅）</b>，既強迫儲蓄又節稅。</p>
+      </div>
+    </div>
+
+    <!-- 衝刺重點 -->
+    <div class="star">
+      <h3>★ 衝刺優先背這 8 個（最典型簡答題）</h3>
+      <ol>
+        <li><b>信託</b>三角色＋財產獨立性特色</li>
+        <li><b>淨值</b>＝總資產−總負債 ／ <b>財富自由度</b>＝被動收入÷總支出</li>
+        <li><b>KD</b> 黃金交叉（買）vs 死亡交叉（賣）</li>
+        <li><b>應繼分</b>（沒遺囑怎分）vs <b>特留分</b>（最低保障）</li>
+        <li><b>逆選擇</b>（簽約前）vs <b>道德危險</b>（簽約後）</li>
+        <li><b>代理問題</b>：股東vs經理人、債權人vs股東</li>
+        <li><b>衍生性金融商品</b>為何存在 → 避險</li>
+        <li><b>邊際消費率（課堂版）</b>＝非基本支出÷收入</li>
+      </ol>
+    </div>
+
+  </div>
+  <footer>個人理財期末速記 · 理財目的：調節人生各階段收支、實現「自由」｜四大重點：緊急預備金 · 保險 · 多元收入 · 心態調整</footer>
+</div>
+</body>
+</html>
