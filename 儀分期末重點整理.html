@@ -155,6 +155,23 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 .svg-caption { font-size:0.85rem; color:rgba(220,218,236,0.55); margin-top:10px;
   font-family:"Cormorant Garamond",serif; font-style:italic; letter-spacing:0.05em; }
 
+details.fig-fold { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; margin:0.9rem 0; overflow:hidden; }
+details.fig-fold > summary { list-style:none; cursor:pointer;
+  padding:10px 16px; color:var(--blue-dim); font-size:0.88rem;
+  display:flex; align-items:center; gap:0.5rem;
+  background:rgba(144,200,208,0.04); border-bottom:1px solid transparent;
+  transition:background .2s; user-select:none; }
+details.fig-fold > summary::-webkit-details-marker { display:none; }
+details.fig-fold > summary::before { content:"▸"; color:var(--blue);
+  font-size:0.75rem; transition:transform .2s; flex-shrink:0; }
+details.fig-fold[open] > summary::before { transform:rotate(90deg); }
+details.fig-fold[open] > summary { border-bottom-color:var(--border-lo);
+  background:rgba(144,200,208,0.07); }
+details.fig-fold > summary:hover { background:rgba(144,200,208,0.1); }
+details.fig-fold .fig-body { padding:14px; text-align:center; }
+details.fig-fold .fig-body img { max-width:100%; height:auto; }
+
 .formula { font-family:"Cormorant Garamond",serif; font-style:italic;
   color:var(--blue); letter-spacing:0.04em; }
 
@@ -1024,6 +1041,17 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <li><b>Vibrational</b> 振動能階 — 嵌在電子能階中</li>
   <li><b>Rotational</b> 轉動能階 — 嵌在振動能階中，能量差最小</li>
 </ul>
+
+<details class="fig-fold">
+  <summary>展開 Fig 6-24：螢光分子的能階圖 (a) 吸收 (b) 非輻射弛緩 (c) 螢光</summary>
+  <div class="fig-body">
+    <img src="img/Fig%206-24-dark.png" alt="Fig 6-24 partial energy-level diagrams for a fluorescent organic molecule">
+    <div class="svg-caption">Fig 6-24 — Partial energy-level diagrams for a fluorescent organic molecule<br>
+    左 (a)：electron 從 E₀ 吸收 IR / Visible 光被激發到 E₁、E₂ 的不同振動能階<br>
+    中 (b)：非輻射弛緩，分子從高振動能階逐階放熱回到 E₁ 的最低 vibrational level<br>
+    右 (c)：從 E₁ 釋放光子（螢光）回到 E₀ 的不同振動能階</div>
+  </div>
+</details>
 <div class="reaction-box">
   <b>能階「密度」：</b><span class="formula">rotational &gt;&gt; vibrational &gt; electronic</span><br>
   <b>能量公式：</b><span class="formula">E = h·ν,  c = λ·ν</span>　→　ν = c/λ<br>
