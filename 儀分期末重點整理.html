@@ -178,6 +178,9 @@ details.fig-fold[open] > summary { border-bottom-color:var(--border-lo);
 details.fig-fold > summary:hover { background:rgba(144,200,208,0.1); }
 details.fig-fold .fig-body { padding:14px; text-align:center; }
 details.fig-fold .fig-body img { max-width:70%; height:auto; display:block; margin:0 auto; }
+details.fig-fold .fig-body.light-bg { background:rgba(245,243,238,0.97); padding:18px;
+  border-radius:6px; margin:4px; }
+details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 
 .formula { font-family:"Cormorant Garamond",serif; font-style:italic;
   color:var(--blue); letter-spacing:0.04em; }
@@ -845,10 +848,10 @@ details.fig-fold .fig-body img { max-width:70%; height:auto; display:block; marg
 </ul>
 
 <details class="fig-fold">
-  <summary>展開 Fig 10-14：ICP 偵測極限元素週期表</summary>
-  <div class="fig-body">
-    <img src="img/Fig%2010-14-dark.png" alt="Fig 10-14 Periodic table detection limits for ICP">
-    <div class="svg-caption">Fig 10-14 — 用 pneumatic nebulizer 的 ICP 對各元素的 detection limit（ng/mL）<br>顏色越深越敏感；陰影深淺另外標示「有用譜線數量」</div>
+  <summary>展開 Fig 10-14：ICP 偵測極限元素週期表（雙資訊編碼，使用原圖）</summary>
+  <div class="fig-body light-bg">
+    <img src="img/Fig%2010-14.png" alt="Fig 10-14 Periodic table detection limits for ICP">
+    <div class="svg-caption">Fig 10-14 — 用 pneumatic nebulizer 的 ICP 對各元素的 detection limit（ng/mL）<br>顏色越深越敏感；格子內的斜線/網點標示「有用譜線數量」</div>
   </div>
 </details>
 
