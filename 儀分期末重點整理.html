@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>儀器分析 — 期末小考重點整理</title>
+<title>儀器分析 — 期末考重點整理</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
@@ -209,9 +209,20 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
     <li><a href="#hcl">中空陰極燈</a></li>
     <li><a href="#modulation">Source Modulation</a></li>
     <li><a href="#interference">9C 干擾</a></li>
+    <li><a href="#ch9-exercises" class="exam-link">Ch 9 習題</a></li>
     <div class="toc-divider"></div>
     <li><a href="#icp">Ch 10 ICP</a></li>
+    <li><a href="#icp-app">ICP 應用</a></li>
+    <li><a href="#ch10-exercises" class="exam-link">Ch 10 習題</a></li>
+    <div class="toc-divider"></div>
     <li><a href="#cid">CID 偵測器</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#ch13">Ch 13 UV-Vis</a></li>
+    <li><a href="#beer">Beer's Law</a></li>
+    <li><a href="#deviation">真實偏離</a></li>
+    <li><a href="#sources">光源</a></li>
+    <li><a href="#blackbody">黑體輻射</a></li>
+    <li><a href="#ch13-exercises" class="exam-link">Ch 13 習題</a></li>
     <div class="toc-divider"></div>
     <li><a href="#board" class="exam-link">板書速記</a></li>
     <li><a href="#phrases" class="exam-link">必背英文</a></li>
@@ -221,8 +232,9 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 <main>
 
 <div class="page-header">
-  <h1>儀器分析 — 期末小考重點整理</h1>
-  <div class="meta">Ch 9 AAS / AFS · Ch 10 ICP · CID Detector</div>
+  <h1>儀器分析 — 期末考重點整理</h1>
+  <div class="meta">Ch 9 AAS · Ch 10 ICP · CID Detector · Ch 13 UV-Vis Molecular Spectroscopy</div>
+  <div class="scope">範圍：Ch 9（含小考內容）+ Ch 10 + CID + Ch 13</div>
 </div>
 
 
@@ -593,6 +605,60 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </div>
 
 
+<!-- ════════════ Ch 9 習題 ════════════ -->
+<div id="ch9-exercises" class="section-heading sh-amber">
+  <span class="num">Ex</span>
+  <span class="label">Ch 9 章末習題 · End-of-Chapter Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">9-3</div>
+  <p><b>EN｜</b>Why is an electrothermal atomizer more sensitive than a flame atomizer?</p>
+  <p><b>中｜</b>為什麼電熱原子化器（ETA）比火焰原子化器更靈敏？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <ul>
+      <li>①  ETA 把整個樣品在小體積石墨管內<b>幾乎完全原子化</b>（atomization is more complete），不像火焰需先去溶劑、霧化才能進入火焰。</li>
+      <li>② Analyte 在原子化器中<b>停留時間長（~ 1 s）</b>，火焰僅約 <span class="hl">10⁻⁴ s</span>，光路經過的原子數遠多於火焰。</li>
+      <li>③ 樣品蒸氣<b>集中於小區域、不被燃燒氣稀釋</b>，原子蒸氣密度高 → 靈敏度高 100~1000 倍。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">9-12 ★</div>
+  <p><b>EN｜</b>For the flame shown in Figure 9-3, calculate the relative intensity of the 766.5 nm emission line for potassium at the flame center and at heights above the orifice (assume no ionization, take 2.0 cm as the comparison height).</p>
+  <p><b>中｜</b>依 Fig 9-3 不同高度的火焰溫度，計算 K 766.5 nm 發射線的相對強度（以 2.0 cm 處為基準）。</p>
+  <div class="key">
+    <b>原理：</b><span class="formula">I ∝ N<sub>j</sub>/N<sub>0</sub> = (g<sub>j</sub>/g<sub>0</sub>) · exp(−E<sub>j</sub>/kT)</span>，先用波茲曼算 N<sub>j</sub>/N<sub>0</sub>，再以 2.0 cm 處為基準作比值。
+    <table style="margin-top:0.6rem;">
+      <tr><th>(高度 cm)</th><th>T (K)</th><th>N<sub>j</sub>/N<sub>0</sub> × 10⁴</th><th>I<sub>x</sub>/I<sub>y</sub></th></tr>
+      <tr><td>(a) 2.0</td><td>1973</td><td>2.22</td><td>1.00</td></tr>
+      <tr><td>(b) 3.0</td><td>2136</td><td>4.58</td><td>2.06</td></tr>
+      <tr><td>(c) 4.0</td><td>2092</td><td>3.81</td><td>1.72</td></tr>
+      <tr><td>(d) 5.0</td><td>1998</td><td>2.50</td><td>1.13</td></tr>
+    </table>
+    <span style="font-size:0.85rem;">→ <b>3.0 cm 處強度最高</b>（溫度最高的火焰中段），驗證 interzonal region 為最佳分析區。</span>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">9-14 ★</div>
+  <p><b>EN｜</b>For Na atoms and Mg⁺ ions, compare the ratios of the number of particles in the 3p excited state to the number in the ground state in (a) a natural gas–air flame (2100 K) (b) a hydrogen–oxygen flame (2900 K) (c) an inductively coupled plasma source (6000 K).</p>
+  <p><b>中｜</b>比較 Na 原子與 Mg⁺ 離子在 3p 激發態 / 基態粒子數比例，在三種光源下：</p>
+  <div class="key">
+    <table style="margin-top:0.2rem;">
+      <tr><th>光源</th><th>Na (3p / 3s)</th><th>Mg⁺ (3p / 3s)</th></tr>
+      <tr><td>(a) 2100 K 天然氣–空氣火焰</td><td>2.7 × 10⁻⁵</td><td>6.9 × 10⁻¹¹</td></tr>
+      <tr><td>(b) 2900 K H₂–O₂ 火焰</td><td>6.6 × 10⁻⁴</td><td>5.9 × 10⁻⁸</td></tr>
+      <tr><td>(c) 6000 K ICP</td><td>0.051</td><td>5.7 × 10⁻⁴</td></tr>
+    </table>
+    <span style="font-size:0.85rem;">→ 溫度上升使激發態比例急遽增加；Mg⁺ 激發能比 Na 高，比例小很多；ICP 6000 K 才能讓 Mg⁺ 有足夠的激發態被偵測到。</span>
+  </div>
+</div>
+
+
 <!-- ════════════ Ch 10 ICP ════════════ -->
 <div id="icp" class="section-heading sh-rose">
   <span class="num">Ch 10</span>
@@ -700,6 +766,125 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 <div class="tip">使用 <b>CCD 偵測器</b>，波長覆蓋約 245~800 nm，可同時偵測多元素。</div>
 
 
+<!-- ════════════ ICP 應用 ════════════ -->
+<div id="icp-app" class="section-heading sh-rose">
+  <span class="num">10D</span>
+  <span class="label">ICP 應用 · Application of Plasma Sources</span>
+  <span class="rule"></span>
+</div>
+
+<h3>1. Sample Preparation 樣品準備</h3>
+<ul>
+  <li>Analyte 須<b>溶於水溶液或有機液體中</b>（dissolved or suspended in aqueous / organic liquids）</li>
+  <li>類似 flame absorption；但 ICP <b>可直接分析固體樣品</b>（直接送入電漿）</li>
+</ul>
+
+<h3>2. Elements Determined 適用元素</h3>
+<ul>
+  <li><b>所有金屬元素皆可</b>（all metallic elements）</li>
+  <li>B、P、N、S、C 等元素的發射線在 <span class="hl">λ &lt; 180 nm</span>，<b>空氣分子會吸收</b>這個區域 → 必須用 <b>vacuum spectrometer 真空光譜儀</b></li>
+  <li>Li、K、Rb、Cs 的強線在 <b>near-IR</b> 區（Fig 10-14）</li>
+</ul>
+
+<h3>3. Line Selection 譜線選擇</h3>
+<ul>
+  <li>大多元素有多條強譜線（several prominent lines）</li>
+  <li>波長資料可從多本參考書取得</li>
+  <li>選線依據 sample 中可能存在其他元素的<b>干擾</b>來決定</li>
+</ul>
+
+<h3>4. Calibration Curve 校正曲線</h3>
+<p>板書 Fig 10-15：log I vs log Conc 圖 — 在 <b>低與中濃度</b>線性良好；高濃度時出現偏離（departure from linearity）。偏離兩種原因：</p>
+<ul>
+  <li><b>Self-absorption</b>（自吸收）— 高濃時激發態原子放出的光被基態原子重新吸收 → 強度偏低</li>
+  <li><b>Erroneous background correction</b>（背景校正錯誤）— 背景扣除有誤</li>
+</ul>
+
+<h3>5. Internal Standard 內標法</h3>
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">訊號 = I<sub>analyte</sub> / I<sub>internal standard</sub></span><br>
+  <span style="font-size:0.85rem;">板書 Fig 10-16：常用 <b>釔 Yttrium</b>（242.2 nm emission）作為內標元素</span>
+</div>
+<p>用內標可<b>抵消儀器漂移、霧化效率變化、樣品基質效應</b>。</p>
+
+<h3>6. Interferences 干擾</h3>
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>化學干擾與基質效應 — 很小</h4>
+    <ul>
+      <li>chemical interference & matrix effect 在 ICP <b>顯著低於火焰</b>（significantly lower）</li>
+      <li>原因：ICP 高溫 6000-8000 K 使原子化更完全</li>
+    </ul>
+  </div>
+  <div class="compare-box neg">
+    <h4>光譜干擾 — 嚴重</h4>
+    <ul>
+      <li>ICP 譜線<b>非常豐富</b>（spectra are so rich in lines）</li>
+      <li><b>光譜干擾隨時可能發生</b>（spectral interference always possible）</li>
+      <li>低濃度 analyte 時，<b>argon ion 與電子的再結合</b>產生強背景光，必須仔細校正背景</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ════════════ Ch 10 習題 ════════════ -->
+<div id="ch10-exercises" class="section-heading sh-amber">
+  <span class="num">Ex</span>
+  <span class="label">Ch 10 章末習題 · End-of-Chapter Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">10-2</div>
+  <p><b>EN｜</b>Why are atomic emission methods with an ICP source better suited for multielement analysis than are flame atomic absorption methods?</p>
+  <p><b>中｜</b>為什麼以 ICP 為光源的原子發射法比火焰原子吸收法更適合多元素分析？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <ul>
+      <li>① ICP 為<b>發射光譜</b>，所有元素在電漿中同時被激發，配合 <b>CCD/CID 多通道偵測器</b>可同時記錄多元素的譜線。</li>
+      <li>② AAS 須使用<b>對應元素的中空陰極燈 (HCL)</b> 作光源，每換一個元素就要換燈、調校 → <b>無法同時測多元素</b>。</li>
+      <li>③ ICP 高溫（6000–8000 K）使原子化更完全、化學干擾低、線性動態範圍大（4–6 個 order）。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">10-8</div>
+  <p><b>EN｜</b>Why are ionization interferences less severe in ICP than in flame emission spectroscopy?</p>
+  <p><b>中｜</b>為什麼 ICP 的離子化干擾比火焰發射光譜小？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>ICP 中 <span class="formula">Ar → Ar⁺ + e⁻</span> 產生<b>大量自由電子</b>，環境電子濃度極高。由勒沙特列原理，analyte M 的電離平衡：</p>
+    <div class="reaction-box" style="text-align:center;">
+      <span class="formula">M ⇌ M⁺ + e⁻</span>
+    </div>
+    <p>會因 [e⁻] 大而<b>向左偏移</b>，即電子壓制了 analyte 的離子化 → M 原子數目維持穩定。火焰中電子濃度遠低於 ICP，當樣品中同時含有易離子化元素（如 K、Na）時，這些元素產生的電子會影響 analyte 的電離平衡 → 干擾大。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">10-10</div>
+  <p><b>EN｜</b>Discuss the advantages and disadvantages of sequential versus simultaneous multichannel ICP spectrometers.</p>
+  <p><b>中｜</b>比較順序型 (sequential) 與同時多通道型 (simultaneous multichannel) ICP 光譜儀的優缺點。</p>
+  <div class="key">
+    <div class="compare-grid">
+      <div class="compare-box pos">
+        <h4>Sequential 順序掃描型</h4>
+        <p><b>原理：</b>單一偵測器 + 可動的光柵，逐一掃描波長</p>
+        <p><b>優：</b>① 解析度高 ② 較便宜 ③ 波長可任意選擇</p>
+        <p><b>缺：</b>① 一次只測一條譜線 → <b>每元素需單獨掃描</b> ② 整體分析時間長 ③ 樣品消耗多</p>
+      </div>
+      <div class="compare-box neg">
+        <h4>Simultaneous 同時多通道型</h4>
+        <p><b>原理：</b>多個固定偵測器 / CCD-CID 陣列，同時記錄所有波長</p>
+        <p><b>優：</b>① <b>所有元素同時偵測</b> → 速度快 ② 樣品用量少 ③ 適合 routine multielement analysis</p>
+        <p><b>缺：</b>① 偵測器位置固定，<b>波長無法彈性更換</b> ② 解析度受陣列像素限制 ③ 儀器較昂貴</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- ════════════ CID ════════════ -->
 <div id="cid" class="section-heading sh-rose">
   <span class="num">CID</span>
@@ -797,6 +982,373 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 </div></div>
 
 
+<!-- ════════════ Ch 13 分子光譜 ════════════ -->
+<div id="ch13" class="section-heading sh-blue">
+  <span class="num">Ch 13</span>
+  <span class="label">Molecular Spectroscopy · UV-Vis 分子光譜</span>
+  <span class="rule"></span>
+</div>
+
+<p>Ch 13 從分子的角度切入光譜分析（前面是原子）。五大分子光譜技術：</p>
+<div class="term"><b>UV-Vis Absorption</b> <span class="en">紫外–可見吸收</span> — 本章主軸</div>
+<div class="term"><b>Fluorescence / Phosphorescence</b> <span class="en">螢光 / 磷光</span> — luminescence</div>
+<div class="term"><b>Infrared (IR)</b> <span class="en">紅外光譜</span></div>
+<div class="term"><b>Raman</b> <span class="en">拉曼光譜</span></div>
+<div class="term"><b>NMR</b> <span class="en">核磁共振</span></div>
+
+<h3>吸光物種 M 的兩步驟（two-step process）</h3>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>吸收光子 Absorption</b><br>
+  <span class="formula">M + hν → M*</span>　（<span class="hl">10⁻¹⁴ ~ 10⁻¹⁵ s</span>，electronically excited species）
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>弛緩 Relaxation</b>　三種路徑：
+  <ul>
+    <li><b>(A)</b> <span class="formula">M* → M + heat</span>（UV-Vis 最常見，能量以熱散失）</li>
+    <li><b>(B)</b> photochemical process，M* 分解：<span class="formula">M* → M₁ + N + hν</span>（luminescence 螢光/磷光的一種來源）</li>
+    <li><b>(C)</b> re-emission of photon → <b>fluorescence / phosphorescence</b> 螢光 / 磷光</li>
+  </ul>
+</div></div>
+
+<div class="callout"><div>
+  M 中的吸光通常源自<b>鍵結電子</b>（bonding electrons）的激發。吸收波長 ↔ 鍵的類型 → UV-Vis 可用於辨識<b>官能基（functional group）</b>。
+</div></div>
+
+<h3>三種能階 — Fig 6-24</h3>
+<ul>
+  <li><b>Electronic</b> 電子能階（E₀, E₁, E₂…）— 能量差最大</li>
+  <li><b>Vibrational</b> 振動能階 — 嵌在電子能階中</li>
+  <li><b>Rotational</b> 轉動能階 — 嵌在振動能階中，能量差最小</li>
+</ul>
+<div class="reaction-box">
+  <b>能階「密度」：</b><span class="formula">rotational &gt;&gt; vibrational &gt; electronic</span><br>
+  <b>能量公式：</b><span class="formula">E = h·ν,  c = λ·ν</span>　→　ν = c/λ<br>
+  <b>例：</b>電子從 E₀ 被激發到任一 electronic level + vibrational level e<sub>i</sub><br>
+  <span class="formula">ν<sub>i</sub> = (1/h) × (E₁ + e<sub>i</sub>′ − E₀)</span>
+</div>
+
+
+<!-- ════════════ Beer's Law ════════════ -->
+<div id="beer" class="section-heading sh-blue">
+  <span class="num">13B</span>
+  <span class="label">Beer's Law · 比爾定律與其推導</span>
+  <span class="rule"></span>
+</div>
+
+<h3>定義</h3>
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">A = ε · b · C</span><br>
+  <span style="font-size:0.85rem;">ε [L · mol⁻¹ · cm⁻¹]　·　b [cm，光程]　·　C [mol/L]</span>
+</div>
+<ul>
+  <li><b>T (Transmittance 穿透率)</b> = P / P₀</li>
+  <li><b>A (Absorbance 吸光度)</b> = −log T = log(P₀/P)</li>
+  <li><b>ε (Molar absorptivity 莫耳吸光係數)</b> 又稱 absorptivity，取決於：
+    <ul>
+      <li>① <b>Capture cross section</b>（捕獲截面 — 物質吸光能力）</li>
+      <li>② <b>Probability for an energy-absorbing transition</b>（能量躍遷機率）</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>從微觀推導（板書 4 / 7）</h3>
+<p>考慮厚度 dx 的微元，光被吸收 dP 與「光本身強度 P × 該層分子數 dn」成正比：</p>
+<div class="reaction-box">
+  <span class="formula">− dP / P = (a · ds) / S = a · dn / S</span><br>
+  <span style="font-size:0.85rem;">a 為比例常數，ds 為吸光分子截面總面積，S 為光束截面積</span>
+</div>
+<p>對 P 從 P₀ 積到 P、對 n 從 0 積到 n：</p>
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">−ln(P/P₀) = a·n / S</span><br>
+  <span class="formula">→  log(P₀/P) = a·n / (2.303·S) = a·n·b / (2.303·V)</span><br>
+  <span class="formula">→  A = (6.02×10²³ · a · b · C) / (2.303 · 1000) = ε · b · C</span>
+</div>
+
+<h3>強/弱吸收的 ε 量級</h3>
+<table>
+  <tr><th>吸收強弱</th><th>ε (L mol⁻¹ cm⁻¹)</th></tr>
+  <tr><td><b>Strong absorption</b></td><td><span class="hl">10⁴ ~ 10⁵</span></td></tr>
+  <tr><td>Low absorption</td><td>≈ 10³</td></tr>
+</table>
+
+
+<!-- ════════════ Deviation ════════════ -->
+<div id="deviation" class="section-heading sh-rose">
+  <span class="num">13C</span>
+  <span class="label">真實偏離 · Real Deviations from Beer's Law</span>
+  <span class="rule"></span>
+</div>
+
+<p>除了 analyte 吸收，還會有 <b>reflection 反射</b> 與 <b>scattering 散射</b> 損失（Fig 13-1）：</p>
+<ul>
+  <li>Scattering loss by <b>solution particles</b></li>
+  <li>Reflection loss at <b>interface</b>（cell 表面）</li>
+</ul>
+<p>進一步，真實偏離常源於兩大類：</p>
+<div class="compare-grid">
+  <div class="compare-box neg">
+    <h4>(I) Chemical Issue 化學偏離</h4>
+    <p>Beer's law 只適用於<b>相對低濃度</b>的 analyte。</p>
+  </div>
+  <div class="compare-box neg">
+    <h4>(II) Instrumental Issue 儀器偏離</h4>
+    <p>來自儀器本身限制（雜散光、多色光、不匹配池）。</p>
+  </div>
+</div>
+
+<h3>(I) Chemical issue — 高濃度時的偏離</h3>
+<div class="step-row"><div class="n">A</div><div class="body">
+  <b>分子間交互作用改變吸光環境</b>
+  <ul>
+    <li>① Solute–Solute interaction（溶質–溶質）</li>
+    <li>② Solute–Solvent interaction（溶質–溶劑）</li>
+    <li>③ Hydrogen bonding（氫鍵，溶劑含水時尤甚）</li>
+  </ul>
+  <span style="font-size:0.85rem;">→ 改變 analyte 環境與 absorptivity（ε）</span>
+</div></div>
+<div class="step-row"><div class="n">B</div><div class="body">
+  <b>Charged molecules（帶電分子）</b> — 高濃度時粒子距離縮短，每個粒子的<b>電荷分布</b>影響鄰居 → 改變吸光能力。
+</div></div>
+<div class="step-row"><div class="n">C</div><div class="body">
+  <b>折射率影響 ε</b>（Fig 6-9：折射率隨頻率變化的色散曲線）
+</div></div>
+
+<div class="svg-wrap">
+  <img src="img/Fig%206-9-dark.png" alt="Fig 6-9 typical dispersion curve" style="max-width:78%;height:auto;">
+  <div class="svg-caption">Fig 6-9 — A typical dispersion curve（refractive index vs frequency）</div>
+</div>
+
+<div class="callout"><div>
+  <b>圖在演什麼？</b> 折射率 n 對頻率作圖，大部分區段平緩上升 → <b>normal dispersion</b>；在物質有吸收的頻率附近會劇烈起伏（陡升又陡降）→ <b>anomalous dispersion</b>。因為 ε 與折射率相關，所以介質的折射率變化會直接影響量到的 absorptivity。
+</div></div>
+
+<h3>(II) Instrumental issue — 三大來源</h3>
+<ul>
+  <li>① <b>Polychromatic radiation</b>（多色光）— Beer's law 嚴格只在 <span class="hl">monochromatic radiation</span> 適用；實務上用 polychromatic source + grating/filter 隔出近對稱波段</li>
+  <li>② <b>Stray radiation</b>（雜散光）</li>
+  <li>③ <b>Mismatched cells</b>（不匹配的樣品池）</li>
+</ul>
+
+<h4>①  多色光偏離 — 雙波長公式</h4>
+<p>當光源含 λ′ 與 λ″ 兩波長：</p>
+<div class="reaction-box">
+  <span class="formula">A<sub>m</sub> = log[(P₀′ + P₀″) / (P′ + P″)]</span>　= log[(P₀′ + P₀″) / (P₀′·10<sup>−ε′bC</sup> + P₀″·10<sup>−ε″bC</sup>)]
+</div>
+<ul>
+  <li>當 <b>ε′ = ε″</b> → A<sub>m</sub> ∝ C（線性）</li>
+  <li>當 <b>ε′ ≠ ε″</b> → 偏離發生，且<b>吸光係數差距越大，偏離越嚴重</b></li>
+</ul>
+
+<h4>② 雜散光（Stray radiation）</h4>
+<p>定義：來自儀器、波長落在「選定波長帶外」的輻射，常源自 grating、lens、mirror、filter、window 的<b>散射與反射</b>。</p>
+<div class="reaction-box">
+  <span class="formula">A<sub>s</sub> = log[(P₀ + P<sub>s</sub>) / (P + P<sub>s</sub>)]</span><br>
+  <span style="font-size:0.85rem;">P<sub>s</sub> 為雜散光強度。雜散光使量到的吸光度<b>小於真實值</b>，限制 A<sub>max</sub>。</span>
+</div>
+
+<div class="svg-wrap">
+  <img src="img/Fig%2013-10-dark.png" alt="Fig 13-10 stray radiation false peak" style="max-width:72%;height:auto;">
+  <div class="svg-caption">Fig 13-10 — Spectrum of Cerium(IV)：玻璃 (A) vs 石英 (B) 光學<br>A 在 360 nm 出現的「假峰」就是雜散光透過長波長造成的</div>
+</div>
+
+<h4>③ Mismatched cells（不匹配的池）</h4>
+<p>兩個池子的光程 b 或光學特性不同 → Beer's law 公式中要加 intercept k：</p>
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">A = ε·b·C + k</span>　(k = 截距)
+</div>
+<ul>
+  <li><b>Dual channel</b> 雙通道儀器 — 用上述公式校正</li>
+  <li><b>Single channel</b>（單光束）— 只用一個池，保持<b>同一位置</b>，前後量基線</li>
+</ul>
+
+<h3>狹縫寬度 Slit width 的影響</h3>
+<p>板書 Fig 13-8 / 13-9：狹縫寬會直接決定通過儀器的「光譜帶寬」（spectral bandwidth）。</p>
+
+<div class="svg-wrap">
+  <img src="img/Fig%2013-8-dark.png" alt="Fig 13-8 effect of bandwidth on benzene vapor" style="max-width:100%;height:auto;">
+  <div class="svg-caption">Fig 13-8 — Bandwidth 2 / 5 / 10 nm 對苯蒸氣譜帶細節的影響</div>
+</div>
+<div class="svg-wrap">
+  <img src="img/Fig%2013-9-dark.png" alt="Fig 13-9 effect of slit width on peak heights" style="max-width:100%;height:auto;">
+  <div class="svg-caption">Fig 13-9 — Slit 1.0 / 0.5 / 0.1 mm 對 PrCl₃ 譜峰高度的影響</div>
+</div>
+<ul>
+  <li><b>窄狹縫 → 高解析、譜峰高且尖</b>（細節明顯，譜不糊）</li>
+  <li><b>寬狹縫 → 細節糊掉</b>，多條譜線疊成一個寬帶</li>
+  <li><b>代價：</b>slit ÷ 10 → radiant power <b>÷ 100</b>（功率 ∝ slit²）</li>
+  <li><b>定量分析偏好窄狹縫</b>（for quantitative purpose, narrow slit width is preferred）</li>
+</ul>
+
+
+<!-- ════════════ Sources ════════════ -->
+<div id="sources" class="section-heading sh-blue">
+  <span class="num">13D</span>
+  <span class="label">Light Sources · UV-Vis 光源</span>
+  <span class="rule"></span>
+</div>
+
+<p>UV-Vis 需要 <b>continuum source 連續光源</b>，覆蓋 <span class="hl">190 ~ 1100 nm</span>，且 radiant power 不會在波長範圍內劇烈變化。</p>
+
+<h3>① Deuterium / Hydrogen 燈（UV）</h3>
+<div class="svg-wrap">
+  <img src="img/Fig%2013-11-dark.png" alt="Fig 13-11 deuterium lamp" style="max-width:55%;height:auto;">
+  <div class="svg-caption">Fig 13-11 — (a) Deuterium lamp 構造　(b) 光譜（peak ~225 nm，350 nm 後切換到 W 燈）</div>
+</div>
+
+<div class="step-row"><div class="n">1</div><div class="body"><b>用途：</b>UV 波長範圍（160 ~ 400 nm）</div></div>
+<div class="step-row"><div class="n">2</div><div class="body"><b>產生方式：</b>低壓 D₂ 的<b>電激發</b>（electrical excitation of deuterium at low pressure）</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">
+  <b>機制：</b>
+  <div class="reaction-box" style="margin-top:0.4rem;">
+    <span class="formula">D₂ + E<sub>e</sub> → D₂* → D′ + D″ + hν</span><br>
+    <span style="font-size:0.85rem;">能量守恆：E<sub>e</sub> = E<sub>D₂*</sub> = E<sub>D′</sub> + E<sub>D″</sub> + hν</span>
+  </div>
+  E<sub>D′</sub>、E<sub>D″</sub> 為兩個解離出的 D 原子之動能；hν 為放出的光子能量。
+</div></div>
+<div class="step-row"><div class="n">4</div><div class="body">
+  <b>為什麼是連續譜？</b> E<sub>D′</sub> + E<sub>D″</sub> 可從 <b>0 到 E<sub>D₂*</sub> 連續變化</b>（能量怎麼分配給兩個 D 原子沒有限制） → hν 也<b>連續</b> → 連續譜。
+</div></div>
+<div class="step-row"><div class="n">5</div><div class="body">
+  Continuous spectrum：<span class="hl">160 ~ 400 nm</span>，peak intensity 在 <b>~225 nm</b>；>400 nm 強度弱。
+</div></div>
+
+<h3>② Tungsten Filament 燈（Vis / Near-IR）</h3>
+<div class="svg-wrap">
+  <img src="img/Fig%2013-12-dark.png" alt="Fig 13-12 tungsten lamp" style="max-width:55%;height:auto;">
+  <div class="svg-caption">Fig 13-12 — (a) Tungsten lamp 構造　(b) 光譜（350 nm 以下強度低，~1200 nm peak）</div>
+</div>
+
+<div class="step-row"><div class="n">1</div><div class="body">能量分布近似 <b>黑體輻射</b>（temperature-dependent）— 見 Fig 6-22</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">大多儀器操作溫度 <b>2870 K</b></div></div>
+<div class="step-row"><div class="n">3</div><div class="body">適用範圍 <b>350 ~ 2500 nm</b>，max power 在 <b>~1200 nm</b></div></div>
+<div class="step-row"><div class="n">4</div><div class="body">需<b>精確電壓控制</b>（precise voltage control）— 因為 <span class="formula">E ∝ V⁴</span></div></div>
+
+<h3>③ Tungsten–Halogen 燈（W-I₂）</h3>
+<ul>
+  <li>含少量碘在 <b>quartz envelope</b> 中</li>
+  <li>操作溫度 <b>~3500 K</b> → 強度更高、延伸到 UV 區</li>
+  <li><b>鎢循環反應：</b>
+    <div class="reaction-box" style="margin-top:0.4rem;">
+      <span class="formula">W(g) + I₂ → WI₂</span><br>
+      <span class="formula">WI₂ → W + I₂</span><br>
+      <span style="font-size:0.85rem;">蒸發的 W 被 I₂ 包住變成 WI₂；WI₂ 撞到熱燈絲時分解，<b>把 W 重新沉積回燈絲上</b> → 大幅延長燈壽。</span>
+    </div>
+  </li>
+</ul>
+
+<h3>④ LED — Light-Emitting Diode</h3>
+<ul>
+  <li>材料：<b>gallium arsenic phosphide (GaAsP)</b> 等</li>
+  <li>單一 LED 譜帶寬 <b>20 ~ 60 nm</b></li>
+  <li><b>multiple LED</b> 組合（如 320 nm + 中段 + 650 nm 的 plate reader）→ 形成涵蓋多波段的 light source</li>
+</ul>
+
+
+<!-- ════════════ Blackbody ════════════ -->
+<div id="blackbody" class="section-heading sh-blue">
+  <span class="num">13E</span>
+  <span class="label">黑體輻射 · Blackbody Radiation</span>
+  <span class="rule"></span>
+</div>
+
+<div class="svg-wrap">
+  <img src="img/Fig%206-22-dark.png" alt="Fig 6-22 blackbody radiation curves" style="max-width:88%;height:auto;">
+  <div class="svg-caption">Fig 6-22 — Blackbody radiation curves：Xenon arc / Carbon arc / Tungsten lamp / Nernst glower<br>6000 K / 4000 K / 3000 K / 2000 K — 溫度上升使 peak 往短波長偏移</div>
+</div>
+
+<div class="step-row"><div class="n">1</div><div class="body"><b>真正的連續輻射</b>（truly continuous）— 固體加熱到 incandescence 時產生</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">特徵<b>取決於發光表面的溫度</b>，而不是材料組成（the temperature of the emitting surface rather than the material）</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">機制：凝態固體中<b>無數的原子與分子振盪</b>（atomic and molecular oscillations），由熱能激發產生</div></div>
+<div class="step-row"><div class="n">4</div><div class="body"><b>peak 波長隨溫度上升而減短</b>（Wien's displacement law）</div></div>
+
+
+<!-- ════════════ Ch 13 習題 ════════════ -->
+<div id="ch13-exercises" class="section-heading sh-amber">
+  <span class="num">Ex</span>
+  <span class="label">Ch 13 章末習題 · End-of-Chapter Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">13-1</div>
+  <p><b>EN｜</b>Express the following absorbances in terms of percent transmittance.</p>
+  <p><b>中｜</b>把下列吸光度換算為百分穿透率 %T。</p>
+  <div class="key">
+    <b>公式：</b><span class="formula">A = −log T → %T = 100 × 10⁻ᴬ</span>
+    <table style="margin-top:0.4rem;">
+      <tr><th>題</th><th>A</th><th>%T</th><th>題</th><th>A</th><th>%T</th></tr>
+      <tr><td>(a)</td><td>0.042</td><td><b>90.8 %</b></td><td>(d)</td><td>0.379</td><td><b>41.8 %</b></td></tr>
+      <tr><td>(b)</td><td>0.917</td><td><b>12.1 %</b></td><td>(e)</td><td>0.435</td><td><b>36.7 %</b></td></tr>
+      <tr><td>(c)</td><td>0.245</td><td><b>56.9 %</b></td><td>(f)</td><td>0.513</td><td><b>30.7 %</b></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">13-5 ★</div>
+  <p><b>EN｜</b>A solution containing 7.35 ppm KMnO₄ had a transmittance of 0.145 in a 1.00 cm cell at 520 nm. Calculate the molar absorptivity of KMnO₄ at 520 nm.</p>
+  <p><b>中｜</b>含 7.35 ppm KMnO₄ 的溶液在 1.00 cm 池中、520 nm 量到 T = 0.145，求莫耳吸光係數。</p>
+  <div class="key">
+    <p>① <span class="formula">A = −log 0.145 = 0.839</span></p>
+    <p>② 換算莫耳濃度（M<sub>w</sub>(KMnO₄) = 158.04）：<br>
+    <span class="formula">c = 7.35 × 10⁻³ (g/L) / 158.04 (g/mol) = 4.65 × 10⁻⁵ M</span></p>
+    <p>③ <span class="formula">ε = A / (b·c) = 0.839 / (1.00 × 4.65 × 10⁻⁵) = </span><b>1.80 × 10⁴ L mol⁻¹ cm⁻¹</b> ✓</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">13-7 ★</div>
+  <p><b>EN｜</b>A solution containing the complex formed between Bi(III) and thiourea has a molar absorptivity of 9.32 × 10³ L·mol⁻¹·cm⁻¹ at 470 nm.</p>
+  <ul>
+    <li>(a) Absorbance of a 4.25 × 10⁻⁵ M solution of the complex at 470 nm in a 1.00 cm cell?</li>
+    <li>(b) Percent transmittance of the solution in (a)?</li>
+    <li>(c) Molar concentration of the complex giving the absorbance in (a) when measured at 470 nm in a 2.50 cm cell?</li>
+  </ul>
+  <p><b>中｜</b>Bi(III)–thiourea 配合物 ε = 9.32×10³（@470 nm）— 求三個小題。</p>
+  <div class="key">
+    <p><b>(a)</b> A = εbc = 9.32×10³ × 1.00 × 4.25×10⁻⁵ = <b>0.396</b> ✓</p>
+    <p><b>(b)</b> %T = 100 × 10⁻⁰·³⁹⁶ = <b>40.2 %</b> ✓</p>
+    <p><b>(c)</b> 同樣 A = 0.396 但 b = 2.50：<br>
+    c = 0.396 / (9.32×10³ × 2.50) = <b>1.70 × 10⁻⁵ M</b> ✓</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">13-8 ★</div>
+  <p><b>EN｜</b>At 580 nm, the complex Fe(SCN)²⁺ has a molar absorptivity of 7.00 × 10³ L·mol⁻¹·cm⁻¹. Calculate</p>
+  <ul>
+    <li>(a) absorbance of a 4.47 × 10⁻⁵ M solution at 580 nm in a 1.00 cm cell</li>
+    <li>(b) absorbance of a 2.50 cm cell where the concentration is <b>half</b> that in (a)</li>
+    <li>(c) percent transmittance of the solutions in (a) and (b)</li>
+    <li>(d) absorbance of a solution that has <b>half the transmittance</b> of that in (a)</li>
+  </ul>
+  <p><b>中｜</b>Fe(SCN)²⁺ 配合物 ε = 7.00×10³（@580 nm）— 求四個小題。</p>
+  <div class="key">
+    <p><b>(a)</b> A = 7.00×10³ × 1.00 × 4.47×10⁻⁵ = <b>0.313</b> ✓</p>
+    <p><b>(b)</b> A = 7.00×10³ × 2.50 × (4.47×10⁻⁵/2) = <b>0.391</b> ✓</p>
+    <p><b>(c)</b> %T(a) = 100 × 10⁻⁰·³¹³ = <b>48.6 %</b>；%T(b) = 100 × 10⁻⁰·³⁹¹ = <b>40.6 %</b> ✓</p>
+    <p><b>(d)</b> T = T(a)/2 = 0.486/2 = 0.243 → A = −log 0.243 = <b>0.614</b> ✓</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">13-16</div>
+  <p><b>EN｜</b>Why does a deuterium lamp produce a continuum rather than a line spectrum in the UV?</p>
+  <p><b>中｜</b>為什麼 D₂ 燈在 UV 區產生<b>連續譜</b>，而不是線狀譜？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <div class="reaction-box" style="text-align:center;">
+      <span class="formula">D₂ + E<sub>e</sub> → D₂* → D′ + D″ + hν</span><br>
+      <span class="formula">E<sub>e</sub> = E<sub>D′</sub> + E<sub>D″</sub> + hν</span>
+    </div>
+    <p>關鍵是激發態 D₂* 解離成兩個 D 原子時，動能 E<sub>D′</sub>、E<sub>D″</sub> 的分配<b>沒有量子化的限制</b>，可從 0 到 E<sub>D₂*</sub> 之間<b>連續變化</b>。由能量守恆：</p>
+    <p><span class="formula">hν = E<sub>D₂*</sub> − E<sub>D′</sub> − E<sub>D″</sub></span></p>
+    <p>因此 hν 也<b>連續</b>分布 → 產生連續譜（160–400 nm，peak ~225 nm）。</p>
+    <p><b>對比：</b>原子放電（如 HCL）的能階差<b>固定且離散</b>，只能放出特定 hν → 線狀譜。</p>
+  </div>
+</div>
+
+
 <!-- ════════════ 板書速記 ════════════ -->
 <div id="board" class="section-heading sh-amber">
   <span class="num">★</span>
@@ -843,6 +1395,40 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
   <b>兩種讀取：</b><span class="key">Nondestructive</span>（跳過 d，可重複量同 pixel）／<span class="key">Destructive</span>（走完 d，等同 CCD）
 </div>
 
+<div class="flash">
+  <b>ICP 應用 6 大重點：</b>樣品溶液/可固體 → 全金屬元素皆可 → <span class="key">B/P/N/S/C 線在 &lt;180 nm 需真空儀</span> → 校正曲線高濃時偏離（self-absorption） → <b>內標常用 Yttrium 242.2 nm</b> → 化學干擾低、但<span class="key">光譜干擾多</span>。
+</div>
+
+<div class="flash">
+  <b>Ch 13 兩步驟：</b>① <span class="key">M + hν → M*</span>（10⁻¹⁴ s 吸收）→ ② Relaxation（heat / photochem / fluorescence）。能階密度：<span class="key">rotational ≫ vibrational &gt; electronic</span>。
+</div>
+
+<div class="flash">
+  <b>Beer's law：</b><span class="key">A = εbC</span>，ε 取決於 <b>capture cross section</b> 與 <b>energy-absorbing transition probability</b>。強吸收 ε = 10⁴~10⁵，弱吸收 ε ≈ 10³。
+</div>
+
+<div class="flash">
+  <b>Beer's law 偏離兩大類：</b>
+  <b>化學偏離</b>（高濃時 solute-solute / solute-solvent / 氫鍵 / 帶電分子 / 折射率變化）；
+  <b>儀器偏離</b>（多色光 → ε′≠ε″ 時偏離；雜散光 → 限制 A<sub>max</sub>；mismatched cell → A = εbC + k）。
+</div>
+
+<div class="flash">
+  <b>狹縫寬度：</b>窄縫高解析但 <span class="key">slit ÷ 10 → power ÷ 100</span>。定量分析偏好<b>窄狹縫</b>。
+</div>
+
+<div class="flash">
+  <b>光源四種：</b>① <b>D₂ 燈</b>（UV，160-400 nm，peak 225）② <b>W 燈</b>（Vis-NIR，350-2500 nm，peak 1200，E∝V⁴）③ <b>W-halogen</b>（含 I₂，~3500 K，<span class="key">W+I₂⇌WI₂</span>，延伸到 UV）④ <b>LED</b>（GaAsP，單顆 20-60 nm）。
+</div>
+
+<div class="flash">
+  <b>D₂ 燈為何連續譜？</b><span class="key">D₂* → D′ + D″ + hν</span>，兩 D 原子動能 E<sub>D′</sub> + E<sub>D″</sub> 可從 0 連續變到 E<sub>D₂*</sub>，所以 hν 連續 → 連續譜。
+</div>
+
+<div class="flash">
+  <b>黑體輻射 4 特性：</b>① 真正連續 ② 取決於<span class="key">表面溫度而非材料</span> ③ 原子/分子振盪產生 ④ 溫度↑ → peak 波長↓（Wien）。
+</div>
+
 
 <!-- ════════════ 必背英文 ════════════ -->
 <div id="phrases" class="section-heading sh-amber">
@@ -861,6 +1447,22 @@ p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
 <div class="term">"<b>Closed annular path</b>" — ICP 中離子流動路徑</div>
 <div class="term">"<b>Ohmic heat</b>" — ICP 加熱機制</div>
 <div class="term">"<b>The difference between V₁ and V₂ is caused by radiation</b>" — CID 量測原理</div>
+<div class="term">"<b>Spectra are so rich in lines, spectral interference is always possible</b>" — ICP 光譜干擾</div>
+<div class="term">"<b>Background signal from recombination of argon ions with electrons</b>" — ICP 背景</div>
+<div class="term">"<b>Dissolved or suspended in aqueous / organic liquids</b>" — ICP 樣品形式</div>
+<div class="term">"<b>Vacuum spectrometer is necessary because air molecules absorb the emission radiations</b>" — &lt;180 nm 譜線量測</div>
+<div class="term">"<b>Reflection and scattering loss</b>" — 真實偏離的兩大物理損失</div>
+<div class="term">"<b>Beer's law applies for relatively low analyte concentrations</b>" — 化學偏離前提</div>
+<div class="term">"<b>Solute-solute, solute-solvent interaction and hydrogen bonding affect analyte environment and absorptivity</b>" — 高濃度偏離原因</div>
+<div class="term">"<b>Radiation from the instrument that is outside the nominal wavelength band</b>" — Stray radiation 定義</div>
+<div class="term">"<b>Instrumental deviation of stray radiation results in absorbance that is smaller than theoretical</b>" — 雜散光效應</div>
+<div class="term">"<b>For quantitative purpose, narrow slit width is preferred</b>" — 狹縫選擇</div>
+<div class="term">"<b>A continuum source is required: radiant power does not change sharply over a considerable range of wavelength</b>" — UV-Vis 光源需求</div>
+<div class="term">"<b>Energy distribution approximates that of a blackbody, temperature-dependent</b>" — Tungsten 燈光譜性質</div>
+<div class="term">"<b>Truly continuous radiation, produced when solids are heated to incandescence</b>" — 黑體輻射定義</div>
+<div class="term">"<b>Characteristic of the temperature of the emitting surface, rather than the material composing that surface</b>" — 黑體輻射特性</div>
+<div class="term">"<b>Wavelength of radiation peak decreases with increasing temperature</b>" — Wien 位移</div>
+<div class="term">"<b>The wavelength of absorption band can be correlated with the type of bond → UV-Vis is valuable for identifying functional group</b>" — UV-Vis 對官能基辨識</div>
 
 </main>
 </div>
