@@ -55,6 +55,12 @@ body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:no
   border-left-color:var(--blue); background:rgba(144,200,208,0.06); }
 .toc-list a.exam-link:hover,.toc-list a.exam-link.active { color:var(--purple);
   border-left-color:var(--purple); background:rgba(176,158,224,0.06); }
+.toc-list a.ex-link { color:var(--amber); font-weight:400;
+  background:rgba(229,181,116,0.08); border-left-color:rgba(229,181,116,0.4); }
+.toc-list a.ex-link::before { content:"★ "; font-size:0.7rem;
+  color:var(--amber); margin-right:2px; }
+.toc-list a.ex-link:hover,.toc-list a.ex-link.active { color:#FFD8A0;
+  border-left-color:var(--amber); background:rgba(229,181,116,0.18); }
 .toc-divider { height:1px; margin:0.6rem 0.6rem;
   background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent); }
 
@@ -226,11 +232,11 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
     <li><a href="#hcl">中空陰極燈</a></li>
     <li><a href="#modulation">Source Modulation</a></li>
     <li><a href="#interference">9C 干擾</a></li>
-    <li><a href="#ch9-exercises" class="exam-link">Ch 9 習題</a></li>
+    <li><a href="#ch9-exercises" class="ex-link">Ch 9 習題</a></li>
     <div class="toc-divider"></div>
     <li><a href="#icp">Ch 10 ICP</a></li>
     <li><a href="#icp-app">ICP 應用</a></li>
-    <li><a href="#ch10-exercises" class="exam-link">Ch 10 習題</a></li>
+    <li><a href="#ch10-exercises" class="ex-link">Ch 10 習題</a></li>
     <div class="toc-divider"></div>
     <li><a href="#cid">CID 偵測器</a></li>
     <div class="toc-divider"></div>
@@ -239,7 +245,7 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
     <li><a href="#deviation">真實偏離</a></li>
     <li><a href="#sources">光源</a></li>
     <li><a href="#blackbody">黑體輻射</a></li>
-    <li><a href="#ch13-exercises" class="exam-link">Ch 13 習題</a></li>
+    <li><a href="#ch13-exercises" class="ex-link">Ch 13 習題</a></li>
     <div class="toc-divider"></div>
     <li><a href="#board" class="exam-link">板書速記</a></li>
     <li><a href="#phrases" class="exam-link">必背英文</a></li>
