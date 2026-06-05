@@ -393,13 +393,16 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
 <h3>石墨爐（Graphite Furnace）— Fig 9-6</h3>
 <p>原子化發生在 <b>圓柱狀石墨管</b>（cylindrical graphite tube）內。</p>
 
-<div class="svg-wrap">
-  <img src="img/Fig%209-6-dark.png" alt="Fig 9-6 graphite furnace cross section" style="max-width:78%;height:auto;">
-  <div class="svg-caption">Fig 9-6 — Graphite furnace 的構造<br>
-  (a) 橫剖面：含整合式 L'vov platform（樣品平台）<br>
-  (b) 縱向加熱（longitudinal）：溫度沿著光路變化，中心最高<br>
-  (c) 橫向加熱（transverse）：溫度沿光路均勻 → 重現性更好</div>
-</div>
+<details class="fig-fold">
+  <summary>展開 Fig 9-6：石墨爐構造 (a) 橫剖面 (b) 縱向加熱 (c) 橫向加熱</summary>
+  <div class="fig-body">
+    <img src="img/Fig%209-6-dark.png" alt="Fig 9-6 graphite furnace cross section">
+    <div class="svg-caption">Fig 9-6 — Graphite furnace 的構造<br>
+    (a) 橫剖面：含整合式 L'vov platform（樣品平台）<br>
+    (b) 縱向加熱（longitudinal）：溫度沿著光路變化，中心最高<br>
+    (c) 橫向加熱（transverse）：溫度沿光路均勻 → 重現性更好</div>
+  </div>
+</details>
 
 <div class="pipeline">
   <span class="pipe-box">a few µL sample</span><span class="pipe-arrow">→</span>
@@ -456,10 +459,13 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
 
 <p>解決方法：使用 <b>Hollow Cathode Lamp（中空陰極燈，HCL）</b>產生與待測原子相同的線光譜，光源線寬甚至比吸收線更窄，吸收效率最大化。</p>
 
-<div class="svg-wrap">
-  <img src="img/Fig%209-10-dark.png" alt="Fig 9-10 Absorption of a resonance line by atoms" style="max-width:60%;height:auto;">
-  <div class="svg-caption">Fig 9-10 — Absorption of a resonance line by atoms<br>(a) 光源發射譜　(b) 樣品吸收譜　(c) 通過樣品 + 單光儀後的譜</div>
-</div>
+<details class="fig-fold">
+  <summary>展開 Fig 9-10：共振線通過 HCL → 樣品 → 單光儀的譜變化</summary>
+  <div class="fig-body">
+    <img src="img/Fig%209-10-dark.png" alt="Fig 9-10 Absorption of a resonance line by atoms">
+    <div class="svg-caption">Fig 9-10 — Absorption of a resonance line by atoms<br>(a) 光源發射譜　(b) 樣品吸收譜　(c) 通過樣品 + 單光儀後的譜</div>
+  </div>
+</details>
 <p style="font-size:0.88rem;">上圖說明：(a) HCL 發出多條尖銳的線光譜，其中 P₀ 是要用的那條；(b) 樣品在那條線附近有吸收峰；(c) 通過樣品後，那條線被吸收掉大部分（P &lt; P₀），其他線不受影響。<br>單光儀的 bandwidth（λ₁–λ₂）只要包住目標線即可，不需太窄。</p>
 
 
@@ -765,12 +771,28 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
   </div>
 </div>
 
+<details class="fig-fold">
+  <summary>展開 Fig 10-4：典型 ICP 電漿內部溫度分布</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2010-4-dark.png" alt="Fig 10-4 Temperatures in a typical ICP source">
+    <div class="svg-caption">Fig 10-4 — 從負載線圈往上的高度（mm）vs 溫度（K）<br>core 區 ~10000 K，向上逐漸下降至觀察區 6000 K</div>
+  </div>
+</details>
+
 <h3>樣品引入方式 Sample Introduction</h3>
 <table>
   <tr><th style="width:200px">方法</th><th>說明</th></tr>
   <tr><td><b>1. Nebulizer</b></td><td>霧化器：液體 → 氣體（liquid → gas）</td></tr>
-  <tr><td><b>2. Electrothermal Vaporization</b></td><td>樣品在 furnace 中蒸發（Fig 10-3 P234），furnace 僅用於樣品蒸發</td></tr>
+  <tr><td><b>2. Electrothermal Vaporization</b></td><td>樣品在 furnace 中蒸發（Fig 10-3），furnace 僅用於樣品蒸發</td></tr>
 </table>
+
+<details class="fig-fold">
+  <summary>展開 Fig 10-3：Electrothermal Vaporization 裝置</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2010-3-dark.png" alt="Fig 10-3 Device for electrothermal vaporization">
+    <div class="svg-caption">Fig 10-3 — 樣品放在 graphite rod 上，由 heater power 加熱蒸發，<br>Ar 載氣將樣品蒸氣送進上方 ICP 電漿</div>
+  </div>
+</details>
 
 <h3>Axial vs Radial 觀察</h3>
 <div class="compare-grid">
@@ -821,6 +843,14 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
   <li>Li、K、Rb、Cs 的強線在 <b>near-IR</b> 區（Fig 10-14）</li>
 </ul>
 
+<details class="fig-fold">
+  <summary>展開 Fig 10-14：ICP 偵測極限元素週期表</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2010-14-dark.png" alt="Fig 10-14 Periodic table detection limits for ICP">
+    <div class="svg-caption">Fig 10-14 — 用 pneumatic nebulizer 的 ICP 對各元素的 detection limit（ng/mL）<br>顏色越深越敏感；陰影深淺另外標示「有用譜線數量」</div>
+  </div>
+</details>
+
 <h3>3. Line Selection 譜線選擇</h3>
 <ul>
   <li>大多元素有多條強譜線（several prominent lines）</li>
@@ -835,12 +865,28 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
   <li><b>Erroneous background correction</b>（背景校正錯誤）— 背景扣除有誤</li>
 </ul>
 
+<details class="fig-fold">
+  <summary>展開 Fig 10-15：典型 ICP 校正曲線（log-log）</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2010-15-dark.png" alt="Fig 10-15 Typical calibration curves in ICP emission spectrometry">
+    <div class="svg-caption">Fig 10-15 — Tl 334.94、V 437.92、Ce 456.24、Nb 371.30 nm 四元素<br>log Photocurrent vs log [impurity in iron, wt%]，跨 4-5 個 order 都線性</div>
+  </div>
+</details>
+
 <h3>5. Internal Standard 內標法</h3>
 <div class="reaction-box" style="text-align:center;">
   <span class="formula">訊號 = I<sub>analyte</sub> / I<sub>internal standard</sub></span><br>
   <span style="font-size:0.85rem;">板書 Fig 10-16：常用 <b>釔 Yttrium</b>（242.2 nm emission）作為內標元素</span>
 </div>
 <p>用內標可<b>抵消儀器漂移、霧化效率變化、樣品基質效應</b>。</p>
+
+<details class="fig-fold">
+  <summary>展開 Fig 10-16：Yttrium 內標校正曲線（Be / Cr / Cd / Zn / Pb）</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2010-16-dark.png" alt="Fig 10-16 Internal standard calibration curves with ICP source">
+    <div class="svg-caption">Fig 10-16 — 用 Y 242.2 nm 作內標，Intensity ratio vs Concentration<br>不同基質（去離子水 / 5000 µg/mL Na / 自來水 / Ca+Mg）<b>幾乎完全重合</b> → 內標可消除基質干擾</div>
+  </div>
+</details>
 
 <h3>6. Interferences 干擾</h3>
 <div class="compare-grid">
@@ -1180,10 +1226,13 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
   <b>折射率影響 ε</b>（Fig 6-9：折射率隨頻率變化的色散曲線）
 </div></div>
 
-<div class="svg-wrap">
-  <img src="img/Fig%206-9-dark.png" alt="Fig 6-9 typical dispersion curve" style="max-width:78%;height:auto;">
-  <div class="svg-caption">Fig 6-9 — A typical dispersion curve（refractive index vs frequency）</div>
-</div>
+<details class="fig-fold">
+  <summary>展開 Fig 6-9：典型色散曲線（refractive index vs frequency）</summary>
+  <div class="fig-body">
+    <img src="img/Fig%206-9-dark.png" alt="Fig 6-9 typical dispersion curve">
+    <div class="svg-caption">Fig 6-9 — A typical dispersion curve（refractive index vs frequency）</div>
+  </div>
+</details>
 
 <div class="callout"><div>
   <b>圖在演什麼？</b> 折射率 n 對頻率作圖，大部分區段平緩上升 → <b>normal dispersion</b>；在物質有吸收的頻率附近會劇烈起伏（陡升又陡降）→ <b>anomalous dispersion</b>。因為 ε 與折射率相關，所以介質的折射率變化會直接影響量到的 absorptivity。
@@ -1231,14 +1280,20 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
 <h3>狹縫寬度 Slit width 的影響</h3>
 <p>板書同時引用課本 <b>Fig 13-8</b>（bandwidth 對苯蒸氣的影響）與 <b>Fig 13-9</b>（slit width 對 PrCl₃ peak height 的影響）— 兩者概念相關：<b>狹縫越寬 → 通過儀器的光譜帶寬越大</b>。</p>
 
-<div class="svg-wrap">
-  <img src="img/Fig%2013-8-dark.png" alt="Fig 13-8 effect of bandwidth on benzene vapor" style="max-width:100%;height:auto;">
-  <div class="svg-caption">Fig 13-8 — Bandwidth 2 / 5 / 10 nm 對苯蒸氣譜帶細節的影響</div>
-</div>
-<div class="svg-wrap">
-  <img src="img/Fig%2013-9-dark.png" alt="Fig 13-9 effect of slit width on peak heights" style="max-width:100%;height:auto;">
-  <div class="svg-caption">Fig 13-9 — Slit 1.0 / 0.5 / 0.1 mm 對 PrCl₃ 譜峰高度的影響</div>
-</div>
+<details class="fig-fold">
+  <summary>展開 Fig 13-8：Bandwidth 2 / 5 / 10 nm 對苯蒸氣譜的影響</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2013-8-dark.png" alt="Fig 13-8 effect of bandwidth on benzene vapor">
+    <div class="svg-caption">Fig 13-8 — 寬度越大，fine structure 越糊；10 nm 時所有細結構消失，只剩一個寬帶</div>
+  </div>
+</details>
+<details class="fig-fold">
+  <summary>展開 Fig 13-9：Slit 1.0 / 0.5 / 0.1 mm 對 PrCl₃ peak height 的影響</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2013-9-dark.png" alt="Fig 13-9 effect of slit width on peak heights">
+    <div class="svg-caption">Fig 13-9 — 狹縫越窄峰越尖越高；slit 1.0 mm vs 0.1 mm 時 peak height 從 53 提升到 67</div>
+  </div>
+</details>
 <ul>
   <li><b>窄狹縫 → 高解析、譜峰高且尖</b>（細節明顯，譜不糊）</li>
   <li><b>寬狹縫 → 細節糊掉</b>，多條譜線疊成一個寬帶</li>
@@ -1318,10 +1373,13 @@ details.fig-fold .fig-body img { max-width:100%; height:auto; }
   <span class="rule"></span>
 </div>
 
-<div class="svg-wrap">
-  <img src="img/Fig%206-22-dark.png" alt="Fig 6-22 blackbody radiation curves" style="max-width:88%;height:auto;">
-  <div class="svg-caption">Fig 6-22 — Blackbody radiation curves：Xenon arc / Carbon arc / Tungsten lamp / Nernst glower<br>6000 K / 4000 K / 3000 K / 2000 K — 溫度上升使 peak 往短波長偏移</div>
-</div>
+<details class="fig-fold">
+  <summary>展開 Fig 6-22：黑體輻射曲線（4 個光源在 2000–6000 K）</summary>
+  <div class="fig-body">
+    <img src="img/Fig%206-22-dark.png" alt="Fig 6-22 blackbody radiation curves">
+    <div class="svg-caption">Fig 6-22 — Blackbody radiation curves：Xenon arc / Carbon arc / Tungsten lamp / Nernst glower<br>6000 K / 4000 K / 3000 K / 2000 K — 溫度上升使 peak 往短波長偏移</div>
+  </div>
+</details>
 
 <div class="step-row"><div class="n">1</div><div class="body"><b>真正的連續輻射</b>（truly continuous）— 固體加熱到 incandescence 時產生</div></div>
 <div class="step-row"><div class="n">2</div><div class="body">特徵<b>取決於發光表面的溫度</b>，而不是材料組成（the temperature of the emitting surface rather than the material）</div></div>
