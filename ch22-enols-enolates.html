@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 22 α 碳化學：烯醇與烯醇鹽 — 期末重點</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;--amber-lo:rgba(229,181,116,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:200px 1fr;grid-template-areas:"toc main";
+  max-width:1180px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--blue);
+  border-left-color:var(--blue);background:rgba(144,200,208,0.06)}
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-amber .num{color:rgba(229,181,116,0.65)}.sh-amber .label{color:var(--amber)}
+.sh-amber .rule{background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent)}
+.sh-exam .num{color:rgba(176,158,224,0.65)}.sh-exam .label{color:var(--purple)}
+.sh-exam .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+
+.term{background:var(--glass);border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38);border-radius:8px;
+  padding:10px 16px;margin:0.55rem 0;color:var(--text-mid);font-size:0.92rem}
+.term:nth-child(even){border-left-color:rgba(217,160,184,0.4)}
+.term b{color:var(--text);font-weight:400}
+.term .en{color:var(--rose);font-style:italic}
+
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+
+.warn{background:var(--amber-lo);border-left:3px solid rgba(229,181,116,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(240,215,180,0.9);font-size:0.9rem}
+.warn b{color:var(--amber);font-weight:400}
+
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+
+.mech-box{background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16);border-radius:10px;
+  padding:14px 18px;margin:0.8rem 0;color:var(--text-mid);font-size:0.91rem}
+.mech-box b{color:var(--text);font-weight:400}
+.mech-box ol{margin-left:1.3rem;margin-top:0.5rem}
+.mech-box li{margin:0.35rem 0}
+
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .q-zh{margin:0.4rem 0;color:var(--text)}
+.exam-box .q-en{margin:0.2rem 0 0.6rem;color:var(--text-mid);font-size:0.86em;font-style:italic;opacity:0.85}
+.exam-box .ans{margin-top:0.6rem;padding-top:0.6rem;
+  border-top:1px solid rgba(176,158,224,0.18);color:rgba(229,181,116,0.95)}
+.exam-box .ans b{color:var(--amber)}
+
+.highlight,.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-amber{background:rgba(229,181,116,0.18);color:var(--amber);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.18);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.86rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+td b{color:var(--text);font-weight:400}
+
+ul,ol{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem;line-height:1.75}
+p{color:var(--text-mid);margin:0.55rem 0;font-size:0.92rem}
+
+code{background:rgba(144,200,208,0.1);color:var(--blue);
+  padding:1px 7px;border-radius:3px;font-family:Consolas,monospace;font-size:0.85em}
+
+@media (max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#s2201">22.1 介紹（烯醇/烯醇鹽）</a></li>
+    <li><a href="#s2202">22.2 α 鹵化</a></li>
+    <li><a href="#s2203">22.3 Aldol 反應</a></li>
+    <li><a href="#s2204">22.4 Claisen 縮合</a></li>
+    <li><a href="#s2205">22.5 α 烷化（含 Malonic ester）</a></li>
+    <li><a href="#s2206">22.6 共軛加成（Michael）</a></li>
+    <li><a href="#s2207">22.7 合成策略 + Robinson</a></li>
+    <li class="toc-divider"></li>
+    <li><a href="#exercises" class="exam-link">範例題</a></li>
+    <li><a href="#summary" class="exam-link">期末速查表</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="page-header">
+  <h1>Chapter 22 — Alpha Carbon Chemistry</h1>
+  <div class="meta">α 碳化學：烯醇與烯醇鹽 ｜ Enols and Enolates ｜ 期末考重點</div>
+</div>
+
+<div class="callout">
+  <div>本章核心：<b>羰基旁邊的 α 碳上的 H 是酸性的</b>（pKa ~ 17-25），被拔走後形成<b>烯醇鹽（enolate）</b>。<br>
+  烯醇鹽是極強的<b>親核劑（C 端）</b>，可以攻擊各種親電劑（鹵化物、其他羰基、α,β-不飽和羰基）→ 形成 <b>新的 C-C 鍵</b>。<br>
+  整章基本上就是<b>「如何用烯醇鹽做 C-C 鍵」</b>的各種變體。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2201" class="section-heading sh-blue">
+  <span class="num">22.1</span>
+  <span class="label">Introduction: Enols & Enolates 烯醇與烯醇鹽</span>
+  <span class="rule"></span>
+</div>
+
+<h3>α、β、γ 命名</h3>
+
+<p>對於羰基化合物，跟羰基 C 直接相連的碳叫 <b>α</b>，再往外 <b>β</b>、<b>γ</b>、<b>δ</b>。本章專注 α 位的反應。</p>
+
+<h3>★ Keto-Enol 互變異構（tautomerization）</h3>
+
+<div class="callout"><div>
+  <b>Keto form（酮式）⇌ Enol form（烯醇式）</b><br>
+  α-H 從 α 碳跑到羰基 O 上，同時 C=O 變 C-O-H、C-C 變 C=C。<br>
+  這不是共振，是<b>真正的兩個不同分子</b>（不同的 σ 鍵連接），透過 H 的遷移互換。
+</div></div>
+
+<table>
+  <tr><th>分子</th><th>Keto 比例</th><th>Enol 比例</th></tr>
+  <tr><td>Acetone</td><td>99.999999%</td><td>0.0000001%</td></tr>
+  <tr><td>Cyclohexanone</td><td>99.9999%</td><td>0.0001%</td></tr>
+  <tr><td><b>2,4-pentanedione（1,3-diketone）</b></td><td><b>10-30%</b></td><td><b>70-90%（!）</b></td></tr>
+  <tr><td>Phenol（特殊：芳香性）</td><td>&lt; 0.01%</td><td>&gt; 99.99%</td></tr>
+</table>
+
+<div class="tip"><b>為何 1,3-diketone 的 enol 比例特別高？</b>因為 enol 形成後可以形成<b>分子內氫鍵</b>（六員環，O-H...O=C）+ <b>共軛烯醇</b>很穩定。Phenol 則因 enol 是芳香性的（苯環），所以完全偏 enol。</div>
+
+<h3>★ Enolate 形成機制</h3>
+
+<div class="mech-box">
+  <b>酸催化：</b>
+  <ol>
+    <li>C=O 的 O 被質子化 → 共振穩定 carbocation（α 碳變更酸）</li>
+    <li>水拔 α-H → 中性 enol</li>
+  </ol>
+</div>
+
+<div class="mech-box">
+  <b>鹼催化：</b>
+  <ol>
+    <li>鹼直接拔 α-H → 形成共振穩定 enolate（負電在 O 或 α-C）</li>
+    <li>質子化（或不質子化，直接當親核劑）</li>
+  </ol>
+</div>
+
+<h3>★ Enolate 的雙重身分</h3>
+
+<p>Enolate 有兩個共振結構：</p>
+<ul>
+  <li>負電在 <b>O</b> → 像 alkoxide</li>
+  <li>負電在 <b>α-C</b> → 像 carbanion</li>
+</ul>
+
+<div class="callout"><div>
+  雖然負電主要在 O 上（O 電負度大），但 Enolate <b>幾乎都用 C 端攻擊</b>親電劑（C-attack 比 O-attack 多）。原因：C-attack 得到 C=O（強鍵），O-attack 得到 C=C + C-O（合計較弱）→ <b>C-attack 熱力學產物較穩</b>。
+</div></div>
+
+<h3>★ α-H 的 pKa 值（必背）</h3>
+
+<table>
+  <tr><th>分子類型</th><th>例子</th><th>pKa</th></tr>
+  <tr><td>1,3-Diketone</td><td>CH₃COCH₂COCH₃</td><td><b>9</b>（很酸！）</td></tr>
+  <tr><td>3-Keto ester</td><td>CH₃COCH₂COOR</td><td>11</td></tr>
+  <tr><td>1,3-Diester（malonic ester）</td><td>EtO₂CCH₂CO₂Et</td><td>13</td></tr>
+  <tr><td>Alcohol</td><td>CH₃OH</td><td>16</td></tr>
+  <tr><td><b>Aldehyde</b> α-H</td><td>CH₃CHO</td><td><b>17</b></td></tr>
+  <tr><td><b>Ketone</b> α-H</td><td>CH₃COCH₃</td><td><b>19</b></td></tr>
+  <tr><td>Thioester</td><td>CH₃COSCH₃</td><td>21</td></tr>
+  <tr><td><b>Ester</b> α-H</td><td>CH₃COOCH₃</td><td><b>25</b></td></tr>
+  <tr><td>Nitrile</td><td>CH₃C≡N</td><td>25</td></tr>
+  <tr><td>Amide</td><td>CH₃CON(CH₃)₂</td><td>30</td></tr>
+  <tr><td>Amine（NH，作參考）</td><td>(iPr)₂NH</td><td>36</td></tr>
+  <tr><td>Alkane（C-H，作參考）</td><td>CH₄</td><td>~50</td></tr>
+</table>
+
+<div class="warn"><b>為何 1,3-dicarbonyl 那麼酸？</b>形成的 enolate 可以<b>共振到兩個 O 上</b>（兩個 C=O 都共振穩定它）→ pKa 降到 9-13，比一般 ROH 還酸！這就是 malonic ester 和 acetoacetic ester 合成的關鍵。</div>
+
+<h3>★ 鹼的選擇</h3>
+
+<table>
+  <tr><th>鹼</th><th>pKa(共軛酸)</th><th>用途</th></tr>
+  <tr><td>NaOH / KOH</td><td>15.7</td><td>aldol（醛 17，平衡），不可拔 ester（25）</td></tr>
+  <tr><td>NaOEt / NaOMe</td><td>15-16</td><td>Claisen 等 ester 反應（與 ester pKa 接近）</td></tr>
+  <tr><td>NaH</td><td>36</td><td>較強鹼，可拔大部分 α-H（H₂ 氣體生成）</td></tr>
+  <tr><td><b>LDA</b>（lithium diisopropylamide）</td><td><b>36</b></td><td><b>大塊頭超強鹼</b>，可<b>完全去質子化</b> ester / amide，且<b>不會親核攻擊羰基</b>（太大）</td></tr>
+</table>
+
+<div class="tip"><b>LDA 為何特別好用？</b>① pKa 36 → 可拔 ester（25）甚至 ketone（19），形成<b>定量</b>烯醇鹽 ② 兩個 iPr 太擠 → 只當鹼，不會親核攻擊羰基（避免副反應） ③ 在 -78°C 用 → 形成<b>動力學 enolate</b>（少取代的那邊）。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2202" class="section-heading sh-blue">
+  <span class="num">22.2</span>
+  <span class="label">α-Halogenation α 鹵化</span>
+  <span class="rule"></span>
+</div>
+
+<h3>酸催化 α 鹵化（單取代）</h3>
+
+<p>醛/酮 + X₂（Cl₂、Br₂、I₂）/ H₃O⁺ → α-鹵代產物</p>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>酸催化下，羰基 ⇌ enol（少量但存在）</li>
+    <li>Enol 的 C=C 是親核劑，攻擊 Br₂ → α-bromo intermediate</li>
+    <li>失質子 → α-bromo ketone</li>
+  </ol>
+</div>
+
+<div class="warn"><b>酸催化下停在「單取代」</b>，因為加上 Br 後讓 C=O 更難 enolize（Br 是 EWG），第二顆 Br 加不太上去。</div>
+
+<h3>不對稱酮的選擇性</h3>
+
+<p>反應發生在<b>取代多的 α 碳</b>（more substituted enol 較穩定）。</p>
+
+<h3>★ Haloform Reaction 鹵仿反應（鹼催化）</h3>
+
+<div class="callout"><div>
+  <b>甲基酮（R-CO-CH₃）+ 過量 X₂ / NaOH → 羧酸（R-COO⁻）+ CHX₃</b><br>
+  <b>用途</b>：把 methyl ketone 變成<b>羧酸</b>（同時短少一個 C，原本 -COCH₃ 變 -COOH）<br>
+  同時產生 <b>CHCl₃、CHBr₃、CHI₃（碘仿，黃色固體 → 鑒定 methyl ketone 的試紙反應）</b>
+</div></div>
+
+<div class="mech-box">
+  <b>機制（鹼催化下停不下來）：</b>
+  <ol>
+    <li>OH⁻ 拔 α-H → enolate</li>
+    <li>Enolate 攻擊 X₂ → α-halo ketone</li>
+    <li>α-Br 是 EWG → 剩下兩個 α-H <b>更酸</b> → 又被 OH⁻ 拔 → 再加 X → <b>持續到 -CX₃</b></li>
+    <li>OH⁻ 攻擊 C=O → tetrahedral → <b>-CX₃ 變成好離去基</b>（穩定 carbanion，因 3 個 EWG）→ 離開</li>
+    <li>得羧酸 + ⁻CX₃ → CHX₃</li>
+  </ol>
+</div>
+
+<h3>★ Hell-Volhard-Zelinskii (HVZ) 反應</h3>
+
+<div class="callout"><div>
+  <b>羧酸 + Br₂ / PBr₃ → α-bromo carboxylic acid</b><br>
+  原因：<b>acid / ester / amide 不會 enolize</b>（α-H 不夠酸 + 反應太慢），所以普通 Br₂ 無效。需要 PBr₃ 先把 -COOH 變 acid bromide → 才能 enolize → Br₂ 加成 → 水解回 α-Br-COOH。
+</div></div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2203" class="section-heading sh-amber">
+  <span class="num">22.3</span>
+  <span class="label">★ Aldol Reactions 醛醇反應</span>
+  <span class="rule"></span>
+</div>
+
+<h3>基本 Aldol</h3>
+
+<div class="callout"><div>
+  <b>2 × 醛/酮 + NaOH（催化量）→ β-hydroxy 醛/酮</b><br>
+  ald<b>ol</b> = <b>ald</b>ehyde + alcoh<b>ol</b>（OH 在 β 位）
+</div></div>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>OH⁻ 拔 α-H → enolate</li>
+    <li>Enolate 的 α-C 攻擊<b>另一個</b>羰基分子的 C=O → 形成新 C-C 鍵 + alkoxide</li>
+    <li>Alkoxide 從水拿 H → 中性 β-hydroxy 醛/酮（aldol）</li>
+  </ol>
+</div>
+
+<h3>平衡考量</h3>
+
+<table>
+  <tr><th>基質</th><th>Aldol 產率</th><th>原因</th></tr>
+  <tr><td>Acetaldehyde（無 α-取代）</td><td>高</td><td>立體不擁擠，平衡偏產物</td></tr>
+  <tr><td>Phenylacetaldehyde（PhCH₂CHO）</td><td>90%</td><td>產物有額外共軛穩定</td></tr>
+  <tr><td>2-Methylpropanal（(CH₃)₂CHCHO）</td><td>低</td><td>立體擁擠，平衡偏反應物</td></tr>
+  <tr><td>Cyclohexanone（酮）</td><td>22%</td><td>酮比醛差，平衡偏反應物</td></tr>
+</table>
+
+<h3>★ Aldol Condensation（醛醇縮合）</h3>
+
+<div class="callout"><div>
+  Aldol 產物加熱（或在強鹼下）→ <b>失水</b> → 形成 <b>α,β-unsaturated 羰基</b>（共軛烯酮）<br>
+  <b>2 醛/酮 → α,β-unsaturated 羰基 + H₂O</b>（總反應）
+</div></div>
+
+<div class="mech-box">
+  <b>失水機制（兩種）：</b><br>
+  鹼催化（E1cb）：① 拔 α-H 形成 enolate ② -OH 離去 → 形成 C=C<br>
+  酸催化（E1）：① -OH 被質子化變 -OH₂⁺ ② -OH₂ 離去成 carbocation ③ 失 α-H 形成 C=C
+</div>
+
+<div class="tip"><b>為什麼縮合產物常常較穩？</b>① C=C 跟 C=O <b>共軛</b>，有額外穩定 ② 失水放出小分子，<b>熵增</b> ③ 通常會繼續延伸共軛（如苯環旁的 aldol）→ 平衡大幅偏向縮合產物。</div>
+
+<h3>Mixed Aldol（交叉醛醇）— 一般沒用</h3>
+
+<p>2 個不同的醛/酮 + 鹼 → <b>4 個產物</b>（兩兩配對）→ 沒用</p>
+
+<h3>★ 兩個解決方法</h3>
+
+<table>
+  <tr><th>方法</th><th>策略</th></tr>
+  <tr><td><b>① 一邊無 α-H</b></td><td>用 <b>HCHO（甲醛）</b>或 <b>PhCHO（苯甲醛）</b>當「acceptor」（沒 α-H 不能當 donor）；另一邊有 α-H 當 donor → 只有一個結果</td></tr>
+  <tr><td><b>② 用 LDA 先做完整 enolate</b></td><td>① 第一個基質 + LDA → 形成定量 enolate ② 慢慢加第二個基質 → 純單一產物</td></tr>
+</table>
+
+<h3>Intramolecular Aldol（分子內醛醇）</h3>
+
+<p>1,4- 或 1,5-diketone + 鹼 → 形成<b>環狀</b> α,β-unsaturated ketone（最小環張力的環會贏，通常是 5、6 員環）。</p>
+
+<table>
+  <tr><th>起始物</th><th>產物</th></tr>
+  <tr><td>2,5-Hexanedione（1,4-diketone）</td><td>3-Methyl-2-cyclopentenone（5 員環）</td></tr>
+  <tr><td>2,6-Heptanedione（1,5-diketone）</td><td>3-Methyl-2-cyclohexenone（6 員環）</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2204" class="section-heading sh-blue">
+  <span class="num">22.4</span>
+  <span class="label">Claisen Condensation 克萊森縮合</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout"><div>
+  <b>2 × ester + 1 當量 NaOEt → β-keto ester</b><br>
+  「Aldol」用於醛/酮（停在加成）；<b>「Claisen」用於 ester</b>（走<b>取代</b>，因 ester 有 -OR 離去基）。
+</div></div>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>NaOEt 拔 ester 的 α-H → ester enolate（少量，因 ester pKa 25 vs EtOH pKa 16，平衡不利）</li>
+    <li>Ester enolate 攻擊<b>另一個 ester</b> 的 C=O → 四面體中間體</li>
+    <li><b>-OEt 離去</b>（不像 aldol 沒離去基！）→ β-keto ester 中間體</li>
+    <li>β-keto ester 的 α-H <b>非常酸（pKa 11）</b>→ 被 NaOEt 完全去質子化 → <b>doubly stabilized enolate</b></li>
+    <li>這一步把整體平衡推向產物（即使前面平衡不利）</li>
+    <li>實驗最後加 H₃O⁺ → 中性 β-keto ester</li>
+  </ol>
+</div>
+
+<div class="warn"><b>為何要等量 NaOEt 而非催化量？</b>因為要在最後一步「完全去質子化」β-keto ester（推平衡），需要至少 1 當量 NaOEt。</div>
+
+<h3>★ Dieckmann Cyclization（分子內 Claisen）</h3>
+
+<div class="callout"><div>
+  <b>Diester + NaOEt → 環狀 β-keto ester</b><br>
+  Diester 自身分子內 Claisen → 形成 5 或 6 員 β-keto ester
+</div></div>
+
+<table>
+  <tr><th>起始物</th><th>產物</th></tr>
+  <tr><td>Diethyl hexanedioate（1,6-diester，4 個 CH₂ 隔開）</td><td>Ethyl 2-oxocyclo<b>pentane</b>carboxylate（<b>5 員環</b>）</td></tr>
+  <tr><td>Diethyl heptanedioate（1,7-diester）</td><td>Ethyl 2-oxocyclo<b>hexane</b>carboxylate（<b>6 員環</b>）</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2205" class="section-heading sh-amber">
+  <span class="num">22.5</span>
+  <span class="label">★ Alpha Alkylation α 烷化</span>
+  <span class="rule"></span>
+</div>
+
+<h3>基本烷化</h3>
+
+<div class="mech-box">
+  <ol>
+    <li>羰基 + LDA → 完全 enolate</li>
+    <li>Enolate（C 端）攻擊烷基鹵化物 → SN2 取代</li>
+    <li>得 α-烷化羰基</li>
+  </ol>
+</div>
+
+<div class="warn"><b>限制：</b>烷基鹵化物只能是 <b>methyl 或 1°</b>（SN2）。2°、3° → enolate 變鹼 → 走 E2 消除而非取代。</div>
+
+<h3>Kinetic vs Thermodynamic Enolate（動力學 vs 熱力學）</h3>
+
+<p>不對稱酮（α 碳兩邊不一樣）→ 兩種 enolate 可能：</p>
+
+<table>
+  <tr><th></th><th>Kinetic（動力學）</th><th>Thermodynamic（熱力學）</th></tr>
+  <tr><td>形成位置</td><td>少取代的 α-C（H 較易被拔）</td><td>多取代的 α-C</td></tr>
+  <tr><td>產物穩定性</td><td>較低（C=C 取代少）</td><td>較高（C=C 取代多 = 更穩）</td></tr>
+  <tr><td>條件</td><td><b>LDA, -78°C</b>（強鹼、低溫、不可逆）</td><td><b>NaH, 25°C</b>（鹼較弱、室溫、可逆 → 達熱力學平衡）</td></tr>
+</table>
+
+<h3>★ Malonic Ester Synthesis（丙二酸酯合成）</h3>
+
+<div class="callout"><div>
+  <b>把烷基鹵化物 R-X 變成羧酸 R-CH₂-COOH（增加 2 個 C）</b>
+</div></div>
+
+<div class="mech-box">
+  <b>步驟：</b>
+  <ol>
+    <li>Diethyl malonate（EtO₂C-CH₂-CO₂Et）+ NaOEt → doubly stabilized enolate（pKa 13，很酸）</li>
+    <li>+ R-X → SN2 → R-取代 malonate</li>
+    <li>+ H₃O⁺ / heat → 水解兩個 ester → diacid（malonic acid 衍生物）</li>
+    <li>Diacid 加熱 → <b>decarboxylation（脫羧）</b>（因 β-keto acid 機制，CO₂ 跑掉）→ 單羧酸 R-CH₂-COOH</li>
+  </ol>
+</div>
+
+<div class="tip"><b>Decarboxylation 條件：</b>羧酸 β 位有羰基（β-keto acid 或 malonic acid 衍生物）→ 加熱即可失 CO₂（六員環過渡態，類似 keto-enol）。</div>
+
+<h3>Acetoacetic Ester Synthesis（乙醯乙酸酯合成）</h3>
+
+<p>類似 malonic ester，但起始物是 <b>ethyl acetoacetate</b>（CH₃CO-CH₂-CO₂Et）。產物是<b>甲基酮</b> R-CH₂-COCH₃（不是羧酸）。</p>
+
+<div class="mech-box">
+  <ol>
+    <li>Ethyl acetoacetate + NaOEt → enolate</li>
+    <li>+ R-X → SN2</li>
+    <li>H₃O⁺ / heat → 水解 ester + 脫羧 → 得 <b>R-CH₂-CO-CH₃</b>（α-取代甲基酮）</li>
+  </ol>
+</div>
+
+<h3>雙烷化</h3>
+<p>Malonic ester / acetoacetic ester 可<b>連續烷化兩次</b>（取代兩個 H）→ 得 R₁R₂CH-COOH 或 R₁R₂CH-COCH₃。</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2206" class="section-heading sh-amber">
+  <span class="num">22.6</span>
+  <span class="label">★ Conjugate Addition: Michael Reaction 共軛加成</span>
+  <span class="rule"></span>
+</div>
+
+<h3>α,β-Unsaturated 羰基的三個共振結構</h3>
+
+<p>C=C-C=O 有共振 → β-碳也帶 δ⁺（除了羰基 C 之外的另一個親電位）。</p>
+
+<h3>★ 1,2- vs 1,4- 加成</h3>
+
+<table>
+  <tr><th>親核劑類型</th><th>攻擊位置</th><th>類型</th></tr>
+  <tr><td><b>強親核劑（Grignard, LAH）</b></td><td>羰基 C（位置 2）</td><td><b>1,2-addition</b>（直接加 C=O）</td></tr>
+  <tr><td><b>軟親核劑（Gilman R₂CuLi, 穩定 enolate, RSH, NH₃）</b></td><td>β-C（位置 4）</td><td><b>1,4-addition / Conjugate addition / Michael</b></td></tr>
+</table>
+
+<div class="tip"><b>記憶口訣：</b>「強硬攻擊 C=O；軟弱繞過去打 β」。Grignard 太強 → 一抓就攻擊最近的（C=O）；Gilman 較軟 → 給時間挑遠的（β）。</div>
+
+<h3>★ Michael Reaction</h3>
+
+<div class="callout"><div>
+  <b>穩定 enolate（Michael donor）+ α,β-unsaturated 羰基（Michael acceptor）→ 1,5-dicarbonyl</b>
+</div></div>
+
+<table>
+  <tr><th>Michael donors（捐贈者，提供 enolate）</th><th>Michael acceptors（接受者）</th></tr>
+  <tr><td>1,3-diketone（pKa 9）</td><td>α,β-unsaturated 醛</td></tr>
+  <tr><td>β-keto ester（pKa 11）</td><td>α,β-unsaturated 酮</td></tr>
+  <tr><td>Malonic ester（pKa 13）</td><td>α,β-unsaturated ester</td></tr>
+  <tr><td>β-keto nitrile</td><td>α,β-unsaturated amide</td></tr>
+  <tr><td>α-Nitro 化合物</td><td>α,β-unsaturated nitrile</td></tr>
+  <tr><td><b>R₂CuLi（Gilman）</b></td><td>α,β-unsaturated nitro</td></tr>
+</table>
+
+<h3>Stork Enamine Synthesis</h3>
+
+<p>另一種做 Michael 的方法，用 <b>enamine</b>（醛酮 + 2° 胺）當親核劑：</p>
+
+<div class="mech-box">
+  <ol>
+    <li>Ketone + 2° amine（如 pyrrolidine）/ H⁺ → enamine</li>
+    <li>Enamine + Michael acceptor → 共軛加成（enamine 的 α-C 攻擊 β-C）</li>
+    <li>水解 enamine（H₃O⁺）→ 回到 ketone + 胺</li>
+  </ol>
+</div>
+
+<p>淨結果：α-C 上連上了 Michael acceptor 那邊 → 1,5-dicarbonyl 產物。</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2207" class="section-heading sh-amber">
+  <span class="num">22.7</span>
+  <span class="label">Synthetic Strategies + Robinson Annulation 合成策略</span>
+  <span class="rule"></span>
+</div>
+
+<h3>★ 用反應產物的「官能基距離」反推用什麼反應</h3>
+
+<table>
+  <tr><th>反應</th><th>產物官能基結構</th></tr>
+  <tr><td><b>Aldol</b></td><td><b>1,3-difunctional</b>（β-hydroxy carbonyl 或 α,β-unsaturated carbonyl）</td></tr>
+  <tr><td><b>Claisen</b></td><td><b>1,3-dicarbonyl</b>（β-keto ester）</td></tr>
+  <tr><td><b>Michael / Stork</b></td><td><b>1,5-dicarbonyl</b></td></tr>
+</table>
+
+<div class="tip"><b>合成題的解法心法：</b>看產物中兩個官能基的距離 → 直接套上面的對應 → 反推用什麼反應。</div>
+
+<h3>★ Robinson Annulation</h3>
+
+<div class="callout"><div>
+  Michael + 分子內 Aldol = <b>建構六員環</b>的標準方法<br>
+  <b>2-cyclohexenone 衍生物</b> = Robinson 產物
+</div></div>
+
+<div class="mech-box">
+  <b>步驟：</b>
+  <ol>
+    <li>第一步 <b>Michael</b>：Michael donor + α,β-unsaturated ketone → 1,5-dicarbonyl 中間體</li>
+    <li>第二步 <b>分子內 aldol condensation</b>：1,5-dicarbonyl 自身環化 → 6 員環 α,β-unsaturated ketone</li>
+  </ol>
+</div>
+
+<p>常用：<b>3-buten-2-one（MVK, methyl vinyl ketone）</b>是最常用的 Michael acceptor。</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 範例題 -->
+<div id="exercises" class="section-heading sh-exam">
+  <span class="num">Ex.</span>
+  <span class="label">範例題 Practice Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 1 — pKa 比較 / Acidity</div>
+  <div class="q-zh">下列哪個分子的 α-H 最酸？(A) acetone（CH₃COCH₃）　(B) acetic acid（CH₃COOH）　(C) 2,4-pentanedione（CH₃COCH₂COCH₃）　(D) ethyl acetate（CH₃COOC₂H₅）</div>
+  <div class="q-en">Which compound has the most acidic α-H? (A) acetone　(B) acetic acid　(C) 2,4-pentanedione　(D) ethyl acetate</div>
+  <div class="ans">
+    <b>答案：(C) 2,4-pentanedione（pKa = 9）</b><br>
+    ‧ (A) acetone：pKa 19（α-H 一邊有 C=O）<br>
+    ‧ (B) acetic acid：pKa 5 但這是 O-H 不是 α-H（題目問 α-H）<br>
+    ‧ (C) 2,4-pentanedione：pKa <b>9</b>（α-H 兩邊都有 C=O，雙重共振穩定）<br>
+    ‧ (D) ester：pKa 25（最不酸）<br>
+    注意題目問 <b>α-H</b>，所以 (B) 的 -OH 不算。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 2 — 鹵仿反應 / Haloform</div>
+  <div class="q-zh">2,2-dimethyl-3-pentanone（(CH₃)₃C-CO-CH₂CH₃）+ 過量 Br₂ / NaOH，再 H₃O⁺，主產物為何？</div>
+  <div class="q-en">What is the major product when 2,2-dimethyl-3-pentanone reacts with excess Br₂/NaOH, then H₃O⁺?</div>
+  <div class="ans">
+    <b>答案：</b>實際上<b>沒有 haloform 反應</b>。Haloform 需要 <b>methyl ketone（CH₃-CO-R）</b>。<br>
+    這個分子是 R-CO-CH₂CH₃（ethyl 不是 methyl），所以只會做<b>單一</b> α-bromination 在 CH₂ 那邊（OH⁻ 拔最容易的 α-H）→ R-CO-CHBr-CH₃。<br>
+    如果題目改成 R-CO-CH₃（如 pinacolone, (CH₃)₃C-CO-CH₃）才能 haloform → R-COO⁻ + CHBr₃。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 3 — Aldol 產物 / Aldol Product</div>
+  <div class="q-zh">propanal（CH₃CH₂CHO）+ NaOH / H₂O → 主產物為何？再加熱會變什麼？</div>
+  <div class="q-en">What is the main product when propanal reacts with NaOH/H₂O? What happens upon heating?</div>
+  <div class="ans">
+    <b>Step 1（aldol addition）：</b><br>
+    OH⁻ 拔 α-H（CH₃-CH₂-CHO 的 CH₂）→ enolate → 攻擊另一個 propanal 的 C=O<br>
+    產物：<span class="hl-amber">3-hydroxy-2-methylpentanal</span>（CH₃CH₂CH(OH)CH(CH₃)CHO）<br><br>
+    <b>Step 2（heating → condensation）：</b>失水<br>
+    產物：<span class="hl-amber">2-methyl-2-pentenal</span>（CH₃CH₂CH=C(CH₃)CHO）（α,β-unsaturated 醛）
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 4 — 合成設計 / Synthesis Design</div>
+  <div class="q-zh">用 ethyl acetoacetate（CH₃COCH₂COOEt）合成 5-methyl-2-hexanone（CH₃COCH₂CH₂CH(CH₃)₂）。</div>
+  <div class="q-en">Synthesize 5-methyl-2-hexanone from ethyl acetoacetate.</div>
+  <div class="ans">
+    <b>步驟：</b><br>
+    1) NaOEt 拔 ethyl acetoacetate 的 doubly-α-H → enolate<br>
+    2) + isobutyl bromide（(CH₃)₂CHCH₂Br，SN2）→ α-取代 ester<br>
+    3) H₃O⁺ / heat → 水解 ester + 脫羧 → <span class="hl-amber">5-methyl-2-hexanone</span> = CH₃-CO-CH₂-CH₂-CH(CH₃)₂<br><br>
+    這是 acetoacetic ester synthesis 標準用法（增加 alkyl 在 -COCH₂- 位置）。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 5 — Michael 機制 / Mechanism</div>
+  <div class="q-zh">解釋為何 Gilman reagent（R₂CuLi）對 α,β-unsaturated ketone 做 1,4-加成，而 Grignard（RMgBr）做 1,2-加成？</div>
+  <div class="q-en">Why does Gilman reagent (R₂CuLi) give 1,4-addition with α,β-unsaturated ketones, while Grignard (RMgBr) gives 1,2-addition?</div>
+  <div class="ans">
+    <b>答案：</b><br>
+    ‧ <b>Grignard 太「硬」、太活性</b>：直接抓最近的親電位 = C=O 的 C（動力學產物，直接加成）<br>
+    ‧ <b>Gilman 較「軟」、較不活性</b>：給反應時間平衡到熱力學產物 = β-C（更遠但共軛穩定 enolate 中間體）<br><br>
+    硬軟酸鹼（HSAB）：硬親核（O 或負電集中）配硬親電（C=O 的 C）；軟親核（C 上負電擴散）配軟親電（共軛 β-C）。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 6 — 反推用什麼反應 / Identify Reaction Type</div>
+  <div class="q-zh">給三個產物，分別用哪個反應合成？<br>
+  (A) 1,3-diketone（CH₃COCH₂COCH₃）<br>
+  (B) β-hydroxy aldehyde（CH₃CH(OH)CH₂CHO）<br>
+  (C) 1,5-diketone（CH₃COCH₂CH₂CH₂COCH₃）</div>
+  <div class="q-en">Identify the reaction type for each: (A) 1,3-diketone　(B) β-hydroxy aldehyde　(C) 1,5-diketone</div>
+  <div class="ans">
+    <b>答案：</b><br>
+    (A) 1,3-diketone → <b>Claisen 變體</b>（或 Claisen 衍生反應，C₁ 跟 C₃ 都是 C=O）<br>
+    (B) β-hydroxy aldehyde → <b>Aldol addition</b>（標準 aldol 產物）<br>
+    (C) 1,5-diketone → <b>Michael / Stork enamine synthesis</b>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 期末速查表 -->
+<div id="summary" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">期末速查表 Final Cheat Sheet</span>
+  <span class="rule"></span>
+</div>
+
+<h3>α-H 酸性順序（必背）</h3>
+<ul>
+  <li>1,3-diketone（9） &lt; β-keto ester（11） &lt; malonic ester（13） &lt; <b>醛（17） &lt; 酮（19） &lt; ester（25）</b> &lt; amide（30）</li>
+</ul>
+
+<h3>4 大反應對應 4 種產物</h3>
+<ul>
+  <li><b>α-Halogenation</b>：醛/酮 + X₂/H⁺ → α-halo（單取代）；甲基酮 + X₂/OH⁻ → 羧酸 + CHX₃（haloform）</li>
+  <li><b>Aldol</b>：2×醛/酮 + 鹼 → <b>β-hydroxy 羰基</b>（加熱失水 → α,β-unsaturated 羰基）</li>
+  <li><b>Claisen</b>：2×ester + NaOEt → <b>β-keto ester</b>（1,3-dicarbonyl）</li>
+  <li><b>Michael / Stork</b>：donor + α,β-unsat → <b>1,5-dicarbonyl</b></li>
+</ul>
+
+<h3>從產物反推</h3>
+<ul>
+  <li>產物有 <b>β-OH</b> 或 <b>α,β-C=C</b>：<b>Aldol</b></li>
+  <li>產物 1,3-dicarbonyl：<b>Claisen</b>（如果有 ester）或其他</li>
+  <li>產物 1,5-dicarbonyl：<b>Michael / Stork</b></li>
+  <li>含 <b>6 員環 α,β-unsaturated ketone</b>：<b>Robinson annulation</b></li>
+</ul>
+
+<h3>選試劑</h3>
+<ul>
+  <li>要完全去質子化 ester → <b>LDA, -78°C</b>（強鹼、大塊頭、不會親核攻擊）</li>
+  <li>要熱力學 enolate → <b>NaH, 25°C</b>（可逆，達平衡）</li>
+  <li>動力學 enolate → <b>LDA, -78°C</b>（不可逆，取少取代那邊）</li>
+  <li>軟親核（要 1,4-加成）→ <b>Gilman R₂CuLi</b>、<b>1,3-dicarbonyl enolate</b></li>
+  <li>硬親核（1,2-加成）→ <b>Grignard、LAH</b></li>
+</ul>
+
+<h3>增加碳的方法（C-C 鍵形成）</h3>
+<ul>
+  <li>Malonic ester synthesis：R-X → R-CH₂-COOH（增 2 C）</li>
+  <li>Acetoacetic ester synthesis：R-X → R-CH₂-CO-CH₃（增 2 C 變甲基酮）</li>
+  <li>Aldol：2 × C → 1 個 4-6 C 連續分子</li>
+  <li>Michael：donor + acceptor → 1,5-dicarbonyl</li>
+  <li>Robinson：建構 6 員環</li>
+</ul>
+
+<div class="tip">
+  <b>跟 Ch 20, 21 對照記憶：</b><br>
+  Ch 20（醛酮）：親核劑攻擊 C=O 的 <b>C</b>（羰基 C），停在加成 → 醇等<br>
+  Ch 21（羧酸衍生物）：親核劑攻擊 C=O 的 <b>C</b>，因有離去基所以走取代 → 衍生物互轉<br>
+  <b>Ch 22（α 碳）：羰基本身當「酸」，<u>α-C</u> 變親核劑去攻擊別的東西 → 形成新 C-C 鍵</b><br>
+  三章從不同角度看羰基，全部串起來就是有機合成最重要的方法集合。
+</div>
+
+</main>
+</div>
+
+<script>
+const _l = document.querySelectorAll('.toc-list a');
+const ob = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      _l.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('[id]').forEach(s => ob.observe(s));
+</script>
+
+</body>
+</html>

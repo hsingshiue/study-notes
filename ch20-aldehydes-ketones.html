@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 20 醛酮：親核加成反應 — 期末重點</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;--amber-lo:rgba(229,181,116,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:200px 1fr;grid-template-areas:"toc main";
+  max-width:1180px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--blue);
+  border-left-color:var(--blue);background:rgba(144,200,208,0.06)}
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-amber .num{color:rgba(229,181,116,0.65)}.sh-amber .label{color:var(--amber)}
+.sh-amber .rule{background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent)}
+.sh-exam .num{color:rgba(176,158,224,0.65)}.sh-exam .label{color:var(--purple)}
+.sh-exam .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+
+.term{background:var(--glass);border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38);border-radius:8px;
+  padding:10px 16px;margin:0.55rem 0;color:var(--text-mid);font-size:0.92rem}
+.term:nth-child(even){border-left-color:rgba(217,160,184,0.4)}
+.term b{color:var(--text);font-weight:400}
+.term .en{color:var(--rose);font-style:italic}
+
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+
+.warn{background:var(--amber-lo);border-left:3px solid rgba(229,181,116,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(240,215,180,0.9);font-size:0.9rem}
+.warn b{color:var(--amber);font-weight:400}
+
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+
+.mech-box{background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16);border-radius:10px;
+  padding:14px 18px;margin:0.8rem 0;color:var(--text-mid);font-size:0.91rem}
+.mech-box b{color:var(--text);font-weight:400}
+.mech-box ol{margin-left:1.3rem;margin-top:0.5rem}
+.mech-box li{margin:0.35rem 0}
+
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .q-zh{margin:0.4rem 0;color:var(--text)}
+.exam-box .q-en{margin:0.2rem 0 0.6rem;color:var(--text-mid);font-size:0.86em;font-style:italic;opacity:0.85}
+.exam-box .ans{margin-top:0.6rem;padding-top:0.6rem;
+  border-top:1px solid rgba(176,158,224,0.18);color:rgba(229,181,116,0.95)}
+.exam-box .ans b{color:var(--amber)}
+
+.highlight,.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-amber{background:rgba(229,181,116,0.18);color:var(--amber);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.18);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.86rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+td b{color:var(--text);font-weight:400}
+
+ul,ol{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem;line-height:1.75}
+p{color:var(--text-mid);margin:0.55rem 0;font-size:0.92rem}
+
+code{background:rgba(144,200,208,0.1);color:var(--blue);
+  padding:1px 7px;border-radius:3px;font-family:Consolas,monospace;font-size:0.85em}
+
+@media (max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#s2001">20.1 介紹</a></li>
+    <li><a href="#s2002">20.2 命名規則</a></li>
+    <li><a href="#s2003">20.3 製備方法</a></li>
+    <li><a href="#s2004">20.4 親電性與親核加成</a></li>
+    <li><a href="#s2005">20.5 水 + 縮醛形成</a></li>
+    <li><a href="#s2006">20.6 胺：亞胺 / 烯胺 / Wolff-Kishner</a></li>
+    <li><a href="#s2007">20.7 水解（縮醛 / 亞胺 / 烯胺）</a></li>
+    <li><a href="#s2008">20.8 硫親核劑與 Raney Ni</a></li>
+    <li><a href="#s2009">20.9 氫負離子（LAH / NaBH₄）</a></li>
+    <li><a href="#s2010">20.10 碳親核劑（Grignard / 氰醇 / Wittig）</a></li>
+    <li><a href="#s2011">20.11 Baeyer-Villiger 氧化</a></li>
+    <li><a href="#s2012">20.12 合成策略</a></li>
+    <li class="toc-divider"></li>
+    <li><a href="#summary" class="exam-link">期末速查表</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="page-header">
+  <h1>Chapter 20 — Aldehydes and Ketones</h1>
+  <div class="meta">Nucleophilic Addition Reactions ｜ 親核加成反應 ｜ 期末考重點</div>
+</div>
+
+<div class="callout">
+  <div>本章核心：<b>親核劑攻擊 C=O 碳</b>。所有反應都圍繞同一主題 — 用什麼當親核劑、酸/鹼條件、產物穩定性。<br>
+  考試常出：機制（imine、acetal、Wittig）、產物預測（Wolff-Kishner vs Clemmensen vs Raney Ni）、合成路徑設計。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2001" class="section-heading sh-blue">
+  <span class="num">20.1</span>
+  <span class="label">Introduction 介紹</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">
+  <b>羰基官能基（carbonyl group, C=O）</b>是醛（aldehyde）與酮（ketone）的共通結構：<br>
+  ‧ <b>Aldehyde</b>（醛）：R–C(=O)–H，C=O 一邊接 H<br>
+  ‧ <b>Ketone</b>（酮）：R–C(=O)–R'，C=O 兩邊都接 C
+</div>
+
+<div class="tip">
+  <b>常見天然羰基化合物：</b>vanillin（香草醛）、cinnamaldehyde（肉桂醛）、(R)-carvone（薄荷酮）、benzaldehyde（苯甲醛）、progesterone（孕酮）、testosterone（睪固酮）、pyridoxal phosphate（PLP，活性 vit B₆）、hydrocortisone（氫化可體松）。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2002" class="section-heading sh-blue">
+  <span class="num">20.2</span>
+  <span class="label">Nomenclature 命名規則</span>
+  <span class="rule"></span>
+</div>
+
+<h3>醛 Aldehyde</h3>
+<ul>
+  <li>母鏈字尾 <code>-e</code> → <code><b>-al</b></code>（如 butane → butan<b>al</b>）</li>
+  <li>母鏈<b>必須包含羰基碳</b>（即使主鏈不是最長的也優先選含 CHO 的那條）</li>
+  <li>羰基 C <b>永遠是 C1</b>（不需寫位置號）</li>
+  <li>羰基的編號優先於其他取代基</li>
+</ul>
+
+<h3>酮 Ketone</h3>
+<ul>
+  <li>母鏈字尾 <code>-e</code> → <code><b>-one</b></code>（如 butane → butan<b>one</b>）</li>
+  <li>羰基 C 的位置號可寫在<b>字首</b>或<b>後綴前</b>，例如 <code>3-heptanone</code> = <code>heptan-3-one</code></li>
+  <li>編號讓羰基碳的位置號最小</li>
+</ul>
+
+<h3>★ 官能基優先順序（從高到低）</h3>
+
+<table>
+  <tr><th>優先級</th><th>官能基</th><th>後綴 Suffix</th><th>字首 Prefix</th></tr>
+  <tr><td>1（最高）</td><td><b>Carboxylic acid</b> 羧酸</td><td>-oic acid / -carboxylic acid</td><td>carboxy-</td></tr>
+  <tr><td>2</td><td>Ester 酯</td><td>-oate</td><td>(R)-oxycarbonyl</td></tr>
+  <tr><td>3</td><td>Acid chloride 醯氯</td><td>-oyl halide</td><td>halocarbonyl-</td></tr>
+  <tr><td>4</td><td>Amide 醯胺</td><td>-amide / -carboxamide</td><td>carbamoyl-</td></tr>
+  <tr><td>5</td><td>Nitrile 腈</td><td>-nitrile</td><td>cyano-</td></tr>
+  <tr><td>6</td><td><b>Aldehyde 醛</b></td><td>-al / -carbaldehyde</td><td>formyl- / oxo-</td></tr>
+  <tr><td>7</td><td><b>Ketone 酮</b></td><td>-one</td><td>oxo-</td></tr>
+  <tr><td>8</td><td>Alcohol 醇</td><td>-ol</td><td>hydroxy-</td></tr>
+  <tr><td>9</td><td>Amine 胺</td><td>-amine</td><td>amino-</td></tr>
+  <tr><td>10+</td><td>Alkene / alkyne / alkyl / halide…</td><td>-ene / -yne / -ane</td><td>halo- / nitro- / alkyl-</td></tr>
+</table>
+
+<div class="tip"><b>記憶口訣：</b>酸 &gt; 酯 &gt; 醯氯 &gt; 醯胺 &gt; 腈 &gt; 醛 &gt; 酮 &gt; 醇 &gt; 胺 &gt; 烯 &gt; 炔。看到分子有多個官能基時，最高優先的當<b>後綴</b>，其他變<b>字首</b>。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2003" class="section-heading sh-blue">
+  <span class="num">20.3</span>
+  <span class="label">Preparation Methods 製備方法（複習）</span>
+  <span class="rule"></span>
+</div>
+
+<p>這章<b>不教新的製備</b>，而是複習前面章節學過的方法。考前要會分辨「給目標分子 → 反推用哪個方法」。</p>
+
+<h3>製備醛（Aldehyde）的方法</h3>
+
+<table>
+  <tr><th>反應</th><th>試劑</th><th>章節</th></tr>
+  <tr><td>1° 醇氧化（停在醛，不過氧化）</td><td><b>PCC / CH₂Cl₂</b></td><td>13.10</td></tr>
+  <tr><td>烯烴臭氧分解（若兩邊有 H）</td><td>1) O₃　2) DMS（Me₂S）</td><td>9.11</td></tr>
+  <tr><td>末端炔的逆 Markovnikov 水合</td><td>1) R₂B-H　2) H₂O₂ / NaOH</td><td>10.7</td></tr>
+</table>
+
+<h3>製備酮（Ketone）的方法</h3>
+
+<table>
+  <tr><th>反應</th><th>試劑</th><th>章節</th></tr>
+  <tr><td>2° 醇氧化</td><td><b>Na₂Cr₂O₇ / H₂SO₄ / H₂O</b></td><td>13.10</td></tr>
+  <tr><td>四取代烯烴臭氧分解</td><td>1) O₃　2) DMS</td><td>9.11</td></tr>
+  <tr><td>末端炔的 Markovnikov 水合 → 甲基酮</td><td>H₂SO₄ / H₂O / HgSO₄</td><td>10.7</td></tr>
+  <tr><td>Friedel-Crafts 醯化（產 aryl ketone）</td><td>RCOCl / AlCl₃</td><td>19.6</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2004" class="section-heading sh-blue">
+  <span class="num">20.4</span>
+  <span class="label">Carbonyls as Electrophiles 親電性 + 親核加成</span>
+  <span class="rule"></span>
+</div>
+
+<h3>為什麼羰基碳是好親電劑？三個因素</h3>
+
+<ol>
+  <li><b>Resonance（共振）</b>：C=O 有一個帶 <b>C⁺ / O⁻</b> 的次要共振結構 → 羰基碳本身帶部分 δ⁺。</li>
+  <li><b>Induction（誘導效應）</b>：O 電負度高，把 C–O 鍵電子拉向 O → C 帶 δ⁺。</li>
+  <li><b>Sterics（立體效應）</b>：羰基 C 是 sp² 三角平面，比 sp³ 開放 → 親核劑容易上來攻擊（從約 107° 角度進攻 → Bürgi-Dunitz 角）。</li>
+</ol>
+
+<h3>醛 vs 酮 反應性比較</h3>
+
+<div class="callout"><div><b>醛 &gt; 酮</b>（醛在親核加成反應中比酮反應性更高）</div></div>
+
+<table>
+  <tr><th>原因</th><th>說明</th></tr>
+  <tr><td><b>Sterics（立體）</b></td><td>醛 C=O 只有 1 個大取代基（另一邊是 H）；酮有 2 個。<b>醛比較開放，過渡態能量較低</b></td></tr>
+  <tr><td><b>Electronics（電性）</b></td><td>酮多一個烷基，<b>烷基穩定 C 的 δ⁺</b>（如同 2° 碳陽離子穩定）→ 酮的 C=O 沒醛那麼缺電 → 反應性差</td></tr>
+</table>
+
+<h3>親核加成的兩種條件</h3>
+
+<div class="mech-box">
+  <b>強親核劑（如 OH⁻、CN⁻、RMgX、H⁻）：</b>
+  <ol>
+    <li>Nu⁻ 攻擊 C=O 碳 → 四面體 alkoxide 中間體（O 帶負電）</li>
+    <li>溫和質子源（H₂O）質子化 O⁻ → 得到醇/加成產物</li>
+  </ol>
+</div>
+
+<div class="mech-box">
+  <b>弱親核劑（如 H₂O、ROH）：需要酸催化</b>
+  <ol>
+    <li>H⁺ 質子化 C=O 的 O → 形成更活化的 oxocarbenium（C 更缺電）</li>
+    <li>Nu 攻擊質子化的羰基</li>
+    <li>失質子 → 中性產物</li>
+  </ol>
+</div>
+
+<div class="tip"><b>記憶口訣：</b>酸性條件下中間體只帶 <b>中性</b> 或 <b>+1</b> 電荷；鹼性下只帶 <b>中性</b> 或 <b>−1</b>。<b>避免同時兩個正/負電荷的高能中間體</b>。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2005" class="section-heading sh-blue">
+  <span class="num">20.5</span>
+  <span class="label">Water + Acetal Formation 水加成 + 縮醛形成</span>
+  <span class="rule"></span>
+</div>
+
+<h3>水加成 → Hydrate（水合物）</h3>
+
+<p>C=O + H₂O ⇌ <b>geminal diol（同碳二醇）= hydrate</b></p>
+
+<table>
+  <tr><th>羰基</th><th>水合物比例</th><th>原因</th></tr>
+  <tr><td><b>Acetone</b>（丙酮）</td><td>~0.1%</td><td>2 個甲基 → 立體擠 + 電性穩定 C=O → 不易加水</td></tr>
+  <tr><td><b>Formaldehyde</b>（甲醛）</td><td>&gt; 99.9%</td><td>無取代基 → 無立體擋、無電性穩定 → 大量加水</td></tr>
+  <tr><td><b>Hexafluoroacetone</b>（六氟丙酮）</td><td>&gt; 99.99%</td><td>CF₃ 是強 EWG → C=O 更缺電 → 強驅力加水</td></tr>
+</table>
+
+<h3>Acetal Formation（縮醛形成）</h3>
+
+<table>
+  <tr><th>反應</th><th>產物</th></tr>
+  <tr><td>Aldehyde + 1 eq ROH（H⁺ 催化）</td><td><b>Hemiacetal</b>（半縮醛）R–CH(OH)(OR')</td></tr>
+  <tr><td>Hemiacetal + 1 eq ROH</td><td><b>Acetal</b>（縮醛）R–CH(OR')₂</td></tr>
+  <tr><td>Ketone + 1 eq ROH</td><td><b>Hemiketal</b>（半縮酮）R₂C(OH)(OR')</td></tr>
+  <tr><td>Hemiketal + 1 eq ROH</td><td><b>Ketal</b>（縮酮）R₂C(OR')₂</td></tr>
+</table>
+
+<div class="warn"><b>注意：</b>Acetal 形成是<b>可逆</b>反應，且<b>酸催化</b>。要得 acetal → 移除水（Dean-Stark trap）；要逆轉 → 加水。</div>
+
+<h3>環狀縮醛（Cyclic Acetal）</h3>
+
+<ul>
+  <li>用<b>二醇（diol）</b>形成<b>5 員或 6 員環</b>的 cyclic acetal → 特別穩定</li>
+  <li>常用：<b>ethylene glycol（HOCH₂CH₂OH）</b>→ 1,3-dioxolane（5 員環）</li>
+  <li>或 1,3-propanediol → 1,3-dioxane（6 員環）</li>
+</ul>
+
+<h3>★ Acetal 當保護基（Protecting Group）</h3>
+
+<div class="callout"><div>
+  最重要的應用：<b>保護醛/酮</b>，讓它在後續反應中不被攻擊。<br>
+  Acetal 在 <b>鹼性 / 中性 / 親核 / 還原（LAH、NaBH₄）</b>條件下都穩定，只在<b>酸 + 水</b>下水解回原 C=O。
+</div></div>
+
+<h4>典型流程：選擇性還原</h4>
+<p>例：把 ester 還原成醇，但分子上另有 ketone 不想被還原</p>
+<ol>
+  <li>用 HOCH₂CH₂OH / H⁺ + 移除水 → 把 ketone 保護成 acetal</li>
+  <li>用 LAH 還原 ester → 1° alcohol（acetal 不受影響）</li>
+  <li>用 H₃O⁺ 水解 → 還原 acetal 為 ketone，得到目標分子</li>
+</ol>
+
+<div class="mech-box">
+  <b>Acetal 形成機制（酸催化，7 步）：</b>
+  <ol>
+    <li>C=O 被 H⁺ 質子化 → 增加 C 親電性</li>
+    <li>ROH 攻擊 C → 形成 oxonium 中間體（+1 在 O–R 上）</li>
+    <li>失質子 → hemiacetal（中性）</li>
+    <li>OH 被 H⁺ 質子化 → 變好的離去基（H₂O）</li>
+    <li>H₂O 離開 → 形成新的 oxocarbenium（C=O⁺R）</li>
+    <li>第二顆 ROH 攻擊 → 新 oxonium</li>
+    <li>失質子 → acetal（中性）</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2006" class="section-heading sh-blue">
+  <span class="num">20.6</span>
+  <span class="label">Amines as Nucleophiles: Imine, Enamine, Wolff-Kishner</span>
+  <span class="rule"></span>
+</div>
+
+<h3>1° 胺 → Imine（亞胺）</h3>
+
+<p><b>RNH₂ + R'₂C=O → R'₂C=NR + H₂O</b>（也叫 Schiff base）</p>
+
+<div class="mech-box">
+  <b>機制（酸催化，6 步）：</b>
+  <ol>
+    <li>胺攻擊 C=O → 四面體 N⁺ alkoxide</li>
+    <li>質子轉移：N 給 H⁺ 給 O</li>
+    <li>得 <b>carbinolamine</b>（α-胺基醇中性中間體）</li>
+    <li>OH 被 H⁺ 質子化 → 變 H₂O 離去基</li>
+    <li>H₂O 離開（E1-like）→ <b>iminium ion（C=N⁺）</b></li>
+    <li>從 N 失質子 → 中性 imine（C=N–R）</li>
+  </ol>
+</div>
+
+<h3>2° 胺 → Enamine（烯胺）</h3>
+
+<p><b>R₂NH + R'₂C=O → R'-CR=CR₂-NR₂ + H₂O</b>（烯 + 胺 = unsaturated amine）</p>
+
+<div class="mech-box">
+  <b>機制：</b>跟 imine 前 5 步完全一樣，到 iminium ion 階段。差別在<b>最後一步</b>：
+  <ul>
+    <li><b>1° 胺</b>：iminium 的 N 上有 H 可失去 → 形成 C=N 雙鍵（imine）</li>
+    <li><b>2° 胺</b>：iminium 的 N 上<b>沒有 H</b> → 改從<b>鄰近 α-碳</b>失質子 → 形成 C=C 雙鍵 + N 還在側邊（enamine）</li>
+  </ul>
+</div>
+
+<div class="tip"><b>最佳反應 pH ≈ 4-5</b>：太酸 → 胺被質子化失活；太鹼 → 沒酸把 OH 變成離去基。</div>
+
+<h3>★ Wolff-Kishner Reduction</h3>
+
+<div class="callout"><div>
+  把 <b>C=O 完全還原成 CH₂</b>（醛/酮 → 烷類）。<br>
+  條件：<b>H₂N-NH₂（hydrazine）/ KOH / heat</b>（<b>強鹼</b>，適合不耐酸的基質）
+</div></div>
+
+<div class="mech-box">
+  <b>步驟：</b>
+  <ol>
+    <li>羰基 + H₂NNH₂（酸催化 imine 機制）→ <b>hydrazone（C=N-NH₂）</b></li>
+    <li>KOH / heat → 從 NH 失質子 → 共振穩定的 dianion</li>
+    <li>從 H₂O 抓 H 到 C → 形成 C-N=N-H 中間體</li>
+    <li>再從 N=N-H 失質子 → diazo (C-N=N⁻) 中間體</li>
+    <li><b>N₂ 氣體離開</b>（很大驅力）→ 留下 carbanion</li>
+    <li>Carbanion 從水抓 H → 烷類（CH₂R₂）</li>
+  </ol>
+</div>
+
+<h3>Clemmensen Reduction（同一個 C=O → CH₂ 轉換，但條件相反）</h3>
+
+<table>
+  <tr><th></th><th>Wolff-Kishner</th><th>Clemmensen</th></tr>
+  <tr><td>條件</td><td>H₂N-NH₂ / KOH / heat</td><td><b>Zn(Hg) / HCl / heat</b></td></tr>
+  <tr><td>環境</td><td><b>強鹼</b></td><td><b>強酸</b></td></tr>
+  <tr><td>用途</td><td>不耐酸的基質</td><td>不耐鹼的基質</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2007" class="section-heading sh-blue">
+  <span class="num">20.7</span>
+  <span class="label">Hydrolysis 水解（Acetal / Imine / Enamine）</span>
+  <span class="rule"></span>
+</div>
+
+<p>三類產物都可以被<b>酸 + 水</b>水解回原本的羰基化合物：</p>
+
+<table>
+  <tr><th>起始物</th><th>水解條件</th><th>產物</th></tr>
+  <tr><td><b>Acetal</b> R₂C(OR')₂</td><td>H₂O / H⁺</td><td>Ketone/aldehyde + 2 R'OH</td></tr>
+  <tr><td><b>Imine</b> R₂C=NR'</td><td>H₂O / H⁺</td><td>Ketone/aldehyde + R'NH₂</td></tr>
+  <tr><td><b>Enamine</b> R₂N-CR=CR₂</td><td>H₂O / H⁺</td><td>Ketone/aldehyde + R₂NH</td></tr>
+</table>
+
+<div class="warn"><b>注意：</b>三種水解只有<b>酸催化</b>有效，<b>鹼催化下幾乎不反應</b>（因為 OR、NR 是壞離去基，需要 H⁺ 質子化變好離去基）。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2008" class="section-heading sh-blue">
+  <span class="num">20.8</span>
+  <span class="label">Sulfur Nucleophiles 硫親核劑 + Raney Ni 還原</span>
+  <span class="rule"></span>
+</div>
+
+<h3>Thiol + 羰基 → Thioacetal（硫縮醛）</h3>
+
+<p>硫醇（thiol, R-SH）與 ROH 行為類似，酸催化下與羰基反應：</p>
+
+<ul>
+  <li>R₂C=O + 2 RSH (H⁺) → <b>thioacetal R₂C(SR)₂</b> + H₂O</li>
+  <li>用 1,3-propanedithiol → cyclic thioacetal（1,3-dithiane）</li>
+  <li>用 1,2-ethanedithiol → cyclic thioacetal（1,3-dithiolane）</li>
+</ul>
+
+<h3>★ Thioacetal + Raney Ni = 第三種 C=O → CH₂ 的方法</h3>
+
+<div class="callout"><div>
+  繼 Wolff-Kishner（鹼）與 Clemmensen（酸）之後，第三條路：<br>
+  <b>R₂C=O + HSCH₂CH₂SH (H⁺) → thioacetal → Raney Ni → R₂CH₂</b><br>
+  優點：<b>中性條件</b>！適合酸鹼都不耐的基質。
+</div></div>
+
+<table>
+  <tr><th>方法</th><th>條件</th><th>適用</th></tr>
+  <tr><td>Wolff-Kishner</td><td>H₂NNH₂ / KOH / heat</td><td>強鹼 — 適合<b>耐鹼</b>的分子</td></tr>
+  <tr><td>Clemmensen</td><td>Zn(Hg) / HCl / heat</td><td>強酸 — 適合<b>耐酸</b>的分子</td></tr>
+  <tr><td><b>Raney Ni</b></td><td>1) HSCH₂CH₂SH / H⁺　2) Raney Ni</td><td><b>中性</b> — 適合不耐酸鹼的分子</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2009" class="section-heading sh-blue">
+  <span class="num">20.9</span>
+  <span class="label">Hydrogen Nucleophiles 氫負離子（H⁻ = hydride）</span>
+  <span class="rule"></span>
+</div>
+
+<p>H 通常是親電的（提供 H⁺），但帶 lone pair 的<b>氫負離子 H⁻（hydride）</b>是強親核劑。</p>
+
+<h3>兩個常用 hydride 試劑</h3>
+
+<table>
+  <tr><th>試劑</th><th>強度</th><th>可還原</th><th>不可還原</th></tr>
+  <tr><td><b>LiAlH₄</b>（LAH）</td><td>強</td><td>醛、酮、酯、醯胺、腈、羧酸…幾乎全部</td><td>—</td></tr>
+  <tr><td><b>NaBH₄</b></td><td>弱（溫和）</td><td>醛、酮</td><td>酯、醯胺、腈、羧酸</td></tr>
+</table>
+
+<div class="mech-box">
+  <b>機制（兩步）：</b>
+  <ol>
+    <li><b>Step 1</b>：H⁻ 攻擊 C=O 碳 → alkoxide（O⁻）；溶劑是無水的（乙醚、THF）</li>
+    <li><b>Step 2（aqueous workup）</b>：加 H₂O 或 dilute HCl → 質子化 O⁻ → 中性醇</li>
+  </ol>
+</div>
+
+<div class="warn"><b>為什麼分兩步？</b>LAH 和 NaBH₄ 都跟<b>酸劇烈反應放出 H₂ 氣體</b>（會爆炸）。所以第一步必須在<b>無酸</b>環境下做，第二步才加水。</div>
+
+<h3>反應結果</h3>
+
+<ul>
+  <li>Aldehyde + LAH/NaBH₄ → <b>1° alcohol</b></li>
+  <li>Ketone + LAH/NaBH₄ → <b>2° alcohol</b></li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2010" class="section-heading sh-blue">
+  <span class="num">20.10</span>
+  <span class="label">Carbon Nucleophiles 碳親核劑（Grignard / 氰醇 / Wittig）</span>
+  <span class="rule"></span>
+</div>
+
+<p>碳通常不當親核劑（沒有 lone pair）。要當親核劑必須讓 C 帶 lone pair：</p>
+
+<ol>
+  <li><b>Carbanion（C⁻）</b>：不穩定，難形成（除非有 EWG 穩定，如 enolate、ylide）</li>
+  <li><b>接電負度低的原子</b>（如 Mg、Li）→ Grignard / organolithium</li>
+</ol>
+
+<h3>(a) Grignard Reagent（RMgX）</h3>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>R–Mg–X 中 R 帶 δ⁻（C–Mg 鍵極化），相當於碳負離子</li>
+    <li>R⁻ 攻擊 C=O 碳 → alkoxide</li>
+    <li>Aqueous workup（H₂O 或 H₃O⁺）→ 醇</li>
+  </ol>
+</div>
+
+<ul>
+  <li>Aldehyde + RMgX → <b>2° alcohol</b>（除非用 HCHO，得 1° alcohol）</li>
+  <li>Ketone + RMgX → <b>3° alcohol</b></li>
+  <li>Ester + 2 RMgX → <b>3° alcohol</b>（先加 1 個 R，再加第 2 個 R）</li>
+  <li><b>含酸性 H 的基質</b>（如 -COOH、-OH、-NH）需要<b>過量 Grignard</b>，因為 Grignard 會先被酸性 H 中和</li>
+</ul>
+
+<h3>(b) Cyanohydrin（氰醇）</h3>
+
+<p>KCN（或 NaCN）+ HCl + 羰基 → cyanohydrin（α-羥基腈）</p>
+
+<p><b>合成價值：</b>導入 -CN 後可再轉化成：</p>
+<ul>
+  <li>1) LAH　2) H₂O → 把 -CN 還原成 -CH₂-NH₂ → 得到 <b>β-amino alcohol</b></li>
+  <li>H₃O⁺ / heat → 把 -CN 水解成 -COOH → 得到 <b>α-hydroxy acid（α-羥基羧酸）</b></li>
+</ul>
+
+<h3>★ (c) Wittig Reaction（磷葉立德反應）</h3>
+
+<div class="callout"><div>
+  Wittig 是把 <b>C=O → C=C</b> 的標準方法，產物是<b>已知結構的純烯</b>（沒有 Grignard + 脫水會產生的混合物問題）。
+</div></div>
+
+<h4>形成 Ylide（葉立德）</h4>
+<ol>
+  <li>Ph₃P (triphenylphosphine) + R–X → Ph₃P⁺–R X⁻（phosphonium salt，SN2）</li>
+  <li>BuLi（強鹼）拔 α-H → <b>ylide</b>（Ph₃P⁺–CR⁻ ↔ Ph₃P=CR）</li>
+</ol>
+
+<div class="mech-box">
+  <b>Wittig 機制：</b>
+  <ol>
+    <li>Ylide 的 C⁻ 攻擊 C=O 碳 → <b>betaine</b>（兩端帶相反電荷）</li>
+    <li>O⁻ 攻擊 P⁺ 內分子環化 → <b>oxaphosphetane</b>（4 員環 P-C-C-O）</li>
+    <li>4 員環自發 retro-[2+2] → <b>alkene + Ph₃P=O</b>（triphenylphosphine oxide，P=O 鍵很強是驅力）</li>
+  </ol>
+</div>
+
+<h4>Wittig vs Grignard + 脫水</h4>
+
+<table>
+  <tr><th></th><th>Wittig</th><th>Grignard + 脫水</th></tr>
+  <tr><td>產物</td><td><b>單一烯</b>，C=C 在原 C=O 位置</td><td>常有<b>多個 regioisomer</b>（如 1-methylcyclohexene + methylenecyclohexane 9:1）</td></tr>
+  <tr><td>限制</td><td>不適合<b>四取代烯</b></td><td>適合大部分情況</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2011" class="section-heading sh-blue">
+  <span class="num">20.11</span>
+  <span class="label">Baeyer-Villiger Oxidation</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout"><div>
+  特殊反應：<b>在 C=O 碳和 α-C 之間插入一個 O 原子</b>，把 ketone 變成 ester。<br>
+  試劑：<b>過氧酸（RCO₃H，如 mCPBA、CF₃CO₃H）</b>
+</div></div>
+
+<div class="mech-box">
+  <b>機制（3 步）：</b>
+  <ol>
+    <li>Peroxyacid 的 OH 端 O 攻擊 C=O → tetrahedral intermediate（帶 -O-O-COR）</li>
+    <li>分子內質子轉移（經 5 員環 TS）→ 為下一步準備</li>
+    <li><b>Rearrangement（重排）</b>：α-C 上的取代基<b>遷移</b>到 O 上，同時 C=O 重新形成，並推出 carboxylic acid 副產物</li>
+  </ol>
+</div>
+
+<h3>★ 遷移順序（哪個取代基會優先遷移）</h3>
+
+<p><b>H &gt; 3° &gt; 2°, Ph &gt; 1° &gt; methyl</b></p>
+
+<ul>
+  <li>對稱酮：兩邊都一樣 → 沒選擇</li>
+  <li>不對稱酮：根據上述順序選最會遷移的</li>
+  <li>例：methyl ketone 的非甲基那邊（如 3° 烷基）會遷移 → 得到 ester R-CO-O-CH(R')₂</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2012" class="section-heading sh-amber">
+  <span class="num">20.12</span>
+  <span class="label">Synthetic Strategies 合成策略總整理</span>
+  <span class="rule"></span>
+</div>
+
+<h3>遇到合成題的兩個問題</h3>
+<ol>
+  <li>碳骨架有沒有變？（C-C 鍵的形成 / 切斷）</li>
+  <li>官能基有沒有變？</li>
+</ol>
+
+<h3>從 C=O 出發的所有轉換</h3>
+
+<table>
+  <tr><th>目標</th><th>試劑 / 方法</th><th>類別</th></tr>
+  <tr><td>C=O → C-OH（醇）</td><td><b>NaBH₄</b> 或 1) LAH 2) H₂O</td><td>官能基還原</td></tr>
+  <tr><td>C=O → CH₂（烷類）</td><td>① Wolff-Kishner：H₂NNH₂ / KOH / heat<br>② Clemmensen：Zn(Hg) / HCl / heat<br>③ Raney Ni：1) HSCH₂CH₂SH 2) Raney Ni</td><td>官能基移除</td></tr>
+  <tr><td>C=O → C=C（烯）</td><td>1) Ph₃P=CHR (Wittig)</td><td>官能基置換（C-C 形成）</td></tr>
+  <tr><td>C=O → C=NR（imine）</td><td>RNH₂ / H⁺</td><td>官能基置換</td></tr>
+  <tr><td>C=O → C=CR-NR₂（enamine）</td><td>R₂NH / H⁺</td><td>官能基置換</td></tr>
+  <tr><td>C=O → C(OR')₂（acetal）</td><td>2 R'OH / H⁺，移除水</td><td>保護基</td></tr>
+  <tr><td>C=O → C(SR)₂（thioacetal）</td><td>2 RSH / H⁺</td><td>保護基 / Raney Ni 前驅物</td></tr>
+  <tr><td>C=O → C(OH)(CN)（cyanohydrin）</td><td>KCN / HCl</td><td>C-C 形成</td></tr>
+  <tr><td>C=O → C(OH)(R)（醇加 R）</td><td>1) RMgX 2) H₂O</td><td>C-C 形成</td></tr>
+  <tr><td>C=O → R-CO-O-R'（ester）</td><td>RCO₃H (Baeyer-Villiger)</td><td>O 插入</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 範例題 -->
+<div class="section-heading sh-exam">
+  <span class="num">Ex.</span>
+  <span class="label">範例題 Practice Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 1 — 命名 / IUPAC Name</div>
+  <div class="q-zh">為下列分子寫出 IUPAC 命名：CH₃-CH₂-CH₂-CHO</div>
+  <div class="q-en">Provide the IUPAC name for the following: CH₃-CH₂-CH₂-CHO</div>
+  <div class="ans">
+    <b>答案：</b>butanal（丁醛）。母鏈含 4 個 C，醛在 C1，字尾 -al。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 2 — 預測產物 / Predict the Product</div>
+  <div class="q-zh">acetone + ethylene glycol（HOCH₂CH₂OH）+ H⁺（並移除水）會得到什麼？</div>
+  <div class="q-en">What is the product when acetone reacts with ethylene glycol in the presence of H⁺ catalyst (with removal of water)?</div>
+  <div class="ans">
+    <b>答案：</b>2,2-dimethyl-1,3-dioxolane（5 員環 cyclic ketal）。acetone 的 C=O 被 2 個 -OR 取代，OR 是同個 ethylene glycol 的兩端 → 形成 5 員環 acetal。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 3 — 機制 / Mechanism</div>
+  <div class="q-zh">畫出 cyclohexanone + methylamine（CH₃NH₂）/ 酸催化 形成 imine 的完整機制（6 步）。</div>
+  <div class="q-en">Draw the complete 6-step mechanism for the formation of an imine from cyclohexanone and methylamine under acidic catalysis.</div>
+  <div class="ans">
+    <b>答案步驟（不畫結構，描述文字）：</b><br>
+    1. 胺攻擊 C=O 碳 → tetrahedral N⁺ alkoxide<br>
+    2. 質子轉移（N→O 或經 H₃O⁺）→ carbinolamine（中性 α-胺基醇）<br>
+    3. OH 被 H⁺ 質子化 → -OH₂⁺<br>
+    4. H₂O 離開 → iminium ion（C=N⁺(CH₃)(H)）<br>
+    5. 從 N 失質子 → imine（C=N-CH₃）<br>
+    6. 反應結束。產物：N-甲基環己亞胺（N-methylcyclohexanimine）
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 4 — 選擇還原方法 / Choose Reduction Method</div>
+  <div class="q-zh">基質含一個 ketone 和一個 ester。你想<b>只還原 ketone</b>（變成醇），不動 ester。用什麼試劑？</div>
+  <div class="q-en">A substrate contains both a ketone and an ester. You want to <b>reduce only the ketone</b> (to alcohol) without touching the ester. Which reagent?</div>
+  <div class="ans">
+    <b>答案：</b><span class="hl-amber">NaBH₄</span>。NaBH₄ 是<b>溫和</b>還原劑，只還醛/酮，不還 ester / amide。LAH 太強會把 ester 一起還原成醇。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 5 — 三種 C=O → CH₂ 方法的選擇 / Choosing Among Three Methods</div>
+  <div class="q-zh">已知基質含對<b>強鹼敏感</b>的基團（如 ester）。要把分子中的 ketone 還原成 CH₂，<b>不能</b>用哪些方法？</div>
+  <div class="q-en">Given a substrate that is sensitive to <b>strong base</b> (e.g., contains an ester), which method(s) <b>cannot</b> be used to reduce a ketone to CH₂?</div>
+  <div class="ans">
+    <b>答案：</b>不能用 <b>Wolff-Kishner</b>（KOH/heat，太鹼，會水解 ester）。可以用：<br>
+    ① <b>Clemmensen</b>（酸性條件，OK）<br>
+    ② <b>Raney Ni</b>（thioacetal → 中性，OK）
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 6 — Baeyer-Villiger 主產物 / Major Product</div>
+  <div class="q-zh">2-methylcyclohexanone 與 mCPBA 反應，主產物是哪個 ester？（遷移順序：H &gt; 3° &gt; 2°, Ph &gt; 1° &gt; methyl）</div>
+  <div class="q-en">When 2-methylcyclohexanone reacts with mCPBA, which ester is the major product? (Migration order: H &gt; 3° &gt; 2°, Ph &gt; 1° &gt; methyl)</div>
+  <div class="ans">
+    <b>答案：</b>2-methylcyclohexanone 有兩種 α-C：一個是 <b>2° 烷基（CH₂）</b>，另一個是 <b>3° 烷基（CH-CH₃，就是含甲基的 α-C）</b>。<br>
+    根據遷移順序 <b>3° 比 2° 優先</b>，所以是<b>含甲基的 α-C 遷移到 O 上</b>。<br>
+    產物：7 員環 lactone（ε-caprolactone 變體，氧插在 carbonyl C 與含甲基 α-C 之間）。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 期末速查表 -->
+<div id="summary" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">期末速查表 Final Cheat Sheet</span>
+  <span class="rule"></span>
+</div>
+
+<h3>命名重點</h3>
+<ul>
+  <li>醛 = parent + <b>-al</b>，C=O 永遠 C1</li>
+  <li>酮 = parent + <b>-one</b>，編號讓 C=O 位置號最小</li>
+  <li>優先序：<b>酸 &gt; 酯 &gt; 醯氯 &gt; 醯胺 &gt; 腈 &gt; 醛 &gt; 酮 &gt; 醇 &gt; 胺 &gt; 烯 &gt; 炔</b></li>
+</ul>
+
+<h3>反應性</h3>
+<ul>
+  <li>醛 &gt; 酮（立體 + 電性兩個原因）</li>
+  <li>羰基 C 是親電的三個原因：共振 / 誘導 / sp² 開放</li>
+</ul>
+
+<h3>三條重點：C=O → CH₂</h3>
+<ul>
+  <li><b>Wolff-Kishner</b>：H₂NNH₂ / KOH / heat（強鹼）</li>
+  <li><b>Clemmensen</b>：Zn(Hg) / HCl / heat（強酸）</li>
+  <li><b>Raney Ni</b>：1) HSCH₂CH₂SH/H⁺ 2) Raney Ni（中性，最溫和）</li>
+</ul>
+
+<h3>選擇題</h3>
+<ul>
+  <li>還原醛/酮且不動 ester → <b>NaBH₄</b></li>
+  <li>全部還原 → <b>LAH</b></li>
+  <li>C=O → C=C 單一產物 → <b>Wittig</b></li>
+  <li>C=O → ester（插 O）→ <b>Baeyer-Villiger (RCO₃H)</b></li>
+  <li>保護 C=O 不被親核劑攻擊 → <b>形成 acetal</b>（H⁺ + 2 ROH 或 ethylene glycol）</li>
+</ul>
+
+<h3>機制重點</h3>
+<ul>
+  <li>所有 C=O 親核加成都遵循：先攻擊 C → tetrahedral 中間體 → 質子化（或失質子）</li>
+  <li>酸催化條件：中間體只能<b>中性 或 +1</b>，避免兩個正/負電荷</li>
+  <li>Imine 形成是 imine：<b>iminium ion 從 N 失質子</b>；enamine：<b>iminium 從 α-C 失質子</b></li>
+  <li>Wittig 驅力：<b>Ph₃P=O 鍵很強</b>（容易斷 oxaphosphetane）</li>
+  <li>Baeyer-Villiger 遷移順序：<b>H &gt; 3° &gt; 2°, Ph &gt; 1° &gt; methyl</b></li>
+</ul>
+
+<div class="tip">
+  <b>讀完別忘了：</b>跟 Ch 21（羧酸衍生物）相比，醛酮的特點是 C=O 沒有好離去基，所以反應停在「加成」階段；Ch 21 的酸/酯/醯胺有 OR/NR/X 當離去基，反應會繼續到「取代」階段。這是兩章的核心差別。
+</div>
+
+</main>
+</div>
+
+<script>
+const _l = document.querySelectorAll('.toc-list a');
+const ob = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      _l.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('[id]').forEach(s => ob.observe(s));
+</script>
+
+</body>
+</html>

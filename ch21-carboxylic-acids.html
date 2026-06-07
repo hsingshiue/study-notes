@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 21 羧酸與衍生物 — 期末重點</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;--amber-lo:rgba(229,181,116,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:200px 1fr;grid-template-areas:"toc main";
+  max-width:1180px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--blue);
+  border-left-color:var(--blue);background:rgba(144,200,208,0.06)}
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-amber .num{color:rgba(229,181,116,0.65)}.sh-amber .label{color:var(--amber)}
+.sh-amber .rule{background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent)}
+.sh-exam .num{color:rgba(176,158,224,0.65)}.sh-exam .label{color:var(--purple)}
+.sh-exam .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+
+.term{background:var(--glass);border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38);border-radius:8px;
+  padding:10px 16px;margin:0.55rem 0;color:var(--text-mid);font-size:0.92rem}
+.term:nth-child(even){border-left-color:rgba(217,160,184,0.4)}
+.term b{color:var(--text);font-weight:400}
+.term .en{color:var(--rose);font-style:italic}
+
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+
+.warn{background:var(--amber-lo);border-left:3px solid rgba(229,181,116,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(240,215,180,0.9);font-size:0.9rem}
+.warn b{color:var(--amber);font-weight:400}
+
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+
+.mech-box{background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16);border-radius:10px;
+  padding:14px 18px;margin:0.8rem 0;color:var(--text-mid);font-size:0.91rem}
+.mech-box b{color:var(--text);font-weight:400}
+.mech-box ol{margin-left:1.3rem;margin-top:0.5rem}
+.mech-box li{margin:0.35rem 0}
+
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .q-zh{margin:0.4rem 0;color:var(--text)}
+.exam-box .q-en{margin:0.2rem 0 0.6rem;color:var(--text-mid);font-size:0.86em;font-style:italic;opacity:0.85}
+.exam-box .ans{margin-top:0.6rem;padding-top:0.6rem;
+  border-top:1px solid rgba(176,158,224,0.18);color:rgba(229,181,116,0.95)}
+.exam-box .ans b{color:var(--amber)}
+
+.highlight,.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-amber{background:rgba(229,181,116,0.18);color:var(--amber);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.18);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.86rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+td b{color:var(--text);font-weight:400}
+
+ul,ol{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem;line-height:1.75}
+p{color:var(--text-mid);margin:0.55rem 0;font-size:0.92rem}
+
+code{background:rgba(144,200,208,0.1);color:var(--blue);
+  padding:1px 7px;border-radius:3px;font-family:Consolas,monospace;font-size:0.85em}
+
+@media (max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#s2101">21.1-2 介紹與命名</a></li>
+    <li><a href="#s2103">21.3 結構與酸性</a></li>
+    <li><a href="#s2104">21.4 製備羧酸</a></li>
+    <li><a href="#s2105">21.5 羧酸的反應</a></li>
+    <li><a href="#s2106">21.6 衍生物命名</a></li>
+    <li><a href="#s2107">21.7 衍生物反應性</a></li>
+    <li><a href="#s2108">21.8 醯氯</a></li>
+    <li><a href="#s2109">21.9 酸酐</a></li>
+    <li><a href="#s2110">21.10 製備酯（Fischer）</a></li>
+    <li><a href="#s2111">21.11 酯的反應（Saponification）</a></li>
+    <li><a href="#s2112">21.12 醯胺（Nylon）</a></li>
+    <li><a href="#s2113">21.13 腈</a></li>
+    <li><a href="#s2114">21.14 合成策略</a></li>
+    <li class="toc-divider"></li>
+    <li><a href="#exercises" class="exam-link">範例題</a></li>
+    <li><a href="#summary" class="exam-link">期末速查表</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="page-header">
+  <h1>Chapter 21 — Carboxylic Acids and Their Derivatives</h1>
+  <div class="meta">羧酸與其衍生物 ｜ 取代反應為主 ｜ 期末考重點</div>
+</div>
+
+<div class="callout">
+  <div>本章核心：<b>羰基取代反應</b>（acyl substitution）。羧酸衍生物（醯氯、酸酐、酯、醯胺、腈）都有 <b>離去基</b>，所以反應停在「<b>取代</b>」而不是「加成」 — 這是跟 Ch 20 醛酮（只能加成）最大的差別。<br>
+  反應性順序必背：<b>醯氯 &gt; 酸酐 &gt; 酯 &gt; 醯胺</b>（耐酸鹼程度則反過來）。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2101" class="section-heading sh-blue">
+  <span class="num">21.1-2</span>
+  <span class="label">Introduction & Nomenclature 介紹與命名</span>
+  <span class="rule"></span>
+</div>
+
+<h3>羧酸基本結構</h3>
+<ul>
+  <li>羧酸 <b>R-COOH</b>（=羰基 C=O + 羥基 -OH 接在同一個 C 上）</li>
+  <li>羧酸是<b>所有羰基官能基中優先級最高</b>的，所以命名時一定當主鏈後綴</li>
+</ul>
+
+<h3>命名規則</h3>
+
+<table>
+  <tr><th>類型</th><th>規則</th><th>例</th></tr>
+  <tr>
+    <td>開鏈羧酸<br><b>R-COOH</b></td>
+    <td>母鏈字尾 <code>-e</code> → <code><b>-oic acid</b></code>，羧基 C 永遠 C1</td>
+    <td>propane → <b>propanoic acid</b>（丙酸）</td>
+  </tr>
+  <tr>
+    <td>環+COOH</td>
+    <td>母鏈字尾改 <code><b>-carboxylic acid</b></code>，羧基 C <b>不算進編號</b>，環上連接 C 是 C1</td>
+    <td>cyclohexanecarboxylic acid<br>1-cyclopentenecarboxylic acid</td>
+  </tr>
+  <tr>
+    <td>雙羧酸</td>
+    <td>母鏈字尾 <code><b>-dioic acid</b></code></td>
+    <td>butanedioic acid（=succinic acid，琥珀酸）<br>pentanedioic acid（=glutaric acid，戊二酸）</td>
+  </tr>
+  <tr>
+    <td>羧酸鹽 / 解離態</td>
+    <td><code><b>-oic acid</b></code> → <code><b>-oate</b></code></td>
+    <td>benzoic acid → sodium benzo<b>ate</b>（苯甲酸鈉，食品防腐劑）</td>
+  </tr>
+</table>
+
+<h3>常見俗名（IUPAC 接受）</h3>
+
+<table>
+  <tr><th>俗名</th><th>IUPAC</th><th>C 數</th><th>來源</th></tr>
+  <tr><td><b>Formic acid</b> 甲酸（蟻酸）</td><td>methanoic acid</td><td>1</td><td>螞蟻（拉丁文 <i>formica</i>）</td></tr>
+  <tr><td><b>Acetic acid</b> 乙酸（醋酸）</td><td>ethanoic acid</td><td>2</td><td>醋（拉丁文 <i>acetum</i>）</td></tr>
+  <tr><td><b>Propionic acid</b></td><td>propanoic acid</td><td>3</td><td>"first fat"（希臘）</td></tr>
+  <tr><td><b>Butyric acid</b> 丁酸</td><td>butanoic acid</td><td>4</td><td>奶油酸臭味</td></tr>
+  <tr><td><b>Benzoic acid</b> 苯甲酸</td><td>benzenecarboxylic acid</td><td>—</td><td>苯環上有 -COOH</td></tr>
+  <tr><td><b>Oxalic acid</b> 草酸</td><td>ethanedioic acid</td><td>2</td><td>HOOC-COOH</td></tr>
+  <tr><td><b>Malonic acid</b> 丙二酸</td><td>propanedioic acid</td><td>3</td><td>HOOC-CH₂-COOH</td></tr>
+  <tr><td><b>Succinic acid</b> 琥珀酸</td><td>butanedioic acid</td><td>4</td><td>HOOC-(CH₂)₂-COOH</td></tr>
+  <tr><td><b>Glutaric acid</b> 戊二酸</td><td>pentanedioic acid</td><td>5</td><td>HOOC-(CH₂)₃-COOH</td></tr>
+</table>
+
+<h3>★ 官能基優先序（從高到低）</h3>
+
+<div class="callout">
+  <div><b>Carboxylic acid &gt; ester &gt; acid chloride &gt; amide &gt; nitrile &gt; aldehyde &gt; ketone &gt; alcohol &gt; amine &gt; alkene &gt; alkyne &gt; alkyl/halide</b><br>
+  跟 Ch 20 一樣的順序，羧酸跟它的衍生物都比醛酮高。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2103" class="section-heading sh-blue">
+  <span class="num">21.3</span>
+  <span class="label">Structure & Acidity 結構與酸性</span>
+  <span class="rule"></span>
+</div>
+
+<h3>物理性質</h3>
+<ul>
+  <li><b>沸點高</b>：因 -COOH 可以形成<b>雙重氫鍵</b>（兩個分子互相 -O-H...O=C-）→ acetic acid (118°C) &gt; isopropanol (82°C)</li>
+  <li><b>水溶性</b>：低分子量羧酸（C1-C4）完全溶於水</li>
+</ul>
+
+<h3>酸性</h3>
+
+<p>羧酸 pKa ≈ <b>4-5</b>（中等強酸，比醇 pKa ≈ 16 強很多）。原因：<b>羧酸根（carboxylate, R-COO⁻）</b>被兩個 O 共振穩定（負電平均分散在 2 個 O 上）。</p>
+
+<table>
+  <tr><th>分子</th><th>pKa</th></tr>
+  <tr><td>HCOOH（formic acid）</td><td>3.75</td></tr>
+  <tr><td>CH₃COOH（acetic acid）</td><td>4.76</td></tr>
+  <tr><td>CH₃CH₂COOH（propionic）</td><td>4.87</td></tr>
+  <tr><td>PhCOOH（benzoic acid）</td><td>4.19</td></tr>
+</table>
+
+<h3>★ 影響酸性的兩大因素</h3>
+
+<h4>① 電子吸引基（EWG）使羧酸更酸（pKa 降）</h4>
+
+<table>
+  <tr><th>羧酸</th><th>pKa</th></tr>
+  <tr><td>CH₃COOH</td><td>4.8</td></tr>
+  <tr><td>ClCH₂COOH（α-氯）</td><td>2.9</td></tr>
+  <tr><td>Cl₂CHCOOH</td><td>1.3</td></tr>
+  <tr><td>Cl₃CCOOH（三氯乙酸）</td><td>0.9</td></tr>
+</table>
+
+<div class="tip"><b>越多 Cl 越酸</b>。EWG 透過誘導效應拉走 carboxylate 上的負電 → 共振穩定更好 → 更酸。</div>
+
+<h4>② 距離（α &gt; β &gt; γ）</h4>
+
+<table>
+  <tr><th>位置</th><th>pKa</th></tr>
+  <tr><td>α-Cl-propionic acid（ClCH₂CH₂COOH 的 α 位）</td><td>4.1</td></tr>
+  <tr><td>β-Cl-butyric acid（ClCH₂CH₂CH₂COOH 的 β 位）</td><td>4.5</td></tr>
+</table>
+
+<p>EWG 離 -COOH 越遠，影響越小。</p>
+
+<h4>③ 苯甲酸取代</h4>
+
+<table>
+  <tr><th>4-取代苯甲酸（Z-C₆H₄-COOH）</th><th>pKa</th></tr>
+  <tr><td>Z = -NO₂（強 EWG）</td><td>3.4（最酸）</td></tr>
+  <tr><td>Z = -CHO</td><td>3.8</td></tr>
+  <tr><td>Z = -Cl</td><td>4.0</td></tr>
+  <tr><td>Z = -H（benzoic acid）</td><td>4.2</td></tr>
+  <tr><td>Z = -CH₃</td><td>4.3</td></tr>
+  <tr><td>Z = -OH（EDG）</td><td>4.5（最不酸）</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2104" class="section-heading sh-blue">
+  <span class="num">21.4</span>
+  <span class="label">Preparation of Carboxylic Acids 製備羧酸</span>
+  <span class="rule"></span>
+</div>
+
+<table>
+  <tr><th>反應</th><th>試劑</th><th>章節</th></tr>
+  <tr><td>炔的氧化裂解</td><td>1) O₃　2) H₂O</td><td>10.9</td></tr>
+  <tr><td>1° 醇氧化</td><td>Na₂Cr₂O₇ / H₂SO₄ / H₂O 或 KMnO₄</td><td>13.10</td></tr>
+  <tr><td>烷基苯氧化（苄位有 H）</td><td>Na₂Cr₂O₇ / H₂SO₄ / H₂O</td><td>18.6</td></tr>
+  <tr><td><b>腈水解</b></td><td>H₃O⁺ / heat</td><td>21.13</td></tr>
+  <tr><td><b>Grignard + CO₂</b>（carboxylation）</td><td>1) Mg / ether　2) CO₂　3) H₃O⁺</td><td>21.4</td></tr>
+</table>
+
+<div class="tip"><b>從烷基鹵化物到羧酸的兩條路：</b><br>
+① <code>R-X → R-CN → R-COOH</code>（用 NaCN 取代，再水解）<br>
+② <code>R-X → R-MgX → R-COOH</code>（Grignard + CO₂ + H₃O⁺）<br>
+兩條路<b>都增加一個 C</b>（因 -CN 或 -COOH 比原本多一個 C）。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2105" class="section-heading sh-blue">
+  <span class="num">21.5</span>
+  <span class="label">Reactions of Carboxylic Acids 羧酸的反應</span>
+  <span class="rule"></span>
+</div>
+
+<h3>羧酸的還原</h3>
+
+<table>
+  <tr><th>試劑</th><th>產物</th><th>強度</th></tr>
+  <tr><td><b>LiAlH₄ (LAH)</b></td><td>1° alcohol（不能停在 aldehyde）</td><td>強</td></tr>
+  <tr><td><b>BH₃·THF</b>（borane）</td><td>1° alcohol，<b>選擇性高</b>（會還原 -COOH 但<b>不還原</b> ketone）</td><td>溫和、選擇</td></tr>
+  <tr><td>NaBH₄</td><td><b>不會還原羧酸</b>（太溫和）</td><td>—</td></tr>
+</table>
+
+<div class="warn"><b>選擇性還原小技巧：</b>分子同時有 ketone 和 -COOH，用 <b>BH₃·THF</b> 可以只還原 -COOH（變 -CH₂OH），ketone 不動。LAH 則兩個都會還原。</div>
+
+<h3>轉化成衍生物（後面各節會詳細講）</h3>
+
+<table>
+  <tr><th>目標衍生物</th><th>試劑</th></tr>
+  <tr><td>Acid chloride（醯氯）</td><td>SOCl₂</td></tr>
+  <tr><td>Acid anhydride（酸酐）</td><td>1) NaOH 2) RCOCl，或加熱（800°C，工業級）</td></tr>
+  <tr><td>Ester（酯）</td><td>R'OH / H⁺ 催化（Fischer）</td></tr>
+  <tr><td>Amide（醯胺）</td><td>無法直接從 -COOH 一步合成，需透過 acid chloride 中介</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2106" class="section-heading sh-blue">
+  <span class="num">21.6</span>
+  <span class="label">Naming Carboxylic Acid Derivatives 衍生物命名</span>
+  <span class="rule"></span>
+</div>
+
+<h3>★ 五種主要衍生物（按反應性排序）</h3>
+
+<table>
+  <tr><th>衍生物</th><th>結構</th><th>命名</th></tr>
+  <tr><td><b>Acid chloride</b><br>醯氯</td><td>R-CO-Cl</td><td><code>-oic acid</code> → <code>-oyl chloride</code>（如 acetyl chloride、benzoyl bromide）</td></tr>
+  <tr><td><b>Acid anhydride</b><br>酸酐</td><td>R-CO-O-CO-R'</td><td>對稱：<code>-acid</code> → <code>-anhydride</code>（如 acetic anhydride）<br>不對稱：兩個酸名字按字母順序（如 acetic benzoic anhydride）</td></tr>
+  <tr><td><b>Ester</b><br>酯</td><td>R-CO-O-R'</td><td>"R' + (acid 名 + <code>-ate</code>)"，中間空格<br>例：<code>ethyl acetate</code>（CH₃COOCH₂CH₃）、<code>methyl benzoate</code></td></tr>
+  <tr><td><b>Thioester</b><br>硫酯</td><td>R-CO-S-R'</td><td>"R' + (acid 名 + <code>-thioate</code>)"<br>例：<code>methyl thioacetate</code></td></tr>
+  <tr><td><b>Amide</b><br>醯胺</td><td>R-CO-NH₂</td><td><code>-oic acid</code> → <code>-amide</code>（acetamide、benzamide）<br>N 上有取代基時：<code>N-methyl...</code>、<code>N,N-dimethyl...</code></td></tr>
+  <tr><td><b>Nitrile</b><br>腈（雖無 C=O 但氧化態相同）</td><td>R-C≡N</td><td><code>-oic acid</code> → <code>-onitrile</code>（acetonitrile、benzonitrile）</td></tr>
+</table>
+
+<h3>★ 「醯基（-oyl/-yl）」八大特殊俗名</h3>
+
+<div class="callout"><div>從 <code>-ic acid</code> 改成 <code>-yl</code> 結尾時，有 8 個常見例外，要記住：</div></div>
+
+<table>
+  <tr><th>酸名</th><th>醯基名</th></tr>
+  <tr><td>Formic</td><td>formyl</td></tr>
+  <tr><td>Acetic</td><td>acetyl</td></tr>
+  <tr><td>Propionic</td><td>propionyl</td></tr>
+  <tr><td>Butyric</td><td>butyryl</td></tr>
+  <tr><td>Oxalic</td><td>oxalyl</td></tr>
+  <tr><td>Malonic</td><td>malonyl</td></tr>
+  <tr><td>Succinic</td><td>succinyl</td></tr>
+  <tr><td>Glutaric</td><td>glutaryl</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2107" class="section-heading sh-amber">
+  <span class="num">21.7</span>
+  <span class="label">★ Reactivity of Acid Derivatives 衍生物反應性（核心）</span>
+  <span class="rule"></span>
+</div>
+
+<h3>★ 反應性大小（必背）</h3>
+
+<div class="callout"><div>
+  <b>Acid chloride &gt; Anhydride &gt; (Thioester) &gt; Ester &gt; Amide</b><br>
+  <span style="color:var(--text-mid);">[最反應]　　　　　　　　　　　　　　　　　　　[最穩定]</span>
+</div></div>
+
+<p>反應性決定於：<b>離去基的好壞</b>（離去基越好越反應）+ <b>羰基的活化程度</b>（共振 / 誘導）。</p>
+
+<table>
+  <tr><th>衍生物</th><th>離去基</th><th>離去基質量</th><th>共振穩定 C=O</th></tr>
+  <tr><td>Acid chloride</td><td>Cl⁻</td><td><b>好</b>（弱鹼）</td><td>差（O lone pair 大，Cl 小）</td></tr>
+  <tr><td>Anhydride</td><td>RCOO⁻（carboxylate）</td><td>中</td><td>中</td></tr>
+  <tr><td>Ester</td><td>RO⁻（alkoxide）</td><td>差</td><td>中等共振</td></tr>
+  <tr><td>Amide</td><td>R₂N⁻（amide ion）</td><td><b>很差</b>（強鹼）</td><td><b>強</b>（N lone pair 進 π 系統，C-N 部分雙鍵性）</td></tr>
+</table>
+
+<h3>★ 取代反應的關鍵：為何醛酮無法取代，衍生物可以？</h3>
+
+<div class="mech-box">
+  <b>醛酮（Ch 20）：</b>親核劑攻擊 C=O → 四面體中間體 → <b>無離去基</b>（H 或 R 不會走）→ 反應停在加成，質子化得到醇。
+</div>
+
+<div class="mech-box">
+  <b>羧酸衍生物（Ch 21）：</b>親核劑攻擊 C=O → 四面體中間體 → <b>離去基（Z = Cl, OR, NHR...）跑掉</b> → C=O 重新形成 → <b>取代產物</b>（addition-elimination）。
+</div>
+
+<h3>互轉規則</h3>
+
+<div class="warn">
+  <b>只能「向下」轉換（高反應性 → 低反應性）：</b><br>
+  acid chloride → anhydride → ester → amide ✓（可以）<br>
+  amide → ester → anhydride → acid chloride ✗（不行）<br>
+  原因：低反應性衍生物已經很穩定，不會跑去變高能量的高反應性衍生物。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2108" class="section-heading sh-blue">
+  <span class="num">21.8</span>
+  <span class="label">Acid Chlorides 醯氯（最反應）</span>
+  <span class="rule"></span>
+</div>
+
+<h3>製備</h3>
+<p>羧酸 + <b>SOCl₂（thionyl chloride）</b>→ acid chloride + SO₂ + HCl</p>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>-COOH 的 O 攻擊 SOCl₂ 的 S → 形成 R-CO-O-S(Cl)=O 中間體（O 變成<b>好離去基</b>）</li>
+    <li>Cl⁻ 攻擊羰基 C → 四面體中間體</li>
+    <li>O-SO-Cl 離開（分解成 SO₂ + Cl⁻）→ 重建 C=O</li>
+    <li>得到 R-CO-Cl + SO₂ + HCl</li>
+  </ol>
+</div>
+
+<h3>反應（acid chloride 可以變身成所有其他衍生物）</h3>
+
+<table>
+  <tr><th>試劑</th><th>產物</th></tr>
+  <tr><td>H₂O / pyridine</td><td>羧酸（hydrolysis）</td></tr>
+  <tr><td>R'OH / pyridine</td><td>Ester</td></tr>
+  <tr><td>RCOO⁻（carboxylate）</td><td>Acid anhydride</td></tr>
+  <tr><td>過量 NH₃</td><td>1° amide（-CONH₂）</td></tr>
+  <tr><td>過量 RNH₂</td><td>N-取代 amide</td></tr>
+  <tr><td>過量 R₂NH</td><td>N,N-取代 amide</td></tr>
+  <tr><td>1) LAH 過量　2) H₂O</td><td>1° alcohol</td></tr>
+  <tr><td>1) LiAl(OR)₃H 2) H₂O<br>（tri-tert-butoxyaluminum hydride）</td><td><b>Aldehyde</b>（停在醛！）</td></tr>
+  <tr><td>1) RMgBr 過量　2) H₂O</td><td>3° alcohol</td></tr>
+  <tr><td>R₂CuLi（<b>Gilman reagent</b>）</td><td><b>Ketone</b>（停在酮！）</td></tr>
+</table>
+
+<div class="tip">
+  <b>為什麼需要 pyridine？</b>反應放出 HCl，會把胺類質子化失活，或讓反應混合物變酸。Pyridine 是<b>中和 HCl 的鹼</b>，保持反應正常。<br>
+  <b>為什麼用胺類要 2 當量？</b>第 1 當量胺攻擊變產物 + HCl；第 2 當量胺<b>中和 HCl</b>（不然會變回去）。
+</div>
+
+<div class="callout"><div>
+  <b>★ 兩個「半還原」試劑（停在醛/酮，不會繼續還原）：</b><br>
+  ① <b>LiAl(O-tBu)₃H</b>：把 acid chloride 還原成 <b>aldehyde</b>（不會變醇）<br>
+  ② <b>Gilman (R₂CuLi)</b>：把 acid chloride 攻擊變成 <b>ketone</b>（不像 Grignard 會繼續攻擊）
+</div></div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2109" class="section-heading sh-blue">
+  <span class="num">21.9</span>
+  <span class="label">Acid Anhydrides 酸酐</span>
+  <span class="rule"></span>
+</div>
+
+<h3>製備</h3>
+<ul>
+  <li>工業：2 acetic acid <b>800°C</b> → acetic anhydride + H₂O</li>
+  <li>實驗室：1) 羧酸 + NaOH → carboxylate 2) + acid chloride → anhydride</li>
+</ul>
+
+<h3>反應（跟 acid chloride 類似，但反應慢一點；離去基是 carboxylate）</h3>
+
+<p>典型反應：<b>aspirin 跟 Tylenol 的合成</b></p>
+
+<ul>
+  <li><b>Aspirin（乙醯水楊酸）</b>：水楊酸（含 -OH 和 -COOH）+ acetic anhydride → 酚 -OH 被乙醯化</li>
+  <li><b>Tylenol（acetaminophen）</b>：4-aminophenol + acetic anhydride → -NH₂ 被乙醯化（變 amide）</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2110" class="section-heading sh-blue">
+  <span class="num">21.10</span>
+  <span class="label">Preparation of Esters: Fischer Esterification 費雪酯化</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout"><div>
+  <b>Fischer esterification</b>：羧酸 + 醇 + <b>H⁺ 催化</b> ⇌ 酯 + H₂O<br>
+  <b>可逆反應</b>，用 Le Chatelier 控制方向。
+</div></div>
+
+<div class="mech-box">
+  <b>機制（6 步）：PADPED</b>
+  <ol>
+    <li><b>Protonation</b>：H⁺ 質子化 C=O 的 O → 增加 C 親電性</li>
+    <li><b>Addition</b>：醇攻擊質子化羰基 C → 四面體中間體（O⁺ 在 R-O-H）</li>
+    <li><b>Deprotonation</b>：去質子化新接的 O → 中性四面體</li>
+    <li><b>Protonation</b>：質子化原本 -OH 的 O → 變 -OH₂⁺（好離去基）</li>
+    <li><b>Elimination</b>：H₂O 離開 → 重建 C=O（變 ester）</li>
+    <li><b>Deprotonation</b>：失質子 → 得中性 ester</li>
+  </ol>
+</div>
+
+<h3>用 Le Chatelier 控制方向</h3>
+
+<table>
+  <tr><th>目標</th><th>策略</th></tr>
+  <tr><td>要得到 <b>ester</b>（正向）</td><td>① 加過量醇 ② 移除水（Dean-Stark trap）</td></tr>
+  <tr><td>要水解 ester 回 <b>acid</b>（逆向）</td><td>加大量水 + H⁺ 加熱</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2111" class="section-heading sh-blue">
+  <span class="num">21.11</span>
+  <span class="label">Reactions of Esters 酯的反應</span>
+  <span class="rule"></span>
+</div>
+
+<h3>★ Saponification（皂化 = 鹼性水解）</h3>
+
+<p>Ester + <b>NaOH / H₂O</b>（過量）→ <b>羧酸鈉</b>（carboxylate）+ alcohol</p>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>HO⁻ 攻擊 C=O 碳 → 四面體 alkoxide 中間體</li>
+    <li>R-O⁻（alkoxide）離開 → 重建 C=O（變羧酸）</li>
+    <li><b>羧酸馬上被 NaOH 去質子化 → carboxylate（很穩定）</b></li>
+    <li>反應變<b>不可逆</b>（因為 carboxylate 不會再被親核攻擊）</li>
+  </ol>
+</div>
+
+<div class="warn">要得到中性羧酸：最後加 H₃O⁺ 酸化把 carboxylate 變回 -COOH。</div>
+
+<div class="tip"><b>Saponification 字源：</b><i>sapo</i> = 拉丁文「肥皂」。古代用脂肪（三酯）+ NaOH 水解 → 脂肪酸鈉鹽（= 肥皂）+ 甘油。</div>
+
+<h3>★ 還原 ester 的兩種試劑</h3>
+
+<table>
+  <tr><th>試劑</th><th>產物</th><th>說明</th></tr>
+  <tr><td>1) 過量 LAH　2) H₂O</td><td>1° alcohol + R'OH</td><td>完全還原（兩次 H⁻ 攻擊）</td></tr>
+  <tr><td>1) <b>DIBAH</b>（di-iso-butyl aluminum hydride）　2) H₂O</td><td><b>Aldehyde</b> + R'OH</td><td>停在醛！溫和選擇還原</td></tr>
+</table>
+
+<h3>Ester + Grignard</h3>
+
+<p>Ester + 2 RMgX → <b>3° alcohol</b>（兩次 R 攻擊，先得 ketone 中間體，再被第 2 個 R 攻擊）</p>
+
+<h3>Ester + NH₃ → Amide</h3>
+
+<p>Ester + 過量 NH₃ → amide + R'OH（acid → ester → amide 的「向下」轉換）</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2112" class="section-heading sh-blue">
+  <span class="num">21.12</span>
+  <span class="label">Amides 醯胺（最穩定）</span>
+  <span class="rule"></span>
+</div>
+
+<h3>製備（從更高反應性的衍生物）</h3>
+<ul>
+  <li>Acid chloride + 過量胺（NH₃ / RNH₂ / R₂NH）→ amide</li>
+  <li>Anhydride + 胺 → amide</li>
+  <li>Ester + 過量 NH₃ → amide</li>
+</ul>
+
+<h3>水解（很慢，需要強條件）</h3>
+
+<table>
+  <tr><th>條件</th><th>產物</th><th>速度</th></tr>
+  <tr><td>H₃O⁺ / 高溫</td><td>羧酸 + NH₄⁺</td><td>慢</td></tr>
+  <tr><td>NaOH / H₂O</td><td>Carboxylate + 胺</td><td>很慢</td></tr>
+</table>
+
+<div class="warn"><b>為何 amide 反應這麼慢？</b>N 的 lone pair 強烈共振進 C=O → C-N 有部分雙鍵性 → 反應性最低。這也是為什麼<b>蛋白質（含醯胺鍵）很穩定</b>，能在生物體內存在。</div>
+
+<h3>LAH 還原 amide → amine</h3>
+
+<p>R-CO-NR'₂ + LAH → <b>R-CH₂-NR'₂</b>（醯胺被還原成胺，<b>不是醇</b>，因為 N 也跟著被「帶走」）</p>
+
+<div class="mech-box">
+  <b>機制：</b>
+  <ol>
+    <li>H⁻ 攻擊 C=O → 四面體中間體</li>
+    <li><b>O⁻ 跑掉</b>（不是 NR₂⁻，因為 NR₂⁻ 太差的離去基），但因為 N 有共振 → 形成 iminium ion（C=N⁺）</li>
+    <li>第二個 H⁻ 攻擊 iminium 的 C → 變 amine</li>
+  </ol>
+</div>
+
+<h3>★ Nylon = 聚醯胺（polyamide）</h3>
+
+<p>工業合成兩種 Nylon：</p>
+
+<table>
+  <tr><th>類型</th><th>原料</th></tr>
+  <tr><td><b>Nylon 6,6</b></td><td>己二酸（adipic acid）+ 1,6-diaminohexane（hexamethylenediamine）→ 大量 amide 鍵相連</td></tr>
+  <tr><td><b>Nylon 6</b></td><td>ε-caprolactam（7 員環 lactam）開環聚合</td></tr>
+</table>
+
+<p><b>Polyester</b>（聚酯）類似但用 diol + diacid，鍵結為 ester 而不是 amide。</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2113" class="section-heading sh-blue">
+  <span class="num">21.13</span>
+  <span class="label">Nitriles 腈</span>
+  <span class="rule"></span>
+</div>
+
+<p>R-C≡N 雖然沒 C=O，但 C 的氧化態跟羧酸一樣 → 算羧酸衍生物。</p>
+
+<h3>製備</h3>
+
+<table>
+  <tr><th>反應</th><th>條件</th></tr>
+  <tr><td>1° 或 2° 烷基鹵化物 + NaCN</td><td>SN2 取代</td></tr>
+  <tr><td>1° amide 脫水</td><td>SOCl₂（或 P₂O₅）</td></tr>
+</table>
+
+<h3>水解</h3>
+
+<table>
+  <tr><th>條件</th><th>產物</th></tr>
+  <tr><td>H₃O⁺ / heat</td><td>羧酸 + NH₄⁺<br>（先變 amide 再變 acid）</td></tr>
+  <tr><td>1) NaOH / H₂O　2) H₃O⁺</td><td>羧酸 + NH₃</td></tr>
+</table>
+
+<h3>★ Nitrile + Grignard → Ketone（用 nitrile 合成酮的方法）</h3>
+
+<ol>
+  <li>R-C≡N + R'MgX → R-C(R')=NMgX（imine 中間體）</li>
+  <li>+ H₃O⁺（少量水）→ R-CO-R'（ketone）+ NH₃</li>
+</ol>
+
+<div class="tip"><b>合成價值：</b>「R-X → R-CN → R-CO-R'」是把烷基鹵化物變酮的途徑（增加碳鏈）。</div>
+
+<h3>Nitrile + LAH → 1° amine</h3>
+
+<p>R-C≡N + 過量 LAH → <b>R-CH₂-NH₂</b>（兩次 H⁻ 攻擊三鍵）</p>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2114" class="section-heading sh-amber">
+  <span class="num">21.14</span>
+  <span class="label">Synthetic Strategies 合成策略</span>
+  <span class="rule"></span>
+</div>
+
+<h3>羧酸衍生物互轉（記住「只能向下」）</h3>
+
+<p><code>R-COOH</code> ─SOCl₂→ <code>R-COCl</code> ─R'OH→ <code>R-COOR'</code> ─NH₃→ <code>R-CONH₂</code> ─SOCl₂→ <code>R-C≡N</code></p>
+
+<h3>C-C 鍵形成（增加碳骨架）</h3>
+
+<table>
+  <tr><th>方法</th><th>用途</th></tr>
+  <tr><td>1) Mg / ether　2) CO₂　3) H₃O⁺</td><td>R-X → R-COOH（增 1 C）</td></tr>
+  <tr><td>NaCN（SN2）+ H₃O⁺/heat 水解</td><td>R-X → R-COOH（增 1 C）</td></tr>
+  <tr><td>NaCN + R'MgX 攻擊腈 + H₃O⁺</td><td>R-X → R-CN → R-CO-R'（增 1+R' C 變酮）</td></tr>
+  <tr><td>Acid chloride + R₂CuLi（Gilman）</td><td>R-COOH → R-COCl → R-CO-R'（酮）</td></tr>
+  <tr><td>Acid chloride + R'MgX 過量</td><td>R-COCl → 3° alcohol（兩個 R' 加上）</td></tr>
+</table>
+
+<h3>常用「停在中間態」的試劑</h3>
+
+<table>
+  <tr><th>反應</th><th>「半還原」試劑</th><th>停在</th></tr>
+  <tr><td>Acid chloride → ?</td><td>LiAl(O-tBu)₃H</td><td>Aldehyde</td></tr>
+  <tr><td>Acid chloride → ?</td><td>R₂CuLi（Gilman）</td><td>Ketone</td></tr>
+  <tr><td>Ester → ?</td><td>DIBAH</td><td>Aldehyde</td></tr>
+  <tr><td>Nitrile → ?</td><td>1) R'MgX 2) H₃O⁺</td><td>Ketone</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 範例題 -->
+<div id="exercises" class="section-heading sh-exam">
+  <span class="num">Ex.</span>
+  <span class="label">範例題 Practice Problems</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 1 — pKa 排序 / Acidity Ranking</div>
+  <div class="q-zh">把下列分子按 pKa <b>由小到大</b>（最酸 → 最不酸）排序：A. CH₃CH₂COOH（丙酸）　B. CH₃COOH（乙酸）　C. CH₃CH₂COSH（硫代乙酸）　D. (CH₃)₂CH-CO-CH₂OH（β-羥基甲酮）</div>
+  <div class="q-en">Rank the following molecules by increasing pKa (most acidic first): A. propanoic acid　B. acetic acid　C. thiopropanoic acid (RCOSH)　D. β-hydroxy ketone (only has alcohol -OH)</div>
+  <div class="ans">
+    <b>答案：C &lt; B &lt; A &lt; D</b><br>
+    ‧ C（thioacid R-CO-SH，pKa ≈ 3）：硫的負電比氧穩定（S 較大），是<b>最酸</b><br>
+    ‧ B（acetic acid，pKa = 4.76）：羧酸<br>
+    ‧ A（propionic acid，pKa = 4.87）：多一個 CH₃ 推電子，比 acetic acid 略弱<br>
+    ‧ D（只有 -OH，pKa ≈ 16）：一般醇，<b>最不酸</b>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 2 — 預測產物 / Predict the Product</div>
+  <div class="q-zh">acetic anhydride + 4-aminophenol → 主產物為何？這是什麼藥的合成？</div>
+  <div class="q-en">What is the major product when acetic anhydride reacts with 4-aminophenol? What pharmaceutical does this make?</div>
+  <div class="ans">
+    <b>答案：</b><br>
+    主產物：N-(4-hydroxyphenyl)acetamide（4-羥基苯基乙醯胺）= <span class="hl-amber">Tylenol / acetaminophen</span>（普拿疼）<br>
+    胺（-NH₂）比酚（-OH）更親核 → -NH₂ 先被乙醯化變 amide。產物 -OH 保留不動。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 3 — 命名 / IUPAC Name</div>
+  <div class="q-zh">為下列化合物寫出系統命名：<br>① CH₃CH₂CH₂COOCH₃　② (CH₃)₂CHCONH₂　③ HOOC-CH₂-CH₂-COOH</div>
+  <div class="q-en">Provide IUPAC names for:<br>① CH₃CH₂CH₂COOCH₃　② (CH₃)₂CHCONH₂　③ HOOC-CH₂-CH₂-COOH</div>
+  <div class="ans">
+    ① <b>methyl butanoate</b>（甲基丁酸酯）<br>
+    ② <b>2-methylpropanamide</b>（2-甲基丙醯胺）<br>
+    ③ <b>butanedioic acid</b>（丁二酸 / succinic acid）
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 4 — 選擇試劑 / Choose Reagent</div>
+  <div class="q-zh">想把 acid chloride 還原成<b>醛</b>（不是醇），用什麼試劑？想還原成<b>酮</b>（加一個 R），用什麼？</div>
+  <div class="q-en">Which reagent reduces acid chloride to <b>aldehyde</b> (not alcohol)? Which gives a <b>ketone</b> (adds one R group)?</div>
+  <div class="ans">
+    <b>到醛：</b><span class="hl-amber">LiAl(O-tBu)₃H</span>（tri-tert-butoxyaluminum hydride）。tBu 體積大，只送 1 個 H⁻，所以停在 aldehyde。<br>
+    <b>到酮：</b><span class="hl-amber">R₂CuLi（Gilman reagent）</span>。Gilman 跟酸氯反應後產物是 ketone（Gilman 不會再攻擊 ketone）。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 5 — 合成路徑 / Synthesis</div>
+  <div class="q-zh">如何從 benzyl bromide（PhCH₂Br）合成 phenylacetic acid（PhCH₂COOH）？給兩種方法。</div>
+  <div class="q-en">How would you synthesize phenylacetic acid (PhCH₂COOH) from benzyl bromide (PhCH₂Br)? Give two methods.</div>
+  <div class="ans">
+    <b>方法 1（NaCN 路線）：</b><br>
+    PhCH₂Br + NaCN → PhCH₂CN（SN2）<br>
+    PhCH₂CN + H₃O⁺/heat → PhCH₂COOH<br><br>
+    <b>方法 2（Grignard + CO₂ 路線）：</b><br>
+    PhCH₂Br + Mg/ether → PhCH₂MgBr<br>
+    + CO₂ → PhCH₂COO⁻MgBr⁺<br>
+    + H₃O⁺ → PhCH₂COOH<br><br>
+    兩條路線都<b>增加一個碳</b>（PhCH₂Br 有 7 C，產物有 8 C）。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">範例 6 — 機制 / Mechanism</div>
+  <div class="q-zh">為什麼用 acid chloride 跟胺類反應做 amide 時，需要 <b>2 當量</b> 的胺？</div>
+  <div class="q-en">Why are <b>2 equivalents</b> of amine needed when synthesizing an amide from an acid chloride?</div>
+  <div class="ans">
+    <b>答案：</b>反應放出 HCl。<br>
+    ‧ 第 1 當量胺：攻擊 acid chloride 變 amide（同時放出 HCl）<br>
+    ‧ 第 2 當量胺：扮演<b>鹼</b>角色，中和 HCl（變 R-NH₃⁺ Cl⁻），避免 HCl 把胺質子化失活，或讓反應逆轉。<br>
+    替代方案：用 pyridine 當鹼，就只需 1 當量胺。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- 期末速查表 -->
+<div id="summary" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">期末速查表 Final Cheat Sheet</span>
+  <span class="rule"></span>
+</div>
+
+<h3>反應性順序（必背）</h3>
+<ul>
+  <li><b>反應性</b>：醯氯 &gt; 酸酐 &gt; 酯 &gt; 醯胺</li>
+  <li><b>穩定性</b>：相反順序</li>
+  <li>互轉：<b>只能向下</b>（高反應性 → 低反應性）</li>
+</ul>
+
+<h3>命名速記</h3>
+<ul>
+  <li>羧酸：<code>-oic acid</code>、環+羧酸：<code>-carboxylic acid</code></li>
+  <li>醯氯：<code>-oyl chloride</code>（八大例外字根記住）</li>
+  <li>酸酐：<code>-anhydride</code>，不對稱按字母順序</li>
+  <li>酯：<code>R'基 + 酸名-ate</code>，中間空格</li>
+  <li>醯胺：<code>-amide</code>，N 上有取代基寫 <code>N-...</code></li>
+  <li>腈：<code>-onitrile</code></li>
+</ul>
+
+<h3>影響酸性</h3>
+<ul>
+  <li>EWG（NO₂、Cl、F）→ 更酸（pKa 小）</li>
+  <li>距離越近（α）影響越大</li>
+  <li>苯甲酸 para-取代：EWG → 更酸；EDG → 較不酸</li>
+</ul>
+
+<h3>關鍵反應</h3>
+<ul>
+  <li><b>SOCl₂</b>：酸 → 醯氯</li>
+  <li><b>Fischer esterification</b>：酸 + 醇 / H⁺（可逆）</li>
+  <li><b>Saponification</b>：酯 + NaOH → 羧酸鈉 + 醇（不可逆）</li>
+  <li><b>Acid chloride + 2 NH₃</b> → amide + NH₄Cl</li>
+  <li><b>Acid chloride + 過量 LAH</b> → 1° alcohol；+ LiAl(OtBu)₃H → aldehyde；+ R₂CuLi → ketone</li>
+  <li><b>Ester + DIBAH</b> → aldehyde（停在中間）</li>
+  <li><b>Amide + LAH</b> → amine（不是醇！）</li>
+  <li><b>Nitrile + LAH</b> → 1° amine；+ RMgX/H₃O⁺ → ketone；+ H₃O⁺/heat → 羧酸</li>
+</ul>
+
+<h3>合成關鍵：增加 C 的方法</h3>
+<ul>
+  <li>R-X + NaCN → R-CN（+1 C）</li>
+  <li>R-X + Mg → R-MgX + CO₂ → R-COOH（+1 C）</li>
+  <li>R-CN + R'MgX/H₃O⁺ → R-CO-R'（+1 C 變酮）</li>
+</ul>
+
+<div class="tip">
+  <b>跟 Ch 20 對照記憶：</b><br>
+  Ch 20（醛酮）：C=O 沒離去基 → 反應停在<b>加成</b>，得到醇 / imine / acetal 等<br>
+  Ch 21（羧酸衍生物）：C=O 有離去基 → 反應走<b>取代</b>（addition-elimination），衍生物互轉<br>
+  兩章的<b>機制起頭一樣</b>（親核劑攻擊 C=O 形成四面體中間體），<b>後續走向不同</b>。
+</div>
+
+</main>
+</div>
+
+<script>
+const _l = document.querySelectorAll('.toc-list a');
+const ob = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      _l.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('[id]').forEach(s => ob.observe(s));
+</script>
+
+</body>
+</html>

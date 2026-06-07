@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抱佛腳 — 有機化學期末速成（給零基礎）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--rose:#D9A0B8;
+  --gold:#C4A882;--green:#6ECBA8;--purple:#B09EE0;
+  --amber:#E5B574;
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);
+  --border:rgba(255,255,255,0.085);--border-lo:rgba(255,255,255,0.05);
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(229,181,116,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(176,158,224,0.07) 0%,transparent 60%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:rgba(229,181,116,0.7);text-decoration:none}
+#back-btn:hover{background:rgba(229,181,116,0.12);color:var(--amber)}
+
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:4rem 1.6rem 5rem}
+
+.hero{text-align:center;padding:3rem 1rem 2rem;
+  border-bottom:1px solid var(--border-lo);margin-bottom:2.5rem}
+.hero .eyebrow{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;letter-spacing:0.3em;color:var(--amber);opacity:0.85;
+  margin-bottom:0.7rem}
+.hero h1{font-size:2.4rem;font-weight:300;letter-spacing:0.08em;
+  margin-bottom:0.6rem}
+.hero .sub{font-size:0.95rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+.hero .line{width:80px;height:1px;margin:1.5rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--amber),transparent)}
+
+.pep{background:linear-gradient(135deg,rgba(229,181,116,0.1),rgba(217,160,184,0.08));
+  border:1px solid rgba(229,181,116,0.25);border-radius:14px;
+  padding:1.4rem 1.6rem;margin:1.5rem 0;
+  font-size:0.95rem;line-height:1.85;color:var(--text-mid)}
+.pep b{color:var(--amber);font-weight:500}
+
+.score-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem 1.6rem;margin:2rem 0}
+.score-card h3{font-size:1rem;color:var(--blue);font-weight:400;
+  letter-spacing:0.06em;margin-bottom:0.9rem}
+.score-card .row{display:flex;align-items:center;gap:0.8rem;
+  margin:0.5rem 0;font-size:0.92rem}
+.score-card .stage{font-family:"Cormorant Garamond",serif;font-style:italic;
+  color:var(--amber);flex-shrink:0;width:65px;font-size:0.95rem}
+.score-card .name{color:var(--text);flex:1}
+.score-card .pts{color:var(--green);font-weight:500;flex-shrink:0;width:60px;text-align:right}
+.score-card .total{margin-top:1rem;padding-top:0.9rem;
+  border-top:1px solid var(--border-lo);display:flex;justify-content:space-between;
+  font-size:0.9rem;color:var(--gold)}
+
+.step{margin:3rem 0;padding-bottom:0.5rem}
+.step-header{display:flex;align-items:baseline;gap:0.7rem;margin-bottom:0.5rem;
+  padding-bottom:0.7rem;border-bottom:1.5px solid var(--border)}
+.step-num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.6rem;color:rgba(229,181,116,0.65);letter-spacing:0.02em;flex-shrink:0}
+.step-title{font-size:1.15rem;font-weight:400;color:var(--text);
+  letter-spacing:0.04em;flex:1}
+.step-pts{background:rgba(110,203,168,0.15);border:1px solid rgba(110,203,168,0.3);
+  color:var(--green);font-size:0.78rem;padding:2px 10px;border-radius:12px;
+  font-weight:500;flex-shrink:0}
+.step-pts.high{background:rgba(229,181,116,0.18);border-color:rgba(229,181,116,0.35);
+  color:var(--amber)}
+.cp-stars{color:var(--amber);font-size:0.9rem;letter-spacing:0.1em;
+  margin-left:0.5rem}
+
+.flash{background:rgba(229,181,116,0.1);border-left:3px solid var(--amber);
+  border-radius:6px;padding:12px 18px;margin:1rem 0;
+  color:var(--text-mid);font-size:0.93rem;line-height:1.8}
+.flash::before{content:"⚡ 30 秒速記";display:block;color:var(--amber);
+  font-size:0.75rem;font-weight:500;letter-spacing:0.12em;margin-bottom:0.5rem}
+.flash b{color:var(--text);font-weight:500}
+.flash .key{background:rgba(229,181,116,0.2);padding:1px 8px;border-radius:4px;
+  color:var(--amber);font-weight:500}
+
+.howto{background:rgba(110,203,168,0.08);border-left:3px solid var(--green);
+  border-radius:6px;padding:12px 18px;margin:1rem 0;
+  color:var(--text-mid);font-size:0.92rem}
+.howto::before{content:"✎ 考試怎麼答";display:block;color:var(--green);
+  font-size:0.75rem;font-weight:500;letter-spacing:0.12em;margin-bottom:0.5rem}
+.howto b{color:var(--text);font-weight:500}
+
+.analogy{background:rgba(144,200,208,0.07);border-left:3px solid var(--blue);
+  border-radius:6px;padding:12px 18px;margin:1rem 0;
+  color:var(--text-mid);font-size:0.92rem}
+.analogy::before{content:"💡 白話翻譯";display:block;color:var(--blue);
+  font-size:0.75rem;font-weight:500;letter-spacing:0.12em;margin-bottom:0.5rem}
+.analogy b{color:var(--text);font-weight:500}
+
+.example{background:rgba(176,158,224,0.07);border:1px solid rgba(176,158,224,0.22);
+  border-radius:10px;padding:14px 18px;margin:1rem 0;font-size:0.91rem;
+  color:var(--text-mid)}
+.example .q-tag{color:var(--purple);font-size:0.75rem;font-weight:500;
+  letter-spacing:0.1em;margin-bottom:0.4rem;display:block}
+.example b{color:var(--text);font-weight:500}
+.example .ans{background:rgba(229,181,116,0.18);color:var(--amber);
+  padding:1px 6px;border-radius:4px;font-weight:500}
+
+.skip{background:rgba(217,160,184,0.07);border-left:3px solid var(--rose);
+  border-radius:6px;padding:10px 16px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.85);font-size:0.88rem}
+.skip::before{content:"✗ 別讀沒分";display:inline-block;color:var(--rose);
+  font-size:0.72rem;font-weight:500;letter-spacing:0.12em;margin-right:0.5rem}
+
+table{width:100%;border-collapse:collapse;margin:0.9rem 0;font-size:0.88rem}
+th{background:rgba(144,200,208,0.1);color:var(--blue);font-weight:500;
+  padding:8px 12px;text-align:left;
+  border-bottom:1px solid rgba(144,200,208,0.25);letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:8px 12px;
+  background:rgba(255,255,255,0.02);color:var(--text-mid);vertical-align:top}
+td b{color:var(--text);font-weight:500}
+
+ul,ol{margin-left:1.4rem}
+li{margin:0.35rem 0;color:var(--text-mid);font-size:0.93rem;line-height:1.75}
+p{color:var(--text-mid);margin:0.55rem 0;font-size:0.93rem}
+
+.hl{background:rgba(144,200,208,0.18);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.9em;font-weight:500}
+.hl-amber{background:rgba(229,181,116,0.2);color:var(--amber);
+  padding:1px 7px;border-radius:4px;font-weight:500}
+.hl-rose{background:rgba(217,160,184,0.2);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-weight:500}
+.hl-purple{background:rgba(176,158,224,0.2);color:var(--purple);
+  padding:1px 7px;border-radius:4px;font-weight:500}
+
+.stage-divider{margin:4rem 0 2rem;padding:1.4rem 1.6rem;
+  background:linear-gradient(135deg,rgba(176,158,224,0.1),rgba(144,200,208,0.05));
+  border-radius:14px;border:1px solid rgba(176,158,224,0.18);text-align:center}
+.stage-divider .label{font-family:"Cormorant Garamond",serif;font-style:italic;
+  color:var(--purple);font-size:0.95rem;letter-spacing:0.2em;opacity:0.85}
+.stage-divider h2{font-size:1.4rem;font-weight:300;letter-spacing:0.1em;
+  color:var(--text);margin:0.4rem 0}
+.stage-divider .stage-sub{font-size:0.85rem;color:var(--text-mid)}
+
+.cheat{background:linear-gradient(155deg,rgba(229,181,116,0.1),rgba(217,160,184,0.08));
+  border:1.5px solid rgba(229,181,116,0.3);border-radius:14px;
+  padding:2rem 2rem;margin:3rem 0 2rem}
+.cheat h2{color:var(--amber);font-size:1.3rem;font-weight:400;
+  letter-spacing:0.06em;margin-bottom:1.2rem;text-align:center}
+.cheat h3{color:var(--gold);font-size:0.92rem;font-weight:500;
+  margin:1.2rem 0 0.5rem;letter-spacing:0.05em;
+  border-bottom:1px solid rgba(229,181,116,0.2);padding-bottom:0.3rem}
+.cheat ul li{margin:0.3rem 0;font-size:0.9rem}
+
+.basic-box{background:rgba(110,203,168,0.06);border:1px dashed rgba(110,203,168,0.3);
+  border-radius:10px;padding:14px 18px;margin:1rem 0}
+.basic-box .b-title{color:var(--green);font-size:0.78rem;font-weight:500;
+  letter-spacing:0.12em;margin-bottom:0.5rem}
+.basic-box b{color:var(--text);font-weight:500}
+
+.qa{margin:1rem 0}
+.qa .q{color:var(--blue);font-weight:500;font-size:0.95rem;margin-bottom:0.3rem}
+.qa .q::before{content:"Q ";color:var(--amber)}
+.qa .a{color:var(--text-mid);font-size:0.92rem;padding-left:1.2rem;border-left:2px solid var(--border-lo);margin-bottom:0.8rem}
+.qa .a::before{content:"A ";color:var(--green);font-weight:500}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<main>
+
+<div class="hero">
+  <div class="eyebrow">CRAM SESSION · ZERO-BASE</div>
+  <h1>抱佛腳速成（零基礎版）</h1>
+  <div class="sub">有機化學期末考 ｜ Ch 20 醛酮 · Ch 21 羧酸衍生物 · Ch 22 α-碳化學<br>
+    給「完全沒讀過」也能在 1 小時內拚 60 分的你 ૮ ˶ˆ ﻌ ˆ˶ ა</div>
+  <div class="line"></div>
+</div>
+
+<div class="pep">
+  <b>不用慌，這頁從零教起。</b><br>
+  我假設你連「什麼是羰基」都不確定。所以前面 10 分鐘我們先講<b>一個核心觀念</b>，後面所有反應都繞著它轉。<br>
+  策略：<b>先懂大圖（10 分鐘）→ 再背高 CP 題目（30 分鐘）→ 最後機制衝刺（20 分鐘）</b>
+</div>
+
+<div class="score-card">
+  <h3>學習路徑與分數預估</h3>
+  <div class="row"><span class="stage">奠基</span><span class="name">核心觀念（10 分鐘）— 不讀後面看不懂</span><span class="pts">基礎</span></div>
+  <div class="row"><span class="stage">階段 1</span><span class="name">純背就拿（20 分鐘）</span><span class="pts">~25 分</span></div>
+  <div class="row"><span class="stage">階段 2</span><span class="name">三大機制（20 分鐘）</span><span class="pts">~20 分</span></div>
+  <div class="row"><span class="stage">階段 3</span><span class="name">轉換 + NMR（15 分鐘）</span><span class="pts">~15 分</span></div>
+  <div class="total"><span>總計（65 分鐘）</span><span>≈ 55-65 分</span></div>
+</div>
+
+<div class="pep" style="background:rgba(110,203,168,0.07);border-color:rgba(110,203,168,0.2)">
+  <b style="color:var(--green)">★ 真．保底策略：</b>讀完「奠基 + 階段 1」 → 約 30 分鐘 → 拚 30-40 分及格邊。<br>
+  ★ 加上階段 2 的三大機制 → 拚 50 分過關。<br>
+  ★ 全部讀完 → 60+ 分穩當。
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 0 · FOUNDATIONS</div>
+  <h2>奠基階段 ｜ 連分子長怎樣都還沒看過？從這開始</h2>
+  <div class="stage-sub">10 分鐘看懂三章在幹嘛 (ﾉ◕ヮ◕)ﾉ*</div>
+</div>
+
+<!-- Step 0.1 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">0.1</span>
+    <span class="step-title">這三章在講「同一個東西」：C=O</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="basic-box">
+    <div class="b-title">⓪ 基本到不行的設定</div>
+    <p><b>羰基（carbonyl）</b>就是寫成 <code>C=O</code> 的那一塊（碳跟氧用雙鍵接著）。</p>
+    <p>整本期末考的範圍 — <b>Ch 20、Ch 21、Ch 22 全部都在玩 C=O</b>。差別只在 C 旁邊接了什麼：</p>
+    <ul>
+      <li><b>Ch 20 醛酮</b>：C=O 旁邊接 H 或碳鏈（沒有離去基）</li>
+      <li><b>Ch 21 羧酸衍生物</b>：C=O 旁邊接 -OH / -Cl / -OR / -NR₂（這些可以離開）</li>
+      <li><b>Ch 22 α-碳化學</b>：玩 C=O <b>旁邊那個 C</b> 上的氫（叫做 α-H）</li>
+    </ul>
+  </div>
+
+  <div class="analogy">
+    <b>把 C=O 想成磁鐵</b>。氧很愛搶電子（負極🔵），所以碳變得缺電子（正極🔴）。<br>
+    考試的所有反應都是：<b>帶電子的傢伙（叫親核劑）跑去攻擊那個正極 C</b>。<br>
+    記住這一句，後面 90% 反應你就懂了。
+  </div>
+</div>
+
+<!-- Step 0.2 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">0.2</span>
+    <span class="step-title">兩個關鍵詞：親核劑、親電劑</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="basic-box">
+    <div class="b-title">⓪ 翻譯一下這兩個怪詞</div>
+    <table>
+      <tr><th>術語</th><th>白話</th><th>例子</th></tr>
+      <tr><td><b>親核劑 (Nucleophile, Nu⁻)</b></td><td>有多餘電子，想送出去（負電傢伙）</td><td>-OH、-NH₂、-CN、Grignard R-MgBr、enolate</td></tr>
+      <tr><td><b>親電劑 (Electrophile, E⁺)</b></td><td>缺電子，等人來送（正電傢伙）</td><td>C=O 的那個 C、H⁺、烷基鹵 R-X</td></tr>
+    </table>
+  </div>
+
+  <div class="flash">
+    <b>記憶口訣：「親核愛核」</b>。<br>
+    Nu⁻ 帶負電 → 喜歡攻擊正電的地方（C=O 的 C）。<br>
+    Ch 20-22 所有反應的<span class="key">第一步都是親核劑攻擊 C=O 的 C</span>。把這句畫螢光筆。
+  </div>
+</div>
+
+<!-- Step 0.3 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">0.3</span>
+    <span class="step-title">三章的差別：加上去 vs 換掉 vs 旁邊 H</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <table>
+    <tr><th>章節</th><th>反應類型</th><th>怎麼發生</th></tr>
+    <tr><td><b>Ch 20</b><br>醛酮</td><td><span class="hl">親核加成</span> (Nu addition)</td><td>Nu 攻擊 C → C=O 變成 C-O⁻ → 再質子化得 C-OH。<br><b>加上去就停了</b>，沒有東西離開。</td></tr>
+    <tr><td><b>Ch 21</b><br>酯/醯胺等</td><td><span class="hl-rose">親核取代</span> (Nu acyl substitution)</td><td>Nu 攻擊 C → 形成中間體 → <b>原本接的 -OR / -Cl 跑掉</b> → 換成 Nu。</td></tr>
+    <tr><td><b>Ch 22</b><br>α-碳</td><td><span class="hl-amber">enolate 化學</span></td><td>強鹼拔走 C=O 旁邊的 α-H → 那個 C 變負電（enolate）→ 自己變成 <b>親核劑</b>去攻擊別人的 C=O。</td></tr>
+  </table>
+
+  <div class="analogy">
+    <b>用便當理解</b>：<br>
+    ・Ch 20 = 加配菜到便當（東西進去就好，沒有東西掉出來）<br>
+    ・Ch 21 = 換掉便當裡的菜（新菜進去舊菜出來）<br>
+    ・Ch 22 = 便當盒<b>自己會夾菜</b>（C=O 旁邊變親核劑，主動攻擊別的便當）
+  </div>
+</div>
+
+<!-- Step 0.4 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">0.4</span>
+    <span class="step-title">看到結構圖怎麼辨認？快速 5 個</span>
+    <span class="cp-stars">★★★★</span>
+  </div>
+
+  <table>
+    <tr><th>結構</th><th>名稱</th><th>白話</th></tr>
+    <tr><td><code>R-CHO</code></td><td><b>aldehyde 醛</b></td><td>C=O 旁邊接 1 個 H 跟 1 個碳</td></tr>
+    <tr><td><code>R-CO-R'</code></td><td><b>ketone 酮</b></td><td>C=O 旁邊接 2 個碳，沒有 H</td></tr>
+    <tr><td><code>R-COOH</code></td><td><b>carboxylic acid 羧酸</b></td><td>C=O 旁邊接 -OH</td></tr>
+    <tr><td><code>R-COCl</code></td><td><b>acid chloride 醯氯</b></td><td>C=O 旁邊接 -Cl（最猛的）</td></tr>
+    <tr><td><code>R-CO-O-R'</code></td><td><b>ester 酯</b></td><td>C=O 旁邊接 -O-R</td></tr>
+    <tr><td><code>R-CO-NH₂</code></td><td><b>amide 醯胺</b></td><td>C=O 旁邊接 -N</td></tr>
+    <tr><td><code>R-CO-O-CO-R</code></td><td><b>anhydride 酸酐</b></td><td>兩個 C=O 中間夾一個 -O-</td></tr>
+    <tr><td><code>R-CN</code></td><td><b>nitrile 腈</b></td><td>C≡N 三鍵（也算 C=O 親戚）</td></tr>
+  </table>
+
+  <div class="howto"><b>考試辨認小撇步</b>：先找 C=O，然後看「右邊那條鍵接到什麼」。接到雜原子（N、O、X）就是 <b>Ch 21 範圍</b>。接到 C 或 H 就是 <b>Ch 20 範圍</b>。</div>
+</div>
+
+<!-- Step 0.5 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">0.5</span>
+    <span class="step-title">期末考會考什麼題型？先知道才不會白忙</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <table>
+    <tr><th>題型</th><th>占分</th><th>難度</th><th>CP 值</th></tr>
+    <tr><td><b>名詞解釋</b>（背定義）</td><td>10-14 分</td><td>★</td><td>⭐⭐⭐⭐⭐</td></tr>
+    <tr><td><b>IUPAC 命名</b></td><td>9-15 分</td><td>★★</td><td>⭐⭐⭐⭐</td></tr>
+    <tr><td><b>轉換（給目標分子寫試劑）</b></td><td>12 分</td><td>★★★</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>識別 a-f 試劑</b></td><td>6-12 分</td><td>★★★</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>預測產物</b></td><td>6-9 分</td><td>★★★</td><td>⭐⭐⭐</td></tr>
+    <tr><td><b>機制題</b>（畫箭頭推電子）</td><td>30-50 分</td><td>★★★★</td><td>⭐⭐</td></tr>
+    <tr><td><b>NMR 推結構</b></td><td>8 分</td><td>★★★★</td><td>⭐⭐</td></tr>
+  </table>
+
+  <div class="pep" style="margin-top:1rem">
+    <b>給零基礎的策略：</b><br>
+    ・先把<b>名詞解釋 + IUPAC + 試劑表</b>吃下來 → 30 分起跳<br>
+    ・再背三大機制（Aldol / Claisen / Robinson）→ 再加 15-20 分<br>
+    ・剩下時間練兩題舊試題就好，<b>不要嘗試把所有機制都背完</b>，會崩潰
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 1</div>
+  <h2>階段 1 ｜ 純背就拿分（20 分鐘）</h2>
+  <div class="stage-sub">不用懂原理，照背就好 ⸜( ˶'ᵕ'˶)⸝</div>
+</div>
+
+<!-- Step 1.1 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.1</span>
+    <span class="step-title">名詞解釋：背這 10 個就夠</span>
+    <span class="step-pts high">10-14 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="flash">
+    <b>每題寫「定義一行 + 試劑一行 + 範例一行」就拿全分</b>。不要寫太多會錯。
+  </div>
+
+  <table>
+    <tr><th>名詞</th><th>白話定義</th><th>關鍵試劑</th></tr>
+    <tr><td><b>Aldol reaction</b></td><td>兩個醛酮在鹼下接起來，得 β-羥基羰基</td><td>NaOH 或 NaOEt</td></tr>
+    <tr><td><b>Michael addition</b></td><td>穩定 enolate 攻擊 α,β-不飽和酮的 β 碳（1,4-加成）</td><td>β-酮酯 + α,β-不飽和酮</td></tr>
+    <tr><td><b>Claisen condensation</b></td><td>兩個酯在鹼下接起來，得 β-酮酯</td><td>NaOEt</td></tr>
+    <tr><td><b>Dieckmann cyclization</b></td><td><b>分子內</b>的 Claisen，雙酯關環變 β-酮酯</td><td>NaOEt</td></tr>
+    <tr><td><b>Robinson annulation</b></td><td>Michael + 分子內 Aldol → 六員環α,β-不飽和酮</td><td>KOH / EtOH</td></tr>
+    <tr><td><b>Haloform reaction</b></td><td>甲基酮 + 過量 X₂/NaOH → 羧酸 + CHX₃</td><td>I₂ / NaOH</td></tr>
+    <tr><td><b>HVZ reaction</b></td><td>羧酸 α 位置溴化</td><td>PBr₃ + Br₂</td></tr>
+    <tr><td><b>Baeyer-Villiger</b></td><td>酮 → 酯（C-CO 之間插入 O）</td><td>mCPBA（過氧酸）</td></tr>
+    <tr><td><b>Fischer Esterification</b></td><td>羧酸 + 醇 ⇌ 酯 + 水（平衡）</td><td>H₂SO₄ 催化</td></tr>
+    <tr><td><b>Lactone / lactam</b></td><td>環狀<b>酯</b> / 環狀<b>醯胺</b></td><td>分子內成環</td></tr>
+    <tr><td><b>Keto-enol tautomer</b></td><td>同分子的酮型 ⇌ 烯醇型互換</td><td>α-H 轉移</td></tr>
+  </table>
+
+  <div class="howto"><b>應考範本</b>（以 Aldol 為例）：<br>
+  「兩分子醛或酮在<b>鹼性條件</b>（NaOH/NaOEt）下，一者拔 α-H 形成 enolate 作為親核劑，攻擊另一者的羰基 C，得到 <b>β-hydroxy carbonyl</b>。加熱可進一步脫水形成 α,β-不飽和羰基（Aldol condensation）。」 — 三行拿滿分。</div>
+</div>
+
+<!-- Step 1.2 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.2</span>
+    <span class="step-title">羧酸衍生物反應性順序（必考）</span>
+    <span class="step-pts high">6 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="flash">
+    <b>反應性由高到低</b>：<br>
+    <span class="key">醯氯 &gt; 酸酐 &gt; 酯 &gt; 醯胺</span><br>
+    （acid chloride &gt; anhydride &gt; ester &gt; amide）
+  </div>
+
+  <div class="analogy">
+    <b>為什麼這樣排？</b> 因為「離去基越穩定，越容易掉出來」：<br>
+    ・-Cl⁻ 是強酸的共軛鹼，超穩定 → 醯氯最猛 🔥<br>
+    ・-NH₂⁻ 是弱酸的共軛鹼，不想離開 → 醯胺最弱 🐌<br>
+    這個順序決定了「<b>從高的可以做出低的</b>」（單向）。<br>
+    例：醯氯 + 醇 → 酯（O），酯 → 醯氯（X，不可逆）。
+  </div>
+
+  <div class="howto">考試出現「能不能做」的判斷題，<b>左邊比右邊更反應性才行</b>。記這一條救命。</div>
+</div>
+
+<!-- Step 1.3 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.3</span>
+    <span class="step-title">8 個必背試劑（轉換題吃這張表）</span>
+    <span class="step-pts high">12 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <table>
+    <tr><th>試劑</th><th>用途（從 → 到）</th><th>關鍵點</th></tr>
+    <tr><td><b>LiAlH₄</b>（過量）</td><td>酯 / 醯胺 / 羧酸 / 醛 / 酮 → <b>全還原到 1° 醇</b></td><td>最強還原劑，<b>一路還原到底</b></td></tr>
+    <tr><td><b>NaBH₄</b></td><td>醛 / 酮 → 醇（不還原酯 / 酸）</td><td>溫和版</td></tr>
+    <tr><td><b>DIBAH</b><br>(-78°C, 1 eq)</td><td>酯 → <b>醛</b>（停在中間！）</td><td>低溫 + 1 當量是關鍵</td></tr>
+    <tr><td><b>Grignard (RMgBr)</b><br>過量</td><td>酯 / 醯氯 → <b>3° 醇</b>（接兩次 R）</td><td>過量 = 接兩次</td></tr>
+    <tr><td><b>Gilman (R₂CuLi)</b></td><td>醯氯 → <b>酮</b>（停在中間！）</td><td>跟 Grignard 反過來</td></tr>
+    <tr><td><b>SOCl₂</b></td><td>羧酸 → 醯氯</td><td>把酸<b>升級</b>到最反應性</td></tr>
+    <tr><td><b>mCPBA</b></td><td>酮 → 酯（Baeyer-Villiger）</td><td>遷移序：3° &gt; phenyl &gt; 1° &gt; methyl</td></tr>
+    <tr><td><b>NaOEt</b></td><td>拔 α-H 形成 enolate</td><td>Aldol / Claisen / Dieckmann 都用它</td></tr>
+  </table>
+
+  <div class="flash">
+    <b>三組「停在中間 vs 衝到底」對比</b>，考試 100% 出：
+    <ul>
+      <li>還原酯到醛：<span class="key">DIBAH</span>（停）vs LiAlH₄（衝到醇）</li>
+      <li>醯氯到酮：<span class="key">Gilman R₂CuLi</span>（停）vs Grignard（衝到 3° 醇）</li>
+      <li>醯氯到酯：醇 + <span class="key">pyridine</span> 吸 HCl（pyridine 是吸 HCl 的弱鹼）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Step 1.4 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">1.4</span>
+    <span class="step-title">IUPAC 命名速通</span>
+    <span class="step-pts high">9-15 分</span>
+    <span class="cp-stars">★★★★</span>
+  </div>
+
+  <table>
+    <tr><th>結構</th><th>後綴 / 命名規則</th><th>例子</th></tr>
+    <tr><td>羧酸 R-COOH</td><td>-anoic acid</td><td>Butanoic acid（4 碳酸）</td></tr>
+    <tr><td>酯 R-CO-O-R'</td><td>"R' 基" + "R-anoate"</td><td><b>Ethyl butanoate</b></td></tr>
+    <tr><td>醯胺 R-CO-NH₂</td><td>-anamide</td><td>Butanamide。N 上取代寫 N-</td></tr>
+    <tr><td>醯氯 R-COCl</td><td>-anoyl chloride</td><td>Butanoyl chloride</td></tr>
+    <tr><td>酸酐</td><td>兩個酸名 + anhydride</td><td>Acetic anhydride</td></tr>
+    <tr><td>腈 R-CN</td><td>-anenitrile</td><td>Butanenitrile（CN 算 C1）</td></tr>
+    <tr><td>醛 R-CHO</td><td>-anal</td><td>Butanal</td></tr>
+    <tr><td>酮 R-CO-R'</td><td>-anone（+ 位置數字）</td><td>2-Butanone</td></tr>
+  </table>
+
+  <div class="howto"><b>三條保命規則</b>：
+  <ol>
+    <li><b>第一個字母大寫</b>（學生最常忘）— 「Ethyl butanoate」不是「ethyl butanoate」</li>
+    <li>編號從<b>含 C=O 的官能基</b>開始（COOH 永遠是 C1）</li>
+    <li>苯環當取代基寫 phenyl-；苯+COOH 寫 benzoic acid</li>
+  </ol>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">111 Q2 原題</span>
+    <b>(a)</b> CH₃CH₂CH₂-CO-O-CH₂CH₃ → <span class="ans">Ethyl butanoate</span><br>
+    <b>(b)</b> 苯環+COOH(C1)+CN(C3) → <span class="ans">3-Cyanobenzoic acid</span><br>
+    <b>(c)</b> 苯甲酸與丁酸的混合酸酐 → <span class="ans">Benzoic butanoic anhydride</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 2</div>
+  <h2>階段 2 ｜ 三大機制必背（20 分鐘）</h2>
+  <div class="stage-sub">機制題佔最多分，先吃這三個 ✿</div>
+</div>
+
+<!-- Step 2.1 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.1</span>
+    <span class="step-title">機制 ①：Aldol（醛醇縮合）</span>
+    <span class="step-pts high">6-10 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="basic-box">
+    <div class="b-title">三步驟（背口訣）</div>
+    <ol>
+      <li><b>拔 H</b>：NaOH（或 NaOEt）拔走 α-H → 形成 <b>enolate</b>（C=C-O⁻）</li>
+      <li><b>攻擊</b>：enolate 的 <b>α-C</b> 攻擊另一個醛酮的 <b>C=O 的 C</b></li>
+      <li><b>質子化</b>：產物的 O⁻ 接 H → 得到 <b>β-hydroxy carbonyl</b>（β 位有 OH，旁邊還有 C=O）</li>
+    </ol>
+    <p>加熱條件下 → <b>脫水</b>（E1cb）→ <b>α,β-不飽和羰基</b>（Aldol condensation）</p>
+  </div>
+
+  <div class="analogy">
+    <b>用人話講</b>：兩個醛酮見面，一個被鹼搶走「脖子旁邊的 H」變得長負電（enolate），就跟另一個的「脖子（C=O 的 C）」勾起來。最後拿熱風吹一下脫水，得到 C=C-C=O 結構。
+  </div>
+
+  <div class="howto"><b>畫機制給分點</b>：箭頭要從負電（電子對）指向正電。每一步畫一個 <b>彎曲箭頭</b>（curved arrow）就拿 1 分。共三個箭頭。</div>
+</div>
+
+<!-- Step 2.2 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.2</span>
+    <span class="step-title">機制 ②：Claisen / Dieckmann（酯版的 Aldol）</span>
+    <span class="step-pts high">6-10 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="basic-box">
+    <div class="b-title">四步驟（多一步因為有離去基）</div>
+    <ol>
+      <li><b>拔 H</b>：NaOEt 拔走酯的 α-H → ester enolate</li>
+      <li><b>攻擊</b>：enolate 攻擊另一個酯的 C=O</li>
+      <li><b>離去</b>：四面體中間體裡的 <b>-OEt 跑掉</b> → 得 β-酮酯</li>
+      <li><b>去質子</b>：產物的 α-H 被鹼拔走（酸性更強），推平衡走</li>
+    </ol>
+    <p><b>產物：β-keto ester</b>（兩個 C=O 中間隔一個 α-C）。</p>
+  </div>
+
+  <div class="flash">
+    <b>Dieckmann = 分子內 Claisen</b>。<br>
+    起始物是<b>雙酯</b>（兩端都有 -COOR），一端的 α-H 被拔變 enolate，攻擊另一端 → <b>關環</b>得到 <b>5 或 6 員環 β-酮酯</b>。<br>
+    考點：能形成 5 / 6 員環的位置才會反應。
+  </div>
+
+  <div class="analogy">
+    <b>記憶法</b>：<br>
+    ・Aldol（醛酮）= 加水（O 留在分子裡變 -OH）→ <b>β-hydroxy</b><br>
+    ・Claisen（酯）= 踢 OR 走 → <b>β-keto</b><br>
+    差別就是「酯多一條腿可以踢」。
+  </div>
+</div>
+
+<!-- Step 2.3 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.3</span>
+    <span class="step-title">機制 ③：Robinson Annulation（環化縮合）</span>
+    <span class="step-pts high">6-8 分</span>
+    <span class="cp-stars">★★★★★</span>
+  </div>
+
+  <div class="basic-box">
+    <div class="b-title">三階段（直接背順序）</div>
+    <ol>
+      <li><b>Michael 加成</b>：環酮 enolate 攻擊 α,β-不飽和酮的 <b>β 碳</b>（1,4-加成）→ 得 <b>1,5-二酮</b></li>
+      <li><b>分子內 Aldol</b>：另一端 α-H 被拔，分子內攻擊另一個 C=O → β-hydroxy ketone</li>
+      <li><b>脫水</b>：E1cb 脫掉 -OH → 得 <b>α,β-不飽和環酮</b>（六員環）</li>
+    </ol>
+  </div>
+
+  <div class="flash">
+    <b>看到 KOH/EtOH + 二酮 = Robinson</b>。背：<br>
+    <span class="key">Michael → Aldol → 脫水</span> ＝ 環化縮合三部曲
+  </div>
+
+  <div class="howto"><b>機制題答法</b>：每個階段畫 2-3 個箭頭，總共 6-8 個箭頭。<b>不要省略 1,5-二酮的中間結構</b>，那是 Michael 完成的證據（給分點）。</div>
+</div>
+
+<!-- Step 2.4 補充機制 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">2.4</span>
+    <span class="step-title">補充：另外三個常考機制（簡記）</span>
+    <span class="step-pts">12 分</span>
+    <span class="cp-stars">★★★★</span>
+  </div>
+
+  <h4 style="color:var(--rose);margin-top:1rem">Wittig 反應（醛酮 → 烯）</h4>
+  <div class="basic-box">
+    <p><b>三步驟</b>：</p>
+    <ol>
+      <li>Ph₃P=CR₂（葉立德）的 C⁻ 攻擊酮的 C → 形成 <b>betaine</b>（兩個電荷）</li>
+      <li>O⁻ 攻擊 P⁺ → <b>四員環 oxaphosphetane</b></li>
+      <li>環逆向 [2+2] 分解 → <b>Ph₃P=O + 烯</b></li>
+    </ol>
+    <p><b>葉立德定義</b>：碳上負電 + 磷上正電的雙性離子 R₃P⁺-CR₂⁻。</p>
+  </div>
+
+  <h4 style="color:var(--rose);margin-top:1rem">Beckmann 重排（環己酮 → caprolactam）</h4>
+  <div class="basic-box">
+    <ol>
+      <li>環己酮 + NH₂OH → oxime（C=N-OH）</li>
+      <li>H⁺ 質子化 -OH → -OH₂⁺</li>
+      <li><b>反位</b>的 C-C 鍵電子對<b>遷移到 N</b>，H₂O 離開</li>
+      <li>水攻擊 + tautomer → <b>七員環醯胺（caprolactam）</b></li>
+    </ol>
+  </div>
+
+  <h4 style="color:var(--rose);margin-top:1rem">Favorskii（環縮小）</h4>
+  <div class="basic-box">
+    <ol>
+      <li>NaOH 拔 α-H（離去基<b>對</b>側）</li>
+      <li>enolate α-C 攻擊 α-C-Br → <b>環丙酮中間體</b>（給分點）</li>
+      <li>OH⁻ 攻擊環丙酮 → 開環 → <b>少一員環的羧酸</b></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="stage-divider">
+  <div class="label">PHASE 3</div>
+  <h2>階段 3 ｜ 轉換 + NMR 衝刺（15 分鐘）</h2>
+  <div class="stage-sub">最後拿這部分加分 ⸜(*ˊᗜˋ*)⸝</div>
+</div>
+
+<!-- Step 3.1 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.1</span>
+    <span class="step-title">轉換題：看目標 → 寫試劑</span>
+    <span class="step-pts high">12 分</span>
+    <span class="cp-stars">★★★★</span>
+  </div>
+
+  <div class="flash">
+    <b>解題流程</b>：
+    <ol>
+      <li>看左邊（起始物）有什麼官能基</li>
+      <li>看右邊（目標）有什麼官能基</li>
+      <li>查 1.3 試劑表，找對應條件</li>
+    </ol>
+  </div>
+
+  <table>
+    <tr><th>從 → 到</th><th>試劑</th></tr>
+    <tr><td>醯胺 → 胺</td><td>(1) 過量 LiAlH₄ (2) H₂O</td></tr>
+    <tr><td>醯氯 → 3° 醇</td><td>(1) 過量 RMgBr (2) H₂O</td></tr>
+    <tr><td>酯 → 醛（停！）</td><td>(1) DIBAH (-78°C) (2) H₂O</td></tr>
+    <tr><td>酮 → 羧酸</td><td>(1) HCN (2) H₃O⁺ / heat</td></tr>
+    <tr><td>醯氯 → 酯</td><td>R-OH + pyridine</td></tr>
+    <tr><td>醯氯 → 酮（停！）</td><td>R₂CuLi（Gilman）</td></tr>
+    <tr><td>苯 → ArCOOH</td><td>RMgBr → CO₂ → H₃O⁺</td></tr>
+    <tr><td>羧酸 → 醯氯</td><td>SOCl₂</td></tr>
+    <tr><td>烯 → 1° 醇（anti-Markovnikov）</td><td>(1) BH₃/THF (2) NaOH/H₂O₂</td></tr>
+  </table>
+</div>
+
+<!-- Step 3.2 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.2</span>
+    <span class="step-title">NMR 推結構：四個訊號就能拿分</span>
+    <span class="step-pts">8 分</span>
+    <span class="cp-stars">★★★</span>
+  </div>
+
+  <table>
+    <tr><th>δ (ppm)</th><th>什麼 H</th></tr>
+    <tr><td>0.9</td><td>CH₃ 接 C（普通烷基）</td></tr>
+    <tr><td>1.3</td><td>-CH₂- 烷基</td></tr>
+    <tr><td>2.1-2.5</td><td>α-H（靠近 C=O）</td></tr>
+    <tr><td>3.7-4.2</td><td><b>-O-CH₂-</b>（酯的 O 接 CH₂）</td></tr>
+    <tr><td>5-6.5</td><td>vinylic（C=C 上的 H）</td></tr>
+    <tr><td>7-8</td><td>aromatic（苯環）</td></tr>
+    <tr><td>9-10</td><td>醛 H（CHO）</td></tr>
+  </table>
+
+  <div class="flash">
+    <b>IR 看 C=O 位置定官能基</b>：
+    <ul>
+      <li>1735 cm⁻¹ → <b>酯</b></li>
+      <li>1710 cm⁻¹ → <b>酮</b>（或 α,β-不飽和酯）</li>
+      <li>1720 cm⁻¹ → <b>醛</b></li>
+      <li>1810 + 1750（兩個） → <b>酸酐</b></li>
+      <li>1670 cm⁻¹ → <b>醯胺</b>（最低）</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="q-tag">107 Q11 推結構範例</span>
+    <b>C₅H₉ClO₂ + IR 1735 (酯) + δ 1.26(3H) / 2.77(2H) / 3.76(2H) / 4.19(2H)</b><br>
+    → 訊號數 = 4 個碳片段 → 4.19 是 -O-CH₂-（酯氧旁邊）→ 3.76 是 -CH₂Cl → 2.77 是 -CH₂-（α 位）→ 1.26 是 CH₃<br>
+    答案：<span class="ans">Cl-CH₂-CH₂-CO-O-CH₂-CH₃</span>（3-氯丙酸乙酯）
+  </div>
+</div>
+
+<!-- Step 3.3 -->
+<div class="step">
+  <div class="step-header">
+    <span class="step-num">3.3</span>
+    <span class="step-title">A→B→C 連續反應題型（兩年都考）</span>
+    <span class="step-pts">6-9 分</span>
+    <span class="cp-stars">★★★</span>
+  </div>
+
+  <div class="flash">
+    <b>提示永遠是「i = acid hydrolysis, ii = oxidation, iii = heat」</b>。<br>
+    流程是：<b>酸水解 → 氧化 → 加熱關環</b>。
+  </div>
+
+  <div class="basic-box">
+    <p><b>翻譯</b>：</p>
+    <ul>
+      <li><b>i 酸水解</b>：把所有酯（-O-CO-R）打開，得 -OH + R-COOH（脫掉 CH₃OH 跟 PhCOOH）。產物 A = diol。</li>
+      <li><b>ii 氧化</b>：1° / 2° 醇 → C=O（醛 / 酮）。產物 B = diketone。</li>
+      <li><b>iii 加熱</b>：β-羥基酮 / β-二酮會分子內脫水或重排。產物 C = 環狀 α,β-不飽和酮。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="cheat">
+  <h2>★ 終極小抄（撕下來帶進考場心裡） ★</h2>
+
+  <h3>① 核心觀念（一句話）</h3>
+  <ul>
+    <li>Nu⁻ 永遠攻擊 C=O 的 <b>C</b>。所有反應都從這開始。</li>
+  </ul>
+
+  <h3>② 反應性順序（必記）</h3>
+  <ul>
+    <li>醯氯 &gt; 酸酐 &gt; 酯 &gt; 醯胺</li>
+  </ul>
+
+  <h3>③ 三組「停 vs 衝」</h3>
+  <ul>
+    <li>酯 → 醛：DIBAH（-78°C）停 ／ 過量 LiAlH₄ 衝到醇</li>
+    <li>醯氯 → 酮：Gilman R₂CuLi 停 ／ Grignard 衝到 3° 醇</li>
+    <li>醯氯 → 酯：醇 + pyridine（吸 HCl）</li>
+  </ul>
+
+  <h3>④ 三大機制流程</h3>
+  <ul>
+    <li>Aldol：拔 α-H → 攻擊 C=O → 質子化 → β-OH 羰基</li>
+    <li>Claisen：拔 α-H → 攻擊 C=O → 踢 OR → β-酮酯</li>
+    <li>Robinson：Michael → 分子內 Aldol → 脫水</li>
+  </ul>
+
+  <h3>⑤ IR 看 C=O 數字</h3>
+  <ul>
+    <li>1735 酯 ／ 1710 酮 ／ 1720 醛 ／ 1670 醯胺 ／ 雙峰酸酐</li>
+  </ul>
+
+  <h3>⑥ 命名規則</h3>
+  <ul>
+    <li>第一個字母<b>大寫</b>；COOH 永遠是 C1；酯先寫 R' 再寫 -oate</li>
+  </ul>
+
+  <h3>⑦ 解題流程</h3>
+  <ul>
+    <li>機制題：每步畫一個彎曲箭頭，從負電指向正電，每箭頭 1 分</li>
+    <li>名詞題：定義 + 試劑 + 範例三行就好</li>
+    <li>轉換題：先標起始物與目標的官能基，查試劑表對位</li>
+  </ul>
+</div>
+
+<div class="pep" style="text-align:center;margin-top:2rem">
+  <b>讀完了！</b> 你現在比進門前強很多。<br>
+  剩下 5 分鐘 → 滑去看「<a href="考古題整理-Ch20-22.html" style="color:var(--amber)">考古題整理</a>」第 7 節的機制題長什麼樣子。<br>
+  記住：能畫的就畫，畫不出來寫文字描述也有分數，<b>留白才是 0 分</b>。
+</div>
+
+<p style="margin-top:3rem;text-align:center;color:var(--text-dim);font-size:0.85rem">— 一切順利，明天加油 —</p>
+
+</main>
+</body>
+</html>

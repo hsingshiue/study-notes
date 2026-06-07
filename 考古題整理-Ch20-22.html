@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考古題整理 — Ch 20 · 21 · 22（期末考）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1C1F30;--blue:#90C8D0;--blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55);--rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14);--gold:#C4A882;
+  --green:#6ECBA8;--green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0;--purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;--amber-lo:rgba(229,181,116,0.1);
+  --text:#EAE8F2;--text-mid:rgba(220,218,236,0.78);
+  --text-dim:rgba(220,218,236,0.42);--glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08);--border-lo:rgba(255,255,255,0.05)
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%,rgba(100,185,200,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%,rgba(155,130,210,0.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%,rgba(80,100,160,0.09) 0%,transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%)}
+
+#back-btn{position:fixed;top:18px;left:18px;z-index:999;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:7px 16px 7px 11px;font-size:14px;font-weight:300;
+  letter-spacing:0.05em;color:var(--blue-dim);text-decoration:none;
+  font-family:"Noto Serif TC",serif;transition:background .2s,color .2s}
+#back-btn:hover{background:rgba(144,200,208,0.12);color:var(--blue)}
+
+.layout{position:relative;z-index:1;display:grid;
+  grid-template-columns:220px 1fr;grid-template-areas:"toc main";
+  max-width:1180px;margin:0 auto;padding:0 0 0 1rem;gap:1.5rem}
+.toc{grid-area:toc;position:sticky;top:2rem;align-self:start;
+  padding-top:5.5rem;padding-bottom:3rem;max-height:100vh;overflow-y:auto}
+.toc-label{font-size:0.58rem;letter-spacing:0.35em;font-weight:200;
+  color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.15rem}
+.toc-list a{display:block;font-size:0.78rem;font-weight:200;line-height:1.5;
+  color:var(--text-dim);text-decoration:none;padding:0.25rem 0.6rem;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s}
+.toc-list a:hover,.toc-list a.active{color:var(--purple);
+  border-left-color:var(--purple);background:rgba(176,158,224,0.06)}
+.toc-divider{height:1px;margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent)}
+
+main{grid-area:main;padding:5rem 2rem 7rem;max-width:760px}
+.page-header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border-lo)}
+.page-header h1{font-size:2rem;font-weight:300;letter-spacing:0.1em;margin-bottom:0.3rem}
+.page-header .meta{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.1em}
+
+.section-heading{display:flex;align-items:center;gap:0.6rem;
+  margin:3rem 0 1.4rem;scroll-margin-top:2rem}
+.section-heading .num{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:1.25rem;flex-shrink:0;letter-spacing:0.04em}
+.section-heading .label{font-size:0.98rem;font-weight:400;letter-spacing:0.06em}
+.section-heading .rule{flex:1;height:1px}
+.sh-purple .num{color:rgba(176,158,224,0.65)}.sh-purple .label{color:var(--purple)}
+.sh-purple .rule{background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent)}
+.sh-blue .num{color:rgba(144,200,208,0.65)}.sh-blue .label{color:var(--blue)}
+.sh-blue .rule{background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent)}
+.sh-amber .num{color:rgba(229,181,116,0.65)}.sh-amber .label{color:var(--amber)}
+.sh-amber .rule{background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent)}
+
+h3{font-size:0.95rem;font-weight:400;color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35);padding-left:10px;
+  margin:1.4rem 0 0.6rem}
+h4{font-size:0.88rem;font-weight:400;color:var(--rose);
+  margin:1rem 0 0.4rem;letter-spacing:0.04em}
+
+.callout{background:rgba(217,160,184,0.08);border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px;padding:12px 18px;margin:0.8rem 0;
+  color:rgba(235,205,218,0.9);font-size:0.92rem;
+  display:flex;gap:0.8rem;align-items:flex-start}
+.callout::before{content:"★";color:var(--rose);opacity:0.8;flex-shrink:0;margin-top:1px}
+
+.tip{background:var(--green-lo);border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(185,235,215,0.85);font-size:0.9rem}
+.tip b{color:var(--green);font-weight:400}
+
+.warn{background:var(--amber-lo);border-left:3px solid rgba(229,181,116,0.45);
+  border-radius:8px;padding:10px 16px;margin:0.55rem 0;
+  color:rgba(240,215,180,0.9);font-size:0.9rem}
+.warn b{color:var(--amber);font-weight:400}
+
+.exam-box{background:var(--purple-lo);border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px;padding:16px 18px;margin:1rem 0;font-size:0.91rem}
+.exam-box .exam-title{font-size:0.92rem;font-weight:400;color:var(--purple);
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.exam-box .exam-title::before{content:"◆";font-size:0.6rem;opacity:0.7}
+.exam-box .year-tag{font-family:"Cormorant Garamond",serif;font-style:italic;
+  font-size:0.78rem;padding:1px 8px;border-radius:10px;
+  background:rgba(176,158,224,0.18);color:var(--purple);
+  letter-spacing:0.05em;margin-left:0.4rem}
+.exam-box p,.exam-box li{color:var(--text-mid)}
+.exam-box b{color:var(--text);font-weight:400}
+.exam-box .q-zh{margin:0.4rem 0;color:var(--text)}
+.exam-box .q-en{margin:0.2rem 0 0.6rem;color:var(--text-mid);font-size:0.86em;font-style:italic;opacity:0.85}
+.exam-box .ans{margin-top:0.6rem;padding-top:0.6rem;
+  border-top:1px solid rgba(176,158,224,0.18);color:rgba(229,181,116,0.95)}
+.exam-box .ans b{color:var(--amber)}
+.exam-box ul,.exam-box ol{margin-left:1.3rem;margin-top:0.4rem}
+
+.hl{background:rgba(144,200,208,0.15);color:var(--blue);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-amber{background:rgba(229,181,116,0.18);color:var(--amber);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-rose{background:rgba(217,160,184,0.18);color:var(--rose);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+.hl-purple{background:rgba(176,158,224,0.18);color:var(--purple);
+  padding:1px 7px;border-radius:4px;font-size:0.88em}
+
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.86rem}
+th{background:rgba(176,158,224,0.12);color:var(--purple);font-weight:400;
+  padding:9px 14px;text-align:left;border-bottom:1px solid rgba(176,158,224,0.22);
+  letter-spacing:0.04em}
+td{border:1px solid var(--border-lo);padding:9px 14px;
+  background:rgba(255,255,255,0.025);color:var(--text-mid);vertical-align:top}
+td b{color:var(--text);font-weight:400}
+
+ul,ol{margin-left:1.3rem}
+li{margin:0.3rem 0;color:var(--text-mid);font-size:0.92rem;line-height:1.75}
+p{color:var(--text-mid);margin:0.55rem 0;font-size:0.92rem}
+
+code{background:rgba(144,200,208,0.1);color:var(--blue);
+  padding:1px 7px;border-radius:3px;font-family:Consolas,monospace;font-size:0.85em}
+
+.exam-meta{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+.exam-meta-card{background:rgba(176,158,224,0.06);border:1px solid rgba(176,158,224,0.18);
+  border-radius:10px;padding:14px 16px}
+.exam-meta-card h4{margin-top:0;color:var(--purple)}
+.exam-meta-card .em-line{color:var(--text-mid);font-size:0.86rem;margin:0.25rem 0}
+.exam-meta-card .em-line b{color:var(--text)}
+
+@media (max-width:780px){
+  .layout{grid-template-columns:1fr;grid-template-areas:"main";padding:0 1.2rem}
+  .toc{display:none}
+  main{padding-top:4.5rem}
+  .exam-meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#overview">考題總覽</a></li>
+    <li><a href="#s1">1. 名詞解釋</a></li>
+    <li><a href="#s2">2. IUPAC 命名</a></li>
+    <li><a href="#s3">3. 預測產物</a></li>
+    <li><a href="#s4">4. 轉換（給目標）</a></li>
+    <li><a href="#s5">5. 識別試劑 a-f</a></li>
+    <li><a href="#s6">6. 連續反應 A→B→C</a></li>
+    <li><a href="#s7">7. 機制題</a></li>
+    <li><a href="#s8">8. NMR 推結構</a></li>
+    <li><a href="#s9">9. 推未知物 A~D</a></li>
+    <li class="toc-divider"></li>
+    <li><a href="#strategy">備考策略</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="page-header">
+  <h1>考古題整理 — Ch 20 · 21 · 22</h1>
+  <div class="meta">Organic Chemistry Final Exam ｜ 期末考古題分析 ｜ 醛酮 · 羧酸衍生物 · α-碳化學</div>
+</div>
+
+<div class="callout">
+  <div>本份整理涵蓋 <b>107 學年度（2019/6/14）</b>與 <b>111 學年度（2023/6/14）</b>兩份期末考。<br>
+  題目中英並列保留原文，重點放在 <b>機制題型</b>（Aldol / Claisen / Dieckmann / Robinson / Favorskii / Beckmann / Wittig）、<b>轉換設計</b>與 <b>NMR / 結構推斷</b>。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="overview" class="section-heading sh-purple">
+  <span class="num">§0</span>
+  <span class="label">考題總覽</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-meta">
+  <div class="exam-meta-card">
+    <h4>107 學年度</h4>
+    <div class="em-line"><b>日期</b>：2019/6/14</div>
+    <div class="em-line"><b>用書</b>：Mcmurry 8th Ed.</div>
+    <div class="em-line"><b>範圍</b>：Chap 20–22</div>
+    <div class="em-line"><b>配分</b>：109 pts｜共 11 題</div>
+  </div>
+  <div class="exam-meta-card">
+    <h4>111 學年度</h4>
+    <div class="em-line"><b>日期</b>：2023/6/14</div>
+    <div class="em-line"><b>用書</b>：Klein's 4 Ed.</div>
+    <div class="em-line"><b>範圍</b>：Chap 20–22</div>
+    <div class="em-line"><b>配分</b>：127 pts｜共 16 題</div>
+  </div>
+</div>
+
+<h3>題型分布（兩份合計）</h3>
+<table>
+  <tr><th>題型</th><th>107（題號）</th><th>111（題號）</th><th>難度</th></tr>
+  <tr><td>名詞解釋</td><td>Q1 (14 pts)</td><td>Q1 (10 pts)</td><td>★★</td></tr>
+  <tr><td>IUPAC 命名</td><td>Q5 (15 pts)</td><td>Q2 (9 pts)</td><td>★★</td></tr>
+  <tr><td>預測產物</td><td>Q3 (9 pts)</td><td>Q3 (6 pts)</td><td>★★★</td></tr>
+  <tr><td>轉換設計</td><td>Q4 (12 pts)</td><td>Q4 (12 pts)</td><td>★★★</td></tr>
+  <tr><td>識別試劑 a-f</td><td>Q2 (6 pts)</td><td>Q12 (12 pts)</td><td>★★★</td></tr>
+  <tr><td>A→B→C 連續反應</td><td>Q8 (9 pts)</td><td>Q8 (6 pts)</td><td>★★★</td></tr>
+  <tr><td>機制題（總計）</td><td>Q6・Q9・Q10 (26 pts)</td><td>Q5・Q6・Q7・Q9・Q10・Q11・Q14・Q15 (52 pts)</td><td>★★★★</td></tr>
+  <tr><td>NMR 推結構</td><td>Q11 (8 pts)</td><td>—</td><td>★★★★</td></tr>
+  <tr><td>苯合成 / 推未知</td><td>Q7 (10 pts)</td><td>Q13・Q16 (14 pts)</td><td>★★★★</td></tr>
+</table>
+
+<div class="tip"><b>觀察</b>：111 年機制題暴增（占 41%），名詞解釋題數變少，IUPAC 配分降低。這代表 <b>近年偏好考機制過程</b>而非死背名詞。Aldol / Claisen / Dieckmann / Robinson 必背全套機制。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s1" class="section-heading sh-purple">
+  <span class="num">§1</span>
+  <span class="label">名詞解釋</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q1 名詞解釋（14 pts）<span class="year-tag">107</span></div>
+  <p class="q-zh"><b>(a) Haloform reaction（鹵仿反應）</b></p>
+  <p class="q-en">Haloform reaction.</p>
+  <div class="ans"><b>答</b>：甲基酮（CH₃-CO-R）在過量鹵素 + 強鹼 NaOH 下，α-碳三個 H 全被取代成 CX₃，CX₃⁻ 為好離去基 → 生成 R-COO⁻ + CHX₃（haloform）。考點：產物是 <span class="hl-amber">羧酸</span>而非鹵化酮；判斷依據是 <b>甲基酮 / 仲醇</b>。</div>
+
+  <p class="q-zh"><b>(b) HVZ reaction（Hell-Volhard-Zelinsky 反應）</b></p>
+  <p class="q-en">HVZ reaction.</p>
+  <div class="ans"><b>答</b>：羧酸 + PBr₃（或 P + Br₂）→ 經 acyl bromide 中間體 → α-碳被溴化 → 加水水解得 <span class="hl-amber">α-bromo carboxylic acid</span>。這是讓羧酸進行 α 取代的標準方法。</div>
+
+  <p class="q-zh"><b>(c) Keto-enol tautomer（酮-烯醇互變異構物）</b></p>
+  <p class="q-en">Keto-enol tautomer.</p>
+  <div class="ans"><b>答</b>：α-H 在 keto 形式（C=O）與 enol 形式（C=C-OH）之間互換，差別只在一個 H 的位置與雙鍵位置。常溫下 keto 為主（&gt;99%），但 enol 是 α-取代的關鍵中間體（HVZ、halogenation、Aldol 全靠它）。</div>
+
+  <p class="q-zh"><b>(d) Nitrile hydrolysis（腈水解）</b></p>
+  <p class="q-en">Nitrile hydrolysis.</p>
+  <div class="ans"><b>答</b>：R-C≡N + H₃O⁺ / H₂O / heat → R-CONH₂ → R-COOH（兩步水解，先變 amide 再變 acid）。是將 -CN 拉長一碳並轉成羧酸的常用法。</div>
+
+  <p class="q-zh"><b>(e) Acid halide（醯鹵）</b></p>
+  <p class="q-en">Acid halide.</p>
+  <div class="ans"><b>答</b>：R-CO-X（X = Cl 居多），羧酸衍生物中反應性 <span class="hl-amber">最高</span>者。製法：R-COOH + SOCl₂ 或 PCl₃。在反應性順序中：醯鹵 &gt; 酸酐 &gt; 酯 &gt; 醯胺。</div>
+
+  <p class="q-zh"><b>(f) Fischer Esterification（費雪酯化）</b></p>
+  <p class="q-en">Fischer Esterification.</p>
+  <div class="ans"><b>答</b>：R-COOH + R'-OH（酸催化，常用 H₂SO₄）⇌ R-COOR' + H₂O，是 <b>平衡反應</b>。透過 Le Chatelier 原理移除水或加過量醇推動正向。機制：PADPED（質子化 → 加成 → 質子轉移 → 脫水 → 去質子）。</div>
+
+  <p class="q-zh"><b>(g) Lactone / Lactam（內酯 / 內醯胺）</b></p>
+  <p class="q-en">Lactone and lactam.</p>
+  <div class="ans"><b>答</b>：分子內成環 → lactone 是 <span class="hl">環狀酯</span>，lactam 是 <span class="hl-rose">環狀醯胺</span>。常見 γ-丁內酯（5-員 lactone）、ε-己內醯胺（caprolactam，做 Nylon-6 的原料）。</div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">111 Q1 名詞解釋（10 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh"><b>(a) Aldol reaction（醛醇縮合）</b></p>
+  <p class="q-en">Aldol reaction.</p>
+  <div class="ans"><b>答</b>：兩分子醛 / 酮在鹼催化下，一者去 α-H 形成 enolate，作為親核劑攻擊另一者的 C=O，生成 β-hydroxy carbonyl。加熱條件可進一步脫水成 <span class="hl-amber">α,β-不飽和羰基化合物</span>（Aldol condensation）。</div>
+
+  <p class="q-zh"><b>(b) Michael Addition reaction（麥可加成）</b></p>
+  <p class="q-en">Michael Addition reaction.</p>
+  <div class="ans"><b>答</b>：穩定 enolate（如 malonate、β-酮酯）作為親核劑（Michael donor），對 <b>α,β-不飽和羰基化合物</b>（Michael acceptor）進行 <span class="hl-amber">1,4-共軛加成</span>，得 1,5-二羰基產物。Robinson annulation 的第一步即為此。</div>
+
+  <p class="q-zh"><b>(c) Baeyer-Villiger oxidation（B-V 氧化）</b></p>
+  <p class="q-en">Baeyer-Villiger oxidation.</p>
+  <div class="ans"><b>答</b>：酮 + 過氧酸（mCPBA 等）→ 在 C-CO 之間插入一個 O → 變成酯。遷移基團優先序：<span class="hl">3°&nbsp;&gt;&nbsp;2°&nbsp;&gt;&nbsp;phenyl &gt; 1° &gt; methyl</span>。考點：環酮會擴環變 lactone。</div>
+
+  <p class="q-zh"><b>(d) Dieckmann Cyclization（迪克曼環化）</b></p>
+  <p class="q-en">Dieckmann Cyclization.</p>
+  <div class="ans"><b>答</b>：<b>分子內</b>的 Claisen 縮合。雙酯（如 diethyl adipate）在 NaOEt 下，一端 α-碳變 enolate 攻擊另一端酯羰基 → 環狀 β-酮酯（5 或 6 員環最佳）。</div>
+
+  <p class="q-zh"><b>(e) Lactone and lactam（內酯 / 內醯胺）</b></p>
+  <p class="q-en">Lactone and lactam.</p>
+  <div class="ans"><b>答</b>：同 107 (g)。Lactone = 環狀酯；lactam = 環狀醯胺。例如 6-aminohexanoic acid + DCC → ε-caprolactam（111 Q10 機制題）。</div>
+</div>
+
+<div class="tip"><b>名詞解釋拿分技巧</b>：每題寫「<b>定義 + 試劑/條件 + 一個範例或關鍵點</b>」，大約 2-3 行即可。不要只抄定義，加一句「機制要點」或「產物特性」會多拿 1-2 分。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s2" class="section-heading sh-purple">
+  <span class="num">§2</span>
+  <span class="label">IUPAC 命名</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q5 IUPAC 命名（15 pts，5 個化合物）<span class="year-tag">107</span></div>
+  <p class="q-zh">寫出下列化合物的 IUPAC 名稱（請注意 <b>第一個字母必須大寫</b>，且立體化學記號 R/S 大寫）。</p>
+  <p class="q-en">Give IUPAC names for the following 5 compounds. (15 pts)</p>
+  <div class="ans"><b>共通要點</b>：
+  <ul>
+    <li><b>羧酸</b>：母體鏈含 -COOH，編號從 -COOH 開始（C1）。-CH₃ 取代為 methyl-，-OH 為 hydroxy-。</li>
+    <li><b>酯</b>：「O-基團 + 母體酸 -oate」，例如 <b>Ethyl butanoate</b>（CH₃CH₂CH₂-CO-O-CH₂CH₃）。</li>
+    <li><b>醯胺</b>：母體酸去 -oic acid → -amide。N 上取代基寫 N-。</li>
+    <li><b>酸酐</b>：兩個酸名 + anhydride，相同則寫一次（acetic anhydride）。</li>
+    <li><b>腈</b>：母體鏈含 C≡N，-nitrile，碳氮算 C1。</li>
+  </ul>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">111 Q2 IUPAC 命名（9 pts，3 個化合物）<span class="year-tag">111</span></div>
+  <p class="q-zh"><b>(a)</b> 結構：CH₃CH₂CH₂-CO-O-CH₂CH₃（丁酸乙酯）</p>
+  <p class="q-en">Give IUPAC name for ester (CH₃CH₂CH₂COOCH₂CH₃).</p>
+  <div class="ans"><b>答</b>：<span class="hl-amber">Ethyl butanoate</span>（學生答 "Ethyl butyrate" 是慣用名，IUPAC 應使用 butanoate）。</div>
+
+  <p class="q-zh"><b>(b)</b> 苯環 + COOH（C1）+ CN（C3）</p>
+  <p class="q-en">Benzoic acid with CN at meta position.</p>
+  <div class="ans"><b>答</b>：<span class="hl-amber">3-Cyanobenzoic acid</span>（學生答 "3-Cyano-1-benzoic acid"，「1-」可省略，benzoic acid 默認 COOH 在 C1）。</div>
+
+  <p class="q-zh"><b>(c)</b> 苯甲酸（Ph-CO-）與丁酸（CH₃CH₂CH₂-CO-）的混合酸酐</p>
+  <p class="q-en">Mixed anhydride of benzoic acid and butanoic acid.</p>
+  <div class="ans"><b>答</b>：<span class="hl-amber">Benzoic butanoic anhydride</span>（混合酸酐命名：兩個酸名依字母順序，去 acid 加 anhydride）。</div>
+</div>
+
+<div class="warn"><b>命名小提醒</b>：IUPAC 規則新版（1993 起）允許 acid 命名時省略 locant 「1-」，但若有其他取代基且需要區分 ortho/meta/para 時，用 1, 3, 4 等數字明確標示。寫答案時一律 <b>第一個字母大寫</b>（句首大寫規則）。</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s3" class="section-heading sh-purple">
+  <span class="num">§3</span>
+  <span class="label">預測產物（含區域選擇 / 立體化學）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q3 預測產物（9 pts，3 個反應）<span class="year-tag">107</span></div>
+  <p class="q-zh">寫出反應產物：</p>
+  <ul>
+    <li><b>(a)</b> 環己酮 → NaOEt → PhCH₂Br：<span class="hl">α-苄基化環己酮</span>（enolate alkylation）。</li>
+    <li><b>(b)</b> 環己酮 → Br₂ / AcOH：<span class="hl">α-溴環己酮</span>（acid-catalyzed α-halogenation，停在 mono-halogenation）。</li>
+    <li><b>(c)</b> 苯甲醯 → 1) RMgBr 2) H₃O⁺，再 Clemmensen 還原：先得 3° 醇，Clemmensen 把 C=O 還原為 CH₂（但這裡已是醇，可能是先加 Grignard 再 Clemmensen 的設計）。</li>
+  </ul>
+  <p class="q-en">Predict the products of the following reactions, showing regiochemistry and stereochemistry where appropriate.</p>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">111 Q3 預測產物（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出下列反應的產物，並標明 <b>區域選擇性</b>與 <b>立體化學</b>：</p>
+  <p class="q-en">Predict the products of the following reactions, showing both regiochemistry and stereochemistry where appropriate.</p>
+  <ul>
+    <li><b>(a) Diethyl malonate</b> → 1) NaOEt 2) 環丙基甲基溴 3) H₃O⁺/heat：<span class="hl-amber">malonic ester synthesis</span> → 烷基化、酯水解、脫羧得 <b>4-甲基戊酸</b>類羧酸。</li>
+    <li><b>(b) Tetra-ester</b>（1,3,5,5-四酯）+ H₃O⁺/heat → <span class="hl-amber">雙脫羧</span> 得 1,3-雙羧酸環戊烷（脫 2 個 CO₂）。</li>
+    <li><b>(c) 環己酮 + HOCH₂CH₂OH（酸催化）</b>→ 1) LiAlH₄ 2) 過量 H₃O⁺：先生成 <span class="hl">acetal 保護</span>，雖 LiAlH₄ 不還原 acetal，最終 H₃O⁺ 水解 acetal 回到原酮（產物即原酮）。</li>
+  </ul>
+  <div class="ans"><b>考點</b>：(c) 是「<b>保護 → 操作 → 去保護</b>」的經典題型，但本題沒有其他羰基讓 LiAlH₄ 攻擊，所以最終回到起始物。注意 acetal 在 <b>鹼性 / 中性 / 還原條件下穩定</b>，只有 H₃O⁺ 才能水解。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s4" class="section-heading sh-purple">
+  <span class="num">§4</span>
+  <span class="label">轉換設計（給目標分子，寫試劑）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q4 / 111 Q4 轉換（兩年都 12 pts，6 個轉換）<span class="year-tag">兩年</span></div>
+  <p class="q-zh">說明如何進行下列轉換，寫出每一步驟所用試劑：</p>
+  <p class="q-en">How would you carry out the following transformations? Tell the reagents you would use in each case.</p>
+
+  <h4>常見題型與標準答案</h4>
+  <table>
+    <tr><th>起始物 → 目標</th><th>標準試劑</th><th>關鍵點</th></tr>
+    <tr><td>amide → amine</td><td>(1) excess LiAlH₄ (2) H₂O</td><td>還原 C=O 為 CH₂；過量是因 amide 還原比 ester 難</td></tr>
+    <tr><td>acid chloride → 3° alcohol</td><td>(1) excess RMgBr (2) H₂O</td><td>過量 Grignard 連續攻擊兩次，最終得 R-C(OH)R'₂</td></tr>
+    <tr><td>ester → aldehyde</td><td>(1) <span class="hl-amber">DIBAH</span>, -78°C (2) H₂O</td><td>DIBAH 只給 1 當量氫負離子，停在 aldehyde</td></tr>
+    <tr><td>ketone → carboxylic acid</td><td>(1) HCN (2) H₃O⁺ / heat（腈水解）</td><td>經 cyanohydrin → α-hydroxy acid</td></tr>
+    <tr><td>acid chloride → ester</td><td>R'-OH + <span class="hl">pyridine</span>（吸 HCl）</td><td>Pyridine 為弱鹼吸收副產物 HCl，避免逆反應</td></tr>
+    <tr><td>acid chloride → ketone</td><td>(1) LDA / enamine (2) acid chloride</td><td>α-碳當親核劑，做 Claisen-like acylation</td></tr>
+    <tr><td>arene → aryl-COOH</td><td>(1) RMgBr → CO₂ (2) H₃O⁺ <b>或</b> R-CN → H₃O⁺/heat</td><td>兩個方法都會延長一個碳；Grignard 路徑較直接</td></tr>
+  </table>
+
+  <div class="warn"><b>常見陷阱</b>：
+  <ul>
+    <li>過量 LiAlH₄ 把 ester 還原到 1° 醇，<b>無法</b>停在 aldehyde → 用 DIBAH (-78°C, 1 eq)。</li>
+    <li>過量 Grignard 把 ester 攻擊兩次到 3° 醇，<b>無法</b>停在 ketone → 用 Gilman (R₂CuLi) 或 Weinreb amide 中介。</li>
+    <li>Acid chloride + R-OH 沒加鹼會被 HCl 反向催化，產率差 → 用 pyridine 或 NEt₃ 吸 HCl。</li>
+  </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s5" class="section-heading sh-purple">
+  <span class="num">§5</span>
+  <span class="label">識別試劑 a–f（多步驟合成）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q2 / 111 Q12 識別試劑（多步驟）<span class="year-tag">兩年</span></div>
+  <p class="q-zh">寫出下列流程圖中 a–f 各步驟的試劑：</p>
+  <p class="q-en">Identify the reagents a-f in the following scheme.</p>
+  <p>111 Q12 範例流程：methylenecyclohexane → 1° 醇 → 1° 溴 → Grignard → 羧酸（COOH），另一支 alkene → 仲溴 → Grignard → 仲 COOH。</p>
+
+  <h4>關鍵試劑速記</h4>
+  <table>
+    <tr><th>轉換</th><th>標準試劑</th></tr>
+    <tr><td>烯 → anti-Markovnikov 1° 醇</td><td>(1) <span class="hl-amber">BH₃ / THF</span> (2) NaOH / H₂O₂</td></tr>
+    <tr><td>1° 醇 → 1° 溴</td><td>(1) H₃PO₄（質子化）+ Br⁻；或 PBr₃；或 HBr</td></tr>
+    <tr><td>1° 溴 → Grignard</td><td>Mg / ether（無水條件）</td></tr>
+    <tr><td>Grignard → 羧酸</td><td>(1) CO₂ (2) H₃O⁺</td></tr>
+    <tr><td>烯 → Markovnikov 2° 溴</td><td>HBr（無 peroxide）</td></tr>
+    <tr><td>2° Mg → 2° COOH</td><td>同上 CO₂ / H₃O⁺</td></tr>
+  </table>
+
+  <div class="tip"><b>記憶法</b>：「烯 → 醇 → 溴 → Mg → COOH」是把碳鏈接長一個碳的標準路徑。<br>
+  位置控制看 <b>第一步</b>（BH₃ vs HBr 或 H₂O/H⁺）。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s6" class="section-heading sh-purple">
+  <span class="num">§6</span>
+  <span class="label">連續反應 A→B→C（雙生物鹼題）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q8 / 111 Q8 連續反應預測（同題型出兩年）<span class="year-tag">兩年</span></div>
+  <p class="q-zh">起始物為含 -OCH₃（甲酯）與 -O-CO-Ph（苯甲酸酯）的雙取代 tropane / 莨菪烷類生物鹼（含 N），條件為：</p>
+  <ul>
+    <li><b>i = acid hydrolysis</b>（酸水解）→ 產物 A</li>
+    <li><b>ii = oxidation</b>（氧化）→ 產物 B</li>
+    <li><b>iii = heat</b>（加熱）→ 產物 C</li>
+  </ul>
+  <p>同時生成 <b>CH₃OH + C₆H₅CO₂H</b>。</p>
+  <p class="q-en">Please tell each reaction condition and predict the structure of A~C (hint: i = acid hydrolysis, ii = oxidation, iii = heat).</p>
+  <div class="ans">
+  <b>分析</b>：
+  <ol>
+    <li><b>i</b>：酸水解兩個酯鍵 → 釋出 CH₃OH 與 PhCOOH，留下兩個 -OH（A 為 diol 形式）。</li>
+    <li><b>ii</b>：兩個 -OH 氧化成 C=O → B 為 diketone（或 keto-alcohol）。</li>
+    <li><b>iii</b>：加熱使 β-hydroxy ketone 或 β-diketone 分子內脫水 / 重排，C 為環狀烯酮或縮醛。</li>
+  </ol>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s7" class="section-heading sh-purple">
+  <span class="num">§7</span>
+  <span class="label">機制題（占分最重）</span>
+  <span class="rule"></span>
+</div>
+
+<h3>7-1. 環縮小 / Favorskii 重排</h3>
+<div class="exam-box">
+  <div class="exam-title">107 Q9 Favorskii 環縮小（8 pts）<span class="year-tag">107</span></div>
+  <p class="q-zh">下列反應為 <b>分子內 Favorskii 反應</b>，由鹼處理 α-溴酮後產生 <b>環縮小產物</b>。寫出兩步驟與其機制。</p>
+  <p class="q-en">The following reaction involves an intramolecular Favorskii reaction followed by α-bromo ketone with base to yield a ring-contracted product. Write both steps, and their mechanisms.</p>
+  <div class="ans">
+  <b>機制要點</b>：
+  <ol>
+    <li>NaOH 拔走 α-H（非離去基側）→ enolate</li>
+    <li>enolate 之 α-C 從背面攻擊 α-C-Br → 形成 <span class="hl-amber">三員環中間體（cyclopropanone）</span> → Br⁻ 離去</li>
+    <li>OH⁻ 攻擊三員環酮羰基 → 開環，C-C 鍵斷在較取代側</li>
+    <li>質子化 → 得到比原本 <b>少一員環</b>的羧酸</li>
+  </ol>
+  考點：cyclopropanone 是關鍵中間體，畫不出來就拿不到分。
+  </div>
+</div>
+
+<h3>7-2. Beckmann 重排（→ caprolactam）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q9 Beckmann 重排（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">環己酮先轉成 oxime（用 NH₂OH），用酸處理 oxime 進行 <b>Beckmann 重排</b>得到 caprolactam。寫出所有步驟與機制。</p>
+  <p class="q-en">The following reaction involves a Beckmann reaction followed by cyclohexanone which is first converted to its oxime. Treatment of this oxime with acid induces the Beckmann rearrangement to give caprolactam. Write all steps, and their mechanisms.</p>
+  <div class="ans">
+  <b>機制</b>：
+  <ol>
+    <li>cyclohexanone + NH₂OH → <b>oxime</b>（C=N-OH）</li>
+    <li>酸質子化 -OH → -OH₂⁺（變好離去基）</li>
+    <li>反位（anti）的 C-C 鍵帶電子對 <span class="hl-amber">遷移到 N</span>，同時 H₂O 離去 → 生成 nitrilium ion（C=N⁺-R）</li>
+    <li>H₂O 攻擊 C → 加水質子轉移 → 最後互變異構（tautomer）為 amide</li>
+    <li>得到 <span class="hl">ε-caprolactam</span>（7-員環醯胺，Nylon-6 原料）</li>
+  </ol>
+  </div>
+</div>
+
+<h3>7-3. Dieckmann + 脫羧 / Claisen 縮合</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q5 機制：Claisen / Dieckmann + decarboxylation（10 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出下列轉換的機制（涉及 NaOCH₃/EtOH 與 H₃O⁺/heat）：</p>
+  <p class="q-en">Propose a mechanism to account for the following transformation. (1. NaOCH₃ / EtOH, 2. H₃O⁺ / heat)</p>
+  <div class="ans">
+  <b>機制</b>：
+  <ol>
+    <li>NaOCH₃ 拔 α-H → enolate</li>
+    <li>分子內 enolate 攻擊另一端 ester C=O → tetrahedral 中間體</li>
+    <li>OEt⁻ 離去 → β-keto ester（Dieckmann 產物）</li>
+    <li>H₃O⁺/heat 水解酯成酸 → β-keto acid</li>
+    <li>加熱 <span class="hl-amber">decarboxylation</span>（環狀過渡態，失 CO₂）→ 最終酮</li>
+  </ol>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">111 Q6 機制：malonate → γ-butyrolactone 系列（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出機制（diethyl malonate + NaOEt + 環氧乙烷, 3. H₃O⁺/heat, 4. H₃O⁺）。</p>
+  <p class="q-en">Propose a mechanism to account for the following transformation.</p>
+  <div class="ans">
+  <b>機制</b>：malonate enolate 開環攻擊 epoxide → 得 γ-hydroxy diester → 水解雙酯 → 脫羧 → 分子內酯化形成 <span class="hl-amber">γ-butyrolactone</span>（5-員 lactone）。</div>
+</div>
+
+<h3>7-4. Robinson Annulation（環化縮合）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q11 & Q14 Robinson Annulation 機制（共 14 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出下列 Robinson Annulation 反應機制（KOH / EtOH 條件）：</p>
+  <p class="q-en">Propose mechanism for following Robinson Annulation reaction.</p>
+  <div class="ans">
+  <b>三階段機制</b>：
+  <ol>
+    <li><b>Michael addition</b>：環酮 enolate 攻擊 α,β-不飽和酮的 β-碳（1,4-加成）→ 得 1,5-二酮</li>
+    <li><b>分子內 Aldol</b>：另一端 α-H 被拔，enolate 攻擊另一羰基 → β-hydroxy ketone</li>
+    <li><b>脫水（Aldol condensation）</b>：E1cb 脫水 → <span class="hl-amber">α,β-不飽和環酮</span>（六員環為主）</li>
+  </ol>
+  考點：Michael donor 是 <b>穩定 enolate</b>（如 β-酮酯或環己酮），Michael acceptor 是 α,β-不飽和羰基。
+  </div>
+</div>
+
+<h3>7-5. Wittig 反應（111 重點題）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q15 Wittig 機制 + Phosphorus Ylide 解釋（10 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出下列 Wittig 反應機制並解釋什麼是磷葉立德。</p>
+  <p class="q-en">Propose a mechanism for the following Wittig reaction and explain what Phosphorus Ylide is.</p>
+  <div class="ans">
+  <b>(1) Phosphorus Ylide 定義</b>：碳上有 <b>負電孤對</b>、磷上有 <b>正電</b>的雙性離子（R₃P⁺-CR'₂⁻ ↔ R₃P=CR'₂），由 R₃P + RCH₂X → 磷鹽 → 用強鹼（n-BuLi、NaH）拔 α-H 製得。<br>
+  <b>(2) Wittig 機制</b>：
+  <ol>
+    <li>Ylide 的 C⁻ 攻擊酮羰基 C → 形成 <span class="hl">betaine</span>（兩個電荷）</li>
+    <li>O⁻ 攻擊 P⁺ → 四員環 <span class="hl-amber">oxaphosphetane</span></li>
+    <li>環逆向 [2+2] 分解 → 釋出 <b>Ph₃P=O</b> + alkene</li>
+  </ol>
+  位置選擇性：<b>穩定化葉立德</b>（如 Ph₃P=CHCO₂R）給 <b>E-烯</b>；<b>非穩定葉立德</b>（如 Ph₃P=CHR）給 <b>Z-烯</b>。
+  </div>
+</div>
+
+<h3>7-6. 1,3-Dithiane 形成（111 Q7）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q7 機制：醛 + dithiol → 1,3-dithiane（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出機制（aldehyde + HS-CH₂CH₂-SH / H⁺ → cyclic dithioacetal）。</p>
+  <p class="q-en">Propose a mechanism to account for the following transformation.</p>
+  <div class="ans">
+  <b>機制</b>：類似 acetal 形成，但 S 取代 O：
+  <ol>
+    <li>酸質子化 C=O → C=OH⁺</li>
+    <li>HS- 攻擊 C → hemithioacetal</li>
+    <li>OH₂⁺ 離去 → thiocarbenium</li>
+    <li>第二個 HS- 攻擊 → 環狀 1,3-dithiane（含 -CHR- 連結兩個 S）</li>
+  </ol>
+  考點：dithioacetal 可以用 <b>Raney Ni</b> 還原為 -CH₂-，達成 <b>C=O → CH₂</b> 的另一種方法（與 Clemmensen / Wolff-Kishner 並列）。
+  </div>
+</div>
+
+<h3>7-7. Lactam 形成（DCC 偶合）</h3>
+<div class="exam-box">
+  <div class="exam-title">107 Q10 機制：6-aminohexanoic acid + DCC → lactam（8 pts）<span class="year-tag">107</span></div>
+  <p class="q-zh">寫出產物結構與反應機制。</p>
+  <p class="q-en">Treatment of 6-aminohexanoic acid with DCC yield lactam. Show the structure of product and reaction mechanism.</p>
+  <div class="ans">
+  <b>機制</b>：
+  <ol>
+    <li>-COOH 質子轉移到 DCC 的 N，C 上 O 攻擊 DCC 的 C=N，形成 O-acyl isourea（活化羧酸）</li>
+    <li>分子內 -NH₂ 攻擊 acyl C → 四面體中間體</li>
+    <li>離去 dicyclohexylurea (DCU) → 七員環 <span class="hl-amber">caprolactam</span></li>
+  </ol>
+  </div>
+</div>
+
+<h3>7-8. Aldol 機制（111 Q10）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q10 機制：分子內 Aldol（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">寫出機制（雙環酮 + NaOCH₃ → 含 -CHO 的雙環產物）。</p>
+  <p class="q-en">Propose a mechanism to account for the following transformation.</p>
+  <div class="ans">
+  <b>機制</b>：NaOCH₃ 拔 α-H 形成 enolate，分子內攻擊另一端 C=O，得到 β-hydroxy aldehyde → 質子轉移完成。考點：辨認哪個 α-H 最酸（兩羰基中間最酸）、追蹤立體化學。</div>
+</div>
+
+<h3>7-9. Aspirin 合成（酸度分析）</h3>
+<div class="exam-box">
+  <div class="exam-title">111 Q13 Aspirin 合成（6 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">水楊酸（salicylic acid）製備 Aspirin 的過程中，回答：(a) 水楊酸的哪個 H 最酸？(b) 預測產物 A 或 B 是主產物？(c) 為什麼主產物是它？</p>
+  <p class="q-en">The process of preparing Aspirin is carried out from the salicylic acid starting material. (a) Which hydrogen of salicylic acid is the most acidic? (b) Please predict which of A or B is the main product. (c) WHY for major product.</p>
+  <div class="ans">
+  <b>答</b>：
+  <ul>
+    <li><b>(a)</b> <span class="hl-amber">羧酸 H</span>（-COOH）最酸（pKa ≈ 3-4）；<b>酚 H</b>（-OH）次之（pKa ≈ 10）。原因：羧酸根 -COO⁻ 共振穩定電荷分布於兩個 O。</li>
+    <li><b>(b)</b> 主產物為 <span class="hl-amber">A（乙醯化在 -OH，得 acetylsalicylic acid，即 Aspirin）</span>。</li>
+    <li><b>(c)</b> NaOEt 先拔羧酸 H 形成 -COO⁻，再拔酚 -OH 變 -O⁻。<b>酚氧負離子比羧酸氧負離子更具親核性</b>（羧酸 -O⁻ 因共振電荷分散，親核性減弱），所以酚 -O⁻ 攻擊 acetic anhydride 的 C=O → 產物 A。</li>
+  </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s8" class="section-heading sh-purple">
+  <span class="num">§8</span>
+  <span class="label">NMR 推結構（107 獨有）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q11 由 ¹H NMR 推化合物結構（8 pts）<span class="year-tag">107</span></div>
+  <p class="q-zh"><b>(a) C₅H₉ClO₂</b>，IR 1735 cm⁻¹（C=O，酯）</p>
+  <table>
+    <tr><th>δ (ppm)</th><th>面積</th><th>歸屬</th></tr>
+    <tr><td>1.26</td><td>1.50（3H）</td><td>-CH₃ 接 ester O</td></tr>
+    <tr><td>2.77</td><td>1.00（2H）</td><td>-CH₂- 鄰近 C=O</td></tr>
+    <tr><td>3.76</td><td>1.00（2H）</td><td>-CH₂Cl</td></tr>
+    <tr><td>4.19</td><td>1.00（2H）</td><td>-O-CH₂-（接 ester）</td></tr>
+  </table>
+  <p class="q-en">Propose structure for that alcohols have the following ¹H NMR spectra and explain why you predicted. C₅H₉ClO₂, IR: 1735 cm⁻¹.</p>
+  <div class="ans"><b>推斷</b>：<code>Cl-CH₂-CH₂-CO-O-CH₂-CH₃</code>（3-氯丙酸乙酯）<br>
+  <b>檢驗</b>：H 數 = 2+2+2+3 = 9 ✓；分子式 C₅H₉ClO₂ ✓；C=O ≈ 1735 cm⁻¹（saturated ester） ✓。</div>
+
+  <p class="q-zh"><b>(b) C₁₁H₁₂O₂</b>，IR 1710 cm⁻¹（C=O，α,β-不飽和酯）</p>
+  <table>
+    <tr><th>δ (ppm)</th><th>面積</th><th>歸屬</th></tr>
+    <tr><td>1.32</td><td>3.00（3H）</td><td>-CH₃</td></tr>
+    <tr><td>4.24</td><td>2.00（2H）</td><td>-O-CH₂-</td></tr>
+    <tr><td>6.41</td><td>1.00（1H）</td><td>vinylic H (α 對 C=O)</td></tr>
+    <tr><td>7.36 / 7.49</td><td>3+2H</td><td>苯環 H</td></tr>
+    <tr><td>7.68</td><td>1H</td><td>vinylic H (β，與苯共軛)</td></tr>
+  </table>
+  <p class="q-en">C₁₁H₁₂O₂, IR: 1710 cm⁻¹.</p>
+  <div class="ans"><b>推斷</b>：<code>Ph-CH=CH-CO-O-CH₂CH₃</code>（<span class="hl-amber">Ethyl cinnamate</span>，肉桂酸乙酯）<br>
+  <b>檢驗</b>：5（苯）+ 2（vinylic）+ 2（OCH₂）+ 3（CH₃）= 12H ✓；α,β-不飽和酯 1710 ✓；vinylic 6.41 / 7.68 為 trans-coupling（J ≈ 16 Hz）✓。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s9" class="section-heading sh-purple">
+  <span class="num">§9</span>
+  <span class="label">推未知物 A~D（111 Q16）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">111 Q16 推 A~D 結構（8 pts）<span class="year-tag">111</span></div>
+  <p class="q-zh">已知 <b>A (C₁₀H₁₂)</b>，A 經 O₃/DMS → C₉H₁₀O；A 經 1) EtMgBr 2) H₂O → <b>B (C₁₁H₁₆O)</b>，3 個 ¹H NMR 訊號；苯 + propanoyl chloride / AlCl₃ → <b>C (C₉H₁₀O)</b>；C + (CH₃)₂NH, H₃⁺O → <b>D</b>；同時 C 經 NH₂NH₂ → D。學生草稿提示：A 為 <b>α-甲基苯乙烯異構物</b>，C 為 propiophenone，D 為 enamine 或 hydrazone。</p>
+  <p class="q-en">Identify the structures of compounds A~D, as following.</p>
+  <div class="ans"><b>分析</b>：
+  <ul>
+    <li><b>A = C₁₀H₁₂</b>，DoU = 5（一個苯 + 一個雙鍵）。O₃ 切雙鍵 → C₉H₁₀O 表示切下一個 =CH₂（CH₂O 是 formaldehyde）→ A 為 <b>α-methylstyrene</b>（Ph-C(CH₃)=CH₂）或 <b>4-vinylcumene</b>。</li>
+    <li><b>B = C₁₁H₁₆O</b>，由 A + EtMgBr → A 應該已是含 C=O 或經由 Markovnikov 加成。3 個 ¹H 訊號暗示對稱性高 → B 為 4-tert-pentyl 苯酚之類含對稱基團。</li>
+    <li><b>C = C₉H₁₀O</b>：苯 + EtCOCl/AlCl₃ → <b>propiophenone（Ph-CO-CH₂CH₃）</b>。</li>
+    <li><b>D</b>：C 與 (CH₃)₂NH/H⁺ → <b>enamine</b>（Ph-C(=CH-CH₃)-N(CH₃)₂）；或 C + NH₂NH₂ → <b>hydrazone</b>（Ph-C(=N-NH₂)-CH₂CH₃）。</li>
+  </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="s10" class="section-heading sh-purple">
+  <span class="num">§10</span>
+  <span class="label">由苯合成目標分子（107 Q7）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">107 Q7 從苯合成芳醛 / 芳基醯胺 / 芳酸（10 pts）<span class="year-tag">107</span></div>
+  <p class="q-zh">從苯出發合成目標分子（含對位羧酸與醯胺），寫出每步驟試劑。</p>
+  <p class="q-en">Predict the synthesis routes from benzene to following target molecule. Write down each step reagent as you design.</p>
+  <div class="ans"><b>常用路徑（拼裝積木）</b>：
+  <ol>
+    <li><b>苯 → 對位雙取代</b>：依需要先做 acylation（產生 m-director）還是 alkylation（產生 o,p-director）。</li>
+    <li><b>羧酸合成</b>：Friedel-Crafts acylation → Clemmensen 還原 → Ar-CH₂-R；或 Ar-Br + Mg → CO₂ → Ar-COOH。</li>
+    <li><b>醯胺合成</b>：羧酸 → SOCl₂ → acid chloride → R₂NH（如 HNEt₂）→ amide。</li>
+    <li><b>酚合成</b>：通過 Cumene / 重氮鹽（diazonium）等方法。</li>
+  </ol>
+  考點：<span class="hl-amber">取代基方向</span>（-NO₂ / -COR / -CN 為 m，-NH₂ / -OH / -OR / -R 為 o,p）。設計順序要避免方向衝突。</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="strategy" class="section-heading sh-amber">
+  <span class="num">§</span>
+  <span class="label">備考策略與重點章節對應</span>
+  <span class="rule"></span>
+</div>
+
+<h3>章節對應</h3>
+<table>
+  <tr><th>章節</th><th>連結</th><th>對應題型</th></tr>
+  <tr><td><b>Ch 20 醛酮</b></td><td><a href="ch20-aldehydes-ketones.html" style="color:var(--blue)">→ 講義</a></td><td>Wittig（111 Q15）、Baeyer-Villiger（111 Q1c）、acetal 保護（111 Q3c）、enamine（111 Q16-D）</td></tr>
+  <tr><td><b>Ch 21 羧酸衍生物</b></td><td><a href="ch21-carboxylic-acids.html" style="color:var(--blue)">→ 講義</a></td><td>名詞解釋（acid halide, ester, amide, lactone/lactam）、Fischer 酯化、DIBAH、DCC（107 Q10）、Beckmann（111 Q9）、Aspirin（111 Q13）</td></tr>
+  <tr><td><b>Ch 22 α-碳化學</b></td><td><a href="ch22-enols-enolates.html" style="color:var(--blue)">→ 講義</a></td><td>Aldol（111 Q1a, Q10）、Michael（111 Q1b）、Claisen / Dieckmann（111 Q1d, Q5, Q6）、Robinson（111 Q11, Q14）、Favorskii（107 Q9）、Haloform / HVZ（107 Q1）、Malonic ester（111 Q3a）</td></tr>
+</table>
+
+<h3>準備重點（依配分排序）</h3>
+<ol>
+  <li><b>機制題</b>（兩年共占 ~70 pts）：背熟 Aldol、Claisen、Dieckmann、Robinson、Michael、Wittig、Favorskii、Beckmann 八大機制。每題畫到 <b>cyclic intermediate / TS</b> 才拿滿分。</li>
+  <li><b>轉換設計</b>（每年 12 pts）：把上述「常用試劑表」背熟。<b>DIBAH 停在 aldehyde、過量 LiAlH₄ 到底、Gilman 停在 ketone</b> 三個對比一定要分清楚。</li>
+  <li><b>名詞解釋</b>（10-14 pts）：定義 + 試劑 + 範例三段式。</li>
+  <li><b>NMR 推結構</b>：107 有，111 沒有，但仍可能出。重點看 <b>IR (C=O 位置)</b>、<b>面積比</b>、<b>化學位移</b>三項對比表。</li>
+  <li><b>合成路徑 / 識別試劑</b>：BH₃/H₂O₂、PBr₃、Mg/CO₂、SOCl₂ 是核心試劑。</li>
+</ol>
+
+<div class="warn"><b>考前一晚</b>：別再讀新內容。把這份考古題的 <b>機制題</b>用空白紙重寫一遍（特別是 Robinson Annulation 的三階段）就好。Mc 與 Klein 的範圍幾乎重疊，這 16 + 11 題涵蓋了所有可能的考點。</div>
+
+<p style="margin-top:3rem;text-align:center;color:var(--text-dim);font-size:0.85rem">— 期末加油，好好睡覺 —</p>
+
+</main>
+</div>
+
+<script>
+const links=document.querySelectorAll(".toc-list a");
+const headings=Array.from(links).map(a=>{
+  const id=a.getAttribute("href").slice(1);
+  return{id,el:document.getElementById(id),link:a}
+}).filter(h=>h.el);
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    const h=headings.find(x=>x.el===e.target);
+    if(!h)return;
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove("active"));
+      h.link.classList.add("active");
+    }
+  })
+},{rootMargin:"-30% 0px -60% 0px"});
+headings.forEach(h=>io.observe(h.el));
+</script>
+</body>
+</html>
