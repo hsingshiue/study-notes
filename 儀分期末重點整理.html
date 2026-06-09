@@ -251,6 +251,10 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
     <li><a href="#blackbody">黑體輻射</a></li>
     <li><a href="#ch13-exercises" class="ex-link">Ch 13 習題</a></li>
     <div class="toc-divider"></div>
+    <li><a href="#ch14">Ch 14 UV-Vis 應用</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#predict" class="ex-link">★ 老師猜題 10 題</a></li>
+    <div class="toc-divider"></div>
     <li><a href="#board" class="exam-link">板書速記</a></li>
     <li><a href="#phrases" class="exam-link">必背英文</a></li>
   </ul>
@@ -260,8 +264,25 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 
 <div class="page-header">
   <h1>儀器分析 — 期末考重點整理</h1>
-  <div class="meta">Ch 9 AAS · Ch 10 ICP · CID Detector · Ch 13 UV-Vis Molecular Spectroscopy</div>
-  <div class="scope">範圍：Ch 9（含小考內容）+ Ch 10 + CID + Ch 13</div>
+  <div class="meta">Ch 9 AAS · Ch 10 ICP · CID · Ch 13 UV-Vis · Ch 14 Applications</div>
+  <div class="scope">範圍：Ch 9（含小考）+ Ch 10 + CID + Ch 13 + Ch 14</div>
+</div>
+
+<!-- ════════════ 老師考試重點提示 ════════════ -->
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.3); margin-bottom:2rem;">
+  <div>
+    <b style="color:var(--amber);">⚡ 老師考前提示重點</b><br><br>
+    <b>Ch 9 AAS</b>：教得最遠，<b>少考</b>。<b>AA 的干擾部分不考</b>（但 ICP 干擾會考）。<br>
+    <b>Ch 10 ICP</b>：<b>重點章節</b>。會考。<br>
+    　• Chemical interference <b>三種</b>類型<br>
+    　• ICP 的干擾、應用、優勢<br>
+    　• Emission「兩三種方式同時測」的部分 <b>不考</b><br>
+    <b>CID</b>：<b>會考</b>。重點：<b>4 步驟</b>（光照→量V₁→電荷轉移→量V₂→排電洞）+ 結構/操作概念。<br>
+    <b>Ch 13 UV-Vis</b>：會考 <b>Beer's law 偏離（誤差）原因</b> + <b>光源</b>（<b>D₂ 燈、Tungsten 燈</b>）。<br>
+    <b>Ch 14</b>：<b>會考</b>（分子吸光、電子躍遷、chromophore、共軛紅移）。<br>
+    <br>
+    👉 第二次小考的觀念問答題（10 題）— 老師說是必考方向，已整理在<a href="#predict" style="color:var(--amber);text-decoration:underline;">老師猜題區</a>。
+  </div>
 </div>
 
 
@@ -1478,6 +1499,305 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 </div>
 
 
+<!-- ════════════ Ch 14 ════════════ -->
+<div id="ch14" class="section-heading sh-blue">
+  <span class="num">Ch 14</span>
+  <span class="label">UV-Vis 應用 · Absorbing Species &amp; Chromophores</span>
+  <span class="rule"></span>
+</div>
+
+<p>Ch 13 講「為什麼會吸光、怎麼測 A」；Ch 14 走進<b>分子層級</b>：分子的<b>電子被光激發到哪個軌域</b>、不同 chromophore（生色團）的特徵吸收波長，以及為什麼<b>共軛</b>會讓吸收紅移。<b>會考。</b></p>
+
+<h3>14A 分子軌域（Molecular Orbitals）</h3>
+
+<p>兩個原子軌域結合產生兩個分子軌域：</p>
+
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>Bonding orbital 鍵結軌域</h4>
+    <p>能量較低、穩定，電子優先填入。對應 <b>σ、π</b>。</p>
+  </div>
+  <div class="compare-box neg">
+    <h4>Antibonding orbital 反鍵結軌域</h4>
+    <p>能量較高，標 <b>*</b>。電子被光激發後跳上去 → <b>σ*、π*</b>。</p>
+  </div>
+</div>
+
+<p>另有 <b>n 軌域</b>（nonbonding，非鍵結）— 通常是孤對電子（如 O、N、S 的 lone pair），能量介於 π 與 π* 之間，不參與鍵結。</p>
+
+<div class="reaction-box" style="text-align:center;">
+  分子軌域能階由低到高：<br>
+  <span class="formula">σ &lt; π &lt; n &lt; π* &lt; σ*</span>
+</div>
+
+<h3>14B 三種電子躍遷（Electron Transition Types）</h3>
+
+<p>UV-Vis 區的分子吸光，本質就是某顆電子<b>從佔據軌域跳到反鍵結軌域</b>。有機分子常見有三種：</p>
+
+<table>
+  <tr><th style="width:80px">類型</th><th>波長範圍</th><th>機率 / ε</th><th>說明</th></tr>
+  <tr>
+    <td><b>n → σ*</b></td>
+    <td><span class="hl">UV 區</span><br>(150–250 nm)</td>
+    <td>中等<br>ε ≈ <b>100~3000</b></td>
+    <td>能隙大，需高能 UV 光。發生機率較低。例：飽和的含 O、N、S 化合物（醇、胺、硫醚）。</td>
+  </tr>
+  <tr>
+    <td><b>n → π*</b></td>
+    <td><span class="hl-rose">UV–Vis</span><br>(250–700 nm)</td>
+    <td><b>低</b><br>ε 小（≈ 10–100）</td>
+    <td>對稱性禁制（symmetry forbidden），所以機率低、ε 低。例：羰基 C=O 的 n→π* ≈ 280 nm。</td>
+  </tr>
+  <tr>
+    <td><b>π → π*</b></td>
+    <td><span class="hl-rose">UV–Vis</span></td>
+    <td><b>高</b><br>ε ≈ <b>10³–10⁵</b></td>
+    <td>對稱性允許，吸光最強。<b>必須有不飽和官能基</b>（C=C、C=O、C≡C、苯環…）提供 π 軌域 → 這個官能基就叫 <b>chromophore（生色團）</b>。</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <div>
+    <b>為什麼不是從 σ → σ* 開始？</b><br>
+    對大部分單鍵來說，σ → σ* 的能隙過大，激發能量落在 <b>真空 UV（&lt; 200 nm）</b>。但大氣中的 O₂、N₂、H₂O 在真空 UV 區也<b>強烈吸光</b>，所以這個躍遷在一般 UV-Vis 儀上量不到 → 通常不討論。
+  </div>
+</div>
+
+<h3>14C Beer's Law 再回顧</h3>
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">A = ε · b · C</span>　<br>
+  ε（莫耳吸光係數）⟷ <b>能量吸收躍遷的機率</b>。<br>
+  π→π* 機率高 → ε 大；n→π* 對稱性禁制 → ε 小。
+</div>
+
+<h3>14D Chromophore — Table 14-1</h3>
+
+<p><b>Chromophore（生色團）</b>定義：分子中<b>能吸收 UV-Vis 光的官能基</b>。Table 14-1 列出常見 chromophore 的代表化合物、溶劑、λmax 與 εmax。</p>
+
+<details class="fig-fold" open>
+  <summary>展開 Table 14-1：常見 chromophore 的吸收特性</summary>
+  <div class="fig-body">
+    <img src="img/Table%2014-1-dark.png" alt="Table 14-1 Absorption characteristics of some common chromophores">
+    <div class="svg-caption">Table 14-1 — Absorption Characteristics of Some Common Chromophores<br>
+    包含：Alkene、Alkyne、Carbonyl、Carboxyl、Amido、Azo、Nitro、Nitroso、Nitrate</div>
+  </div>
+</details>
+
+<h4>Table 14-1 重點摘要</h4>
+<table>
+  <tr><th>Chromophore</th><th>例子</th><th>λmax (nm)</th><th>εmax</th><th>躍遷</th></tr>
+  <tr><td>Alkene</td><td>C₆H₁₃CH=CH₂</td><td>177</td><td>13,000</td><td>π→π*</td></tr>
+  <tr><td>Alkyne</td><td>C₅H₁₁C≡C-CH₃</td><td>178 / 196 / 225</td><td>10,000 / 2000 / 160</td><td>π→π*</td></tr>
+  <tr><td>Carbonyl (酮)</td><td>CH₃COCH₃</td><td>186 / <b>280</b></td><td>1000 / <b>16</b></td><td>n→σ* / <b>n→π*</b></td></tr>
+  <tr><td>Carbonyl (醛)</td><td>CH₃CHO</td><td>180 / 293</td><td>large / 12</td><td>n→σ* / n→π*</td></tr>
+  <tr><td>Carboxyl</td><td>CH₃COOH</td><td>204</td><td>41</td><td>n→π*</td></tr>
+  <tr><td>Amido</td><td>CH₃CONH₂</td><td>214</td><td>60</td><td>n→π*</td></tr>
+  <tr><td>Azo</td><td>CH₃N=NCH₃</td><td>339</td><td>5</td><td>n→π*</td></tr>
+  <tr><td>Nitro</td><td>CH₃NO₂</td><td>280</td><td>22</td><td>n→π*</td></tr>
+  <tr><td>Nitroso</td><td>C₄H₉NO</td><td>300 / 665</td><td>100 / 20</td><td>— / n→π*</td></tr>
+  <tr><td>Nitrate</td><td>C₂H₅ONO₂</td><td>270</td><td>12</td><td>n→π*</td></tr>
+</table>
+
+<h4>看 Table 14-1 兩個結論（板書必背）</h4>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>λmax 和 εmax 只是「粗略指引」</b>（rough guides）— 兩者都會被以下兩個因素影響：<br>
+  　(a) <b>分子結構細節</b>（structural details of the molecules）— 取代基、立體效應<br>
+  　(b) <b>溶劑效應</b>（solvent effect）— 極性溶劑會偏移 n→π*、π→π* 的位置
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>兩個或以上的 chromophore 共軛</b>（conjugation between two or more chromophores），會讓<b>吸收極大波長紅移</b>（shift to longer wavelength）。<br>
+  原因：共軛讓 π 軌域擴展、能隙縮小 → ΔE 小 → λ 變長。<br>
+  <b>例：</b>單一 C=C ≈ 177 nm；1,3-丁二烯（兩個共軛 C=C）≈ 217 nm；β-胡蘿蔔素（11 個共軛 C=C）≈ 450 nm（橘色）。
+</div></div>
+
+<div class="tip">
+  <b>記憶口訣：</b>「結構細節 + 溶劑」決定 λmax 的精確值；「共軛」決定 λmax 的紅移程度。<b>共軛越多，吸光越往可見光跑</b> → 這就是為什麼有顏色的有機分子幾乎都有大量共軛系統。
+</div>
+
+<h3>必背英文片語 (Ch 14)</h3>
+<div class="term">"<b>Require the presence of an unsaturated functional group to provide the π orbital</b>" — π→π* 條件（chromophore 定義）</div>
+<div class="term">"<b>Values of λmax and εmax are only rough guides, because both are influenced by structural details of the molecules and solvent effect</b>" — Table 14-1 結論一</div>
+<div class="term">"<b>Conjugation between two or more chromophores tends to cause the absorption maxima shift to longer wavelength</b>" — Table 14-1 結論二（共軛紅移）</div>
+
+
+<!-- ════════════ 老師猜題（必考問答題）════════════ -->
+<div id="predict" class="section-heading sh-amber">
+  <span class="num">★★</span>
+  <span class="label">老師猜題 · 第二次小考必考觀念問答（10 題）</span>
+  <span class="rule"></span>
+</div>
+
+<div class="callout" style="background:rgba(229,181,116,0.1); border-color:rgba(229,181,116,0.4);">
+  <div>
+    這 10 題是<b>老師明確說「會考」的觀念問答題</b>方向，等同<b>必考</b>。每題都有英文題目 + 中譯 + 完整答案。建議全部背熟。
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q1 — CID 為何適合連續分布光譜</div>
+  <p><b>EN｜</b>What is the principal property that makes a charge-injection device (CID) suitable for detecting continuously distributed radiation spectra?</p>
+  <p><b>中｜</b>CID 偵測器有什麼主要性質使它適合偵測<b>連續分布</b>的輻射光譜？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>CID 是<b>多通道偵測器</b>（multichannel array），可以同時偵測<b>整個波長範圍</b>內每個像素的訊號，且其關鍵特性是 <b>nondestructive readout</b>（非破壞性讀取）：</p>
+    <ul>
+      <li>每個 pixel 可<b>隨機存取</b>（random-access），不影響其他 pixel</li>
+      <li>同一像素可<b>多次讀取累積</b>（再讀一次不會清掉訊號）</li>
+      <li>強訊號 pixel 可短時間就讀走，弱訊號 pixel 可長時間累積</li>
+    </ul>
+    <p>→ 對於強度<b>跨幅很大的連續光譜</b>（一個 pixel 飽和、另一個 pixel 訊號極弱），CID 能<b>動態調整每個 pixel 的積分時間</b>，同時抓到強弱波段都不失真。這就是它的「主要性質」。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q2 — 高強度氬電漿為什麼是白色</div>
+  <p><b>EN｜</b>Why does a high-intensity argon plasma appear white?</p>
+  <p><b>中｜</b>為什麼高強度的氬電漿看起來是<b>白色</b>？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>氬電漿（~6000–10000 K）裡面同時發生大量發射事件：</p>
+    <ul>
+      <li><b>Ar 原子</b>從多個激發態回到基態 → 發射多條<b>線光譜</b>（橫跨整個可見光區域）</li>
+      <li><b>Ar⁺ 離子</b>的躍遷 → 更多發射線</li>
+      <li><b>Ar⁺ + e⁻ → Ar*</b> 的<b>再結合（recombination）</b>產生<b>連續背景</b>（continuum background）</li>
+    </ul>
+    <p>這些不同波長的發射加總起來<b>幾乎覆蓋整個可見光譜</b> → 各色光混合 = 白光，所以肉眼看是白色。</p>
+    <p><b>關鍵片語：</b>"<i>Background signal from recombination of argon ions with electrons</i>" + 各種離散譜線疊加 → 寬頻發射 → 白色。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q3 — Atomic Emission 為什麼需要多通道偵測器</div>
+  <p><b>EN｜</b>Why does atomic emission spectroscopy require a multichannel optical transducer?</p>
+  <p><b>中｜</b>為什麼原子發射光譜需要<b>多通道</b>光學偵測器？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>原子發射（atomic emission）的設計目的就是<b>同時量多個元素</b>（multielement analysis）。而每個元素被高溫激發後，會發出<b>許多條特徵發射線</b>（不只一條）。</p>
+    <p>若只用單通道偵測器：</p>
+    <ul>
+      <li>一次只能量一個波長 → 要逐條掃描 → 慢、且發射訊號可能在掃描期間飄移</li>
+      <li>無法<b>同時</b>讀取所有元素的訊號 → 失去 ICP 多元素同時分析的優勢</li>
+    </ul>
+    <p>所以需要 <b>multichannel transducer</b>（如 CID、CCD、PDA），能<b>一次擷取整個波長範圍</b>內所有發射線 → 同時分析多元素，速度快且效率高。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q4 — 為什麼 ICP 的離子化干擾比 flame 輕微</div>
+  <p><b>EN｜</b>Why is ionization interference generally less severe in ICP-based atomic emission spectroscopy than in flame emission spectroscopy?</p>
+  <p><b>中｜</b>為什麼 ICP 發射光譜的<b>離子化干擾</b>通常比火焰發射光譜輕微？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>因為 ICP 電漿裡<b>本來就存在極高濃度的自由電子</b>（來自 Ar → Ar⁺ + e⁻，[e⁻] ≈ 10¹⁵ /cm³），這就形成了<b>電子緩衝池</b>（electron buffer）。</p>
+    <p>對待測元素的離子化平衡：</p>
+    <div class="reaction-box" style="text-align:center;">
+      <span class="formula">M ⇌ M⁺ + e⁻</span>
+    </div>
+    <p>根據 <b>Le Chatelier 原理</b>，背景大量的 e⁻ 會<b>抑制這個正向反應</b> → M 不容易再被離子化 → 樣品分析物的離子化程度幾乎被「鎖定」，不會隨溫度或樣品基質劇烈變動。</p>
+    <p>反觀火焰中沒有這個電子緩衝（[e⁻] 低很多），稍微溫度或共存元素變化就讓離子化程度大幅改變 → 嚴重的離子化干擾。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q5 — 為什麼 ICP-AES 比 flame-AAS 更適合多元素分析</div>
+  <p><b>EN｜</b>Explain why atomic emission spectroscopy using an ICP source is better suited for multielement analysis than flame atomic absorption spectroscopy.</p>
+  <p><b>中｜</b>為什麼用 ICP 當光源的原子發射光譜（ICP-AES），比火焰 AAS 更適合<b>多元素同時分析</b>？</p>
+  <div class="key">
+    <b>Answer：</b>四大理由：
+    <div class="step-row"><div class="n">1</div><div class="body"><b>光源限制不同：</b>AAS 必須為<b>每個元素更換一支 HCL</b>（每支 HCL 只發那個元素的特徵線），一次只能測一種；ICP-AES 用<b>一個電漿光源</b>就同時激發所有元素 → 多元素並行。</div></div>
+    <div class="step-row"><div class="n">2</div><div class="body"><b>溫度高：</b>ICP 約 <b>5000–8000 K</b>（火焰僅 2000–3000 K）→ 連難原子化的元素（refractory）都能完全原子化、激發。</div></div>
+    <div class="step-row"><div class="n">3</div><div class="body"><b>線性動態範圍寬：</b>ICP 可橫跨 4–6 個數量級，火焰 AAS 只有 2–3 個數量級。</div></div>
+    <div class="step-row"><div class="n">4</div><div class="body"><b>干擾少：</b>ICP 的化學干擾、離子化干擾都很輕微（見 Q4）→ 多元素同時量也不會互相干擾。</div></div>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q6 — AAS 如何消除離子化干擾</div>
+  <p><b>EN｜</b>What strategy is commonly used to minimize the effect of ionization equilibrium, a type of chemical interference in atomic absorption spectroscopy?</p>
+  <p><b>中｜</b>AAS 中遇到「離子化平衡」這種化學干擾，常用什麼策略消除？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>加入<b>過量的「離子化抑制劑」</b>（ionization suppressor / ionization buffer）— 通常是<b>容易離子化的鹼金屬元素</b>（如 <b>K、Cs、Na</b>）。</p>
+    <p><b>原理：</b>K 等鹼金屬離子化能很低，會大量釋放電子到火焰中：</p>
+    <div class="reaction-box" style="text-align:center;">
+      <span class="formula">K → K⁺ + e⁻</span>（大量）
+    </div>
+    <p>提高火焰中 [e⁻]，根據 Le Chatelier，會壓制待測金屬 M 的離子化：</p>
+    <div class="reaction-box" style="text-align:center;">
+      <span class="formula">M ⇌ M⁺ + e⁻</span>　逆向偏移
+    </div>
+    <p>→ 待測金屬大部分維持在<b>原子態</b>（基態 atom），AAS 訊號穩定。</p>
+    <p>類似 Q4 中 ICP 利用 Ar 電子緩衝的概念，但在 AAS 中要靠人為添加抑制劑來達成。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q7 — AAS 為什麼需要 HCL 而非連續光源</div>
+  <p><b>EN｜</b>Why does atomic absorption spectrometry (AAS) require a hollow-cathode lamp rather than a continuous light source?</p>
+  <p><b>中｜</b>為什麼 AAS 需要<b>中空陰極燈（HCL）</b>，而不是用連續光源？</p>
+  <div class="key">
+    <b>Answer：</b>
+    <p>原子吸收線<b>極窄</b>（線寬 0.001–0.005 nm）。若用連續光源（如 D₂、W 燈）：</p>
+    <ul>
+      <li>單色儀可分辨的最小帶寬（~0.1 nm）<b>遠寬於</b>原子吸收線</li>
+      <li>大部分通過樣品的光<b>不在吸收線上</b>，沒有被吸收</li>
+      <li>結果 P 與 P₀ 幾乎一樣大 → <b>A ≈ log(P₀/P) ≈ 0</b> → 訊號太小無法量測</li>
+    </ul>
+    <p><b>例：</b>P₀ = 1000, P = 980 → T = 0.98 → A ≈ 0.009（幾乎讀不出來）</p>
+    <p><b>HCL 的優勢：</b>HCL 陰極塗待測元素的金屬膜，放電時發射出<b>該元素的特徵線光譜</b>，線寬甚至比樣品的吸收線更窄。線光源完全落在樣品吸收線上 → 樣品吸收效率最大 → A 顯著、可量測。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q8 — AES 為什麼不太用於 N、S、C、P 等非金屬</div>
+  <p><b>EN｜</b>Why is atomic emission spectroscopy generally not used for the analysis of nonmetal elements such as N, S, C, and P?</p>
+  <p><b>中｜</b>為什麼原子發射光譜通常<b>不用來分析 N、S、C、P</b> 等非金屬？</p>
+  <div class="key">
+    <b>Answer：</b>兩個主因：
+    <div class="step-row"><div class="n">1</div><div class="body"><b>特徵發射線落在真空 UV（&lt; 180 nm）</b>。N、S、C、P 是輕元素，能階差大、激發能高，主要發射線在遠紫外。</div></div>
+    <div class="step-row"><div class="n">2</div><div class="body"><b>空氣強烈吸收這個波段</b>。&lt; 180 nm 區域，<b>O₂、N₂、H₂O</b> 都會把光吸光光 → 在一般大氣中根本量不到訊號。要量必須用 <b>vacuum spectrometer（真空儀）</b>，把光路抽真空或灌惰性氣體，但這成本高且儀器複雜。</div></div>
+    <p><b>關鍵片語：</b>"<i>Vacuum spectrometer is necessary because air molecules absorb the emission radiations</i>"</p>
+    <p>所以對 N、S、C、P 這類非金屬，多用其他方法（如 GC-MS、燃燒分析、ICP-MS）。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q9 — ICP 觀測位置（兩段問答）</div>
+  <p><b>EN｜</b>At what radial position (expressed as a distance unit) is spectral observation typically made in ICP emission spectrometry? Based on the previous question, explain why spectral observation in ICP is typically made at this radial position?</p>
+  <p><b>中｜</b>(a) ICP 發射光譜的觀測位置在<b>離 load coil 多遠的徑向距離</b>？(b) 為什麼選在這個位置？</p>
+  <div class="key">
+    <b>Answer (a)：</b>
+    <p>典型觀測位置在 <b>load coil 上方約 15–20 mm（≈ 1.5–2 cm）</b> 的位置，在 <b>analytical observation zone</b>（也叫 normal analytical zone，溫度約 6000 K）內。這個區域位於最亮、最熱的白色核心（initial radiation zone / induction region）<b>上方</b>。</p>
+    <b>Answer (b)：</b>為什麼選這個位置？四點理由：
+    <div class="step-row"><div class="n">1</div><div class="body"><b>溫度剛好</b>：~6000 K，足以完全原子化 + 激發樣品，但<b>不會過熱</b>導致過度離子化。</div></div>
+    <div class="step-row"><div class="n">2</div><div class="body"><b>背景連續譜（continuum）大幅減弱</b>：核心區的 Ar⁺ + e⁻ recombination continuum 主要在底部，往上 15–20 mm 後背景已大幅衰減 → <b>S/N 比</b>（訊雜比）最佳。</div></div>
+    <div class="step-row"><div class="n">3</div><div class="body"><b>self-absorption（自吸收）最少</b>：核心區原子密度太高，外圍冷原子會吸回部分發射光；上方位置原子密度適中。</div></div>
+    <div class="step-row"><div class="n">4</div><div class="body"><b>化學干擾最少</b>：樣品在這個高度已歷經完整原子化過程，殘留的分子物種或氧化物最少。</div></div>
+    <p>→ 綜合考量訊號強、背景弱、干擾少，<b>15–20 mm 上方</b>是最佳觀測位置。</p>
+  </div>
+</div>
+
+<div class="exam-box">
+  <div class="exam-title">Q10 — AAS 中的光譜干擾來源</div>
+  <p><b>EN｜</b>Which of the following are sources of spectral interference in atomic absorption spectroscopy?</p>
+  <p><b>中｜</b>下列哪些是 AAS 中<b>光譜干擾</b>（spectral interference）的來源？</p>
+  <div class="key">
+    <b>Answer：</b>AAS 光譜干擾主要有四種來源：
+    <div class="step-row"><div class="n">1</div><div class="body"><b>原子吸收線重疊</b>（line overlap）— 兩個元素的吸收線恰好同波長（罕見，因為 HCL 線很窄，但如 V 與 Al、Mn 與 Ga 有報告）。</div></div>
+    <div class="step-row"><div class="n">2</div><div class="body"><b>分子吸收</b>（molecular absorption）— 燃燒產物或未分解的分子在分析波長附近吸光（如 CaOH 在 555 nm 對 Ba 553 nm 造成干擾）。</div></div>
+    <div class="step-row"><div class="n">3</div><div class="body"><b>粒狀散射</b>（particulate scattering / light scattering）— 火焰中未完全揮發的鹽顆粒或冷凝液滴<b>散射</b>光源輻射 → 假吸光訊號。</div></div>
+    <div class="step-row"><div class="n">4</div><div class="body"><b>火焰自身的背景發射 / 吸收</b>（flame background emission / absorption）— 火焰中燃燒產物（如 OH、CN、C₂）也會吸光或發光。</div></div>
+    <p><b>解法：</b>用 <b>background correction</b>（如 D₂ 背景校正、Zeeman 校正、Smith-Hieftje 法）扣除這些非分析訊號。</p>
+  </div>
+</div>
+
+<div class="callout" style="background:rgba(229,181,116,0.06); border-color:rgba(229,181,116,0.25);">
+  <div>
+    <b>背題策略：</b>10 題裡 <b>Q4、Q5、Q6 圍繞「離子化平衡」</b>是同一概念的三種問法（ICP vs 火焰、為何 ICP 好、AAS 怎麼解）— 一定要把 <b>「電子緩衝池 + Le Chatelier」</b>背熟。<b>Q1、Q3 圍繞 CID + 多通道</b>是同一概念的兩種問法。<b>Q2、Q8 圍繞「氬電漿 / 真空 UV」</b>，是 ICP 物理基礎。
+  </div>
+</div>
+
+
 <!-- ════════════ 板書速記 ════════════ -->
 <div id="board" class="section-heading sh-amber">
   <span class="num">★</span>
@@ -1556,6 +1876,42 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 
 <div class="flash">
   <b>黑體輻射 4 特性：</b>① 真正連續 ② 取決於<span class="key">表面溫度而非材料</span> ③ 原子/分子振盪產生 ④ 溫度↑ → peak 波長↓（Wien）。
+</div>
+
+<div class="flash">
+  <b>Ch 14 分子軌域能階：</b>由低到高 <span class="key">σ &lt; π &lt; n &lt; π* &lt; σ*</span>。bonding(σ,π) + nonbonding(n) + antibonding(σ*,π*)。
+</div>
+
+<div class="flash">
+  <b>Ch 14 三種電子躍遷：</b>
+  <b>① n→σ*</b>（UV、ε 100-3000、能隙大、發生機率低）
+  <b>② n→π*</b>（250-700 nm、ε 低、symmetry forbidden）
+  <b>③ π→π*</b>（ε 10³-10⁵、需 <span class="key">chromophore</span> 提供 π 軌域）。<b>σ→σ* 落在真空 UV、大氣吸收強 → 不討論。</b>
+</div>
+
+<div class="flash">
+  <b>Table 14-1 兩大結論：</b>
+  ① λmax/εmax 只是粗略指引，受<span class="key">分子結構細節 + 溶劑</span>影響。
+  ② <b>共軛（conjugation）</b>越多，吸收極大波長<span class="key">紅移</span>（shift to longer wavelength）。
+</div>
+
+<div class="flash">
+  <b>離子化干擾三問（Q4/5/6 同概念）：</b>
+  ICP 不嚴重 → Ar 提供大量 e⁻ 緩衝；
+  ICP 多元素優 → 一個光源就激發全部；
+  AAS 解法 → 加 <span class="key">K / Cs</span> 等易離子化元素提高 [e⁻]。原理都是 <span class="key">Le Chatelier</span>。
+</div>
+
+<div class="flash">
+  <b>ICP 觀測位置：</b>load coil 上方 <span class="key">~15-20 mm</span>（≈ 1.5-2 cm，analytical observation zone）。理由：溫度~6000 K 剛好、Ar recombination 背景連續譜衰減、self-absorption 少、化學干擾低。
+</div>
+
+<div class="flash">
+  <b>AAS 光譜干擾 4 來源：</b>① 線重疊 ② <span class="key">分子吸收</span>（如 CaOH 對 Ba）③ <span class="key">粒狀散射</span> ④ 火焰背景發射。解法 = D₂ / Zeeman 背景校正。
+</div>
+
+<div class="flash">
+  <b>N、S、C、P 為何不用 AES：</b>特徵線在 <span class="key">&lt; 180 nm</span>（真空 UV），空氣中的 O₂/N₂/H₂O 強烈吸收 → 需 vacuum spectrometer。
 </div>
 
 
