@@ -185,6 +185,29 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 .formula { font-family:"Cormorant Garamond",serif; font-style:italic;
   color:var(--blue); letter-spacing:0.04em; }
 
+/* ── 老師考前明確說「會考」的螢光標記 ── */
+.exam-hl { background:linear-gradient(180deg, transparent 55%, rgba(229,181,116,0.38) 55%);
+  padding:0 3px; color:var(--text); border-radius:2px; }
+.exam-hl-strong { background:linear-gradient(180deg, transparent 50%, rgba(229,181,116,0.55) 50%);
+  padding:0 3px; color:var(--text); border-radius:2px; font-weight:500; }
+.exam-tag { display:inline-block; font-size:0.7rem; vertical-align:middle;
+  background:rgba(229,181,116,0.2); color:var(--amber);
+  padding:1px 9px; border-radius:10px;
+  border:1px solid rgba(229,181,116,0.45);
+  letter-spacing:0.08em; margin-left:0.6rem; font-weight:400; }
+.no-exam-tag { display:inline-block; font-size:0.7rem; vertical-align:middle;
+  background:rgba(120,120,140,0.12); color:rgba(220,218,236,0.5);
+  padding:1px 9px; border-radius:10px;
+  border:1px dashed rgba(120,120,140,0.35);
+  letter-spacing:0.08em; margin-left:0.6rem; font-weight:400; }
+
+/* ── 章節「會考」整段微框 ── */
+.exam-section { position:relative; padding:0.4rem 0.9rem 0.6rem;
+  background:rgba(229,181,116,0.04);
+  border-left:2px solid rgba(229,181,116,0.45);
+  border-radius:0 6px 6px 0;
+  margin:0.6rem 0; }
+
 .pipeline { display:flex; flex-wrap:wrap; align-items:center; gap:0.35rem;
   margin:0.8rem 0; }
 .pipe-box { background:rgba(144,200,208,0.08); border:1px solid rgba(144,200,208,0.22);
@@ -235,23 +258,23 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
     <li><a href="#instrument">9B 儀器</a></li>
     <li><a href="#hcl">中空陰極燈</a></li>
     <li><a href="#modulation">Source Modulation</a></li>
-    <li><a href="#interference">9C 干擾</a></li>
+    <li><a href="#interference" style="opacity:0.55;">9C 干擾 <span style="font-size:0.62rem;opacity:0.7;">（不考）</span></a></li>
     <li><a href="#ch9-exercises" class="ex-link">Ch 9 習題</a></li>
     <div class="toc-divider"></div>
-    <li><a href="#icp">Ch 10 ICP</a></li>
-    <li><a href="#icp-app">ICP 應用</a></li>
+    <li><a href="#icp" class="ex-link">Ch 10 ICP</a></li>
+    <li><a href="#icp-app" class="ex-link">ICP 應用</a></li>
     <li><a href="#ch10-exercises" class="ex-link">Ch 10 習題</a></li>
     <div class="toc-divider"></div>
-    <li><a href="#cid">CID 偵測器</a></li>
+    <li><a href="#cid" class="ex-link">CID 偵測器</a></li>
     <div class="toc-divider"></div>
     <li><a href="#ch13">Ch 13 UV-Vis</a></li>
     <li><a href="#beer">Beer's Law</a></li>
-    <li><a href="#deviation">真實偏離</a></li>
-    <li><a href="#sources">光源</a></li>
+    <li><a href="#deviation" class="ex-link">真實偏離</a></li>
+    <li><a href="#sources" class="ex-link">光源 (D₂/W)</a></li>
     <li><a href="#blackbody">黑體輻射</a></li>
     <li><a href="#ch13-exercises" class="ex-link">Ch 13 習題</a></li>
     <div class="toc-divider"></div>
-    <li><a href="#ch14">Ch 14 UV-Vis 應用</a></li>
+    <li><a href="#ch14" class="ex-link">Ch 14 UV-Vis 應用</a></li>
     <div class="toc-divider"></div>
     <li><a href="#predict" class="ex-link">★ 老師猜題 10 題</a></li>
     <div class="toc-divider"></div>
@@ -277,7 +300,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
     　• Chemical interference <b>三種</b>類型<br>
     　• ICP 的干擾、應用、優勢<br>
     　• Emission「兩三種方式同時測」的部分 <b>不考</b><br>
-    <b>CID</b>：<b>會考</b>。重點：<b>4 步驟</b>（光照→量V₁→電荷轉移→量V₂→排電洞）+ 結構/操作概念。<br>
+    <b>CID</b>：<b>會考</b>。重點：<b>4 步驟</b>（光照→量V₁→電荷轉移→量V₂→排電洞）+ <b>plasma 應用</b>（為何 CID 適合偵測 ICP plasma 的連續發射光譜 → 多通道 + 非破壞讀取）。<br>
     <b>Ch 13 UV-Vis</b>：會考 <b>Beer's law 偏離（誤差）原因</b> + <b>光源</b>（<b>D₂ 燈、Tungsten 燈</b>）。<br>
     <b>Ch 14</b>：<b>會考</b>（分子吸光、電子躍遷、chromophore、共軛紅移）。<br>
     <br>
@@ -618,8 +641,12 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ 9C 干擾 ════════════ -->
 <div id="interference" class="section-heading sh-blue">
   <span class="num">9C</span>
-  <span class="label">Interference · 干擾</span>
+  <span class="label">Interference · 干擾<span class="no-exam-tag">老師說不考</span></span>
   <span class="rule"></span>
+</div>
+
+<div class="callout" style="background:rgba(120,120,140,0.06); border-color:rgba(120,120,140,0.25);">
+  <div style="color:rgba(220,218,236,0.7);"><b>※ 老師說：AAS 的干擾部分不考</b>（但 ICP 的干擾會考，見 Ch 10）。下面內容仍保留供參考。</div>
 </div>
 
 <h3>干擾分類</h3>
@@ -728,7 +755,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ Ch 10 ICP ════════════ -->
 <div id="icp" class="section-heading sh-rose">
   <span class="num">Ch 10</span>
-  <span class="label">Inductively Coupled Plasma · 電漿發射光譜</span>
+  <span class="label">Inductively Coupled Plasma · 電漿發射光譜<span class="exam-tag">老師：會考重點</span></span>
   <span class="rule"></span>
 </div>
 
@@ -770,13 +797,13 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   <div class="svg-caption">Fig 10-1 — A typical ICP source torch<br>Position A = radial viewing　Position B = axial viewing</div>
 </div>
 
-<h3>Analyte 在電漿中的行為</h3>
+<h3>Analyte 在電漿中的行為 <span class="exam-tag">會考</span></h3>
 <ul>
   <li>Sample atoms reside in plasma for <b>a few milliseconds</b>（停留數毫秒）</li>
-  <li>Experience <b>5000~8000 K</b> 高溫</li>
-  <li><b>Atomization is more complete</b>（原子化更完全）</li>
-  <li><b>Few interference occurs</b>（干擾少）</li>
-  <li><b>Ionization interference effects are small</b>（離子化干擾小）</li>
+  <li>Experience <span class="exam-hl-strong">5000~8000 K 高溫</span></li>
+  <li><span class="exam-hl"><b>Atomization is more complete</b>（原子化更完全）</span></li>
+  <li><span class="exam-hl"><b>Few interference occurs</b>（干擾少）</span></li>
+  <li><span class="exam-hl-strong"><b>Ionization interference effects are small</b>（離子化干擾小）</span> — 因 Ar 提供大量 e⁻ 緩衝，Le Chatelier 抑制 M ⇌ M⁺ + e⁻</li>
 </ul>
 <div class="reaction-box"><span class="formula">Cu → Cu⁺ + e⁻</span></div>
 
@@ -838,7 +865,10 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   </div>
 </div>
 
-<h3>發射光譜儀類型</h3>
+<h3>發射光譜儀類型 <span class="no-exam-tag">老師說不考</span></h3>
+<div class="callout" style="background:rgba(120,120,140,0.06); border-color:rgba(120,120,140,0.25);">
+  <div style="color:rgba(220,218,236,0.7);"><b>※ 老師說：emission 兩三種同時測得方式不考。</b>下面內容保留供參考。</div>
+</div>
 <ul>
   <li>1. <b>Sequential</b>（順序掃描）<span style="color:var(--text-dim);">— 過時不用</span></li>
   <li>2. <b>Simultaneous multichannel</b>（同時多通道）</li>
@@ -851,7 +881,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ ICP 應用 ════════════ -->
 <div id="icp-app" class="section-heading sh-rose">
   <span class="num">10D</span>
-  <span class="label">ICP 應用 · Application of Plasma Sources</span>
+  <span class="label">ICP 應用 · Application of Plasma Sources<span class="exam-tag">老師：會考</span></span>
   <span class="rule"></span>
 </div>
 
@@ -913,20 +943,39 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   </div>
 </details>
 
-<h3>6. Interferences 干擾</h3>
+<h3>6. Interferences 干擾 <span class="exam-tag">會考重點</span></h3>
+
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35);">
+  <div><b style="color:var(--amber);">⚡ 老師點名：ICP 的 chemical interference 三種類型</b> — 雖然整體 ICP 化學干擾比火焰低很多，但仍可細分成下面三類，<b>三種類型一定要會背</b>。</div>
+</div>
+
+<h4>ICP 化學干擾的三種類型（chemical interference 3 types）</h4>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <span class="exam-hl"><b>Easily ionized element interference（易離子化元素干擾）</b></span> — 樣品中若同時含大量易離子化元素（如 Na、K、Cs），會釋放大量電子，影響待測元素的離子化平衡。<br>
+  <span style="font-size:0.86rem; color:var(--text-dim);">在 ICP 中影響比火焰小，因為 Ar 本身已提供大量電子緩衝。</span>
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <span class="exam-hl"><b>Matrix effect（基質效應）</b></span> — 樣品中其他成分（高鹽分、有機溶劑、高黏度）影響霧化效率、原子化程度或電漿溫度分布。<br>
+  <span style="font-size:0.86rem; color:var(--text-dim);">解法：用 internal standard（例如 Yttrium 242.2 nm）抵消。</span>
+</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">
+  <span class="exam-hl"><b>Refractory compound formation（耐熔化合物形成）</b></span> — 形成不易解離的金屬氧化物（如 La₂O₃、ZrO₂），降低自由原子數。<br>
+  <span style="font-size:0.86rem; color:var(--text-dim);">在 ICP 6000-8000 K 高溫下幾乎可完全解離，所以這類干擾極少；但火焰 2000-3000 K 嚴重。</span>
+</div></div>
+
 <div class="compare-grid">
   <div class="compare-box pos">
     <h4>化學干擾與基質效應 — 很小</h4>
     <ul>
-      <li>chemical interference & matrix effect 在 ICP <b>顯著低於火焰</b>（significantly lower）</li>
+      <li><span class="exam-hl">chemical interference & matrix effect 在 ICP <b>顯著低於火焰</b>（significantly lower）</span></li>
       <li>原因：ICP 高溫 6000-8000 K 使原子化更完全</li>
     </ul>
   </div>
   <div class="compare-box neg">
     <h4>光譜干擾 — 嚴重</h4>
     <ul>
-      <li>ICP 譜線<b>非常豐富</b>（spectra are so rich in lines）</li>
-      <li><b>光譜干擾隨時可能發生</b>（spectral interference always possible）</li>
+      <li><span class="exam-hl">ICP 譜線<b>非常豐富</b>（spectra are so rich in lines）</span></li>
+      <li><span class="exam-hl-strong"><b>光譜干擾隨時可能發生</b>（spectral interference always possible）</span></li>
       <li>低濃度 analyte 時，<b>argon ion 與電子的再結合</b>產生強背景光，必須仔細校正背景</li>
     </ul>
   </div>
@@ -994,8 +1043,15 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ CID ════════════ -->
 <div id="cid" class="section-heading sh-rose">
   <span class="num">CID</span>
-  <span class="label">Charge-Injection Device · 電荷注入元件</span>
+  <span class="label">Charge-Injection Device · 電荷注入元件<span class="exam-tag">老師：必考</span></span>
   <span class="rule"></span>
+</div>
+
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35);">
+  <div><b style="color:var(--amber);">⚡ 老師明確說：CID 必考。</b>重點兩塊：
+    <b>① 4 步驟 duty cycle</b>（光照→量V₁→電荷轉移→量V₂→排電荷）；
+    <b>② 與 plasma 的關聯</b>（為何 CID 適合偵測 ICP 電漿的連續發射光譜 → 多通道偵測 + 非破壞讀取 + 隨機存取每個 pixel）。
+  </div>
 </div>
 
 <h3>CID 是什麼？</h3>
@@ -1022,7 +1078,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 </div></div>
 
 
-<h3>四步驟 Duty Cycle（Fig 7-36）— 怎麼把電洞「量」出來</h3>
+<h3>四步驟 Duty Cycle（Fig 7-36）— 怎麼把電洞「量」出來 <span class="exam-tag">必考核心</span></h3>
 <div class="svg-wrap">
   <img src="img/Fig%207-36-dark.png" alt="Fig 7-36 Duty cycle of a CID" style="max-width:85%;height:auto;">
   <div class="svg-caption">Fig 7-36 — Duty cycle of a CID: (a) 電荷形成 (b) 量 V₁ (c) 量 V₂ (d) 排出電荷</div>
@@ -1086,6 +1142,21 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <div class="callout"><div>
   <b>記憶口訣：</b>CID = 「<b>Charge Injection</b>」=「電荷可以注入回去」→ 所以可以選擇<b>讀完不破壞</b>（非破壞）或<b>注回去清空</b>（破壞）兩種模式。CCD 只能後者。
 </div></div>
+
+<h3>CID 為何適合 plasma 偵測 <span class="exam-tag">會考重點</span></h3>
+<p>ICP 電漿產生的發射光譜有兩個特性：(1) <b>跨幅極大的訊號強度</b>（同時有強弱差很多的譜線）；(2) <b>多元素同時發射多條譜線</b>。CID 的三個特性剛好對應：</p>
+
+<div class="step-row"><div class="n">1</div><div class="body">
+  <span class="exam-hl-strong"><b>多通道偵測（multichannel array）</b></span> — 一次擷取整個波長範圍，所有元素的譜線同時讀出 → 對應 ICP 的多元素發射。
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <span class="exam-hl-strong"><b>非破壞讀取（nondestructive readout）</b></span> — 同一 pixel 可重複量、訊號不消失 → 弱譜線可累積夠久；強譜線一讀就停 → <b>動態範圍極大</b>，正好應付 ICP 強弱譜線並存的問題。
+</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">
+  <span class="exam-hl-strong"><b>隨機存取（random-access）</b></span> — 每個 pixel 可獨立讀取，不必依序掃完整個 array → 即時鎖定關鍵譜線，省時間。
+</div></div>
+
+<div class="tip"><b>一句話總結（背這句）：</b>CID 的「multichannel + nondestructive readout + random-access」三大特性，使其成為偵測 plasma 連續分布輻射光譜的最佳偵測器。</div>
 
 
 <!-- ════════════ Ch 13 分子光譜 ════════════ -->
@@ -1208,8 +1279,12 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ Deviation ════════════ -->
 <div id="deviation" class="section-heading sh-rose">
   <span class="num">13C</span>
-  <span class="label">真實偏離 · Real Deviations from Beer's Law</span>
+  <span class="label">真實偏離 · Real Deviations from Beer's Law<span class="exam-tag">老師：誤差原因會考</span></span>
   <span class="rule"></span>
+</div>
+
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35);">
+  <div><b style="color:var(--amber);">⚡ 老師明確說：「Beer's law 偏離的<b>誤差原因</b>會考」</b>。兩大類務必背：<b>(I) 化學偏離</b>（溶質–溶質、溶質–溶劑、氫鍵、帶電分子、折射率）；<b>(II) 儀器偏離</b>（多色光、雜散光、不匹配池、狹縫寬度）。</div>
 </div>
 
 <p>除了 analyte 吸收，還會有 <b>reflection 反射</b> 與 <b>scattering 散射</b> 損失（Fig 13-1）：</p>
@@ -1234,21 +1309,21 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   </div>
 </div>
 
-<h3>(I) Chemical issue — 高濃度時的偏離</h3>
+<h3>(I) Chemical issue — 高濃度時的偏離 <span class="exam-tag">會考</span></h3>
 <div class="step-row"><div class="n">A</div><div class="body">
-  <b>分子間交互作用改變吸光環境</b>
+  <span class="exam-hl"><b>分子間交互作用改變吸光環境</b></span>
   <ul>
-    <li>① Solute–Solute interaction（溶質–溶質）</li>
-    <li>② Solute–Solvent interaction（溶質–溶劑）</li>
-    <li>③ Hydrogen bonding（氫鍵，溶劑含水時尤甚）</li>
+    <li>① <span class="exam-hl">Solute–Solute interaction（溶質–溶質）</span></li>
+    <li>② <span class="exam-hl">Solute–Solvent interaction（溶質–溶劑）</span></li>
+    <li>③ <span class="exam-hl">Hydrogen bonding（氫鍵，溶劑含水時尤甚）</span></li>
   </ul>
   <span style="font-size:0.85rem;">→ 改變 analyte 環境與 absorptivity（ε）</span>
 </div></div>
 <div class="step-row"><div class="n">B</div><div class="body">
-  <b>Charged molecules（帶電分子）</b> — 高濃度時粒子距離縮短，每個粒子的<b>電荷分布</b>影響鄰居 → 改變吸光能力。
+  <span class="exam-hl"><b>Charged molecules（帶電分子）</b></span> — 高濃度時粒子距離縮短，每個粒子的<b>電荷分布</b>影響鄰居 → 改變吸光能力。
 </div></div>
 <div class="step-row"><div class="n">C</div><div class="body">
-  <b>折射率影響 ε</b>（Fig 6-9：折射率隨頻率變化的色散曲線）
+  <span class="exam-hl"><b>折射率影響 ε</b></span>（Fig 6-9：折射率隨頻率變化的色散曲線）
 </div></div>
 
 <details class="fig-fold">
@@ -1263,11 +1338,11 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   <b>圖在演什麼？</b> 折射率 n 對頻率作圖，大部分區段平緩上升 → <b>normal dispersion</b>；在物質有吸收的頻率附近會劇烈起伏（陡升又陡降）→ <b>anomalous dispersion</b>。因為 ε 與折射率相關，所以介質的折射率變化會直接影響量到的 absorptivity。
 </div></div>
 
-<h3>(II) Instrumental issue — 三大來源</h3>
+<h3>(II) Instrumental issue — 三大來源 <span class="exam-tag">會考</span></h3>
 <ul>
-  <li>① <b>Polychromatic radiation</b>（多色光）— Beer's law 嚴格只在 <span class="hl">monochromatic radiation</span> 適用；實務上用 polychromatic source + grating/filter 隔出近對稱波段</li>
-  <li>② <b>Stray radiation</b>（雜散光）</li>
-  <li>③ <b>Mismatched cells</b>（不匹配的樣品池）</li>
+  <li>① <span class="exam-hl"><b>Polychromatic radiation</b>（多色光）</span>— Beer's law 嚴格只在 <span class="hl">monochromatic radiation</span> 適用；實務上用 polychromatic source + grating/filter 隔出近對稱波段</li>
+  <li>② <span class="exam-hl"><b>Stray radiation</b>（雜散光）</span></li>
+  <li>③ <span class="exam-hl"><b>Mismatched cells</b>（不匹配的樣品池）</span></li>
 </ul>
 
 <h4>①  多色光偏離 — 雙波長公式</h4>
@@ -1330,20 +1405,24 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ Sources ════════════ -->
 <div id="sources" class="section-heading sh-blue">
   <span class="num">13D</span>
-  <span class="label">Light Sources · UV-Vis 光源</span>
+  <span class="label">Light Sources · UV-Vis 光源<span class="exam-tag">老師：會考</span></span>
   <span class="rule"></span>
+</div>
+
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35);">
+  <div><b style="color:var(--amber);">⚡ 老師明確說：光源會考，重點在 <b>D₂ 燈與 Tungsten 燈</b></b>（前兩個必背：產生方式、機制、波長範圍、為什麼是連續譜）。LED 與 W-halogen 為次重點。</div>
 </div>
 
 <p>UV-Vis 需要 <b>continuum source 連續光源</b>，覆蓋 <span class="hl">190 ~ 1100 nm</span>，且 radiant power 不會在波長範圍內劇烈變化。</p>
 
-<h3>① Deuterium / Hydrogen 燈（UV）</h3>
+<h3>① Deuterium / Hydrogen 燈（UV） <span class="exam-tag">會考核心</span></h3>
 <div class="svg-wrap">
   <img src="img/Fig%2013-11-dark.png" alt="Fig 13-11 deuterium lamp" style="max-width:55%;height:auto;">
   <div class="svg-caption">Fig 13-11 — (a) Deuterium lamp 構造　(b) 光譜（peak ~225 nm，350 nm 後切換到 W 燈）</div>
 </div>
 
-<div class="step-row"><div class="n">1</div><div class="body"><b>用途：</b>UV 波長範圍（160 ~ 400 nm）</div></div>
-<div class="step-row"><div class="n">2</div><div class="body"><b>產生方式：</b>低壓 D₂ 的<b>電激發</b>（electrical excitation of deuterium at low pressure）</div></div>
+<div class="step-row"><div class="n">1</div><div class="body"><b>用途：</b><span class="exam-hl">UV 波長範圍（160 ~ 400 nm）</span></div></div>
+<div class="step-row"><div class="n">2</div><div class="body"><b>產生方式：</b><span class="exam-hl">低壓 D₂ 的<b>電激發</b>（electrical excitation of deuterium at low pressure）</span></div></div>
 <div class="step-row"><div class="n">3</div><div class="body">
   <b>機制：</b>
   <div class="reaction-box" style="margin-top:0.4rem;">
@@ -1353,22 +1432,22 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   E<sub>D′</sub>、E<sub>D″</sub> 為兩個解離出的 D 原子之動能；hν 為放出的光子能量。
 </div></div>
 <div class="step-row"><div class="n">4</div><div class="body">
-  <b>為什麼是連續譜？</b> E<sub>D′</sub> + E<sub>D″</sub> 可從 <b>0 到 E<sub>D₂*</sub> 連續變化</b>（能量怎麼分配給兩個 D 原子沒有限制） → hν 也<b>連續</b> → 連續譜。
+  <span class="exam-hl-strong"><b>為什麼是連續譜？</b> E<sub>D′</sub> + E<sub>D″</sub> 可從 <b>0 到 E<sub>D₂*</sub> 連續變化</b>（能量怎麼分配給兩個 D 原子沒有限制） → hν 也<b>連續</b> → 連續譜。</span>
 </div></div>
 <div class="step-row"><div class="n">5</div><div class="body">
-  Continuous spectrum：<span class="hl">160 ~ 400 nm</span>，peak intensity 在 <b>~225 nm</b>；>400 nm 強度弱。
+  Continuous spectrum：<span class="exam-hl">160 ~ 400 nm，peak intensity 在 ~225 nm</span>；>400 nm 強度弱。
 </div></div>
 
-<h3>② Tungsten Filament 燈（Vis / Near-IR）</h3>
+<h3>② Tungsten Filament 燈（Vis / Near-IR） <span class="exam-tag">會考核心</span></h3>
 <div class="svg-wrap">
   <img src="img/Fig%2013-12-dark.png" alt="Fig 13-12 tungsten lamp" style="max-width:55%;height:auto;">
   <div class="svg-caption">Fig 13-12 — (a) Tungsten lamp 構造　(b) 光譜（350 nm 以下強度低，~1200 nm peak）</div>
 </div>
 
-<div class="step-row"><div class="n">1</div><div class="body">能量分布近似 <b>黑體輻射</b>（temperature-dependent）— 見 Fig 6-22</div></div>
+<div class="step-row"><div class="n">1</div><div class="body"><span class="exam-hl">能量分布近似 <b>黑體輻射</b>（temperature-dependent）</span>— 見 Fig 6-22</div></div>
 <div class="step-row"><div class="n">2</div><div class="body">大多儀器操作溫度 <b>2870 K</b></div></div>
-<div class="step-row"><div class="n">3</div><div class="body">適用範圍 <b>350 ~ 2500 nm</b>，max power 在 <b>~1200 nm</b></div></div>
-<div class="step-row"><div class="n">4</div><div class="body">需<b>精確電壓控制</b>（precise voltage control）— 因為 <span class="formula">E ∝ V⁴</span></div></div>
+<div class="step-row"><div class="n">3</div><div class="body"><span class="exam-hl">適用範圍 <b>350 ~ 2500 nm</b>，max power 在 <b>~1200 nm</b></span></div></div>
+<div class="step-row"><div class="n">4</div><div class="body"><span class="exam-hl-strong">需<b>精確電壓控制</b>（precise voltage control）— 因為 <span class="formula">E ∝ V⁴</span></span></div></div>
 
 <h3>③ Tungsten–Halogen 燈（W-I₂）</h3>
 <ul>
@@ -1502,11 +1581,15 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ Ch 14 ════════════ -->
 <div id="ch14" class="section-heading sh-blue">
   <span class="num">Ch 14</span>
-  <span class="label">UV-Vis 應用 · Absorbing Species &amp; Chromophores</span>
+  <span class="label">UV-Vis 應用 · Absorbing Species &amp; Chromophores<span class="exam-tag">老師：整章會考</span></span>
   <span class="rule"></span>
 </div>
 
-<p>Ch 13 講「為什麼會吸光、怎麼測 A」；Ch 14 走進<b>分子層級</b>：分子的<b>電子被光激發到哪個軌域</b>、不同 chromophore（生色團）的特徵吸收波長，以及為什麼<b>共軛</b>會讓吸收紅移。<b>會考。</b></p>
+<div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35);">
+  <div><b style="color:var(--amber);">⚡ 老師明確說：「Ch 14 會考」</b>。本章重點：<b>分子軌域</b>、<b>三種電子躍遷</b>（n→σ*、n→π*、π→π*）、<b>chromophore 定義</b>、<b>Table 14-1</b>、<b>共軛紅移</b>。</div>
+</div>
+
+<p>Ch 13 講「為什麼會吸光、怎麼測 A」；Ch 14 走進<b>分子層級</b>：分子的<b>電子被光激發到哪個軌域</b>、不同 chromophore（生色團）的特徵吸收波長，以及為什麼<b>共軛</b>會讓吸收紅移。</p>
 
 <h3>14A 分子軌域（Molecular Orbitals）</h3>
 
@@ -1530,7 +1613,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   <span class="formula">σ &lt; π &lt; n &lt; π* &lt; σ*</span>
 </div>
 
-<h3>14B 三種電子躍遷（Electron Transition Types）</h3>
+<h3>14B 三種電子躍遷（Electron Transition Types） <span class="exam-tag">會考核心</span></h3>
 
 <p>UV-Vis 區的分子吸光，本質就是某顆電子<b>從佔據軌域跳到反鍵結軌域</b>。有機分子常見有三種：</p>
 
@@ -1570,9 +1653,9 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   π→π* 機率高 → ε 大；n→π* 對稱性禁制 → ε 小。
 </div>
 
-<h3>14D Chromophore — Table 14-1</h3>
+<h3>14D Chromophore — Table 14-1 <span class="exam-tag">會考</span></h3>
 
-<p><b>Chromophore（生色團）</b>定義：分子中<b>能吸收 UV-Vis 光的官能基</b>。Table 14-1 列出常見 chromophore 的代表化合物、溶劑、λmax 與 εmax。</p>
+<p><span class="exam-hl-strong"><b>Chromophore（生色團）定義：分子中能吸收 UV-Vis 光的官能基。</b></span>Table 14-1 列出常見 chromophore 的代表化合物、溶劑、λmax 與 εmax。</p>
 
 <details class="fig-fold" open>
   <summary>展開 Table 14-1：常見 chromophore 的吸收特性</summary>
@@ -1623,7 +1706,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 <!-- ════════════ 老師猜題（必考問答題）════════════ -->
 <div id="predict" class="section-heading sh-amber">
   <span class="num">★★</span>
-  <span class="label">老師猜題 · 第二次小考必考觀念問答（10 題）</span>
+  <span class="label">老師猜題 · 第二次小考必考觀念問答（10 題）<span class="exam-tag">老師：必考方向</span></span>
   <span class="rule"></span>
 </div>
 
