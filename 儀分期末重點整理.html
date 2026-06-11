@@ -828,7 +828,12 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   <div>
     <b>Core</b> 在 tube 上方延伸數毫米，產生 <b>continuous spectrum</b>。<br>
     機制：連續光譜 fade 後，plasma 變得 <b>optically transparent</b>，此時才能觀察到 analyte 的線光譜。<br>
-    <b>觀察位置：</b>距離 core 約 <b>15-30 mm</b>，溫度約 <b>6000 K</b>。
+    <b>板書原文（必背數值）：</b>
+    <ul style="margin-top:0.3rem;">
+      <li><b>Core（核心區）</b>位於 load coil 上方 <span class="exam-hl-strong">9 mm</span>，溫度 <b>10000 K</b></li>
+      <li><span class="exam-hl-strong"><b>Observation（觀察區）</b>位於 load coil 上方 <b>30 mm（= 3 cm）</b></span>，溫度 <b>6000 K</b></li>
+      <li><b>Radial 方向</b>（plasma 橫向寬度）約 6 mm</li>
+    </ul>
   </div>
 </div>
 
@@ -1863,13 +1868,16 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
   <p><b>中｜</b>(a) ICP 發射光譜的觀測位置在<b>離 load coil 多遠的徑向距離</b>？(b) 為什麼選在這個位置？</p>
   <div class="key">
     <b>Answer (a)：</b>
-    <p>典型觀測位置在 <b>load coil 上方約 15–20 mm（≈ 1.5–2 cm）</b> 的位置，在 <b>analytical observation zone</b>（也叫 normal analytical zone，溫度約 6000 K）內。這個區域位於最亮、最熱的白色核心（initial radiation zone / induction region）<b>上方</b>。</p>
+    <p>依老師板書（小考已考過）：典型觀測位置在 <span class="exam-hl-strong"><b>load coil 上方 30 mm（= 3 cm）</b></span>，在 <b>analytical observation zone</b> 內，溫度約 <b>6000 K</b>。這個區域位於最亮、最熱的白色核心（core，位於 9 mm 處、~10000 K）<b>上方</b>。</p>
+    <div class="callout" style="background:rgba(229,181,116,0.08); border-color:rgba(229,181,116,0.35); margin:0.4rem 0;">
+      <div><b style="color:var(--amber);">⚡ 板書數值（小考已考過，必背）：</b>core 在 <b>9 mm</b>（10000 K）/ observation 在 <b>30 mm</b>（6000 K）/ radial 橫向 6 mm。<br><b>選擇題選 3 cm 那個選項。</b>（Skoog 課本標準寫 15–20 mm，但老師板書 = 30 mm，<b>以老師為準</b>。）</div>
+    </div>
     <b>Answer (b)：</b>為什麼選這個位置？四點理由：
-    <div class="step-row"><div class="n">1</div><div class="body"><b>溫度剛好</b>：~6000 K，足以完全原子化 + 激發樣品，但<b>不會過熱</b>導致過度離子化。</div></div>
-    <div class="step-row"><div class="n">2</div><div class="body"><b>背景連續譜（continuum）大幅減弱</b>：核心區的 Ar⁺ + e⁻ recombination continuum 主要在底部，往上 15–20 mm 後背景已大幅衰減 → <b>S/N 比</b>（訊雜比）最佳。</div></div>
-    <div class="step-row"><div class="n">3</div><div class="body"><b>self-absorption（自吸收）最少</b>：核心區原子密度太高，外圍冷原子會吸回部分發射光；上方位置原子密度適中。</div></div>
-    <div class="step-row"><div class="n">4</div><div class="body"><b>化學干擾最少</b>：樣品在這個高度已歷經完整原子化過程，殘留的分子物種或氧化物最少。</div></div>
-    <p>→ 綜合考量訊號強、背景弱、干擾少，<b>15–20 mm 上方</b>是最佳觀測位置。</p>
+    <div class="step-row"><div class="n">1</div><div class="body"><b>溫度剛好</b>：~6000 K，足以完全原子化 + 激發樣品，但<b>不會過熱</b>導致過度離子化（核心區 10000 K 太高）。</div></div>
+    <div class="step-row"><div class="n">2</div><div class="body"><b>背景連續譜（continuum）大幅減弱</b>：核心區（9 mm）的 Ar⁺ + e⁻ recombination continuum 在底部最強，往上到 30 mm 後背景已大幅衰減 → <b>S/N 比</b>（訊雜比）最佳。</div></div>
+    <div class="step-row"><div class="n">3</div><div class="body"><b>self-absorption（自吸收）最少</b>：核心區原子密度太高，外圍冷原子會吸回部分發射光；30 mm 處原子密度適中。</div></div>
+    <div class="step-row"><div class="n">4</div><div class="body"><b>化學干擾最少</b>：樣品在 30 mm 高度已歷經完整原子化過程，殘留的分子物種或氧化物最少。</div></div>
+    <p>→ 綜合考量訊號強、背景弱、干擾少，<b>30 mm 上方</b>是最佳觀測位置。</p>
   </div>
 </div>
 
@@ -1999,7 +2007,7 @@ details.fig-fold .fig-body.light-bg .svg-caption { color:rgba(60,55,75,0.7); }
 </div>
 
 <div class="flash">
-  <b>ICP 觀測位置：</b>load coil 上方 <span class="key">~15-20 mm</span>（≈ 1.5-2 cm，analytical observation zone）。理由：溫度~6000 K 剛好、Ar recombination 背景連續譜衰減、self-absorption 少、化學干擾低。
+  <b>ICP 觀測位置（板書數值）：</b>load coil 上方 <span class="key">30 mm（= 3 cm）</span>，溫度 6000 K（observation zone）。對比：core 在 <span class="key">9 mm</span>（10000 K）。理由：溫度剛好、背景連續譜衰減、self-absorption 少、化學干擾低。<b>選擇題選 3 cm 選項</b>。
 </div>
 
 <div class="flash">
