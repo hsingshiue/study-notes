@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>儀器分析（二）— Ch 14 分子紫外可見吸收</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root {
+  --bg:#1C1F30; --blue:#90C8D0; --blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55); --rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14); --gold:#C4A882;
+  --green:#6ECBA8; --green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0; --purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;
+  --text:#EAE8F2; --text-mid:rgba(220,218,236,0.75);
+  --text-dim:rgba(220,218,236,0.4); --glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08); --border-lo:rgba(255,255,255,0.05);
+}
+html { scroll-behavior:smooth; }
+body { min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Noto Serif TC",serif; font-size:16px; line-height:1.9; }
+body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%, rgba(100,185,200,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%, rgba(155,130,210,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%, rgba(80,100,160,0.09) 0%, transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%); }
+
+#back-btn { position:fixed; top:18px; left:18px; z-index:999;
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.07); backdrop-filter:blur(14px);
+  border:1px solid var(--border); border-radius:20px;
+  padding:7px 16px 7px 11px; font-size:14px; font-weight:300;
+  letter-spacing:0.05em; color:var(--blue-dim); text-decoration:none;
+  font-family:"Noto Serif TC",serif; transition:background .2s,color .2s; }
+#back-btn:hover { background:rgba(144,200,208,0.12); color:var(--blue); }
+
+.layout { position:relative; z-index:1; display:grid;
+  grid-template-columns:200px 1fr; grid-template-areas:"toc main";
+  max-width:1180px; margin:0 auto; padding:0 0 0 1rem; gap:1.5rem; }
+.toc { grid-area:toc; position:sticky; top:2rem; align-self:start;
+  padding-top:5.5rem; padding-bottom:3rem; max-height:100vh; overflow-y:auto; }
+.toc-label { font-size:0.58rem; letter-spacing:0.35em; font-weight:200;
+  color:var(--text-dim); margin-bottom:1rem; }
+.toc-list { list-style:none; display:flex; flex-direction:column; gap:0.15rem; }
+.toc-list a { display:block; font-size:0.78rem; font-weight:200; line-height:1.5;
+  color:var(--text-dim); text-decoration:none; padding:0.25rem 0.6rem;
+  border-left:2px solid transparent; border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s; }
+.toc-list a:hover,.toc-list a.active { color:var(--blue);
+  border-left-color:var(--blue); background:rgba(144,200,208,0.06); }
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active { color:var(--purple);
+  border-left-color:var(--purple); background:rgba(176,158,224,0.06); }
+.toc-list a.hot-link { color:var(--rose); font-weight:400;
+  background:rgba(217,160,184,0.08); border-left-color:rgba(217,160,184,0.4); }
+.toc-list a.hot-link::before { content:""; display:inline-block;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--rose); margin-right:8px;
+  vertical-align:middle; box-shadow:0 0 6px rgba(217,160,184,0.6); }
+.toc-list a.hot-link:hover,.toc-list a.hot-link.active { color:#F2C4D2;
+  border-left-color:var(--rose); background:rgba(217,160,184,0.18); }
+.toc-divider { height:1px; margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent); }
+
+main { grid-area:main; padding:5rem 2rem 7rem; max-width:780px; }
+
+.page-header { margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border-lo); }
+.page-header h1 { font-size:2rem; font-weight:300; letter-spacing:0.1em; margin-bottom:0.3rem; }
+.page-header .meta { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.85rem; color:var(--text-dim); letter-spacing:0.1em; }
+.page-header .scope { display:inline-block; margin-top:1rem;
+  padding:0.3rem 0.95rem; border-radius:18px;
+  background:rgba(217,160,184,0.13); border:1px solid rgba(217,160,184,0.3);
+  color:var(--rose); font-size:0.78rem; font-weight:400; letter-spacing:0.08em; }
+
+.section-heading { display:flex; align-items:center; gap:0.6rem;
+  margin:3rem 0 1.4rem; scroll-margin-top:2rem; }
+.section-heading .num { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:1.25rem; flex-shrink:0; letter-spacing:0.04em; }
+.section-heading .label { font-size:0.98rem; font-weight:400; letter-spacing:0.06em; }
+.section-heading .rule { flex:1; height:1px; }
+.sh-blue .num { color:rgba(144,200,208,0.65); } .sh-blue .label { color:var(--blue); }
+.sh-blue .rule { background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent); }
+.sh-rose .num { color:rgba(217,160,184,0.65); } .sh-rose .label { color:var(--rose); }
+.sh-rose .rule { background:linear-gradient(90deg,rgba(217,160,184,0.3),transparent); }
+.sh-amber .num { color:rgba(229,181,116,0.65); } .sh-amber .label { color:var(--amber); }
+.sh-amber .rule { background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent); }
+
+h3 { font-size:0.95rem; font-weight:400; color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35); padding-left:10px;
+  margin:1.4rem 0 0.6rem; }
+h4 { font-size:0.88rem; font-weight:400; color:var(--rose);
+  margin:1rem 0 0.4rem; letter-spacing:0.04em; }
+
+.term { background:var(--glass); border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38); border-radius:8px;
+  padding:10px 16px; margin:0.55rem 0; color:var(--text-mid); font-size:0.92rem; }
+.term:nth-child(even) { border-left-color:rgba(217,160,184,0.4); }
+.term b { color:var(--text); font-weight:400; }
+.term .en { color:var(--rose); font-style:italic; font-family:"Cormorant Garamond",serif; }
+
+.tip { background:var(--green-lo); border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px; padding:10px 16px; margin:0.55rem 0;
+  color:rgba(185,235,215,0.85); font-size:0.9rem; }
+.tip b { color:var(--green); font-weight:400; }
+
+.callout { background:rgba(217,160,184,0.08); border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px; padding:12px 18px; margin:0.8rem 0;
+  color:rgba(235,205,218,0.9); font-size:0.92rem;
+  display:flex; gap:0.8rem; align-items:flex-start; }
+.callout::before { content:"★"; color:var(--rose); opacity:0.8; flex-shrink:0; margin-top:1px; }
+
+.reaction-box { background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16); border-radius:10px;
+  padding:14px 18px; margin:0.8rem 0; color:var(--text-mid); font-size:0.91rem; }
+.reaction-box b { color:var(--text); font-weight:400; }
+
+.exam-box { background:var(--purple-lo); border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px; padding:16px 18px; margin:1rem 0; font-size:0.91rem; }
+.exam-box .exam-title { font-size:0.92rem; font-weight:400; color:var(--purple);
+  margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+.exam-box .exam-title::before { content:"◆"; font-size:0.6rem; opacity:0.7; }
+.exam-box .key { margin-top:0.8rem; padding-top:0.8rem;
+  border-top:1px solid rgba(176,158,224,0.15);
+  color:rgba(210,200,240,0.85); font-size:0.88rem; }
+
+.flash { background:rgba(229,181,116,0.1); border-left:3px solid var(--amber);
+  border-radius:6px; padding:12px 18px; margin:1rem 0;
+  color:var(--text-mid); font-size:0.93rem; line-height:1.8; }
+.flash::before { content:"⚡ 30 秒速記"; display:block; color:var(--amber);
+  font-size:0.75rem; font-weight:400; letter-spacing:0.12em; margin-bottom:0.5rem; }
+.flash b { color:var(--text); font-weight:500; }
+.flash .key { background:rgba(229,181,116,0.2); padding:1px 8px; border-radius:4px;
+  color:var(--amber); font-weight:500; }
+
+.hl { background:rgba(144,200,208,0.15); color:var(--blue);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-rose { background:rgba(217,160,184,0.15); color:var(--rose);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-gold { background:rgba(196,168,130,0.15); color:var(--gold);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-green { background:rgba(110,203,168,0.15); color:var(--green);
+  padding:1px 7px; border-radius:4px; font-size:0.88em; }
+
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+th { background:rgba(144,200,208,0.1); color:var(--blue); font-weight:400;
+  padding:9px 14px; text-align:left; border-bottom:1px solid rgba(144,200,208,0.2);
+  letter-spacing:0.04em; }
+td { border:1px solid var(--border-lo); padding:9px 14px;
+  background:rgba(255,255,255,0.025); color:var(--text-mid); vertical-align:top; }
+
+ul { margin-left:1.3rem; }
+li { margin:0.3rem 0; color:var(--text-mid); font-size:0.92rem; }
+p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
+
+.svg-wrap { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; padding:14px; margin:0.9rem 0; overflow-x:auto; text-align:center; }
+.svg-wrap svg { max-width:100%; height:auto; }
+.svg-wrap img { max-width:70%; height:auto; display:block; margin:0 auto; }
+.svg-caption { font-size:0.85rem; color:rgba(220,218,236,0.55); margin-top:10px;
+  font-family:"Cormorant Garamond",serif; font-style:italic; letter-spacing:0.05em; }
+
+details.fig-fold { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; margin:0.9rem 0; overflow:hidden; }
+details.fig-fold > summary { list-style:none; cursor:pointer;
+  padding:10px 16px; color:var(--blue-dim); font-size:0.88rem;
+  display:flex; align-items:center; gap:0.5rem;
+  background:rgba(144,200,208,0.04); border-bottom:1px solid transparent;
+  transition:background .2s; user-select:none; }
+details.fig-fold > summary::-webkit-details-marker { display:none; }
+details.fig-fold > summary::before { content:"▸"; color:var(--blue);
+  font-size:0.75rem; transition:transform .2s; flex-shrink:0; }
+details.fig-fold[open] > summary::before { transform:rotate(90deg); }
+details.fig-fold[open] > summary { border-bottom-color:var(--border-lo);
+  background:rgba(144,200,208,0.07); }
+details.fig-fold > summary:hover { background:rgba(144,200,208,0.1); }
+details.fig-fold .fig-body { padding:14px; text-align:center; }
+details.fig-fold .fig-body img { max-width:70%; height:auto; display:block; margin:0 auto; }
+details.fig-fold .fig-body img.wide { max-width:100%; border-radius:6px; }
+
+.formula { font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--blue); letter-spacing:0.04em; }
+
+.exam-tag { display:inline-block; font-size:0.7rem; vertical-align:middle;
+  background:rgba(229,181,116,0.2); color:var(--amber);
+  padding:1px 9px; border-radius:10px;
+  border:1px solid rgba(229,181,116,0.45);
+  letter-spacing:0.08em; margin-left:0.6rem; font-weight:400; }
+
+.step-row { display:flex; gap:0.7rem; margin:0.6rem 0; align-items:flex-start; }
+.step-row .n { flex-shrink:0; width:1.7rem; height:1.7rem;
+  background:rgba(110,203,168,0.15); color:var(--green);
+  border:1px solid rgba(110,203,168,0.3); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.92rem; }
+.step-row .body { color:var(--text-mid); font-size:0.92rem; flex:1; }
+
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:0.8rem 0; }
+@media(max-width:620px){ .compare-grid{ grid-template-columns:1fr; } }
+.compare-box { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; padding:14px 18px; }
+.compare-box.pos { border-left:3px solid rgba(110,203,168,0.5); }
+.compare-box.neg { border-left:3px solid rgba(217,160,184,0.5); }
+.compare-box h4 { margin:0 0 0.6rem; font-size:0.9rem; }
+.compare-box.pos h4 { color:var(--green); }
+.compare-box.neg h4 { color:var(--rose); }
+.compare-box ul { margin-left:1rem; }
+
+.src-note { font-size:0.72rem; color:var(--text-dim); font-family:"Cormorant Garamond",serif;
+  font-style:italic; letter-spacing:0.06em; margin-top:0.2rem; }
+
+@media(max-width:780px) {
+  .layout { grid-template-columns:1fr; grid-template-areas:"main"; padding:0 1.2rem; }
+  .toc { display:none; }
+  main { padding-top:4.5rem; padding-left:0.5rem; padding-right:0.5rem; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#mo">14A 分子軌域</a></li>
+    <li><a href="#transition" class="hot-link">14B 三種電子躍遷</a></li>
+    <li><a href="#chromophore">14C Chromophore · Table 14-1</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#inorganic" class="hot-link">14D 無機物種的吸光</a></li>
+    <li><a href="#dd">d–d 躍遷 · Fig 14-3</a></li>
+    <li><a href="#ct">電荷轉移吸收</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#factors" class="hot-link">14E 影響吸收的因素</a></li>
+    <li><a href="#aromatic">芳香族三帶 · Table 14-4</a></li>
+    <li><a href="#auxochrome" class="hot-link">14F Auxochrome</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#board" class="exam-link">板書原圖</a></li>
+    <li><a href="#phrases" class="exam-link">必背英文</a></li>
+    <li><a href="#flash" class="exam-link">30 秒速記</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<div class="page-header">
+  <h1>儀器分析（二）— Ch 14</h1>
+  <div class="meta">Molecular UV-Vis Absorption · Absorbing Species · Chromophore &amp; Auxochrome</div>
+  <div class="scope">來源：手寫筆記 4 頁 + 板書 2 張 + 課本 Fig 14-3、Table 14-1、Table 14-4</div>
+</div>
+
+<p>本章回答一個問題：<b>分子「為什麼」會吸收 UV-Vis 光？</b>答案是電子從佔據的分子軌域被激發到反鍵結軌域。接著看有機分子（chromophore）、無機離子與錯合物（d–d、電荷轉移）各自靠哪種躍遷吸光，最後看取代基與溶劑如何把吸收峰推移。</p>
+
+<!-- ════════════ 14A ════════════ -->
+<div id="mo" class="section-heading sh-blue">
+  <span class="num">14A</span>
+  <span class="label">分子軌域 · Molecular Orbitals</span>
+  <span class="rule"></span>
+</div>
+
+<p>兩個原子軌域（如兩個 s 軌域）結合，會產生<b>兩個</b>分子軌域，一個能量降低、一個能量升高：</p>
+
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>Bonding orbital 鍵結軌域（σ、π）</h4>
+    <p>能量比原本的原子軌域<b>低</b>，電子密度集中在兩核之間。基態電子優先填入。</p>
+  </div>
+  <div class="compare-box neg">
+    <h4>Antibonding orbital 反鍵結軌域（σ*、π*）</h4>
+    <p>能量比原子軌域<b>高</b>，兩核之間有節面。基態時空著，電子吸光後<b>跳上來</b>。</p>
+  </div>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 640 210" width="640" height="210" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <defs>
+    <marker id="arrE" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EAE8F2"/></marker>
+    <marker id="arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D9A0B8"/></marker>
+  </defs>
+  <!-- left: s + s -> sigma / sigma* -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none">
+    <circle cx="50" cy="105" r="18"/><circle cx="110" cy="105" r="18"/>
+  </g>
+  <text x="50" y="110" fill="#EAE8F2" font-size="13" text-anchor="middle">s</text>
+  <text x="110" y="110" fill="#EAE8F2" font-size="13" text-anchor="middle">s</text>
+  <text x="80" y="150" fill="rgba(220,218,236,0.6)" font-size="11" text-anchor="middle">2 atomic orbitals</text>
+  <path d="M140,105 L180,105" stroke="#D9A0B8" stroke-width="1.4" marker-end="url(#arrR)"/>
+  <!-- sigma* (lobes with node) -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="rgba(217,160,184,0.12)">
+    <ellipse cx="215" cy="55" rx="14" ry="12"/><ellipse cx="250" cy="55" rx="14" ry="12"/>
+  </g>
+  <line x1="232.5" y1="38" x2="232.5" y2="72" stroke="#D9A0B8" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="275" y="59" fill="#D9A0B8" font-size="13" font-style="italic">σ*  antibonding</text>
+  <!-- sigma (merged) -->
+  <ellipse cx="232" cy="150" rx="36" ry="16" stroke="#7BABB2" stroke-width="1.6" fill="rgba(144,200,208,0.12)"/>
+  <text x="275" y="154" fill="#90C8D0" font-size="13" font-style="italic">σ  bonding</text>
+  <!-- energy ladder right -->
+  <line x1="450" y1="190" x2="450" y2="25" stroke="#EAE8F2" stroke-width="1.4" marker-end="url(#arrE)"/>
+  <text x="440" y="20" fill="#EAE8F2" font-size="12" font-style="italic">E</text>
+  <g stroke-width="2">
+    <line x1="480" y1="45" x2="540" y2="45" stroke="#D9A0B8"/>
+    <line x1="480" y1="75" x2="540" y2="75" stroke="#D9A0B8"/>
+    <line x1="480" y1="108" x2="540" y2="108" stroke="#EAE8F2"/>
+    <line x1="480" y1="138" x2="540" y2="138" stroke="#90C8D0"/>
+    <line x1="480" y1="172" x2="540" y2="172" stroke="#90C8D0"/>
+  </g>
+  <g font-size="13" font-style="italic">
+    <text x="550" y="49" fill="#D9A0B8">σ*</text>
+    <text x="550" y="79" fill="#D9A0B8">π*</text>
+    <text x="550" y="112" fill="#EAE8F2">n</text>
+    <text x="550" y="142" fill="#90C8D0">π</text>
+    <text x="550" y="176" fill="#90C8D0">σ</text>
+  </g>
+  <text x="585" y="112" fill="rgba(220,218,236,0.55)" font-size="10">nonbonding</text>
+  <!-- electrons in occupied -->
+  <g stroke="#EAE8F2" stroke-width="1.2">
+    <line x1="505" y1="101" x2="505" y2="115"/><line x1="515" y1="101" x2="515" y2="115"/>
+    <line x1="505" y1="131" x2="505" y2="145"/><line x1="515" y1="131" x2="515" y2="145"/>
+    <line x1="505" y1="165" x2="505" y2="179"/><line x1="515" y1="165" x2="515" y2="179"/>
+  </g>
+</svg>
+<div class="svg-caption">左：兩個 s 軌域結合成 σ（能量降）與 σ*（能量升）。右：有機分子軌域能階 σ &lt; π &lt; n &lt; π* &lt; σ*</div>
+</div>
+
+<div class="term"><b>n 軌域</b> <span class="en">nonbonding orbital</span> — 通常是 O、N、S 上的孤對電子，不參與鍵結，能量介於 π 與 π* 之間。</div>
+
+<div class="reaction-box" style="text-align:center;">
+  <span class="formula">A = ε · b · c</span><br>
+  <b>ε（莫耳吸光係數）</b>反映的是<b>該躍遷發生的機率</b>（筆記註記：ε ↔ P<sub>A</sub>）。機率高 → ε 大 → 吸光強。
+</div>
+
+<!-- ════════════ 14B ════════════ -->
+<div id="transition" class="section-heading sh-blue">
+  <span class="num">14B</span>
+  <span class="label">有機分子的典型電子躍遷 · Typical Electron Transitions<span class="exam-tag">核心</span></span>
+  <span class="rule"></span>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 520 220" width="520" height="220" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <defs>
+    <marker id="arrB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#90C8D0"/></marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B09EE0"/></marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6ECBA8"/></marker>
+    <marker id="arrW" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EAE8F2"/></marker>
+  </defs>
+  <line x1="60" y1="200" x2="60" y2="25" stroke="#EAE8F2" stroke-width="1.4" marker-end="url(#arrW)"/>
+  <text x="50" y="20" fill="#EAE8F2" font-size="12" font-style="italic">E</text>
+  <!-- hv wave -->
+  <path d="M15,150 q5,-8 10,0 t10,0 t10,0" stroke="#90C8D0" stroke-width="1.3" fill="none"/>
+  <text x="18" y="172" fill="#90C8D0" font-size="11" font-style="italic">hν</text>
+  <g stroke-width="2">
+    <line x1="90" y1="40" x2="170" y2="40" stroke="#D9A0B8"/>
+    <line x1="90" y1="72" x2="170" y2="72" stroke="#D9A0B8"/>
+    <line x1="90" y1="110" x2="170" y2="110" stroke="#EAE8F2"/>
+    <line x1="90" y1="145" x2="170" y2="145" stroke="#90C8D0"/>
+    <line x1="90" y1="185" x2="170" y2="185" stroke="#90C8D0"/>
+  </g>
+  <g font-size="13" font-style="italic">
+    <text x="180" y="44" fill="#D9A0B8">σ*</text>
+    <text x="180" y="76" fill="#D9A0B8">π*</text>
+    <text x="180" y="114" fill="#EAE8F2">n</text>
+    <text x="180" y="149" fill="#90C8D0">π</text>
+    <text x="180" y="189" fill="#90C8D0">σ</text>
+  </g>
+  <!-- transitions -->
+  <line x1="110" y1="110" x2="110" y2="43" stroke="#90C8D0" stroke-width="1.5" marker-end="url(#arrB)"/>
+  <line x1="135" y1="110" x2="135" y2="75" stroke="#B09EE0" stroke-width="1.5" marker-end="url(#arrP)"/>
+  <line x1="158" y1="145" x2="158" y2="75" stroke="#6ECBA8" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <!-- legend -->
+  <g font-size="13">
+    <text x="240" y="60" fill="#90C8D0">① n → σ*</text>
+    <text x="330" y="60" fill="rgba(220,218,236,0.7)" font-size="11">能隙大 · UV · ε 100~3000</text>
+    <text x="240" y="100" fill="#B09EE0">② n → π*</text>
+    <text x="330" y="100" fill="rgba(220,218,236,0.7)" font-size="11">UV-Vis 250~700 nm · 機率低 · ε 小</text>
+    <text x="240" y="140" fill="#6ECBA8">③ π → π*</text>
+    <text x="330" y="140" fill="rgba(220,218,236,0.7)" font-size="11">機率高 · ε 大 · 需不飽和官能基</text>
+    <text x="240" y="185" fill="rgba(220,218,236,0.45)" font-size="11">✗ σ → σ* 能隙太高，落在真空 UV，一般儀器不討論</text>
+  </g>
+</svg>
+<div class="svg-caption">Typical electron transitions in organic molecules（依手寫筆記 p.1 重繪）</div>
+</div>
+
+<div class="callout">
+  <div>
+    <b>Why not transition beginning at σ?</b><br>
+    對大部分單鍵而言，<b>激發能量太高</b>（excitation energy is sufficiently high）→ 吸收落在<b>遠紫外 / 真空 UV 區</b>。<b>但大氣本身也強烈吸收這段 UV</b>（atmosphere also absorbs UV radiation strongly），一般 UV-Vis 儀器量不到，所以 σ → σ* 不在討論範圍。
+  </div>
+</div>
+
+<h3>三種躍遷的特性比較</h3>
+<table>
+  <tr><th style="width:90px">躍遷</th><th>能隙 / 波長</th><th>機率 &amp; ε</th><th>需要的結構</th></tr>
+  <tr>
+    <td><b>① n → σ*</b></td>
+    <td><span class="hl">高能隙</span>，吸收波長落在 <b>UV 區</b></td>
+    <td>較不容易發生（less probably occur）<br>ε ≈ <b>100 ~ 3000</b> L·mol⁻¹·cm⁻¹（<b>moderate</b>）</td>
+    <td>飽和分子上有孤對電子的雜原子（醇、胺、醚、硫醚、鹵化物）</td>
+  </tr>
+  <tr>
+    <td><b>② n → π*</b></td>
+    <td>能隙把吸收帶推進 <span class="hl-rose">UV-Vis 區（250 ~ 700 nm）</span></td>
+    <td><b>低機率</b>（P small, ε low）<br>ε ≈ 10 ~ 100</td>
+    <td>雜原子孤對電子 + 相鄰 π 鍵（C=O、N=N、N=O）</td>
+  </tr>
+  <tr>
+    <td><b>③ π → π*</b></td>
+    <td>UV-Vis 區</td>
+    <td><b>高機率</b>（high ε）<br>ε ≈ 10³ ~ 10⁵</td>
+    <td><b>必須有不飽和官能基</b>提供 π 軌域 → 這個官能基就是 <span class="hl-rose">chromophore</span></td>
+  </tr>
+</table>
+
+<div class="tip">
+  <b>記法：</b>三種躍遷都是「把電子送進 <b>π* 或 σ*</b>」。從 n 出發 → 波長長但 ε 小（n→π*）或波長短（n→σ*）；從 π 出發到 π* → 最強、最常用來做定量的吸收。
+</div>
+
+<!-- ════════════ 14C ════════════ -->
+<div id="chromophore" class="section-heading sh-blue">
+  <span class="num">14C</span>
+  <span class="label">Chromophore 生色團 · Table 14-1</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term"><b>Chromophore</b> <span class="en">生色團</span> — 分子中<b>提供 π 軌域、能吸收 UV-Vis 光的不飽和官能基</b>（C=C、C≡C、C=O、N=N、N=O、苯環…）。π → π* 躍遷需要它的存在。</div>
+
+<details class="fig-fold" open>
+  <summary>Table 14-1：常見 chromophore 的吸收特性（課本原表）</summary>
+  <div class="fig-body">
+    <img src="img/Table%2014-1-dark.png" alt="Table 14-1 Absorption characteristics of some common chromophores">
+    <div class="svg-caption">Table 14-1 — Absorption Characteristics of Some Common Chromophores</div>
+  </div>
+</details>
+
+<h4>Table 14-1 重點摘要</h4>
+<table>
+  <tr><th>Chromophore</th><th>例子</th><th>溶劑</th><th>λmax (nm)</th><th>εmax</th><th>躍遷</th></tr>
+  <tr><td>Alkene</td><td>C₆H₁₃CH=CH₂</td><td>n-Heptane</td><td>177</td><td>13,000</td><td>π→π*</td></tr>
+  <tr><td>Alkyne</td><td>C₅H₁₁C≡C–CH₃</td><td>n-Heptane</td><td>178 / 196 / 225</td><td>10,000 / 2000 / 160</td><td>π→π* / — / —</td></tr>
+  <tr><td>Carbonyl（酮）</td><td>CH₃COCH₃</td><td>n-Hexane</td><td>186 / <b>280</b></td><td>1000 / <b>16</b></td><td>n→σ* / <b>n→π*</b></td></tr>
+  <tr><td>Carbonyl（醛）</td><td>CH₃CHO</td><td>n-Hexane</td><td>180 / 293</td><td>large / 12</td><td>n→σ* / n→π*</td></tr>
+  <tr><td>Carboxyl</td><td>CH₃COOH</td><td>Ethanol</td><td>204</td><td>41</td><td>n→π*</td></tr>
+  <tr><td>Amido</td><td>CH₃CONH₂</td><td>Water</td><td>214</td><td>60</td><td>n→π*</td></tr>
+  <tr><td>Azo</td><td>CH₃N=NCH₃</td><td>Ethanol</td><td>339</td><td>5</td><td>n→π*</td></tr>
+  <tr><td>Nitro</td><td>CH₃NO₂</td><td>Isooctane</td><td>280</td><td>22</td><td>n→π*</td></tr>
+  <tr><td>Nitroso</td><td>C₄H₉NO</td><td>Ethyl ether</td><td>300 / 665</td><td>100 / 20</td><td>— / n→π*</td></tr>
+  <tr><td>Nitrate</td><td>C₂H₅ONO₂</td><td>Dioxane</td><td>270</td><td>12</td><td>n→π*</td></tr>
+</table>
+
+<div class="tip">
+  <b>看表就能驗證 14B：</b>π→π*（alkene 177 nm、ε 13,000）波長短但 ε 超大；n→π*（酮 280 nm、ε 16）波長長但 ε 極小；n→σ*（酮 186 nm、ε 1000）介於中間。
+</div>
+
+<!-- ════════════ 14D ════════════ -->
+<div id="inorganic" class="section-heading sh-rose">
+  <span class="num">14D</span>
+  <span class="label">無機物種的吸光 · Absorption of Inorganic Species<span class="exam-tag">板書</span></span>
+  <span class="rule"></span>
+</div>
+
+<h3>陰離子 Anions</h3>
+<div class="step-row"><div class="n">1</div><div class="body">
+  陰離子的吸光是<b>非鍵結電子被激發的結果</b>（a result of excited nonbonding electrons）→ 走 <b>n → σ*</b> 與 <b>n → π*</b>。
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>Nitrate（NO₃⁻）✗</b> — 板書特別標記硝酸根「不算」典型可用的吸收（其 n→π* 落在 313 nm 附近且 ε 極低，分析上不好用）。
+</div></div>
+
+<h3 id="dd">陽離子 Cations ①：前兩列過渡金屬離子 — d–d 躍遷</h3>
+<p><b>第一、第二過渡系列</b>（the first two transition series）的離子，因為 d 軌域<b>部分填滿</b>（與氧化態有關），會在<b>可見光區吸收寬帶</b>（absorb <b>broad bands</b> of visible radiation）→ 這就是過渡金屬水溶液有顏色的原因。</p>
+
+<details class="fig-fold" open>
+  <summary>Fig 14-3：過渡金屬離子水溶液的吸收光譜（課本原圖）</summary>
+  <div class="fig-body">
+    <img src="img/Fig%2014-3-dark.png" alt="Fig 14-3 Absorption spectra of aqueous solutions of transition metal ions" style="max-width:62%;">
+    <div class="svg-caption">Figure 14-3 — Absorption spectra of aqueous solutions of transition metal ions（Ni²⁺、Cr₂O₇²⁻、Cu²⁺、Co²⁺）</div>
+  </div>
+</details>
+
+<table>
+  <tr><th>離子</th><th>吸收位置（讀圖）</th><th>ε 量級</th><th>觀察</th></tr>
+  <tr><td>Ni²⁺</td><td>~400 nm 主峰 + 650–720 nm 寬帶</td><td>~4（很小）</td><td>d–d 躍遷，寬而弱</td></tr>
+  <tr><td>Cr₂O₇²⁻</td><td>&lt; 400 nm 強吸收，往長波長急降</td><td>~8000（很大）</td><td><b>不是 d–d</b>（Cr(VI) 為 d⁰）→ 是<b>電荷轉移</b>吸收，所以 ε 大</td></tr>
+  <tr><td>Cu²⁺</td><td>600 nm 以上單調上升，往紅光/近紅外延伸</td><td>~10</td><td>吸紅光 → 溶液呈藍色</td></tr>
+  <tr><td>Co²⁺</td><td>~510 nm 寬帶</td><td>~4</td><td>吸綠光 → 溶液呈粉紅色</td></tr>
+</table>
+
+<div class="callout">
+  <div><b>讀圖重點：</b>四張圖的 y 軸尺度不同。三個 d–d 吸收（Ni²⁺、Cu²⁺、Co²⁺）ε 只有個位數到 10，而 Cr₂O₇²⁻ 的 ε 高達數千 → 同一張圖就在對比「d–d 弱、電荷轉移強」。</div>
+</div>
+
+<h3>陽離子 ②：錯合物 Complexes</h3>
+<p>錯合物的吸收牽涉<b>已填滿與未填滿 d 軌域之間的躍遷</b>（transition between <span class="hl-green">filled</span> and <span class="hl-green">unfilled</span> d-orbital），而這些 d 軌域的能量<b>取決於配位基</b>（energies that depend on the ligands）→ 換配位基，顏色就變。</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 640 230" width="640" height="230" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <!-- [Fe(CN)6]3- -->
+  <g transform="translate(0,5)">
+    <g stroke="#7BABB2" stroke-width="1.6">
+      <line x1="130" y1="110" x2="130" y2="52"/>
+      <line x1="130" y1="110" x2="130" y2="168"/>
+      <line x1="130" y1="110" x2="72" y2="110"/>
+      <line x1="130" y1="110" x2="188" y2="110"/>
+      <line x1="130" y1="110" x2="95" y2="140" stroke-dasharray="4 3"/>
+      <line x1="130" y1="110" x2="165" y2="80"/>
+    </g>
+    <circle cx="130" cy="110" r="13" fill="#1C1F30" stroke="#C4A882" stroke-width="1.6"/>
+    <text x="130" y="115" fill="#C4A882" font-size="13" font-weight="700" text-anchor="middle">Fe</text>
+    <g fill="#6ECBA8" font-size="11" font-weight="700" text-anchor="middle">
+      <text x="130" y="46">C≡N</text><text x="130" y="184">C≡N</text>
+      <text x="52" y="114">N≡C</text><text x="208" y="114">C≡N</text>
+      <text x="80" y="156">N≡C</text><text x="182" y="72">C≡N</text>
+    </g>
+    <text x="222" y="40" fill="#EAE8F2" font-size="14">3−</text>
+    <path d="M28,30 L20,30 L20,200 L28,200" stroke="#EAE8F2" stroke-width="1.3" fill="none"/>
+    <path d="M212,30 L220,30 L220,200 L212,200" stroke="#EAE8F2" stroke-width="1.3" fill="none"/>
+    <text x="120" y="215" fill="rgba(220,218,236,0.6)" font-size="11" text-anchor="middle">[Fe(CN)₆]³⁻ · Fe³⁺ + 6 CN⁻ · d–d 躍遷</text>
+  </g>
+  <!-- right: ligand field splitting -->
+  <g transform="translate(300,0)">
+    <text x="0" y="30" fill="#D9A0B8" font-size="12">配位基場使 d 軌域分裂</text>
+    <g stroke="#EAE8F2" stroke-width="2">
+      <line x1="20" y1="120" x2="50" y2="120"/><line x1="55" y1="120" x2="85" y2="120"/><line x1="90" y1="120" x2="120" y2="120"/>
+      <line x1="95" y1="75" x2="125" y2="75"/><line x1="130" y1="75" x2="160" y2="75"/>
+      <line x1="20" y1="150" x2="50" y2="150"/><line x1="55" y1="150" x2="85" y2="150"/><line x1="90" y1="150" x2="120" y2="150"/>
+    </g>
+    <text x="60" y="140" fill="rgba(220,218,236,0.5)" font-size="10" text-anchor="middle">free ion（5 個 d 簡併）</text>
+    <line x1="150" y1="120" x2="175" y2="110" stroke="rgba(220,218,236,0.35)" stroke-width="1" stroke-dasharray="2 2"/>
+    <g stroke="#90C8D0" stroke-width="2">
+      <line x1="200" y1="95" x2="230" y2="95"/><line x1="235" y1="95" x2="265" y2="95"/>
+    </g>
+    <g stroke="#90C8D0" stroke-width="2">
+      <line x1="185" y1="160" x2="215" y2="160"/><line x1="220" y1="160" x2="250" y2="160"/><line x1="255" y1="160" x2="285" y2="160"/>
+    </g>
+    <line x1="232" y1="160" x2="232" y2="98" stroke="#D9A0B8" stroke-width="1.4" marker-end="url(#arrR2)"/>
+    <defs><marker id="arrR2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D9A0B8"/></marker></defs>
+    <text x="275" y="99" fill="#90C8D0" font-size="11">unfilled</text>
+    <text x="295" y="164" fill="#90C8D0" font-size="11">filled</text>
+    <text x="245" y="135" fill="#D9A0B8" font-size="11" font-style="italic">Δ ← 由配位基決定</text>
+    <text x="150" y="200" fill="rgba(220,218,236,0.6)" font-size="11" text-anchor="middle">hν = Δ → 吸收落在可見光 → 有顏色</text>
+  </g>
+</svg>
+<div class="svg-caption">板書例子 [Fe(CN)₆]³⁻；右側示意配位基場分裂：Δ 大小由配位基決定，吸收波長跟著變</div>
+</div>
+
+<div class="term"><b>板書列出的錯合物例子</b>：<span class="formula">[Fe(CN)₆]³⁻</span>（Fe³⁺，六個 CN⁻）、<span class="formula">[Ni(H₂O)₄]²⁺</span>（板書寫 4 個水，課本水合離子常寫成 6 配位）、<span class="formula">[Fe(SCN)ₙ]³⁻ⁿ</span>（電荷轉移的例子，見下）。</div>
+
+<h3 id="ct">陽離子 ③：電荷轉移吸收 Charge-Transfer Absorption</h3>
+<p>錯合物還有另一種吸光方式：<b>電子從「電子給體」轉移到「電子受體」</b>（electron donor → electron acceptor）。給體通常是配位基、受體通常是金屬離子（或反過來）。</p>
+
+<div class="reaction-box">
+  <b>例：<span class="formula">[Fe(SCN)ₙ]³⁻ⁿ</span></b>（血紅色）— SCN⁻ 的電子被激發到 Fe³⁺ 的空軌域 → 瞬間形成 Fe²⁺ 與 SCN 自由基的激發態。<br>
+  <b>例：<span class="formula">Cr₂O₇²⁻</span></b>（Fig 14-3 第二張）— Cr(VI) 沒有 d 電子，卻在 &lt; 400 nm 有 ε ≈ 8000 的強吸收 → 就是 O → Cr 的電荷轉移。
+</div>
+
+<div class="compare-grid">
+  <div class="compare-box pos">
+    <h4>d–d 躍遷</h4>
+    <ul>
+      <li>電子在<b>同一個金屬</b>的 d 軌域之間跳</li>
+      <li>對稱性禁制 → <b>ε 小</b>（1 ~ 100）</li>
+      <li>吸收<b>寬帶</b>、位置隨配位基變</li>
+    </ul>
+  </div>
+  <div class="compare-box neg">
+    <h4>電荷轉移吸收</h4>
+    <ul>
+      <li>電子在<b>配位基 ⇄ 金屬</b>之間跳</li>
+      <li>允許躍遷 → <b>ε 大</b>（&gt; 10,000）→ 靈敏度高，常用於定量</li>
+      <li>需要一方會給電子、一方會收電子</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════ 14E ════════════ -->
+<div id="factors" class="section-heading sh-rose">
+  <span class="num">14E</span>
+  <span class="label">影響吸收的因素 · 取代基與溶劑<span class="exam-tag">板書</span></span>
+  <span class="rule"></span>
+</div>
+
+<p>Chromophore 的 λmax 與 εmax 只是<b>粗略指引</b>，實際位置會被兩件事改變：</p>
+<div class="step-row"><div class="n">1</div><div class="body"><b>取代基 Substitution</b> — 以芳香族碳氫化合物（aromatic hydrocarbons）為例，看 Table 14-4。</div></div>
+<div class="step-row"><div class="n">2</div><div class="body"><b>溶劑 Solvent</b> — 極性溶劑會使 n→π* 藍移、π→π* 紅移（筆記只點到，細節課本 14A-2）。</div></div>
+
+<h3 id="aromatic">芳香族的三個吸收帶 — 以苯為例</h3>
+<table>
+  <tr><th>吸收帶</th><th>λmax</th><th>εmax</th><th>備註</th></tr>
+  <tr><td style="opacity:0.5">E₁ band</td><td style="opacity:0.5">184 nm</td><td style="opacity:0.5">~60,000</td><td style="opacity:0.5">筆記上劃掉：落在真空 UV，一般儀器量不到，不討論</td></tr>
+  <tr><td><b>E₂ band</b></td><td><b>204 nm</b></td><td><b>7900</b></td><td>π→π*，強</td></tr>
+  <tr><td><b>B band</b></td><td><b>256 nm</b></td><td><b>200</b></td><td>π→π*，弱但有精細結構（benzenoid band）</td></tr>
+</table>
+
+<div class="callout">
+  <div>
+    <b>板書結論：</b>「the three bands are strongly affected by the ring substitution, particularly <b>E₂ &amp; B bands</b>」→ 苯環上的取代基會強烈影響這三帶，尤其是 E₂ 和 B 帶，而且<b>大多是 <span class="hl-rose">red shift（紅移）</span></b>：λmax 變長、ε 通常也變大。
+  </div>
+</div>
+
+<details class="fig-fold" open>
+  <summary>Table 14-4：芳香族化合物的吸收特性（課本原表）</summary>
+  <div class="fig-body">
+    <img src="img/Table%2014-4-dark.png" alt="Table 14-4 Absorption characteristics of aromatic compounds" class="wide">
+    <div class="svg-caption">Table 14-4 — Absorption Characteristics of Aromatic Compounds（E₂ band 與 B band 的 λmax、εmax）</div>
+  </div>
+</details>
+
+<h4>Table 14-4 對照苯（204 / 256 nm）— 全部往長波長跑</h4>
+<table>
+  <tr><th>化合物</th><th>取代基</th><th>E₂ λmax / ε</th><th>B λmax / ε</th><th>相對於苯</th></tr>
+  <tr><td>Benzene</td><td>—</td><td>204 / 7900</td><td>256 / 200</td><td>基準</td></tr>
+  <tr><td>Toluene</td><td>–CH₃</td><td>207 / 7000</td><td>261 / 300</td><td>小幅紅移（烷基超共軛）</td></tr>
+  <tr><td>Chlorobenzene</td><td>–Cl</td><td>210 / 7600</td><td>265 / 240</td><td>小幅紅移</td></tr>
+  <tr><td><b>Phenol</b></td><td>–OH</td><td>211 / 6200</td><td><b>270 / 1450</b></td><td>B 帶紅移 + ε 大增（auxochrome）</td></tr>
+  <tr><td><b>Phenolate ion</b></td><td>–O⁻</td><td><b>235 / 9400</b></td><td><b>287 / 2600</b></td><td>去質子後孤對更「鬆」→ 紅移更大</td></tr>
+  <tr><td><b>Aniline</b></td><td>–NH₂</td><td>230 / 8600</td><td><b>280 / 1430</b></td><td>N 孤對參與共軛 → 大紅移</td></tr>
+  <tr><td>Anilinium ion</td><td>–NH₃⁺</td><td>203 / 7500</td><td>254 / 160</td><td>孤對被 H⁺ 拿走 → <b>幾乎回到苯</b></td></tr>
+  <tr><td>Thiophenol</td><td>–SH</td><td>236 / 10,000</td><td>269 / 700</td><td>S 孤對參與</td></tr>
+  <tr><td>Naphthalene</td><td>稠環</td><td>286 / 9300</td><td>312 / 289</td><td>共軛延長 → 大紅移</td></tr>
+  <tr><td>Styrene</td><td>–CH=CH₂</td><td>244 / 12,000</td><td>282 / 450</td><td>額外 π 鍵共軛</td></tr>
+</table>
+
+<div class="tip">
+  <b>表格最漂亮的一組對照：</b>Phenol vs Phenolate、Aniline vs Anilinium。同一個分子只差<b>一顆 H⁺</b>：有孤對可以參與環的 π 系統 → 紅移；孤對被質子綁住（–NH₃⁺）→ 光譜幾乎退回苯。這直接證明「紅移是 n 電子與環 π 電子交互作用造成的」（見 14F）。
+</div>
+
+<!-- ════════════ 14F ════════════ -->
+<div id="auxochrome" class="section-heading sh-rose">
+  <span class="num">14F</span>
+  <span class="label">Auxochrome 助色團<span class="exam-tag">板書定義必背</span></span>
+  <span class="rule"></span>
+</div>
+
+<div class="term" style="border-left-color:rgba(229,181,116,0.6);">
+  <b>Auxochrome</b> <span class="en">助色團</span>：<b>a functional group that does not itself absorb in the UV region, but has the effect of shifting chromophore peaks to longer wavelength, increasing the intensity (ε).</b><br>
+  一個<b>本身不在 UV 區吸光</b>的官能基，但接上去後會把 chromophore 的吸收峰<b>推向長波長</b>，並<b>增加吸收強度（ε）</b>。
+</div>
+
+<h3>取代基 ①：中性 Neutral — –OH、–NH₂</h3>
+<p>板書以 <b>phenol（苯酚）</b> 為例：O 上的<b>一對 n 電子</b>會與<b>環的 π 電子</b>交互作用（pair of n electrons interact with the π electrons of ring）→ 這個交互作用<b>穩定了 π* 態</b>（stabilizing the π* state）→ π 與 π* 的能隙 ΔE 變小 → 吸收波長變長 → <span class="hl-rose">red shift</span>。</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 520 200" width="520" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <defs><marker id="arrR3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D9A0B8"/></marker></defs>
+  <!-- phenol ring center (80,105) r=30 -->
+  <g stroke="#7BABB2" stroke-width="1.6" fill="none">
+    <polygon points="80,75 105.98,90 105.98,120 80,135 54.02,120 54.02,90"/>
+    <circle cx="80" cy="105" r="19"/>
+    <line x1="80" y1="75" x2="80" y2="58"/>
+  </g>
+  <text x="83" y="55" fill="#D9A0B8" font-size="14" font-weight="700" text-anchor="middle">O</text>
+  <text x="96" y="55" fill="#EAE8F2" font-size="13">H</text>
+  <!-- lone pair 1: above O -->
+  <circle cx="80.5" cy="40" r="1.7" fill="#D9A0B8"/><circle cx="85.5" cy="40" r="1.7" fill="#D9A0B8"/>
+  <!-- lone pair 2: left of O -->
+  <circle cx="69" cy="50" r="1.7" fill="#D9A0B8"/><circle cx="74" cy="50" r="1.7" fill="#D9A0B8"/>
+  <path d="M90,42 C125,30 150,60 118,84" stroke="#D9A0B8" stroke-width="1.2" fill="none" stroke-dasharray="3 3" marker-end="url(#arrR3)"/>
+  <text x="130" y="30" fill="#D9A0B8" font-size="11" font-style="italic">n electrons ↔ ring π</text>
+  <text x="80" y="165" fill="rgba(220,218,236,0.6)" font-size="11" text-anchor="middle">phenol</text>
+  <!-- energy diagram -->
+  <line x1="300" y1="170" x2="300" y2="30" stroke="#EAE8F2" stroke-width="1.4"/>
+  <line x1="300" y1="30" x2="295" y2="40" stroke="#EAE8F2" stroke-width="1.4"/><line x1="300" y1="30" x2="305" y2="40" stroke="#EAE8F2" stroke-width="1.4"/>
+  <text x="284" y="105" fill="#EAE8F2" font-size="12" transform="rotate(-90 284 105)">E</text>
+  <g stroke="#90C8D0" stroke-width="2">
+    <line x1="330" y1="150" x2="400" y2="150"/>
+    <line x1="330" y1="60" x2="400" y2="60"/>
+  </g>
+  <line x1="330" y1="80" x2="400" y2="80" stroke="#D9A0B8" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="410" y="154" fill="#90C8D0" font-size="14" font-style="italic">π</text>
+  <text x="410" y="64" fill="#90C8D0" font-size="14" font-style="italic">π*</text>
+  <text x="410" y="86" fill="#D9A0B8" font-size="12" font-style="italic">π* (stabilized)</text>
+  <line x1="365" y1="150" x2="365" y2="82" stroke="#EAE8F2" stroke-width="1" stroke-dasharray="2 3"/>
+  <text x="338" y="120" fill="#EAE8F2" font-size="11">ΔE ↓</text>
+  <path d="M395,62 Q405,72 395,78" stroke="#D9A0B8" stroke-width="1" fill="none" marker-end="url(#arrR3)"/>
+  <text x="330" y="185" fill="rgba(220,218,236,0.6)" font-size="11">ΔE 變小 → λ 變長 → red shift</text>
+</svg>
+<div class="svg-caption">板書圖重繪：–OH 的 n 電子與環 π 作用 → π* 被穩定（下移）→ 能隙縮小</div>
+</div>
+
+<div class="reaction-box">
+  <b>驗證（Table 14-4）：</b><br>
+  苯 B 帶 256 nm（ε 200）→ 苯酚 <b>270 nm（ε 1450）</b>→ 苯酚鹽 <b>287 nm（ε 2600）</b>。<br>
+  苯 → 苯胺 <b>280 nm（ε 1430）</b>；但苯胺鹽（–NH₃⁺）退回 254 nm（ε 160）。<br>
+  → –OH、–NH₂ 正是教科書級的 auxochrome：<b>本身不吸 UV，卻讓 λ 變長、ε 變大</b>；孤對一被質子占用，效果就消失。
+</div>
+
+<div class="tip">
+  <b>Chromophore vs Auxochrome 一句話：</b>chromophore 是「<b>自己會吸光</b>的不飽和基」；auxochrome 是「<b>自己不吸光</b>、但有孤對電子可以塞進 π 系統，讓旁邊的 chromophore 紅移＋變強」的飽和基（–OH、–NH₂、–OR、–SH、鹵素）。
+</div>
+
+<!-- ════════════ 板書原圖 ════════════ -->
+<div id="board" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">板書原圖</span>
+  <span class="rule"></span>
+</div>
+
+<details class="fig-fold">
+  <summary>板書 1：無機物種 — 陽離子、錯合物、電荷轉移（[Fe(CN)₆]³⁻、[Ni(H₂O)₄]²⁺、[Fe(SCN)ₙ]³⁻ⁿ）</summary>
+  <div class="fig-body">
+    <img src="lecture-img/yifen2-ch14-board1.jpg" alt="板書 1：absorption of inorganic species" class="wide">
+  </div>
+</details>
+<details class="fig-fold">
+  <summary>板書 2：Auxochrome 定義、phenol n–π 交互作用能階圖、Table 14-4 三帶</summary>
+  <div class="fig-body">
+    <img src="lecture-img/yifen2-ch14-board2.jpg" alt="板書 2：auxochrome" class="wide">
+  </div>
+</details>
+
+<!-- ════════════ 必背英文 ════════════ -->
+<div id="phrases" class="section-heading sh-amber">
+  <span class="num">★</span>
+  <span class="label">必背英文片語</span>
+  <span class="rule"></span>
+</div>
+
+<div class="term">"For most single bonds, the <b>excitation energy is sufficiently high</b> → UV region; but the <b>atmosphere also absorbs UV radiation strongly</b>." — 為何不談 σ→σ*</div>
+<div class="term">"π→π* : high probability (high ε); <b>requires the presence of an unsaturated functional group to provide the π orbital</b> [chromophore]."</div>
+<div class="term">"Anions: absorption is <b>a result of excited nonbonding electrons</b> (n→σ*, n→π*)."</div>
+<div class="term">"Cations of the first two transition series <b>absorb broad bands of visible radiation</b> (Fig 14-3)."</div>
+<div class="term">"Complexes: absorption involves <b>transition between filled and unfilled d-orbitals with energies that depend on the ligands</b>."</div>
+<div class="term">"<b>Charge-transfer absorption</b>: electron donor → electron acceptor."</div>
+<div class="term">"The three bands are <b>strongly affected by ring substitution, particularly E₂ &amp; B bands</b> → mostly <b>red shift</b>."</div>
+<div class="term">"<b>Auxochrome</b>: a functional group that does not itself absorb in the UV region, but has the effect of <b>shifting chromophore peaks to longer wavelength, increasing the intensity (ε)</b>."</div>
+<div class="term">"A pair of n electrons <b>interacts with the π electrons of the ring</b>; the interaction has the effect of <b>stabilizing the π* state</b>."</div>
+
+<!-- ════════════ 速記 ════════════ -->
+<div id="flash" class="section-heading sh-amber">
+  <span class="num">⚡</span>
+  <span class="label">30 秒速記</span>
+  <span class="rule"></span>
+</div>
+
+<div class="flash">
+  <b>能階順序：</b><span class="key">σ &lt; π &lt; n &lt; π* &lt; σ*</span>。三種躍遷：n→σ*（UV、ε 100~3000）、n→π*（250~700 nm、ε 小）、<span class="key">π→π*（ε 大、需 chromophore）</span>。σ→σ* 不談：能量太高 + 大氣吸收。
+</div>
+<div class="flash">
+  <b>無機：</b>陰離子靠 n 電子（nitrate ✗）；過渡金屬離子 <span class="key">d–d 寬帶、ε 小</span>；錯合物 d 軌域能階<span class="key">由配位基決定</span>；<span class="key">電荷轉移 donor→acceptor、ε 大</span>（[Fe(SCN)ₙ]³⁻ⁿ、Cr₂O₇²⁻）。
+</div>
+<div class="flash">
+  <b>苯三帶：</b>E₁ 184（不談）、<span class="key">E₂ 204 nm ε 7900</span>、<span class="key">B 256 nm ε 200</span>。取代基 → E₂、B 帶<span class="key">紅移</span>。
+</div>
+<div class="flash">
+  <b>Auxochrome：</b>自己不吸 UV，把 chromophore 峰<span class="key">推向長波長 + ε 變大</span>。機制：–OH / –NH₂ 的 n 電子與環 π 作用 → <span class="key">穩定 π*</span> → ΔE 縮小。證據：phenol 270 → phenolate 287；aniline 280 → anilinium 254。
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  const links=[...document.querySelectorAll('.toc-list a')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+    }});
+  },{rootMargin:'-20% 0px -70% 0px'});
+  targets.forEach(t=>io.observe(t));
+})();
+</script>
+</body>
+</html>
