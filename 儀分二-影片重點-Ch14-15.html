@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>儀器分析（二）— 課前影片重點 Ch 14–15（小考範圍）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+:root {
+  --bg:#1C1F30; --blue:#90C8D0; --blue-lo:rgba(144,200,208,0.18);
+  --blue-dim:rgba(144,200,208,0.55); --rose:#D9A0B8;
+  --rose-lo:rgba(217,160,184,0.14); --gold:#C4A882;
+  --green:#6ECBA8; --green-lo:rgba(110,203,168,0.1);
+  --purple:#B09EE0; --purple-lo:rgba(176,158,224,0.1);
+  --amber:#E5B574;
+  --text:#EAE8F2; --text-mid:rgba(220,218,236,0.75);
+  --text-dim:rgba(220,218,236,0.4); --glass:rgba(255,255,255,0.055);
+  --border:rgba(255,255,255,0.08); --border-lo:rgba(255,255,255,0.05);
+}
+html { scroll-behavior:smooth; }
+body { min-height:100vh; background:var(--bg); color:var(--text);
+  font-family:"Noto Serif TC",serif; font-size:16px; line-height:1.9; }
+body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 8% 35%, rgba(100,185,200,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 92% 65%, rgba(155,130,210,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 35% at 50% 100%, rgba(80,100,160,0.09) 0%, transparent 55%),
+    linear-gradient(155deg,#181B2A 0%,#1E2238 55%,#1B1F32 100%); }
+
+#back-btn { position:fixed; top:18px; left:18px; z-index:999;
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.07); backdrop-filter:blur(14px);
+  border:1px solid var(--border); border-radius:20px;
+  padding:7px 16px 7px 11px; font-size:14px; font-weight:300;
+  letter-spacing:0.05em; color:var(--blue-dim); text-decoration:none;
+  font-family:"Noto Serif TC",serif; transition:background .2s,color .2s; }
+#back-btn:hover { background:rgba(144,200,208,0.12); color:var(--blue); }
+
+.layout { position:relative; z-index:1; display:grid;
+  grid-template-columns:200px 1fr; grid-template-areas:"toc main";
+  max-width:1180px; margin:0 auto; padding:0 0 0 1rem; gap:1.5rem; }
+.toc { grid-area:toc; position:sticky; top:2rem; align-self:start;
+  padding-top:5.5rem; padding-bottom:3rem; max-height:100vh; overflow-y:auto; }
+.toc-label { font-size:0.58rem; letter-spacing:0.35em; font-weight:200;
+  color:var(--text-dim); margin-bottom:1rem; }
+.toc-list { list-style:none; display:flex; flex-direction:column; gap:0.15rem; }
+.toc-list a { display:block; font-size:0.78rem; font-weight:200; line-height:1.5;
+  color:var(--text-dim); text-decoration:none; padding:0.25rem 0.6rem;
+  border-left:2px solid transparent; border-radius:0 4px 4px 0;
+  transition:color .2s,border-color .2s,background .2s; }
+.toc-list a:hover,.toc-list a.active { color:var(--blue);
+  border-left-color:var(--blue); background:rgba(144,200,208,0.06); }
+.toc-list a.exam-link:hover,.toc-list a.exam-link.active { color:var(--purple);
+  border-left-color:var(--purple); background:rgba(176,158,224,0.06); }
+.toc-list a.hot-link { color:var(--rose); font-weight:400;
+  background:rgba(217,160,184,0.08); border-left-color:rgba(217,160,184,0.4); }
+.toc-list a.hot-link::before { content:""; display:inline-block;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--rose); margin-right:8px;
+  vertical-align:middle; box-shadow:0 0 6px rgba(217,160,184,0.6); }
+.toc-list a.hot-link:hover,.toc-list a.hot-link.active { color:#F2C4D2;
+  border-left-color:var(--rose); background:rgba(217,160,184,0.18); }
+.toc-divider { height:1px; margin:0.6rem 0.6rem;
+  background:linear-gradient(90deg,rgba(255,255,255,0.08),transparent); }
+
+main { grid-area:main; padding:5rem 2rem 7rem; max-width:800px; }
+
+.page-header { margin-bottom:2.5rem; padding-bottom:2rem; border-bottom:1px solid var(--border-lo); }
+.page-header h1 { font-size:2rem; font-weight:300; letter-spacing:0.1em; margin-bottom:0.3rem; }
+.page-header .meta { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:0.85rem; color:var(--text-dim); letter-spacing:0.1em; }
+.page-header .scope { display:inline-block; margin-top:1rem; margin-right:0.5rem;
+  padding:0.3rem 0.95rem; border-radius:18px;
+  background:rgba(217,160,184,0.13); border:1px solid rgba(217,160,184,0.3);
+  color:var(--rose); font-size:0.78rem; font-weight:400; letter-spacing:0.08em; }
+.page-header .scope.amber { background:rgba(229,181,116,0.13); border-color:rgba(229,181,116,0.4); color:var(--amber); }
+
+.section-heading { display:flex; align-items:center; gap:0.6rem;
+  margin:3rem 0 1.4rem; scroll-margin-top:2rem; }
+.section-heading .num { font-family:"Cormorant Garamond",serif; font-style:italic;
+  font-size:1.25rem; flex-shrink:0; letter-spacing:0.04em; }
+.section-heading .label { font-size:0.98rem; font-weight:400; letter-spacing:0.06em; }
+.section-heading .rule { flex:1; height:1px; }
+.sh-blue .num { color:rgba(144,200,208,0.65); } .sh-blue .label { color:var(--blue); }
+.sh-blue .rule { background:linear-gradient(90deg,rgba(144,200,208,0.3),transparent); }
+.sh-rose .num { color:rgba(217,160,184,0.65); } .sh-rose .label { color:var(--rose); }
+.sh-rose .rule { background:linear-gradient(90deg,rgba(217,160,184,0.3),transparent); }
+.sh-amber .num { color:rgba(229,181,116,0.65); } .sh-amber .label { color:var(--amber); }
+.sh-amber .rule { background:linear-gradient(90deg,rgba(229,181,116,0.3),transparent); }
+.sh-purple .num { color:rgba(176,158,224,0.65); } .sh-purple .label { color:var(--purple); }
+.sh-purple .rule { background:linear-gradient(90deg,rgba(176,158,224,0.3),transparent); }
+
+h3 { font-size:0.95rem; font-weight:400; color:var(--blue-dim);
+  border-left:2px solid rgba(144,200,208,0.35); padding-left:10px;
+  margin:1.4rem 0 0.6rem; scroll-margin-top:2rem; }
+h4 { font-size:0.88rem; font-weight:400; color:var(--rose);
+  margin:1rem 0 0.4rem; letter-spacing:0.04em; }
+
+.term { background:var(--glass); border:1px solid var(--border-lo);
+  border-left:3px solid rgba(144,200,208,0.38); border-radius:8px;
+  padding:10px 16px; margin:0.55rem 0; color:var(--text-mid); font-size:0.92rem; }
+.term:nth-child(even) { border-left-color:rgba(217,160,184,0.4); }
+.term b { color:var(--text); font-weight:400; }
+.term .en { color:var(--rose); font-style:italic; font-family:"Cormorant Garamond",serif; }
+
+.tip { background:var(--green-lo); border-left:3px solid rgba(110,203,168,0.45);
+  border-radius:8px; padding:10px 16px; margin:0.55rem 0;
+  color:rgba(185,235,215,0.85); font-size:0.9rem; }
+.tip b { color:var(--green); font-weight:400; }
+
+.callout { background:rgba(217,160,184,0.08); border:1px solid rgba(217,160,184,0.22);
+  border-radius:10px; padding:12px 18px; margin:0.8rem 0;
+  color:rgba(235,205,218,0.9); font-size:0.92rem;
+  display:flex; gap:0.8rem; align-items:flex-start; }
+.callout::before { content:"★"; color:var(--rose); opacity:0.8; flex-shrink:0; margin-top:1px; }
+
+/* 老師明講會考 */
+.exam-hot { background:rgba(229,181,116,0.1); border:1px solid rgba(229,181,116,0.45);
+  border-left:4px solid var(--amber); border-radius:10px; padding:12px 18px; margin:0.9rem 0;
+  color:var(--text-mid); font-size:0.92rem; }
+.exam-hot .q { color:var(--amber); font-weight:500; display:block; margin-bottom:0.3rem; }
+.exam-hot .q::before { content:"🔥 老師明講會考　"; font-size:0.78rem; letter-spacing:0.08em; }
+.exam-hot .quote { font-size:0.8rem; color:var(--text-dim); font-style:italic; margin-top:0.4rem; }
+
+.reaction-box { background:rgba(144,200,208,0.05);
+  border:1px solid rgba(144,200,208,0.16); border-radius:10px;
+  padding:14px 18px; margin:0.8rem 0; color:var(--text-mid); font-size:0.91rem; }
+.reaction-box b { color:var(--text); font-weight:400; }
+
+.exam-box { background:var(--purple-lo); border:1px solid rgba(176,158,224,0.2);
+  border-radius:10px; padding:16px 18px; margin:1rem 0; font-size:0.91rem; }
+.exam-box .exam-title { font-size:0.92rem; font-weight:400; color:var(--purple);
+  margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+.exam-box .exam-title::before { content:"◆"; font-size:0.6rem; opacity:0.7; }
+.exam-box ol { margin-left:1.3rem; }
+.exam-box li { margin:0.45rem 0; }
+.exam-box .key { color:var(--purple); }
+
+.flash { background:rgba(229,181,116,0.1); border-left:3px solid var(--amber);
+  border-radius:6px; padding:12px 18px; margin:1rem 0;
+  color:var(--text-mid); font-size:0.93rem; line-height:1.8; }
+.flash::before { content:"⚡ 30 秒速記"; display:block; color:var(--amber);
+  font-size:0.75rem; font-weight:400; letter-spacing:0.12em; margin-bottom:0.5rem; }
+.flash b { color:var(--text); font-weight:500; }
+.flash .key { background:rgba(229,181,116,0.2); padding:1px 8px; border-radius:4px;
+  color:var(--amber); font-weight:500; }
+
+.hl { background:rgba(144,200,208,0.15); color:var(--blue); padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-rose { background:rgba(217,160,184,0.15); color:var(--rose); padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-gold { background:rgba(196,168,130,0.15); color:var(--gold); padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-green { background:rgba(110,203,168,0.15); color:var(--green); padding:1px 7px; border-radius:4px; font-size:0.88em; }
+.hl-amber { background:rgba(229,181,116,0.22); color:var(--amber); padding:1px 7px; border-radius:4px; font-size:0.88em; font-weight:500; }
+
+table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+th { background:rgba(144,200,208,0.1); color:var(--blue); font-weight:400;
+  padding:9px 14px; text-align:left; border-bottom:1px solid rgba(144,200,208,0.2); letter-spacing:0.04em; }
+td { border:1px solid var(--border-lo); padding:9px 14px;
+  background:rgba(255,255,255,0.025); color:var(--text-mid); vertical-align:top; }
+.tbl-wrap { overflow-x:auto; }
+table.quiz td { font-size:0.86rem; line-height:1.7; }
+table.quiz td:last-child { font-family:"Cormorant Garamond","Noto Serif TC",serif; font-size:1.02rem; color:var(--text); }
+table.quiz td:last-child b { font-weight:500; color:#F2DDB0; }
+
+ul, ol { margin-left:1.3rem; }
+li { margin:0.3rem 0; color:var(--text-mid); font-size:0.92rem; }
+p { color:var(--text-mid); margin:0.5rem 0; font-size:0.92rem; }
+
+.svg-wrap { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; padding:14px; margin:0.9rem 0; overflow-x:auto; text-align:center; }
+.svg-wrap svg { max-width:100%; height:auto; }
+.svg-caption { font-size:0.85rem; color:rgba(220,218,236,0.55); margin-top:10px;
+  font-family:"Cormorant Garamond",serif; font-style:italic; letter-spacing:0.05em; }
+
+.formula { font-family:"Cormorant Garamond",serif; font-style:italic; color:var(--blue); letter-spacing:0.04em; font-size:1.05em; }
+
+.exam-tag { display:inline-block; font-size:0.7rem; vertical-align:middle;
+  background:rgba(229,181,116,0.2); color:var(--amber); padding:1px 9px; border-radius:10px;
+  border:1px solid rgba(229,181,116,0.45); letter-spacing:0.08em; margin-left:0.6rem; font-weight:400; }
+.vid-tag { display:inline-block; font-size:0.68rem; vertical-align:middle;
+  font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--text-dim); padding:0 8px; border-radius:10px;
+  border:1px solid var(--border); letter-spacing:0.05em; margin-left:0.5rem; }
+
+.step-row { display:flex; gap:0.7rem; margin:0.6rem 0; align-items:flex-start; }
+.step-row .n { flex-shrink:0; width:1.7rem; height:1.7rem;
+  background:rgba(110,203,168,0.15); color:var(--green);
+  border:1px solid rgba(110,203,168,0.3); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Cormorant Garamond",serif; font-style:italic; font-size:0.92rem; }
+.step-row .body { color:var(--text-mid); font-size:0.92rem; flex:1; }
+
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:0.8rem 0; }
+@media(max-width:620px){ .compare-grid{ grid-template-columns:1fr; } }
+.compare-box { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo); border-radius:10px; padding:14px 18px; }
+.compare-box.pos { border-left:3px solid rgba(110,203,168,0.5); }
+.compare-box.neg { border-left:3px solid rgba(217,160,184,0.5); }
+.compare-box h4 { margin:0 0 0.6rem; font-size:0.9rem; }
+.compare-box.pos h4 { color:var(--green); }
+.compare-box.neg h4 { color:var(--rose); }
+.compare-box ul { margin-left:1rem; }
+
+details.fig-fold { background:rgba(255,255,255,0.03); border:1px solid var(--border-lo);
+  border-radius:10px; margin:0.9rem 0; overflow:hidden; }
+details.fig-fold > summary { list-style:none; cursor:pointer;
+  padding:10px 16px; color:var(--blue-dim); font-size:0.88rem;
+  display:flex; align-items:center; gap:0.5rem;
+  background:rgba(144,200,208,0.04); border-bottom:1px solid transparent;
+  transition:background .2s; user-select:none; }
+details.fig-fold > summary::-webkit-details-marker { display:none; }
+details.fig-fold > summary::before { content:"▸"; color:var(--blue); font-size:0.75rem; transition:transform .2s; flex-shrink:0; }
+details.fig-fold[open] > summary::before { transform:rotate(90deg); }
+details.fig-fold[open] > summary { border-bottom-color:var(--border-lo); background:rgba(144,200,208,0.07); }
+details.fig-fold > summary:hover { background:rgba(144,200,208,0.1); }
+details.fig-fold .fig-body { padding:12px; display:grid; grid-template-columns:1fr; gap:10px; }
+details.fig-fold .fig-body.two { grid-template-columns:1fr 1fr; }
+@media(max-width:620px){ details.fig-fold .fig-body.two { grid-template-columns:1fr; } }
+details.fig-fold .fig-body img { width:100%; height:auto; border-radius:6px; display:block; }
+details.fig-fold .fig-body .cap { grid-column:1/-1; font-family:"Cormorant Garamond",serif; font-style:italic;
+  color:var(--text-dim); font-size:0.85rem; text-align:center; }
+.orig { background:rgba(196,168,130,0.08); border:1px solid rgba(196,168,130,0.3); border-radius:8px;
+  padding:12px 18px; margin:0.7rem 0; font-size:1rem; line-height:1.95; color:var(--text-mid); }
+.orig::before { content:"✎ 筆記原文"; display:block; color:var(--gold); font-size:0.78rem; letter-spacing:0.12em; margin-bottom:0.35rem; }
+.orig i { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:1.28em; color:var(--text); letter-spacing:0.01em; }
+.orig i b { font-weight:500; color:#F2DDB0; }
+
+@media(max-width:780px) {
+  .layout { grid-template-columns:1fr; grid-template-areas:"main"; padding:0 1.2rem; }
+  .toc { display:none; }
+  main { padding-top:4.5rem; padding-left:0.5rem; padding-right:0.5rem; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" id="back-btn">← 返回</a>
+
+<div class="layout">
+
+<nav class="toc">
+  <div class="toc-label">目　錄</div>
+  <ul class="toc-list">
+    <li><a href="#hot" class="hot-link">🔥 老師明講會考</a></li>
+    <li><a href="#overview">影片總覽</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#s1" class="hot-link">1 三種電子躍遷</a></li>
+    <li><a href="#s2">2 無機物種 · 電荷轉移</a></li>
+    <li><a href="#s3" class="hot-link">3 取代基 · 溶劑 · 助色團</a></li>
+    <li><a href="#s4">4 比色法 · 光度滴定</a></li>
+    <li><a href="#s5">5 微分光譜</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#s6" class="hot-link">6 螢光與磷光</a></li>
+    <li><a href="#s6a">Jablonski 圖 · 時間尺度</a></li>
+    <li><a href="#s6b">去活化路徑</a></li>
+    <div class="toc-divider"></div>
+    <li><a href="#quiz" class="exam-link">自我測驗 20 題</a></li>
+    <li><a href="#flash" class="exam-link">30 秒速記</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<div class="page-header">
+  <h1>儀器分析（二）— 課前影片重點</h1>
+  <div class="meta">Ch 14 Molecular UV-Vis Absorption · Ch 15 Molecular Luminescence · 7 recordings, 5 h 09 min</div>
+  <div class="scope amber">小考範圍：7 支課前影片</div>
+  <div class="scope">來源：影片逐字稿 + 老師實物投影的手寫講義頁 ⑦–⑭ 截圖（2021/05/27–06/10）</div>
+</div>
+
+<div class="tip"><b>怎麼用這頁：</b>老師上課是用實物投影機邊講邊寫他的講義（右上有圈起來的頁碼，他口中的「黃色版書第 N 頁」）。每節末尾都放了該頁截圖，可展開對照；「✎ 筆記原文」是他親手寫在講義上的英文句子，<b>考題很可能直接從這些句子出</b>。</div>
+
+<p>老師整個 Ch 14 都在追兩個參數：<span class="hl">λ<sub>max</sub></span>（由躍遷的<b>能階差</b>決定）和 <span class="hl">ε<sub>max</sub></span>（由躍遷的<b>機率</b>決定，<span class="formula">A = εbc</span>）。每個主題最後都回到「這件事讓 λ 往哪移、讓 ε 變大還是變小」。Ch 15 則把視角從「上去（吸收）」換成「下來（去活化）」。</p>
+
+<!-- ════════════ 🔥 ════════════ -->
+<div id="hot" class="section-heading sh-amber">
+  <span class="num">🔥</span>
+  <span class="label">老師在影片裡明講「會考」的題目</span>
+  <span class="rule"></span>
+</div>
+
+<div class="exam-hot">
+  <span class="q">① 芳香族化合物（苯環）的吸收來自哪一種電子躍遷？</span>
+  <b>π→π*</b>。因為苯環有 π 鍵。三個 band：184 nm（E₁，太短，真空 UV）、~204 nm（E₂）、~256 nm（B band，最弱但最實用）。
+  <div class="quote">影片 4 · 15:17「它是 π to π*，因為它有 π 鍵，還記得嗎，這個考試會考」</div>
+</div>
+
+<div class="exam-hot">
+  <span class="q">② 溶劑從氣相 → 非極性 → 極性，為什麼吸收光譜的精細結構（fine structure）會不見？</span>
+  溶劑分子對每個溶質分子的作用<b>不均勻</b>，把能階模糊掉：先失去 <b>rotational</b> 能階，極性溶劑中連 <b>vibrational</b> 能階都糊掉，光譜從密密麻麻的結構變成一條寬帶（Fig 6-24）。
+  <div class="quote">影片 4 · 28:06「老師考試會問你說為什麼，為什麼那個 structure 會不見」</div>
+</div>
+
+<div class="exam-hot">
+  <span class="q">③ 為什麼螢光的躍遷幾乎不會是 σ*→σ 或 σ*→n？</span>
+  這類躍遷能量差大，需要<b>短波長激發</b>；能量大到分子吸收後容易走 <b>predissociation / dissociation 去斷化學鍵</b>，能量被拿去做別的用途，不走螢光那條路。螢光主要是 <b>π*→π</b>（最常見）與 <b>π*→n</b>。
+  <div class="quote">影片 7 · 104:35「老師如果考這一題，你們會解釋嘛」</div>
+</div>
+
+<div class="callout"><div>以下各節凡是老師<b>反覆強調、要求記住</b>的，一律用 <span class="hl-amber">會考</span> 標記；三題明講的在該節再標一次。</div></div>
+
+<!-- ════════════ 總覽 ════════════ -->
+<div id="overview" class="section-heading sh-blue">
+  <span class="num">0</span>
+  <span class="label">影片總覽</span>
+  <span class="rule"></span>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th>#</th><th>日期 · 長度</th><th>內容</th><th>課本</th></tr>
+<tr><td>1</td><td>05/27 · 10 min</td><td>為何看不到 σ→σ*；Table 14-1 導讀</td><td>14A</td></tr>
+<tr><td>2</td><td>05/28 · 11 min</td><td>σ / π / n 電子；n→σ* 四個特色</td><td>14A · Table 14-2</td></tr>
+<tr><td>3</td><td>05/28 · 36 min</td><td>n→π*、π→π*；三種躍遷比較；λ/ε 非絕對的三原因；無機陰離子、金屬離子、錯合物</td><td>14A · Fig 14-3</td></tr>
+<tr><td>4</td><td>06/03 · 52 min</td><td>電荷轉移；苯三帶；取代基紅移；溶劑效應三類；助色團與離子化</td><td>Fig 14-5/6 · Table 14-3/4</td></tr>
+<tr><td>5</td><td>06/03 · 40 min</td><td>比色法；光度滴定</td><td>14C · Fig 14-12</td></tr>
+<tr><td>6</td><td>06/04 · 49 min</td><td>微分光譜；Ch 15 開頭：singlet / triplet、壽命</td><td>14D · Fig 14-10/11 · 15A</td></tr>
+<tr><td>7</td><td>06/10 · 111 min</td><td>Jablonski 圖；振動鬆弛、內轉換、外轉換、系統間跨越、預解離；螢光躍遷型態</td><td>15A · Fig 15-2</td></tr>
+</table></div>
+
+<!-- ════════════ 1 ════════════ -->
+<div id="s1" class="section-heading sh-blue">
+  <span class="num">1</span>
+  <span class="label">有機化合物的三種電子躍遷<span class="exam-tag">會考</span></span>
+  <span class="rule"></span>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 720 300" width="720" height="300" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#EAE8F2"/></marker></defs>
+  <g stroke="#EAE8F2" stroke-width="1.6">
+    <line x1="120" y1="40" x2="300" y2="40"/><line x1="120" y1="95" x2="300" y2="95"/>
+    <line x1="120" y1="160" x2="300" y2="160"/><line x1="120" y1="215" x2="300" y2="215"/>
+    <line x1="120" y1="270" x2="300" y2="270"/>
+  </g>
+  <g fill="#EAE8F2" font-size="20" font-style="italic">
+    <text x="60" y="46">σ*</text><text x="60" y="101">π*</text><text x="60" y="166">n</text><text x="60" y="221">π</text><text x="60" y="276">σ</text>
+  </g>
+  <text x="60" y="20" fill="#C4A882" font-size="13" font-style="italic">antibonding ↑ E</text>
+  <text x="60" y="296" fill="#C4A882" font-size="13" font-style="italic">bonding</text>
+  <line x1="150" y1="160" x2="150" y2="44" stroke="#90C8D0" stroke-width="2.2" marker-end="url(#ah)"/>
+  <line x1="200" y1="160" x2="200" y2="99" stroke="#D9A0B8" stroke-width="2.2" marker-end="url(#ah)"/>
+  <line x1="250" y1="215" x2="250" y2="99" stroke="#6ECBA8" stroke-width="2.2" marker-end="url(#ah)"/>
+  <line x1="285" y1="270" x2="285" y2="44" stroke="#EAE8F2" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#ah)" opacity=".5"/>
+  <g font-size="14">
+    <text x="340" y="70" fill="#90C8D0">n→σ*　能隙大 · UV（~150–250 nm）</text>
+    <text x="340" y="90" fill="#90C8D0" opacity=".8" font-size="12">機率中等 · ε 100–3000 · 需孤對電子（O, N, S, 鹵素）</text>
+    <text x="340" y="130" fill="#D9A0B8">n→π*　能隙最小 · 進入近 UV／可見光</text>
+    <text x="340" y="150" fill="#D9A0B8" opacity=".8" font-size="12">機率低 · ε 10–100 · 需孤對 + π 鍵（如 C=O）</text>
+    <text x="340" y="190" fill="#6ECBA8">π→π*　需不飽和官能基</text>
+    <text x="340" y="210" fill="#6ECBA8" opacity=".8" font-size="12">機率最高 · ε 數千～數萬 · 定量主力 · chromophore 多指此</text>
+    <text x="340" y="250" fill="#EAE8F2" opacity=".55">σ→σ*　能量太大 → 真空 UV（&lt;190 nm）</text>
+    <text x="340" y="270" fill="#EAE8F2" opacity=".55" font-size="12">大氣分子會吸收，需真空設備，一般儀器從 190/210 nm 起掃</text>
+  </g>
+</svg>
+<div class="svg-caption">依老師板書重繪；能階間距為示意，實際隨分子而異</div>
+</div>
+
+<h3>為什麼不看從 σ 出發的躍遷<span class="vid-tag">影片 1</span><span class="exam-tag">會考</span></h3>
+<ul>
+  <li>單鍵電子最穩定，激發能量大 → 需要<b>短波長</b>（deep UV）。</li>
+  <li>&lt; 190 nm 時<b>空氣中的氣體分子本身就會吸收</b> → 必須真空下量（vacuum UV region）。<span class="hl">並非看不到，而是需要特殊設備</span>。</li>
+  <li>結論：一般 UV 光譜儀從 190 或 210 nm 開始掃。</li>
+</ul>
+
+<h3>n→σ* 的四個特色<span class="vid-tag">影片 2</span></h3>
+<div class="step-row"><div class="n">1</div><div class="body">能隙大（從 n 跨到 σ*）。</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">因此吸收落在 <b>UV region</b>。</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">機率中等（less probably occur）→ <b>ε 約 100～3000 L·mol⁻¹·cm⁻¹</b>（筆記寫「moderate」）。</div></div>
+<div class="step-row"><div class="n">4</div><div class="body">需要 <b>non-bonding electron</b>：飽和化合物中含 O、N、S、鹵素的原子（Table 14-2：醇、醚、胺、鹵化物，λ 約 150–250 nm）。</div></div>
+<div class="tip"><b>伏筆：</b>很多溶劑（醇、醚、酮）本身就是這類化合物，低波長會自己吸收 → 第 3 節的「截止波長」。</div>
+
+<h3>n→π* 與 π→π*<span class="vid-tag">影片 3</span><span class="exam-tag">會考</span></h3>
+<div class="compare-grid">
+  <div class="compare-box neg">
+    <h4>n→π* — low probability</h4>
+    <ul><li>機率相對很低 → <b>ε 低</b>（十幾到幾十）</li><li>能隙小 → 不只在 UV，會<b>跨進可見光範圍</b></li></ul>
+  </div>
+  <div class="compare-box pos">
+    <h4>π→π* — requires unsaturated group</h4>
+    <ul><li>必須有<b>不飽和官能基</b>提供 π 軌域</li><li>機率高 → ε 大，濃度與吸光度正相關明顯 → <b>定量的主要工具</b></li><li>口語說的「chromophore」通常就是指 π→π* 在貢獻</li></ul>
+  </div>
+</div>
+<div class="reaction-box">
+  <b>三者排序（老師的結論）</b><br>
+  機率／ε：<span class="hl-amber">π→π* &gt; n→σ* &gt; n→π*</span><br>
+  波長：<span class="hl">n→π* 一定比 n→σ* 長</span>（能隙較小）；π→π* 與 n→σ* 誰長要看分子，「不敢絕對」。
+</div>
+
+<h4>Table 14-1 老師點到的例子</h4>
+<div class="tbl-wrap"><table>
+<tr><th>官能基</th><th>λ<sub>max</sub> (nm)</th><th>ε<sub>max</sub></th><th>躍遷</th><th>老師的解讀</th></tr>
+<tr><td>烯 Alkene</td><td>177</td><td>大（~10⁴）</td><td>π→π*</td><td>有 π 電子 → 機率高、ε 高</td></tr>
+<tr><td>炔 Alkyne</td><td>178 / 225 / 160</td><td>大 / — / —</td><td>π→π* / — / σ 出發</td><td>160 nm 沒有孤對可解釋 → 應來自 σ</td></tr>
+<tr><td>羰基 C=O</td><td>186 / 280</td><td>~1000 / 10–20</td><td>n→σ* / n→π*</td><td>O 上有孤對 → 兩種 n 出發的躍遷；n→π* 波長長但 ε 很低</td></tr>
+</table></div>
+
+<h3>λ<sub>max</sub> 與 ε<sub>max</sub> 不是絕對值：三個原因<span class="vid-tag">影片 3</span><span class="exam-tag">會考</span></h3>
+<div class="step-row"><div class="n">1</div><div class="body"><b>Structural detail</b>：主官能基旁的側基／取代基不同，數值就變。</div></div>
+<div class="step-row"><div class="n">2</div><div class="body"><b>Solvent effect</b>：溶在哪種溶劑（第 3 節）。</div></div>
+<div class="step-row"><div class="n">3</div><div class="body"><b>Conjugation</b>：一個分子有兩個以上 chromophore 且共軛時彼此影響 → λ<sub>max</sub> 往長波長移 = <span class="hl-rose">red shift</span>。（課本沒寫，老師補充。）</div></div>
+<div class="orig">Table 14-1 — <i>1) value of λmax and εmax are only rough guides, because both are influenced by the <b>structural details</b> of the molecules, and <b>solvent effect</b>. 2) <b>conjugation</b> between two or more chromophores tends to cause the absorption maxima shift to <b>longer wavelength</b>.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑦ 下半：Table 14-1 兩點補充（影片 3 截圖）</summary>
+  <div class="fig-body"><img src="lecture-img/yifen2-vid-p07a.jpg" alt="講義頁7 Table 14-1 補充"><div class="cap">頁 ⑦ 上半（三種躍遷能階圖、n→σ* 四點）見「Ch 14 分子 UV-Vis 吸光」頁的手寫筆記版</div></div>
+</details>
+
+<!-- ════════════ 2 ════════════ -->
+<div id="s2" class="section-heading sh-rose">
+  <span class="num">2</span>
+  <span class="label">無機物種：陰離子 · 金屬離子 · 錯合物 · 電荷轉移</span>
+  <span class="rule"></span>
+</div>
+
+<h3>陰離子<span class="vid-tag">影片 3</span></h3>
+<p>NO₃⁻、CO₃²⁻、SO₄²⁻… 都含 N、O、S，帶很多 non-bonding 電子 → 吸收來自 <b>n→σ* 或 n→π*</b>。多原子陰離子吸收帶<b>很寬</b>，UV 到可見光都有；沒有通則，遇到就查。</p>
+<div class="orig">頁 ⑧ — <i>in anions: 1. a result of "<b>excited nonbonding electrons</b>" (n→σ*, n→π*). 2. e.g. nitrate NO₃⁻ (<b>313 nm</b>), carbonate (<b>217 nm</b>), nitrite (<b>360 or 280 nm</b>), trithiocarbonate (<b>500 nm</b>).</i></div>
+
+<h3>陽離子 ①：純粹的金屬離子<span class="vid-tag">影片 3 · 4</span><span class="exam-tag">會考</span></h3>
+<ul>
+  <li>對象：過渡金屬<b>第一、二列</b>，各種氧化態（Cu⁺/Cu²⁺、Fe²⁺/Fe³⁺…）。</li>
+  <li><b>吸收帶非常寬</b>（Fig 14-3：Ni²⁺ 帶寬 70–80 nm，長波長區跨一兩百 nm，「已經不叫 peak 了」；Cu²⁺ 580 nm 以後整片；Co²⁺ ≥150 nm）。原因：d 軌域電子多、能階密密麻麻，加上水溶液的溶劑效應抹平。</li>
+  <li><span class="hl-amber">ε 都很低（個位數到十幾）</span>。「你以為課本寫錯，其實沒有」。同圖中陰離子重鉻酸根的 ε 就大得多。</li>
+  <li>結果：直接用金屬離子自身吸收定量，靈敏度太差 → 引出比色法。</li>
+</ul>
+
+<h3>陽離子 ②：錯合物<span class="vid-tag">影片 3 · 4</span></h3>
+<ul>
+  <li>金屬離子為中心、周圍接<b>配位基</b>。躍遷來源：d 軌域 <b>filled → unfilled</b>（就是之前講的 in-phase／out-of-phase），和有機物講 s、p 軌域是同一套邏輯。</li>
+  <li>同一個 Ni 或 Co，配 CN⁻、OH⁻ 或別的，λ（尤其）與 ε 都差很多。</li>
+</ul>
+<div class="callout"><div><b>決定無機物吸收波長的三個因素</b><span class="exam-tag">會考</span>：① 原子在<b>週期表的位置</b>（價電子、混成後能階）② <b>氧化態</b>（最外層電子分布）③ 錯合物的<b>配位基種類</b>。</div></div>
+<div class="orig">頁 ⑧ — <i>in cations: ions → the first two transition series (one of their oxidation states) <b>absorb broad bands of visible radiation</b> (Fig 14-3), low ε, wide range. complexes → absorption involves transition <b>between filled and unfilled d-orbital, with energies depend on the ligands</b>. the energy difference (λ) depend on: ① the position of element in the periodic table ② oxidation state ③ nature of the ligand.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑧：無機物種（陰離子、陽離子、三因素）（影片 3 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p07c.jpg" alt="講義頁8 上半"><img src="lecture-img/yifen2-vid-p08b.jpg" alt="講義頁8 三因素"></div>
+</details>
+
+<h3>電荷轉移吸收 Charge-transfer<span class="vid-tag">影片 4</span><span class="exam-tag">會考</span></h3>
+<div class="term"><b>定義</b> <span class="en">electron donor → acceptor</span>：錯合物受光照時，<b>配位基（donor）上的電子</b>躍遷到<b>金屬離子塑造出的軌域（acceptor）</b>，不是躍遷到配位基自己的能階。課本寫 charge，實際上是電子在遷移；老師比喻為<span class="hl-gold">分子內的氧化還原反應</span>。</div>
+<ul>
+  <li>先決條件：要有 donor 與 acceptor，且以配位方式結合。</li>
+  <li>例：<b>Fe³⁺–SCN⁻</b> 錯合物（SCN⁻ 的電子遷到 Fe 的軌域）；Fig 14-5 另有澱粉–碘。</li>
+  <li>特徵一：帶寬大（一兩百 nm）。</li>
+  <li>特徵二：<span class="hl-amber">ε 很大，數千到數萬 → 比裸金屬離子強 1000 倍以上</span> → 極好的定量工具，比色法的無機試劑用的就是它。</li>
+</ul>
+<div class="orig">頁 ⑧ charge-transfer absorption [A<sup>n+</sup>(B<sup>−</sup>)<sub>n</sub>] — <i>1) charge-transfer complex consists of an <b>electron donor</b>, bonded to an <b>electron acceptor</b>. 2) electron from the donor is transferred to an orbital that is largely with the acceptor. 3) like <b>internal oxidation-reduction process</b>. 4) e.g. [Fe(SCN)<sub>n</sub>]<sup>3−n</sup> iron(III) thiocyanate complex: absorption of photon results in transfer of an electron from thiocyanate ion to an orbital that is associated with the iron(III) ion. 5) important to quantitative purpose, Fig 14-5, due to the unusually large ε.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑧ 右欄：charge-transfer 五點（影片 4 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p08c.jpg" alt="charge transfer 1-4"><img src="lecture-img/yifen2-vid-p08d.jpg" alt="charge transfer 4-5"></div>
+</details>
+
+<!-- ════════════ 3 ════════════ -->
+<div id="s3" class="section-heading sh-rose">
+  <span class="num">3</span>
+  <span class="label">取代基 · 溶劑效應 · 助色團<span class="exam-tag">會考</span></span>
+  <span class="rule"></span>
+</div>
+
+<h3>苯環三個 band<span class="vid-tag">影片 4</span></h3>
+<div class="exam-hot"><span class="q">苯環（aromatic compound）的吸收是 π→π*</span>三個 band 如下表。蛋白質用 280 nm 定量，量的就是含苯環胺基酸（Trp、Tyr、Phe）的 B band。</div>
+<div class="tbl-wrap"><table>
+<tr><th>Band</th><th>λ (nm)</th><th>強度</th><th>實用性</th></tr>
+<tr><td>E₁</td><td>184</td><td>非常強</td><td>真空 UV，大氣吸收 → 幾乎沒人用</td></tr>
+<tr><td>E₂</td><td>~204</td><td>中</td><td>受溶劑截止波長影響（溶劑量遠大於溶質，溶劑自己吸就沒得玩）</td></tr>
+<tr><td><b>B</b></td><td><b>~256</b></td><td>最弱</td><td><span class="hl">最實用</span>：波長長、看得到</td></tr>
+</table></div>
+<div class="orig">頁 ⑨ — <i>the absorption can be affected by 1. substitution → take aromatic hydrocarbons as an example (Table 14-4) 2. solvent. consists of three sets of bands from π→π* transition: 184 nm (εmax = 60,000) ✗, 204 nm (εmax = 7900) E₂ band, 256 nm (εmax = 200) B band. <b>the three bands are strongly affected by the ring substitution, particularly E₂ and B bands, mostly "red shift"</b> of the ring substitution.</i></div>
+<p>E₂ 與 B band 很容易受取代基影響，多半 <span class="hl-rose">red shift</span>（Table 14-4）：</p>
+<div class="tbl-wrap"><table>
+<tr><th>化合物</th><th>取代基</th><th>E₂</th><th>B</th><th>備註</th></tr>
+<tr><td>Benzene</td><td>—</td><td>204</td><td>256</td><td>基準</td></tr>
+<tr><td>Toluene</td><td>–CH₃</td><td>略紅移</td><td>略紅移</td><td>無孤對，變化不明顯</td></tr>
+<tr><td>Chlorobenzene</td><td>–Cl</td><td>210</td><td>265</td><td>紅移約 10 nm</td></tr>
+<tr><td>Phenol</td><td>–OH</td><td>211</td><td>270</td><td>有孤對 → 助色團</td></tr>
+<tr><td>Aniline</td><td>–NH₂</td><td>230</td><td>280</td><td>紅移最明顯</td></tr>
+<tr><td>Styrene</td><td>–CH=CH₂</td><td>244</td><td>282</td><td>共軛</td></tr>
+</table></div>
+
+<h3>溶劑效應三類<span class="vid-tag">影片 4</span><span class="exam-tag">會考</span></h3>
+<div class="step-row"><div class="n">1</div><div class="body">
+  <b>極性溶劑抹去精細結構</b> — 氣相 → 非極性 → 極性，先失去 rotational、再連 vibrational 能階都糊掉，光譜變一條寬帶（Fig 6-24）。
+  <div class="exam-hot" style="margin-top:.5rem"><span class="q">為什麼結構會不見？</span>溶劑對每個分子的作用<b>不均勻</b>，把能階模糊掉。</div>
+</div></div>
+<div class="step-row"><div class="n">2</div><div class="body">
+  <b>Hypsochromic shift（藍移）</b> — 溶劑極性變大（乙醇 → 水），n→π* 吸收往<b>短波長</b>移。Fig 14-6 乙醛：氣相有精細結構 → 己烷 ~290 nm → 乙醇 ~285 nm → 水 &lt;280 nm。方向和取代基的紅移<b>相反</b>。
+</div></div>
+<div class="step-row"><div class="n">3</div><div class="body">
+  <b>Cutoff wavelength（截止波長）</b> — 低於某波長時溶劑自己吸收（多來自溶劑的 n→σ*，含 O、N 孤對者尤其明顯）。Table 14-3 最低可用波長：水 180、己烷 200、環己烷 200、乙醇 220、CCl₄ 260、丙酮 ~300 nm。
+</div></div>
+<div class="orig">頁 ⑨ Solvent effect — <i>1) if a solvent is used, <b>polar solvents tend to destroy the spectral fine structure</b> (vibrational level). 2) <b>hypsochromic shift (blue shift)</b>: solvent polarity ⇑ ⇒ shift ⇑（乙醛 C=O：ordinary 290 nm → 280 nm）. 3) <b>cutoff wavelength</b>: the values show the minimum wavelength useful, below this limit, the solvent absorbs the radiation a lot (n→σ*).</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑨：三個 band、取代基、溶劑效應三類（影片 4 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p09a.jpg" alt="頁9 三個band"><img src="lecture-img/yifen2-vid-p09b.jpg" alt="頁9 solvent effect"><img src="lecture-img/yifen2-vid-p09c.jpg" alt="頁9 cutoff + auxochrome"><img src="lecture-img/yifen2-vid-p09d.jpg" alt="頁9 auxochrome 機制"></div>
+</details>
+
+<h3>助色團 Auxochrome<span class="vid-tag">影片 4</span><span class="exam-tag">會考</span></h3>
+<div class="term"><b>定義</b>：本身<b>不吸收</b>，但會影響接在旁邊的吸光基團之吸收。典型是帶<b>孤對電子</b>的 –OH、–NH₂。</div>
+<p><b>機制</b>（板書兩點）：① 取代基的孤對電子與苯環 π 電子有 interaction；② 此作用使 <b>π* 穩定化 → 能階降低</b> → π→π* 需要的能量變小 → <span class="hl-rose">λ 變長（紅移）</span>，且躍遷機率提高 → <span class="hl-rose">ε 變大</span>。</p>
+<div class="compare-grid">
+  <div class="compare-box pos"><h4>變陰離子 → 效應更強</h4><p>Phenol 211/270 → Phenolate <b>235/287</b>。多一顆電子，與 π 作用更大，π* 降更多。</p></div>
+  <div class="compare-box neg"><h4>變陽離子 → 效應消失</h4><p>Aniline 230/280 → Anilinium <b>203/254</b>，幾乎回到苯（204/256）。孤對被質子佔住。</p></div>
+</div>
+<div class="orig">頁 ⑨–⑩ Auxochrome — <i>a function group that <b>does not itself absorb in the UV region</b>, but has the effect of <b>shifting chromophore peaks to longer wavelength (λmax), increasing their intensity (εmax)</b>. e.g. neutral –OH, –NH₂ have an auxochromic effect on benzene: 1) pair of n electrons interact with the π electrons of the ring 2) the interaction has the effect of <b>stabilizing the π* state, lowering its energy ⇒ increasing the wavelength</b>. ⇒ if the substitution is <b>anion</b>, the auxochromic effect is <b>more pronounced</b> than neutral [phenolate 235 nm &gt; phenol 211 nm], probably because the anion has an extra unshared electrons. if it is <b>cation</b>, e.g. anilinium cation (203 nm &lt; aniline 230 nm), the auxochromic effect <b>disappears</b>.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑩ 上半：陰／陽離子對助色效應的影響（影片 4 截圖）</summary>
+  <div class="fig-body"><img src="lecture-img/yifen2-vid-p10a.jpg" alt="頁10 anion cation"></div>
+</details>
+
+<!-- ════════════ 4 ════════════ -->
+<div id="s4" class="section-heading sh-blue">
+  <span class="num">4</span>
+  <span class="label">比色法與光度滴定 · Colorimetry &amp; Photometric Titration</span>
+  <span class="rule"></span>
+</div>
+
+<h3>比色法<span class="vid-tag">影片 5</span><span class="exam-tag">會考</span></h3>
+<p><b>動機</b>：分析物 (a) 本身不吸光（non-absorbing species），或 (b) 有吸光但 ε 太低（金屬離子），靈敏度太差。</p>
+<div class="term"><b>做法</b> <span class="en">color-forming reaction</span>：加入 <b>reagent</b>，<b>選擇性地</b>與分析物反應，生成<b>在可見光有強吸收（ε 大）的產物</b> → 通常肉眼看得到顏色。分析物、試劑可以都無色。</div>
+<div class="callout"><div><b>先決條件</b>：產物量必須被分析物<b>限量</b>（分析物 = 限量試劑），所以 <span class="hl-amber">reagent 要過量</span>；有多少分析物就生多少產物。</div></div>
+<div class="compare-grid">
+  <div class="compare-box pos"><h4>無機試劑</h4><ul><li>Fe³⁺（或 Co²⁺）+ SCN⁻ → 電荷轉移錯合物，血紅色，ε 大</li><li>Bi 或 Pd + I⁻ → 灰黑色（濃度高會沉澱）</li></ul></div>
+  <div class="compare-box neg"><h4>有機試劑（螯合）</h4><ul><li>測 Cu²⁺：先加還原劑（glutathione、ascorbic acid）還原成 Cu⁺，再與試劑形成 2:2 有色螯合物</li><li>測 Fe³⁺（老師講義寫 Fe³⁺；課本常用 Fe²⁺）：1,10-phenanthroline，三個配位基各以兩個 N 孤對配位，六配位有色錯合物</li></ul></div>
+</div>
+<div class="tip"><b>化生組會一直用到：</b>Bradford、Biuret 蛋白質分析都是「加試劑 → 與特定胺基酸反應 → 產物強吸收」的比色原理。</div>
+<div class="orig">頁 ⑩ — <i>a reagent selectively reacts with the non-absorbing species to yield a product that absorbs strongly in the UV or visible region ("color-forming reaction"). <b>if the amount of product is limited by the analyte, the absorbance of the product is proportional to the analyte concentration.</b> via inorganic reagents: ex1. Fe³⁺(aq) + SCN⁻ (reagent) → [Fe(SCN)]²⁺ blood-red colored (Co²⁺ 亦可); ex2. Bi³⁺ (Pd²⁺) + I⁻ (iodide) → BiI₃ gray-black. via organic chelating agents: ex1. Cu²⁺ + e⁻ → Cu⁺, 再與二乙基二硫代胺甲酸類試劑形成 Cu–Cu 雙核有色螯合物; ex2. 1,10-phenanthroline + Fe³⁺ → 六配位 colored 錯合物.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑩ 下半：比色法的無機／有機試劑與結構（影片 5 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p10b.jpg" alt="頁10 無機試劑"><img src="lecture-img/yifen2-vid-p10c.jpg" alt="頁10 有機螯合試劑"></div>
+</details>
+
+<h3>光度滴定<span class="vid-tag">影片 5</span><span class="exam-tag">會考</span></h3>
+<p>樣品池裡邊滴定邊量吸光度：<span class="formula">A + T → P</span>（分析物 + 滴定劑 → 產物）。橫軸滴定劑體積、縱軸吸光度。</p>
+<div class="svg-wrap">
+<svg viewBox="0 0 720 250" width="720" height="250" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <g transform="translate(40,20)">
+    <line x1="30" y1="200" x2="300" y2="200" stroke="#EAE8F2" stroke-width="1.2"/>
+    <line x1="30" y1="200" x2="30" y2="20" stroke="#EAE8F2" stroke-width="1.2"/>
+    <text x="300" y="220" fill="#EAE8F2" font-size="12" text-anchor="end" font-style="italic">Volume of titrant</text>
+    <text x="22" y="20" fill="#EAE8F2" font-size="13" text-anchor="end" font-style="italic">A</text>
+    <polyline points="30,195 150,80 290,72" fill="none" stroke="#D9A0B8" stroke-width="2.4"/>
+    <line x1="30" y1="195" x2="210" y2="22" stroke="#D9A0B8" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>
+    <line x1="110" y1="80" x2="290" y2="72" stroke="#D9A0B8" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>
+    <circle cx="150" cy="80" r="5" fill="#6ECBA8"/>
+    <text x="158" y="104" fill="#6ECBA8" font-size="13">end point</text>
+    <text x="30" y="8" fill="#D9A0B8" font-size="13" font-style="italic">(b) ε_A = ε_T = 0, ε_P ≠ 0　只有產物吸光</text>
+  </g>
+  <g transform="translate(400,20)">
+    <line x1="30" y1="200" x2="300" y2="200" stroke="#EAE8F2" stroke-width="1.2"/>
+    <line x1="30" y1="200" x2="30" y2="20" stroke="#EAE8F2" stroke-width="1.2"/>
+    <text x="300" y="220" fill="#EAE8F2" font-size="12" text-anchor="end" font-style="italic">Volume of titrant</text>
+    <text x="22" y="20" fill="#EAE8F2" font-size="13" text-anchor="end" font-style="italic">A</text>
+    <polyline points="30,192 150,190 290,60" fill="none" stroke="#90C8D0" stroke-width="2.4"/>
+    <line x1="30" y1="192" x2="290" y2="188" stroke="#90C8D0" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>
+    <line x1="120" y1="218" x2="290" y2="60" stroke="#90C8D0" stroke-width="1" stroke-dasharray="4 3" opacity=".7"/>
+    <circle cx="150" cy="190" r="5" fill="#6ECBA8"/>
+    <text x="158" y="178" fill="#6ECBA8" font-size="13">end point</text>
+    <text x="30" y="8" fill="#90C8D0" font-size="13" font-style="italic">(a) ε_A = ε_P = 0, ε_T ≠ 0　只有滴定劑吸光</text>
+  </g>
+</svg>
+<div class="svg-caption">依 Fig 14-12 a、b 的板書重繪。終點 = 兩段線性區延長線的交點（intersection of the extrapolated linear portions）</div>
+</div>
+<ul>
+  <li><b>Case (b)</b>：滴定劑一進去就生成 P，A 上升；分析物耗盡後 A 持平。例：IO₃⁻ 滴 I⁻，酸性下生成 I₂，再與過量 I⁻ 形成 <b>I₃⁻</b>（棕色、溶解度較好）→ 量 I₃⁻。</li>
+  <li><b>Case (a)</b>：起初滴進去立刻被反應掉、產物無色 → A 平坦；分析物快用完後殘留滴定劑顯色 → A 上升。例：I₃⁻ 滴 S₂O₃²⁻ → 產物 I⁻ 無色。</li>
+  <li>其他組合少用：分析物自己會吸光就不必滴定；多物種吸光若波長重疊會很不可靠。</li>
+</ul>
+<div class="callout"><div><b>兩個要求</b><span class="exam-tag">會考</span>：① 吸光系統必須<b>遵守 Beer's law</b>；② 體積在變，吸光度要做<b>體積校正</b>：<span class="formula">A<sub>corr</sub> = A<sub>obs</sub> × (V + v) / V</span>，V 原始體積、v 加入的滴定劑體積。</div></div>
+<div class="orig">頁 ⑪ photometric titration — <i>A + T → P (ε<sub>A</sub>=0, ε<sub>T</sub>=0, ε<sub>P</sub>&gt;0, Fig 14-12(b)). 1. real curve of dashed line. 2. two linear regions with different slopes. 3. <b>end point is the intersection of the extrapolated linear portions</b>. requirements: 1. the absorbing system must obey Beer's law. 2. absorbance must be corrected for volume change; multiplying the observed absorbance by (V+v)/V. Example: T: iodate (IO₃⁻), A: iodide (I⁻); IO₃⁻ + 5 I⁻ + 6 H⁺ → 3 I₂ + 3 H₂O; I₂ + I⁻ ⇌ I₃⁻ (triiodide, product). Fig 14-12(a): ε<sub>A</sub> = ε<sub>P</sub> = 0, ε<sub>T</sub> &gt; 0; I₃⁻ + 2 S₂O₃²⁻ → S₄O₆²⁻ + 3 I⁻ (clear); analyte S₂O₃²⁻ thiosulfate.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑪：光度滴定圖、要求、碘酸根／硫代硫酸根例子（影片 5 · 6 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p11a.jpg" alt="頁11 titration curve"><img src="lecture-img/yifen2-vid-p11b.jpg" alt="頁11 requirements"><img src="lecture-img/yifen2-vid-p11d.jpg" alt="頁11 example (a)"></div>
+</details>
+
+<!-- ════════════ 5 ════════════ -->
+<div id="s5" class="section-heading sh-blue">
+  <span class="num">5</span>
+  <span class="label">微分光譜 · Derivative Spectrophotometry</span>
+  <span class="rule"></span>
+</div>
+<p><span class="vid-tag">影片 6 · 7 補充</span> 量測手法與一般 UV-Vis 完全相同，只是把結果做 <span class="formula">dA/dλ</span>（一次）或 <span class="formula">d²A/dλ²</span>（二次）對 λ 作圖。</p>
+<ul>
+  <li><b>物理意義</b>：一次微分 = 每個波長的切線<b>斜率</b>。典型吸收峰微分後變「先正後負」一上一下；<span class="hl-amber">原光譜 λ<sub>max</sub> 對應微分曲線的過零點（斜率 = 0），不是微分曲線的峰頂</span>。</li>
+  <li><b>功能一</b>：讓不明顯的肩峰更顯著（Fig 14-10：538 nm 主峰旁 547、555 nm 肩峰）。</li>
+  <li><b>功能二</b>：解析<b>重疊的光譜</b> — 多個分析物或干擾物吸收帶 overlap 時，用微分區分（distinguish among compounds）。</li>
+  <li><b>缺點</b><span class="exam-tag">會考</span>：<span class="hl-rose">降低 S/N</span>。微分放大 noise，原本訊號小的區域微分後看起來都像峰，但那是斜率不是吸光度，<b>不可把微分曲線的起伏當吸收峰解釋</b>；光譜品質差時會「創造出不是真的東西」。原本訊號大的峰受影響相對小。</li>
+</ul>
+<div class="exam-box">
+  <div class="exam-title">Fig 14-11 · BSA 白蛋白（Ch 14 的總結例子）</div>
+  <p>白蛋白占人血蛋白 ~55%，臨床常以此代表 total protein。280 nm 有寬 λ<sub>max</sub>，但兩件事原光譜看不出：</p>
+  <ol>
+    <li>250–270 nm 一帶抖動的小峰是真的：來自 Trp、Tyr、Phe 的 B band 加取代基紅移，但小到無法定量。</li>
+    <li>蛋白質濃度高會聚集成奈米級顆粒 → <b>散射</b>使整條光譜往上平移（肉眼看得到的顆粒已是 2–3 μm）。</li>
+  </ol>
+  <p><b>一次／二次微分同時解決</b>：小峰變清楚（二次更清楚）；散射是各波長幾乎相同的加值，取斜率後被消掉。結論：<span class="key">resolution enhanced；scattering effect removed</span>。</p>
+</div>
+<div class="orig">頁 ⑪ Derivative spectrophotometry — <i>1. plot the first- or second-order derivative of absorbance with respect to wavelength. 2. <b>reveal spectral detail that is lost in ordinary spectrum</b> → Fig 14-10 (538 nm, 547 nm, 555 nm; wave wavelength in 1st derivative). 3. useful to the concentration measurement of an analyte in the presence of an <b>interference</b>, or <b>multiple analytes</b> [in other words, the derivative spectrum enables the possibility to <b>distinguish among compounds having overlapping spectra</b> (called feature enhancement)]. 4. however, derivative causes <b>degradation in signal-to-noise ratio</b>, i.e. taking a derivative enhances noise, so high-quality spectra are essential for using this technique, otherwise, <b>create features that are not actually present</b>. Fig 14-11 {resolution enhanced; scattering effect eliminated}.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑪ 下半：微分光譜四點 + 課本 Fig 14-11 老師標記（影片 6 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p11e.jpg" alt="頁11 derivative 1-2"><img src="lecture-img/yifen2-vid-p11f.jpg" alt="頁11 derivative 3-4"><img src="lecture-img/yifen2-vid-p11g.jpg" alt="Fig 14-11 標記 Trp Tyr Phe"></div>
+</details>
+
+<!-- ════════════ 6 ════════════ -->
+<div id="s6" class="section-heading sh-rose">
+  <span class="num">6</span>
+  <span class="label">Ch 15 分子發光：螢光與磷光<span class="exam-tag">會考</span></span>
+  <span class="rule"></span>
+</div>
+<p><span class="vid-tag">影片 6 · 7</span> 通稱 <b>photoluminescence</b>，分 <b>fluorescence 螢光</b>與 <b>phosphorescence 磷光</b>；螢光發生機會多很多。Ch 14 只談「上去」（吸收 / excitation），Ch 15 在乎「下來」（deactivation 去活化）。</p>
+
+<h3>單重態與三重態<span class="vid-tag">影片 6</span><span class="exam-tag">會考</span></h3>
+<div class="compare-grid">
+  <div class="compare-box pos"><h4>Singlet 激發態</h4><p>基態一對電子自旋相反；一顆被激發後<b>自旋方向不變</b>。</p></div>
+  <div class="compare-box neg"><h4>Triplet 激發態</h4><p>激發後<b>自旋翻轉</b>（兩顆同向）。能階比對應 singlet 激發態<b>略低</b>。</p></div>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th></th><th>singlet → singlet</th><th>singlet → triplet</th></tr>
+<tr><td>躍遷機率（去與回都是）</td><td>高 → ε 高</td><td>低，稱 <b>forbidden transition</b> → ε 低</td></tr>
+<tr><td>激發態壽命 lifetime</td><td><b>10⁻¹⁰ ～ 10⁻⁵ s</b></td><td><b>10⁻⁴ ～ 10 s</b>（可到肉眼數得出來的秒級）</td></tr>
+<tr><td>回到基態放出的光</td><td>Fluorescence</td><td>Phosphorescence</td></tr>
+</table></div>
+<div class="callout"><div>吸收本身只需 <b>10⁻¹⁵～10⁻¹⁴ s</b>，比激發態壽命短 10⁶ 倍以上 → <span class="hl-amber">吸收不是速率決定步驟</span>；重點全在「上去以後怎麼下來」。</div></div>
+<div class="orig">頁 ⑫ — <i>photoluminescence {fluorescence: <b>electron spin does not change</b> (singlet → singlet); phosphorescence: <b>electron spin changes</b> (singlet → triplet)}. 表格三欄：Probability (ε) / lifetime of excited state / type of radiation — singlet⇌singlet: more probable, high, 10⁻¹⁰～10⁻⁵ s, fluorescence; singlet⇌triplet: less probable (called <b>forbidden transition</b>), low, 10⁻⁴～10 s, phosphorescence.</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑫：singlet／triplet 定義與三欄比較表（影片 6 · 7 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p12a.jpg" alt="頁12 定義"><img src="lecture-img/yifen2-vid-p12b.jpg" alt="頁12 比較表"></div>
+</details>
+
+<h3 id="s6a">Jablonski 圖與時間尺度<span class="vid-tag">影片 7</span><span class="exam-tag">會考</span></h3>
+<div class="svg-wrap">
+<svg viewBox="0 0 760 340" width="760" height="340" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif">
+  <defs>
+    <marker id="ab" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#90C8D0"/></marker>
+    <marker id="ap" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#B09EE0"/></marker>
+    <marker id="ar" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#D9A0B8"/></marker>
+    <marker id="am" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#E5B574"/></marker>
+  </defs>
+  <g stroke="#EAE8F2"><line x1="60" y1="300" x2="560" y2="300" stroke-width="2"/>
+    <g stroke-width=".8" opacity=".5"><line x1="60" y1="288" x2="560" y2="288"/><line x1="60" y1="276" x2="560" y2="276"/><line x1="60" y1="264" x2="560" y2="264"/></g></g>
+  <text x="30" y="305" fill="#EAE8F2" font-size="17" font-style="italic">S₀</text>
+  <g stroke="#EAE8F2"><line x1="60" y1="80" x2="220" y2="80" stroke-width="2"/>
+    <g stroke-width=".8" opacity=".5"><line x1="60" y1="68" x2="220" y2="68"/><line x1="60" y1="56" x2="220" y2="56"/><line x1="60" y1="44" x2="220" y2="44"/></g></g>
+  <text x="30" y="85" fill="#EAE8F2" font-size="17" font-style="italic">S₂</text>
+  <g stroke="#EAE8F2"><line x1="250" y1="130" x2="410" y2="130" stroke-width="2"/>
+    <g stroke-width=".8" opacity=".5"><line x1="250" y1="118" x2="410" y2="118"/><line x1="250" y1="106" x2="410" y2="106"/><line x1="250" y1="94" x2="410" y2="94"/><line x1="250" y1="82" x2="410" y2="82"/></g></g>
+  <text x="420" y="135" fill="#EAE8F2" font-size="17" font-style="italic">S₁</text>
+  <g stroke="#EAE8F2"><line x1="470" y1="170" x2="620" y2="170" stroke-width="2"/>
+    <g stroke-width=".8" opacity=".5"><line x1="470" y1="158" x2="620" y2="158"/><line x1="470" y1="146" x2="620" y2="146"/><line x1="470" y1="134" x2="620" y2="134"/></g></g>
+  <text x="630" y="175" fill="#EAE8F2" font-size="17" font-style="italic">T₁</text>
+  <line x1="90" y1="300" x2="90" y2="48" stroke="#90C8D0" stroke-width="2.2" marker-end="url(#ab)"/>
+  <line x1="290" y1="300" x2="290" y2="86" stroke="#90C8D0" stroke-width="2.2" marker-end="url(#ab)"/>
+  <text x="96" y="180" fill="#90C8D0" font-size="12">absorption λ₁</text>
+  <text x="296" y="215" fill="#90C8D0" font-size="12">λ₂</text>
+  <path d="M100,46 q6,6 0,12 t0,12 t0,12" fill="none" stroke="#6ECBA8" stroke-width="2"/>
+  <path d="M140,80 q20,-8 40,0 t40,0 t40,0" fill="none" stroke="#B09EE0" stroke-width="2" marker-end="url(#ap)"/>
+  <text x="150" y="70" fill="#B09EE0" font-size="12" font-style="italic">internal conversion</text>
+  <path d="M300,84 q6,6 0,12 t0,12 t0,12 t0,12" fill="none" stroke="#6ECBA8" stroke-width="2"/>
+  <text x="308" y="112" fill="#6ECBA8" font-size="12" font-style="italic">vibrational relaxation</text>
+  <line x1="350" y1="130" x2="350" y2="270" stroke="#D9A0B8" stroke-width="2.4" marker-end="url(#ar)"/>
+  <text x="356" y="250" fill="#D9A0B8" font-size="13" font-style="italic">fluorescence λ₃</text>
+  <path d="M400,130 q25,-6 50,0 t50,0" fill="none" stroke="#B09EE0" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#ap)"/>
+  <text x="425" y="118" fill="#B09EE0" font-size="12" font-style="italic">intersystem crossing</text>
+  <path d="M505,134 q6,6 0,12 t0,12 t0,12" fill="none" stroke="#6ECBA8" stroke-width="2"/>
+  <line x1="560" y1="170" x2="560" y2="280" stroke="#E5B574" stroke-width="2.4" marker-end="url(#am)"/>
+  <text x="566" y="240" fill="#E5B574" font-size="13" font-style="italic">phosphorescence</text>
+  <text x="640" y="40" fill="#EAE8F2" font-size="11" opacity=".7" text-anchor="end">直線＝放光（radiative）</text>
+  <text x="640" y="56" fill="#EAE8F2" font-size="11" opacity=".7" text-anchor="end">波浪＝不放光（non-radiative）</text>
+  <text x="60" y="330" fill="#EAE8F2" font-size="11" opacity=".6">溶液中 rotational 能階已糊掉，只畫電子能階（粗）與振動能階（細）。S₁ 畫在 S₂ 右側是暗示可為不同分子（A、B）。</text>
+</svg>
+<div class="svg-caption">Jablonski diagram（依老師板書與課本 Fig 15-2 重繪）</div>
+</div>
+<div class="tbl-wrap"><table>
+<tr><th>步驟</th><th>時間尺度</th><th>說明</th></tr>
+<tr><td>吸收 / excitation</td><td>10⁻¹⁵ ～ 10⁻¹⁴ s</td><td>非常快，不是速率決定步驟</td></tr>
+<tr><td>Vibrational relaxation（每一步）</td><td>~10⁻¹² s</td><td>非輻射，能量靠<b>與溶劑分子碰撞（collision）</b>交給溶劑；一路盪到激發態最低振動能階</td></tr>
+<tr><td>停在 S₁ 最低能階 → 螢光</td><td>總計 10⁻¹⁰ ～ 10⁻⁵ s（平均 ~10⁻⁸）</td><td>比每步鬆弛慢 10⁴ 倍以上 → 「上去馬上盪到底，在那裡等」</td></tr>
+<tr><td>跨到 T₁ → 磷光</td><td>總計 10⁻⁴ ～ 10 s</td><td>電子像 lag 住停很久</td></tr>
+</table></div>
+<div class="callout"><div><b>最高指導原則</b><span class="exam-tag">會考</span>：去活化時電子走<b>總 lifetime 最短（速率最快）</b>的那條路（the route with the minimal lifetime is favored）。它不會呆呆停在高振動能階等螢光，因為往下鬆弛更快 → <span class="hl-amber">螢光一律從激發態最低振動能階出發</span>，且 <span class="hl-amber">螢光波長必比吸收波長長</span>（能量差較小）。</div></div>
+<div class="orig">頁 ⑫ 下半 — <i>absorption (excitation): {singlet → singlet; singlet → triplet}. Deactivation: {nonradiative relaxation (vibrational); fluorescence, phosphorescence; internal conversion; external conversion; intersystem crossing}. <b>the route with minimum lifetime is favored</b>（紅圈）.</i></div>
+<details class="fig-fold" open>
+  <summary>老師手繪 Jablonski 圖 + 頁 ⑫ 時間尺度與去活化清單（影片 7 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-jab.jpg" alt="老師手繪 Jablonski 圖"><img src="lecture-img/yifen2-vid-p12c.jpg" alt="頁12 時間尺度示意"><img src="lecture-img/yifen2-vid-p12d.jpg" alt="頁12 deactivation 清單"><div class="cap">綠色波浪＝vibrational relaxation、藍色波浪＝internal conversion / intersystem crossing、紅直線＝fluorescence / phosphorescence</div></div>
+</details>
+
+<h3 id="s6b">去活化的路徑<span class="vid-tag">影片 7</span><span class="exam-tag">會考</span></h3>
+<p>除了振動鬆弛與直接放螢光／磷光，還有三條要分清楚：</p>
+
+<div class="term">
+  <b>① Internal conversion 內轉換</b> <span class="en">short wavy arrow</span>
+  <ul>
+    <li>分子間過程（A→B，也可同種分子），但<b>不跨多重度</b>：S→S 或 T→T。S→T 另叫系統間跨越。</li>
+    <li>條件：兩電子能階相近，且<b>振動能階有重疊</b>；能量水平跨過去（不降）。</li>
+    <li>結果一（S₂→S₁）：λ₁、λ₂ 兩個吸收波長都產生<b>同一個螢光 λ₃</b>，且 λ₃ 比兩者都長。例：常用 qPCR 染料，吸收 ~300 多與 480 nm，發射 520 nm。</li>
+    <li>結果二（S₁ 與 S₀ 重疊）：S₁ 最低能階跨進 S₀ 高振動能階，再鬆弛回基態 → <span class="hl-rose">完全沒有螢光</span>。這是只有 C、H、無 π 鍵無孤對的碳氫化合物不發螢光的原因（不是不能躍遷，是 S₁ 離 S₀ 太近）。</li>
+    <li>結果三 <b>Predissociation 預解離</b>：能量經內轉換傳到 B 分子後，足以打斷 B 分子的化學鍵 → 能量拿去斷鍵，B 分解，螢光降低。</li>
+  </ul>
+</div>
+<div class="term"><b>Dissociation 解離（對照，不屬內轉換）</b>：A 分子自己吸收後直接把能量拿去斷 A 分子的鍵。斷的是 A 不是 B，但對觀察螢光的結果一樣：強度降低。</div>
+<div class="term">
+  <b>② External conversion 外轉換</b> <span class="en">excited molecule ↔ solvent</span>
+  <ul>
+    <li>激發態分子在 S₁ 等待時與<b>溶劑分子碰撞</b>，能量被溶劑拿走，不放光。溶劑濃度遠高於分析物，所以主要對象是溶劑。</li>
+    <li><b>溫度</b><span class="exam-tag">會考</span>：溫度↑ → 動能↑ → 碰撞↑ → 外轉換↑ → <span class="hl-rose">螢光↓</span>；低溫螢光強。</li>
+    <li><b>黏度</b><span class="exam-tag">會考</span>：黏度↑ → 溶劑分子難動 → 碰撞↓ → <span class="hl-green">螢光↑</span>（效果同低溫）。</li>
+  </ul>
+</div>
+<div class="term">
+  <b>③ Intersystem crossing 系統間跨越</b> <span class="en">cross over between different multiplicities</span>
+  <ul>
+    <li>S→T，激發電子<b>自旋翻轉</b>；同樣需要能階重疊。</li>
+    <li>速率較慢為何還會走？分子含<b>重原子（heavy atoms，電子數多、原子序大）</b>時軌域密密麻麻，S 與 T 能階重疊機會大增、barrier 降低，加上有空軌域或單電子軌域可讓自旋任意擺 → 跨過去的比例上升（即使 100 次只有 2 次）。</li>
+    <li>講義補一句：<b>O₂ causes fluorescence decrease</b>（寫在 heavy atoms 那行旁邊，意思是 O₂ 同樣會促進 spin change；影片中老師沒展開）。</li>
+  </ul>
+</div>
+<div class="orig">頁 ⑬ — <i><b>Vibrational relaxation</b>: collision between the excited molecules with the solvent molecules. 10⁻¹² s, <b>fluorescence is always from the lowest vibrational level of excited electronic state</b>.<br>
+<b>Internal conversion</b>: – intermolecular process – a crossover between two states of the <b>same multiplicity</b> (singlet→singlet, triplet→triplet) – two electronic energy levels are close to each other and overlap in vibrational energy levels. S₂→S₁ ⇒ absorption via λ₁ or λ₂ can yield λ₃ fluorescence, λ₃ &gt; λ₁ and λ₂. S₁→S₀ ⇒ <b>no fluorescence in aliphatic compounds</b> (means S₁ and S₀ must be overlap). – <b>predissociation</b>: if the vibrational energy is great enough to cause rupture of a bond ⇒ fluorescence ↓.<br>
+<b>dissociation</b> (not internal conversion): the vibrational energy breaks the bond itself.<br>
+<b>External conversion</b>: interaction and energy transfer between excited molecule and the solvent (or other solutes). via this process, {marked solvent effect; low temperature effect; high viscosity effect} on fluorescence: T↓ ⇒ F↑; σ↑ ⇒ frequency of collision is reduced.<br>
+<b>Intersystem crossing</b>: – a crossover between electronic states of <b>different multiplicity</b> (commonly S₁→T₁) – enhanced if the vibrational levels of the two states overlap – is most common in molecules that contain <b>heavy atoms</b> → orbital/spin increases ∴ spin change is more favorable. [O₂ causes fluorescence decrease.]</i></div>
+<details class="fig-fold">
+  <summary>講義頁 ⑬：振動鬆弛、內轉換、預解離、解離、外轉換、系統間跨越（影片 7 截圖）</summary>
+  <div class="fig-body two"><img src="lecture-img/yifen2-vid-p13a.jpg" alt="頁13 上"><img src="lecture-img/yifen2-vid-p13b.jpg" alt="頁13 內轉換與圖"><img src="lecture-img/yifen2-vid-p13c.jpg" alt="頁13 S2→S1 S1→S0 predissociation"><img src="lecture-img/yifen2-vid-p13d.jpg" alt="頁13 dissociation external"><img src="lecture-img/yifen2-vid-p13e.jpg" alt="頁13 external effects"><img src="lecture-img/yifen2-vid-p13f.jpg" alt="頁13 intersystem crossing"></div>
+</details>
+
+<h3>螢光的躍遷型態<span class="vid-tag">影片 7</span></h3>
+<div class="exam-hot">
+  <span class="q">為什麼螢光不是 σ*→σ / σ*→n？</span>
+  下來的電子就是上去的那顆。σ 相關躍遷能量差大 → 需短波長激發 → 能量大到分子容易走 <b>predissociation / dissociation 斷鍵</b>，不走螢光。所以螢光主要來自 <b>π*→π</b> 與 <b>π*→n</b>。
+</div>
+<ul>
+  <li>π*→π 又比 π*→n 常見：(1) π→π* 吸收機率比 n→π* 大 100–1000 倍，容易上去就容易下來；(2) 停在 π 相關激發態時較不易發生 intersystem crossing。</li>
+  <li>有機物的螢光遠比無機物常見。</li>
+</ul>
+<div class="orig">頁 ⑭ Transition types in fluorescence — <i>– most fluorescence occurs via {π*→π; π*→n} (σ*→n ✗) depending on which of these of the molecule is less energetic. – <b>σ*→σ is seldom observed, because the high energy difference, corresponding to &lt; 250 nm, which goes to predissociation and dissociation</b>. – empirically it is common π*→π, because {1. ε of π→π* is 10²～10³ greater than n→π*; 2. …}</i></div>
+<details class="fig-fold" open>
+  <summary>講義頁 ⑭：螢光的躍遷型態（影片 7 截圖）</summary>
+  <div class="fig-body"><img src="lecture-img/yifen2-vid-p14.jpg" alt="頁14 transition types in fluorescence"></div>
+</details>
+
+<!-- ════════════ 自我測驗 ════════════ -->
+<div id="quiz" class="section-heading sh-purple">
+  <span class="num">◆</span>
+  <span class="label">自我測驗 20 題（照老師強調的順序）</span>
+  <span class="rule"></span>
+</div>
+<div class="exam-box">
+  <div class="exam-title">先遮住右邊答案，念得出來再往下</div>
+  <p style="font-size:.85rem;color:var(--text-dim)">英文欄取自講義原句的關鍵字，也就是選項最可能出現的寫法。</p>
+  <div class="tbl-wrap"><table class="quiz">
+  <tr><th style="width:38%">問題</th><th style="width:27%">答案（中）</th><th>Key words（講義英文）</th></tr>
+  <tr><td>1. 決定 λ<sub>max</sub> 與 ε<sub>max</sub> 的分別是什麼？</td><td>能階差；躍遷機率</td><td>energy gap; <b>probability</b> of transition (ε ∝ P·A)</td></tr>
+  <tr><td>2. 為什麼一般不看 σ→σ*？</td><td>激發能高 → 真空 UV → 大氣吸收，需真空設備</td><td>excitation energy is <b>sufficiently high</b> → so-called <b>vacuum UV region</b> (where atmosphere also absorbs radiation strongly)</td></tr>
+  <tr><td>3. 三種有機躍遷機率由高到低？</td><td>π→π* &gt; n→σ* &gt; n→π*</td><td>π→π*: <b>high probability</b>; n→σ*: <b>less probably occur</b>, ε 100–3000 (moderate); n→π*: <b>low probability</b> (ε low)</td></tr>
+  <tr><td>4. n→π* 的 ε 大約多少？落在哪個區？</td><td>10–100；進入可見光</td><td>energy gap … bring the absorption band into <b>UV-Visible region (200–700 nm)</b></td></tr>
+  <tr><td>5. λ、ε 不絕對的三個原因？</td><td>結構細節、溶劑效應、共軛（紅移）</td><td>only <b>rough guides</b>: <b>structural details</b> of the molecules, <b>solvent effect</b>; <b>conjugation</b> between chromophores → shift to <b>longer wavelength</b></td></tr>
+  <tr><td>6. 金屬離子吸收的兩個特徵？</td><td>帶很寬；ε 很低（個位數）</td><td>first two transition series <b>absorb broad bands</b> of visible radiation; <b>low ε, wide range</b></td></tr>
+  <tr><td>7. 決定無機物吸收波長的三因素？</td><td>週期表位置、氧化態、配位基</td><td>① <b>position of element in the periodic table</b> ② <b>oxidation state</b> ③ <b>nature of the ligand</b></td></tr>
+  <tr><td>8. 電荷轉移吸收的定義與特點？</td><td>配位基（donor）電子躍遷到金屬（acceptor）軌域；ε 極大</td><td><b>electron donor</b> bonded to <b>electron acceptor</b>; like <b>internal oxidation-reduction process</b>; <b>unusually large ε</b> → quantitative purpose</td></tr>
+  <tr><td>9. 苯環吸收是哪種躍遷？三個 band？哪個實用？</td><td>π→π*；184 / 204 / 256；B band</td><td>three sets of bands from <b>π→π* transition</b>: 184 (ε 60,000), 204 (ε 7900) <b>E₂ band</b>, 256 (ε 200) <b>B band</b></td></tr>
+  <tr><td>10. 溶劑效應三類？</td><td>精細結構消失；藍移（極性↑）；截止波長</td><td>polar solvents <b>destroy the spectral fine structure</b>; <b>hypsochromic shift (blue shift)</b>, solvent polarity ⇑; <b>cutoff wavelength</b> (n→σ*)</td></tr>
+  <tr><td>11. 極性溶劑為何讓精細結構消失？</td><td>溶劑作用不均勻，rotational → vibrational 能階被糊掉</td><td>polar solvents tend to destroy the fine structure (<b>vibrational level</b>); rotational levels lost in condensed state</td></tr>
+  <tr><td>12. 助色團定義與機制？</td><td>本身不吸收但使鄰近 chromophore 紅移、ε 增；孤對與 π 作用 → π* 穩定降低</td><td><b>does not itself absorb in the UV region</b>, shifting chromophore peaks to <b>longer wavelength</b>, <b>increasing their intensity</b>; n electrons interact with π electrons of the ring → <b>stabilizing the π* state</b></td></tr>
+  <tr><td>13. Phenol → phenolate、aniline → anilinium 各如何變？</td><td>紅移更多（211→235）；效應消失回到苯（230→203）</td><td>anion: auxochromic effect <b>more pronounced</b> (extra unshared electrons); cation: auxochromic effect <b>disappears</b></td></tr>
+  <tr><td>14. 比色法的先決條件？</td><td>分析物為限量試劑、reagent 過量</td><td>reagent <b>selectively</b> reacts with non-absorbing species; amount of product <b>limited by the analyte</b> → absorbance ∝ analyte concentration (<b>color-forming reaction</b>)</td></tr>
+  <tr><td>15. 光度滴定的兩個要求？終點怎麼定？</td><td>遵守 Beer's law；體積校正 A(V+v)/V；兩線性段延長線交點</td><td>absorbing system must <b>obey Beer's law</b>; absorbance <b>corrected for volume change</b> × (V+v)/V; end point = <b>intersection of the extrapolated linear portions</b></td></tr>
+  <tr><td>16. 微分光譜的功能與缺點？λ<sub>max</sub> 在哪？</td><td>增強解析、去散射基線；降低 S/N；過零點</td><td><b>reveal spectral detail</b> lost in ordinary spectrum; distinguish compounds having <b>overlapping spectra</b> (feature enhancement); <b>degradation in signal-to-noise ratio</b>, create features not actually present; <b>resolution enhanced / scattering effect eliminated</b></td></tr>
+  <tr><td>17. singlet / triplet 的壽命？</td><td>10⁻¹⁰–10⁻⁵ s；10⁻⁴–10 s</td><td>singlet→singlet <b>more probable</b>, 10⁻¹⁰–10⁻⁵ s; singlet→triplet <b>less probable, forbidden transition</b>, 10⁻⁴–10 s</td></tr>
+  <tr><td>18. 去活化的最高指導原則？</td><td>走 lifetime 最短（速率最快）的路</td><td><b>the route with minimum lifetime is favored</b>; fluorescence is always from the <b>lowest vibrational level of excited electronic state</b></td></tr>
+  <tr><td>19. 溫度↑、黏度↑ 對螢光的影響及原因？</td><td>螢光↓、螢光↑；碰撞機率（external conversion）</td><td><b>external conversion</b>: energy transfer between excited molecule and the <b>solvent</b>; <b>low temperature</b> / <b>high viscosity</b> effect → frequency of <b>collision is reduced</b> → F↑</td></tr>
+  <tr><td>20. 螢光為何不來自 σ*？主要是哪兩種？</td><td>能量大 → 斷鍵（預解離／解離）；π*→π、π*→n</td><td>σ*→σ <b>seldom observed</b>: high energy difference (&lt; 250 nm) goes to <b>predissociation and dissociation</b>; most fluorescence via <b>π*→π</b>, <b>π*→n</b></td></tr>
+  </table></div>
+</div>
+
+<!-- ════════════ 速記 ════════════ -->
+<div id="flash" class="section-heading sh-amber">
+  <span class="num">⚡</span>
+  <span class="label">30 秒速記</span>
+  <span class="rule"></span>
+</div>
+<div class="flash">
+  <b>兩個參數：</b><span class="key">λ ← 能階差</span>、<span class="key">ε ← 機率</span>。三種躍遷機率 <span class="key">π→π* &gt; n→σ* &gt; n→π*</span>；n→π* 波長最長、ε 最小。σ→σ* 不看：真空 UV + 大氣吸收。
+</div>
+<div class="flash">
+  <b>無機：</b>陰離子靠 n 電子；金屬離子 <span class="key">帶寬、ε 個位數</span>；波長看 <span class="key">週期表位置／氧化態／配位基</span>；電荷轉移 donor→acceptor，<span class="key">ε 數千～數萬</span>。
+</div>
+<div class="flash">
+  <b>苯 π→π*：</b>184 / 204 / <span class="key">256 B band 最實用</span>（蛋白 280）。取代基紅移；<span class="key">助色團</span>孤對穩定 π* → 紅移 + ε↑；陰離子更強、陽離子消失。溶劑：<span class="key">極性 → 結構消失、藍移、截止波長</span>。
+</div>
+<div class="flash">
+  <b>比色法：</b>reagent 過量、分析物限量、產物 ε 大。<b>光度滴定：</b>兩線性段交點 = 終點；<span class="key">Beer's law + 體積校正 A(V+v)/V</span>。<b>微分：</b>增強解析、去散射；<span class="key">S/N 變差</span>、λ<sub>max</sub> 在過零點。
+</div>
+<div class="flash">
+  <b>螢光：</b>singlet 10⁻¹⁰–10⁻⁵ s，triplet 10⁻⁴–10 s（forbidden）。吸收 10⁻¹⁴ s 不是決速步驟。<span class="key">走 lifetime 最短的路</span> → 螢光從最低激發振動能階出發、<span class="key">λ 螢光 &gt; λ 吸收</span>。內轉換（同多重度、S₁≈S₀ 則無螢光、預解離）；外轉換（<span class="key">溫度↑螢光↓、黏度↑螢光↑</span>）；系統間跨越（重原子）。螢光 = <span class="key">π*→π、π*→n</span>，不是 σ*（會斷鍵）。
+</div>
+
+</main>
+</div>
+
+<script>
+(function(){
+  const links=[...document.querySelectorAll('.toc-list a')];
+  const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+    }});
+  },{rootMargin:'-20% 0px -70% 0px'});
+  targets.forEach(t=>io.observe(t));
+})();
+</script>
+</body>
+</html>
